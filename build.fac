@@ -1,0 +1,8 @@
+# * python3 adsorbed-gas-read.py methane-298 methane-298 5.8 65 noshow
+# C __pycache__
+
+
+| pdflatex main.tex && bibtex main && pdflatex main.tex && pdflatex main.tex
+# < hydrogen-298-hydrogen-298-n-vs-G.pdf
+# < methane-298-methane-298-n-vs-G.pdf
+# < hydrogen-77-hydrogen-77-n-vs-G.pdf
