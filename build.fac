@@ -41,7 +41,7 @@ c .pyc
 # > figs/lj-cv-error.pdf
 # > figs/lj-cv.pdf
 
-| pdflatex ising/ising.tex && bibtex ising && pdflatex ising/ising.tex && pdflatex ising/ising.tex
+| pdflatex ising/ising.tex && bibtex ising/ising && pdflatex ising/ising.tex && pdflatex ising/ising.tex
 
 # | pdflatex main.tex && bibtex main && pdflatex main.tex && pdflatex main.tex
 # < hydrogen-298-hydrogen-298-n-vs-G.pdf
