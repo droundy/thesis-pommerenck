@@ -1,8 +1,49 @@
-# * python3 adsorbed-gas-read.py methane-298 methane-298 5.8 65 noshow
-# C __pycache__
+# | python3 figs/comparison-plot.py 0 s000/periodic-ww1.30-ff0.30-N50 default noshow
+# c .pyc
 
+# | python3 figs/comparison-plot.py 0 s000/periodic-ww1.30-ff0.30-N50 slow noshow
+# c .pyc
 
-| pdflatex main.tex && bibtex main && pdflatex main.tex && pdflatex main.tex
+# | python3 figs/comparison-plot.py 0 s000/periodic-ww1.30-ff0.30-N50 fast noshow
+# c .pyc
+
+# | python3 figs/gamma-plot.py n50 0.333333333333 noshow
+# c .pyc
+
+# | python3 figs/gamma-plot.py n256 1.0 noshow
+# c .pyc
+
+# | python3 figs/comparison-plot.py 0 s000/periodic-ww1.50-ff0.17-N256 default noshow
+# c .pyc
+
+# | python3 figs/gamma-and-entropy-plot.py 0 s000/periodic-ww1.30-ff0.30-N50 default noshow
+# c .pyc
+
+# | python3 figs/gamma-and-entropy-plot.py 0 s000/periodic-ww1.30-ff0.30-N50 slow noshow
+# c .pyc
+
+# The ising plots
+
+| python3 figs/comparison-plot.py 0 N32 default ising noshow
+c .pyc
+
+| python3 figs/comparison-plot.py 0 N128 default ising noshow
+c .pyc
+
+| python3 figs/ising-gamma-plot.py n32 1.0 noshow
+c .pyc
+
+| python3 figs/ising-gamma-plot.py n128 1.0 noshow
+c .pyc
+
+# | python3 lj-comparison-plot.py noshow
+# c .pyc
+# > figs/lj-cv-error.pdf
+# > figs/lj-cv.pdf
+
+| pdflatex ising/ising.tex && bibtex ising && pdflatex ising/ising.tex && pdflatex ising/ising.tex
+
+# | pdflatex main.tex && bibtex main && pdflatex main.tex && pdflatex main.tex
 # < hydrogen-298-hydrogen-298-n-vs-G.pdf
 # < methane-298-methane-298-n-vs-G.pdf
 # < hydrogen-77-hydrogen-77-n-vs-G.pdf

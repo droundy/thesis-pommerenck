@@ -115,13 +115,6 @@ for method in methods:
                 iterations = np.array(temp_iter)
                 errorinentropy = np.array(temp_ee)
                 maxerror = np.array(temp_me)
-        if not os.path.exists('figs/lv'):
-                os.makedirs('figs/lv')
-
-        if not os.path.exists('figs/s000'):
-                os.makedirs('figs/s000')
-
-        os.makedirs('figs/ising', exist_ok=True)
 
         if filebase.startswith('lv'):
                 NxNsplit = filebase.split('-')
