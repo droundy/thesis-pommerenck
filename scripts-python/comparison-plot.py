@@ -13,13 +13,13 @@ import matplotlib.pyplot as plt
 from glob import glob
 import colors
 
-if os.path.exists('../ising/data'):
+if os.path.exists('ising/data'):
     os.chdir('..')
 
 energy = int(sys.argv[1])
 filebase = sys.argv[2]
 transcale = sys.argv[3]
-save_dir = sys.argv[4]
+system = sys.argv[4]
 
 tex_filebase = filebase.replace('.','_') # latex objects to extra "." characters
 
@@ -116,23 +116,16 @@ for method in methods:
                 errorinentropy = np.array(temp_ee)
                 maxerror = np.array(temp_me)
 
-        if filebase.startswith('lv'):
-                NxNsplit = filebase.split('-')
-                NxN = NxNsplit[-1].split('x')
-                # Formula to calculate N from title i.e. 100x10
-                # and use floor to always round up.
-                N = np.floor(0.25*0.20*float(NxN[0])*float(NxN[-1])*float(NxN[-1]))
-                ff = 1.0 # FIXME
-                moves = iterations * N
-        if filebase.startswith('s000'):
+        if system == 's000':
                 N = filebase.split('-N')[-1]
                 ff = filebase.split('-ff')[-1].split('-N')[0]
                 ff = float(ff)
                 # Get N directly from title.
                 moves = iterations * float(N)
-        if filebase.startswith('ising'):
+        if system == 'ising':
                 N = filebase.split('N')[-1]
                 moves = iterations * float(N)
+
         max_time = max(max_time, moves.max())
 
         if energy > 0:
@@ -204,10 +197,10 @@ for method in methods:
 plt.figure('maxerror')
 colors.loglog([1e6,max_time], [best_ever_max*np.sqrt(max_time/1e6), best_ever_max], method = r'$\frac{1}{\sqrt{t}}$')
 colors.legend()
-plt.savefig('%s/%s-max-entropy-error-%s.pdf' % (save_dir,tex_filebase,transcale))
+plt.savefig('%s-max-entropy-error-%s.pdf' % (tex_filebase,transcale))
 
 plt.figure('errorinentropy')
-if filebase == 'ising/N128':
+if filebase == 'N128':
     moves = np.array([1e5, 10**(13.8)])
 else:
     moves = np.array([1e5, 1e12])
@@ -215,23 +208,23 @@ else:
 for i in np.arange(-8, 19, 1.0):
     colors.loglog(moves, 10**i/np.sqrt(0.1*moves), method = r'1/sqrt(t)')
 plt.xlim(moves[0], moves[1])
-if filebase == 's000/periodic-ww1.30-ff0.30-N50':
+if filebase == 'periodic-ww1.30-ff0.30-N50':
     plt.ylim(1e-3, 1e4)
     if "slow" in transcale:
         plt.ylim(1e-2, 1e5)
-elif filebase == 's000/periodic-ww1.30-ff0.30-N500':
+elif filebase == 'periodic-ww1.30-ff0.30-N500':
     plt.ylim(1e-1, 1e3)
-elif filebase == 's000/periodic-ww1.50-ff0.17-N256':
+elif filebase == 'periodic-ww1.50-ff0.17-N256':
     plt.ylim(1e-3, 1e3)
-elif filebase == 'ising/N32':
+elif filebase == 'N32':
     plt.ylim(1e-3,1e3)
-elif filebase == 'ising/N128':
+elif filebase == 'N128':
     plt.ylim(1e-3,1e4)
 
 colors.legend()
 plt.tight_layout()
 print('filename', 'figs/%s-entropy-error-%s.pdf' % (tex_filebase,transcale))
-plt.savefig('%s/%s-entropy-error-%s.pdf' % (save_dir,tex_filebase,transcale))
+plt.savefig('%s-entropy-error-%s.pdf' % (tex_filebase,transcale))
 
 #plt.figure('error-vs-energy')
 #plt.ylim(-1,1)
