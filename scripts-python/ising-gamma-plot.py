@@ -11,6 +11,7 @@ Tmin = float(sys.argv[2])
 
 plt.figure(figsize=(5,4))
 
+
 try:
     for wl in glob.glob("../ising/data/gamma/%s/*wl*.txt" % filename):
         print("in wl")
