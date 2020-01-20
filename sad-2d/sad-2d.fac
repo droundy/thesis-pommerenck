@@ -1,0 +1,1 @@
+| pdflatex sad-2d.tex && bibtex sad-2d && pdflatex sad-2d.tex && pdflatex sad-2d.tex
