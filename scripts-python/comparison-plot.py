@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 from glob import glob
 import colors
 
-if os.path.exists('../data'):
+if os.path.exists('../ising/data'):
     os.chdir('..')
 
 energy = int(sys.argv[1])
