@@ -1,13 +1,13 @@
-| python3 ../figs/comparison-plot.py 0 N32 default ising noshow
+| python3 ../scripts-python/comparison-plot.py 0 N32 default ising noshow
 c .pyc
 
-| python3 ../figs/comparison-plot.py 0 N128 default ising noshow
+| python3 ../scripts-python/comparison-plot.py 0 N128 default ising noshow
 c .pyc
 
-| python3 ../figs/ising-gamma-plot.py n32 1.0 noshow
+| python3 ../scripts-python/ising-gamma-plot.py n32 1.0 noshow
 c .pyc
 
-| python3 ../figs/ising-gamma-plot.py n128 1.0 noshow
+| python3 ../scripts-python/ising-gamma-plot.py n128 1.0 noshow
 c .pyc
 
 | pdflatex ising.tex && bibtex ising && pdflatex ising.tex && pdflatex ising.tex
