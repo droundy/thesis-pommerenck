@@ -1,0 +1,15 @@
+*~
+*.tum
+/target
+**/*.rs.bk
+*.out
+*.yaml
+.tmp*
+*.energy
+*.entropy
+*.gamma
+*.histogram
+*.time
+*#
+.#*
+__pycache__
