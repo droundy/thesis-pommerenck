@@ -12,9 +12,9 @@ Tmin = float(sys.argv[2])
 plt.figure(figsize=(5,4))
 
 try:
-    for wl in glob.glob("../data/gamma/ising/%s/*wl*.txt" % filename):
+    for wl in glob.glob("../ising/data/gamma/%s/*wl*.txt" % filename):
         print("in wl")
-        print('vanilla_wang_landau'+ '-is' + wl[len("../data/gamma/ising/%s/wl" % filename):-4])
+        print('vanilla_wang_landau'+ '-is' + wl[len("../ising/data/gamma/%s/wl" % filename):-4])
         wlmoves, wlfactor = np.loadtxt(wl, dtype = float, unpack = True)
         data = np.loadtxt(wl)
         moves = data[:,0]
@@ -31,7 +31,7 @@ try:
                 factor[2*i+2] = wlfactor[i]
         colors.loglog(moves, factor,
                       'is'
-                         + wl[len("../data/gamma/ising/%s/wl" % filename):-4])
+                         + wl[len("../ising/data/gamma/%s/wl" % filename):-4])
         #plt.ylim(1e-10, 1e1)
         #plt.xlim(1e3, 1e13)
 
@@ -39,7 +39,7 @@ except:
     pass
 
 try:
-    for sad in glob.glob("../data/gamma/ising/%s/*sad*.dat" % filename):
+    for sad in glob.glob("../ising/data/gamma/%s/*sad*.dat" % filename):
         data = np.loadtxt(sad)
         print(data.shape)
         if data.shape[1] > 2: # i.e. we are not using parse-yaml-out.py
