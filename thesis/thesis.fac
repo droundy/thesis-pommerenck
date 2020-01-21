@@ -1,13 +1,13 @@
 
-| pdflatex thesis.tex && bibtex thesis && pdflatex thesis.tex && pdflatex thesis.tex
-< ../square-well/N50-lndos-comparison.pdf
-< ../square-well/gamma-n256.pdf
-< ../square-well/periodic-ww1_30-ff0_30-N50-gamma-and-entropy-error-default.pdf
-< ../square-well/periodic-ww1_30-ff0_30-N50-gamma-and-entropy-error-slow.pdf
-< ../square-well/periodic-ww1_50-ff0_17-N256-entropy-error-default.pdf
-< ../square-well/lj-cv.pdf
-< ../square-well/lj-cv-error.pdf
-< ../ising/gamma-n32.pdf
-< ../ising/gamma-n128.pdf
-< ../ising/N32-entropy-error-default.pdf
-< ..ising/N128-entropy-error-default.pdf
+# | pdflatex thesis.tex && bibtex thesis && pdflatex thesis.tex && pdflatex thesis.tex
+# < ../square-well/N50-lndos-comparison.pdf
+# < ../square-well/gamma-n256.pdf
+# < ../square-well/periodic-ww1_30-ff0_30-N50-gamma-and-entropy-error-default.pdf
+# < ../square-well/periodic-ww1_30-ff0_30-N50-gamma-and-entropy-error-slow.pdf
+# < ../square-well/periodic-ww1_50-ff0_17-N256-entropy-error-default.pdf
+# < ../square-well/lj-cv.pdf
+# < ../square-well/lj-cv-error.pdf
+# < ../ising/gamma-n32.pdf
+# < ../ising/gamma-n128.pdf
+# < ../ising/N32-entropy-error-default.pdf
+# < ../ising/N128-entropy-error-default.pdf
