@@ -27,7 +27,7 @@
 # > figs/lj-cv-error.pdf
 # > figs/lj-cv.pdf
 
-# | pdflatex main.tex && bibtex main && pdflatex main.tex && pdflatex main.tex
+| pdflatex square-well.tex && bibtex square-well && pdflatex square-well.tex && pdflatex square-well.tex
 # < hydrogen-298-hydrogen-298-n-vs-G.pdf
 # < methane-298-methane-298-n-vs-G.pdf
 # < hydrogen-77-hydrogen-77-n-vs-G.pdf
