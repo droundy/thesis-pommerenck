@@ -1,0 +1,244 @@
+\chapter{Introduction}
+
+% \begin{enumerate}
+%     \item Chapter 1 – General Introduction Links all manuscripts
+%  \item Chapter 2 – First Manuscript
+%  \item Chapter 3 – Second Manuscript
+%  \item Chapter 4 – Third Manuscript
+%  \item Chapter 6 – General Conclusion (common conclusion linking all manuscripts
+% thematically)
+%  \item Common bibliography covering all manuscripts, although each manuscript may have its own reference section
+% \end{enumerate}
+
+\section{Micro-Canonical Ensemble}\label{micro}
+A statistical ensemble is defined as a probability distribution $\mathcal{P}\left(\Omega\right)$ for the state of the system.
+The micro-canonical\index{ensemble!micro-canonical} is a representation for a system $\Gamma$ that is determined by a fixed number\index{extensive!number $N$} of particles $N$ (and fixed components $\sum N_i$ for a multi-component system), a fixed volume\index{extensive!volume $V$} $V$, and a fixed energy\index{extensive!energy $E$} $E$. All possible states for the system $\Gamma\left(N,V,E\right)$ have the same number of particles, energy, and volume due to the system being in isolation from any external environment.
+The micro-canonical ensemble\index{ensemble!micro-canonical} is for this reason also known as the $NVE$ ensemble as the micro-states depend on the \ind{extensive} macroscopic details.
+
+The probability $\mathcal{P}$ of selecting a micro-state at random for a given range of energies centered about $E$ is given by
+\begin{align}
+    \mathcal{P} = \frac{1}{\Omega(E)}
+\end{align}
+where $\Omega(E)$ is the number of micro-states in the system $\Gamma(E)$.
+
+\subsection{Definition of Entropy $S(E)$}\label{entropy}
+The entropy $S(E)$ can be defined for any given system $\Gamma$ with discrete energy states using one of the most important formulae in physics:
+\begin{align}\label{sdos}
+    S(E,V,N) \equiv k_B \ln\Omega(E,V,N)
+\end{align}
+where the entropy is defined as the logarithm of the density of states and $k_B$ is the Boltzmann constant. An important aspect of this definition in terms of logarithms is that the entropy for multiple isolated systems is additive.
+\begin{align}
+    S(E_1,E_2) &= k_B \ln(\Omega(E_1)\Omega_2(E_2)) \\
+    &= k_B \left( \Omega_1(E_1) + \Omega_2(E_2)\right) \\
+    &= k_B \left( S_1(E_1) + S_2(E_2)\right)
+\end{align}
+From the \nth{1} law of thermodynamics, the system temperature can be written in terms of the density of states by refering to Eq.~\HR{sdos}.
+\begin{align}
+    T = \left(\diff{S(E)}{E}\right)_V = \frac{k_B}{\Omega(E)}\left(\diff{\Omega(E)}{E}\right)_V
+\end{align}
+The relationship between entropy $S(E)$, $\Omega(E)$, and $T$ will be discussed in further depth in sections \HR{laws} and \HR{weights}.
+
+\subsection{The Laws of Thermodynamics and $S(E)$}\label{laws}
+The \nth{1} law of thermodynamics states that for an isolated system $\Gamma$, the total internal energy is equal to the sum of the heat $Q$ and work $W$ done.
+\begin{align}
+    \D{U} = \D{Q} + \D{W}
+\end{align}
+The \nth{1} law follows directly from conservation of energy. The thermodynamic identity states that for any infinitesimal change in the system and fixed number of particles $N$, the internal energy can be written in terms of the entropy.
+\begin{align}
+    \D{U} =  T\D{S} - p\D{V} \\
+    T = \left(\diff{U}{S}\right)_V
+\end{align}
+
+The \nth{2} law of thermodynamics states that for any isolated system $\Gamma$ the entropy $S(E) \geq 0$. The heat of the system can also be related to the entropy using the relation:
+\begin{align}
+    \delta Q = T\delta S
+\end{align}
+The relationship between heat and entropy for a system is invaluable for the \nth{1} law to relate the conjugate variables T, $S(E)$, and $U(E)$.
+
+\section{Canonical Ensemble}
+The Canonical ensemble is a representation for a system $\Gamma$ that is determined by a fixed number of particles $N$ (and fixed components $\sum N_i$ for a multi-component system), a fixed volume $V$, and a fixed temperature $T$. All possible states for the system $\Gamma\left(N,V,T\right)$ have the same number of particles, energy, and temperature due to the system being in thermal equilibrium with a heat bath.
+The canonical ensemble is for this reason also known as the $NVT$ ensemble.
+
+The probability $\mathcal{P}$ of selecting a given micro-state at random is
+\begin{align}
+    \mathcal{P} = e^{\nicefrac{F-E}{k_BT}}
+\end{align}
+where $F\left(N,V,T\right)$ is the free energy of the system $\Gamma$ and will be discussed in detail in section~\HR{potentials}.
+
+
+
+\subsection{Boltzmann Factor and Partition Function}
+In statistical thermodynamics $\beta$ is defined as the coldness or the reciprocal of the temperature.
+\begin{align}
+    \beta = \frac{1}{k_BT} = \frac{1}{k_B}
+\end{align}
+where $k_B$ is the Boltzmann constant. The partition function for a canonical ensemble can then be written in terms of the Boltzmann factor where $E$ is the total energy of the system in the respective microstate at index $i$.
+\begin{align}
+    Z = \sum_i e^{-\beta E_i}
+\end{align}
+
+\subsection{Thermodynamic Potentials}\label{potentials}
+Thermodynamic potentials describe a given thermodynamic state of a given system and
+have units of energy $k_BT$. In this section, we will discuss five common thermodynamic potentials and how they are mathematically related through Maxwell relations.
+While the internal energy $U(E)$ has been briefly mentioned in section~\HR{laws}, we outline in detail the relationship between the state variables.
+\begin{align}
+    \D{U(S,V,N)} = T\D{S}-p\D{V}+\mu\D{N}
+\end{align}
+We can write the temperature $T$, pressure $p$, and chemical potential $\mu$ in terms of derivatives of state variables.
+\begin{align}\label{maxU}
+    T = \left( \pdv{U}{S}\right )_{V,N}  \quad\quad 
+    p = -\left( \pdv{U}{V}\right )_{S,N}  \quad\quad 
+    \mu = \left( \pdv{U}{N}\right )_{S,V}  \quad
+\end{align}
+The Helmholtz free energy $F(T,V,N)$ can be written as follows:
+\begin{align}
+    \D{F(T,V,N)} = \D{(U-TS)} = -S\D{T}-p\D{V}+\mu\D{N}
+\end{align}
+We can write the entropy $S$, pressure $p$, and chemical potential $\mu$ in terms of derivatives of state variables.
+\begin{align}\label{maxF}
+    S = \left( \pdv{F}{T}\right )_{V,N}  \quad\quad 
+    p = -\left( \pdv{F}{V}\right )_{T,N}  \quad\quad 
+    \mu = \left( \pdv{F}{N}\right )_{T,V}  \quad
+\end{align}
+The Enthalpy $H(S,p,N)$ can be written as follows:
+\begin{align}
+    \D{H(S,p,N)} = \D{(U+pV)} = -T\D{S}+V\D{p}+\mu\D{N}
+\end{align}
+We can write the temperature $T$, volume $V$, and chemical potential $\mu$ in terms of derivatives of state variables.
+\begin{align}\label{maxH}
+    T = \left( \pdv{H}{S}\right )_{p,N}  \quad\quad 
+    V = -\left( \pdv{H}{p}\right )_{S,N}  \quad\quad 
+    \mu = \left( \pdv{H}{N}\right )_{S,p}  \quad
+\end{align}
+The Gibbs free energy $G(T,p,N)$ can be written as follows:
+\begin{align}
+    \D{G(T,p,N)} = \D{(U+pV-TS)} = -S\D{T}+V\D{p}+\mu\D{N}
+\end{align}
+We can write the entropy $S$, volume $V$, and chemical potential $\mu$ in terms of derivatives of state variables.
+\begin{align}\label{maxG}
+    S = \left( \pdv{G}{T}\right )_{p,N}  \quad\quad 
+    V = -\left( \pdv{G}{p}\right )_{T,N}  \quad\quad 
+    \mu = \left( \pdv{G}{N}\right )_{T,p}  \quad
+\end{align}
+
+\subsection{Maxwell Relations}\label{maxwell}
+Maxwell's relations are second derivative equalities that relate important thermodynamic variables. They are presented here to facilitate a critical derivation in Section~\HR{gas-ads}. Maxwell relations are an extension of the Schwarz theorem which states that the order of differentiation is irrelevant.
+\begin{align}
+    \pdv{}{\theta}\left(\pdv{\Theta}{\phi}\right)=\pdv{}{\phi}\left(\pdv{\Theta}{\theta}\right)
+\end{align}
+From this theorem and Section~\HR{potentials}, we can derive the most common of Maxwell's relations. The relation involving internal energy $U\left(S,V,N\right)$ relates the natural variables of pressure $p$ and temperature $T$ and can be derived using Equation~\ref{maxU}.
+\begin{align}
+    \left( {\pdv{U}{S}{V}} \right )_{N} = \left( \pdv{T}{V}\right )_{S,N} = - \left( \pdv{p}{S}\right )_{V,N}
+\end{align}
+The relation involving the Helmholtz free energy $F\left(T,V,N\right)$ relates the natural variables of entropy $S$ and pressure $p$ and can be derived using Equation~\ref{maxF}.
+\begin{align}
+    \left( {\pdv{F}{T}{V}} \right )_{N} = \left( \pdv{S}{V}\right )_{T,N} = \left( \pdv{p}{T}\right )_{V,N}
+\end{align}
+The relation involving the Enthalpy $H\left(S,p,N\right)$ relates the natural variables of temperature $T$ and volume $V$ and can be derived using Equation~\ref{maxH}.
+\begin{align}
+    \left( {\pdv{H}{S}{p}} \right )_{N} = \left( \pdv{T}{p}\right )_{S,N} =  \left( \pdv{V}{S}\right )_{p,N}
+\end{align}
+The relation involving the Gibbs free energy $G\left(T,p,N\right)$ relates the natural variables of entropy $S$ and volume $V$ and can be derived using Equation~\ref{maxG}.
+\begin{align}
+    \left( {\pdv{G}{T}{p}} \right )_{N} = -\left( \pdv{S}{p}\right )_{T,N} = - \left( \pdv{V}{T}\right )_{p,N}
+\end{align}
+
+\subsection{Thermodynamic Properties}\label{thermoprop}
+The Maxwell relations from Section~\HR{maxwell} can be written in terms of thermodynamic properties of the material.  The isochoric heat capacity $C_V$ of a given material is defined as the amount of heat necessary to raise the temperature by a given amount.
+\begin{align}
+    C_V = \left(\pdv{U}{S}\right )_{V,N}\left( \pdv{S}{T} \right )_{V,N} = \frac{1}{T}\left(\pdv{S}{T}\right )_{V,N}
+\end{align}
+The isobaric heat capacity $C_p$, which is always greater than or equal to $C_V$ according to the Mayer relation, can also be written in terms of the entropy $S$ and temperature $T$ of the system.
+\begin{align}
+    C_p = \left(\pdv{U}{S}\right )_{V,N}\left( \pdv{S}{T} \right )_{p,N} = T\left(\pdv{S}{T}\right )_{p,N}
+\end{align}
+The Mayer relation gives the difference of the isobaric and isochoric heat capacities in terms of the thermal expansion coefficient and the isothermal compressibility.
+\begin{align}
+    C_p - C_V = VT\frac{\alpha^2}{\kappa_T}
+\end{align}
+The isobaric coefficient of thermal expansion determines to what extent a given material will deform as a result of a change in temperature.
+\begin{align}
+    \alpha_p = \frac{1}{V}\left( \pdv{V}{T} \right )_{p,N}
+\end{align}
+Similarly, the isochoric coefficient of thermal expansion can be written as the following:
+\begin{align}
+    \alpha_V = \frac{1}{p}\left( \pdv{p}{T} \right )_{V,N}
+\end{align}
+The compressibility determines to what extent a given material will change volume based on the pressure applied to the system.  The isothermal compressibility can be written in terms of the following:
+\begin{align}
+    \kappa_T = -\frac{1}{V}\left( \pdv{V}{p} \right )_{T,N}
+\end{align}
+Similarly, the isentropic compressibility can be written as the following:
+\begin{align}
+    \kappa_S = -\frac{1}{V}\left( \pdv{V}{p} \right )_{S,N}
+\end{align}
+A major driving force behind introducing the concepts of thermal expansion and compressibility is to right complex derivatives in terms of these parameters.  This will be invaluable as will be shown in Section~\HR{gas-ads}. The internal energy derivative and entropy derivative can be written in terms of both the isothermal compressibility and the thermal coefficient of expansion.
+\begin{align}
+    \left( \pdv{U}{p} \right )_{V,N} = \frac{\kappa_T C_p}{\alpha} - \alpha TV \quad\quad
+    \left( \pdv{S}{p} \right )_{V,N} = \frac{\kappa_T C_p}{\alpha T} + \alpha V
+\end{align}
+Additionally, the enthalpy derivatives can be written in terms of both the isothermal compressibility and the thermal coefficient of expansion.
+\begin{align}
+    \left( \pdv{H}{T} \right )_{V,N} = C_p + \frac{\alpha V}{\kappa_T}\left(1-\alpha T\right) \quad\quad
+    \left( \pdv{H}{p} \right )_{V,N} = \frac{\kappa_T C_p}{\alpha} + V\left(1-\alpha T\right)
+\end{align}
+Finally, the Gibbs free energy derivatives can be written in terms of the isothermal compressibility, the thermal coefficient of expansion, and the entropy.
+\begin{align}
+    \left( \pdv{G}{T} \right )_{V,N} = \frac{\alpha V}{\kappa_T}-S \quad\quad
+    \left( \pdv{G}{p} \right )_{V,N} = V-\frac{\kappa_T S}{\alpha}
+\end{align}
+
+\section{Grand Canonical Ensemble}
+The grand canonical ensemble is a representation for a system $\Gamma$ that is determined by a fixed chemical potential $\mu$, a fixed volume $V$, and a fixed temperature $T$. All possible states for the system $\Gamma\left(\mu,V,T\right)$ have the same chemical potential, volume, and temperature due to the system being in thermal and chemical equilibrium with a given resevoir.
+The grand canonical ensemble is for this reason also known as the $\mu VT$ ensemble.
+
+The probability $\mathcal{P}$ of selecting a given micro-state at random is
+\begin{align}
+    \mathcal{P} = e^{\nicefrac{\Phi + \mu N-E}{k_BT}}
+\end{align}
+where $\Phi\left(\mu,V,T\right)$ is the grand potential of the system $\Gamma$. The grand potential is often referred to as the Landau potential and written:
+\begin{align}
+    \Phi \equiv F -\mu N = U - TS -\mu N
+\end{align}
+
+\subsection{Chemical Potential $\mu$}
+The chemical potential $\mu$ of a given system $\Gamma$ is representative of the energy that can be gained or lost due (often because of a phase transition) to a change in the conjugate variable particle number $N$. Analogous to potential energy, higher chemical potential drives particles to lower potential (thereby usually changing the particle number). The chemical potential $\mu_i$ of species $i$ can be represented using a variety of free energies (all of which are equivalent but not necessarily useful for any given experiment).
+\begin{align}
+    \mu_i = \left( \pdv{G}{N_i}\right )_{T,P,N_{j \neq i}}  \quad
+    \mu_i = \left( \pdv{H}{N_i}\right )_{S,P,N_{j \neq i}}  \quad
+    \mu_i = \left( \pdv{F}{N_i}\right )_{T,V,N_{j \neq i}}  
+\end{align}
+
+\subsection{Grand Potential and Thermodynamic Quantities}
+A variety of important thermodynamic quantities can be written in terms of the grand potential. In differential form, the grand potential can be written as the following (for a single component system $\Gamma$):
+\begin{align}
+    \D{\Phi(\mu,V,T)} = -S\D{T}-p\D{V}-N\D{\mu}
+\end{align}
+The number $N$, pressure $p$, and Gibbs entropy $S$ can be written in terms of the grand potential.
+\begin{align}
+    N = -\left( \pdv{\Phi}{\mu}\right )_{T,V}  \quad
+    p = -\left( \pdv{\Phi}{V}\right )_{T,\mu}  \quad
+    S = -\left( \pdv{\Phi}{T}\right )_{V, \mu} 
+\end{align}
+
+
+\section{Monte Carlo Simulation}\label{monte}
+
+% talk about Canonical here
+\subsection{Broad Histogram Methods}\label{bhm}
+\subsection{Weights, multiplicity, detailed balance}\label{weights}
+
+\subsection{System Details}
+% Ising, Square well, Lennard-Jones clusters, MOF?
+
+
+\section{Real System Simulation}
+% brief outline for broad histogram methods and how the motivate study of MOFs
+
+\subsection{Metal-organic Frameworks (MOFs)}
+\subsection{Gas Adsorption}\label{gas-ads}
+% qst
+
+\section{Summary}
+
+% Tie everything in together here!
