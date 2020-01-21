@@ -7,10 +7,15 @@
 # | python3 figs/comparison-plot.py 0 s000/periodic-ww1.30-ff0.30-N50 fast noshow
 # c .pyc
 
+# BUILD THE GAMMA PLOT FIGURES
 | python3 ../scripts-python/gamma-plot.py n50 0.333333333333 noshow
 c .pyc
 
 | python3 ../scripts-python/gamma-plot.py n256 1.0 noshow
+c .pyc
+
+# BUILD THE N50 LNDOS COMPARISON FIGURE
+| python3 ../scripts-python/create-N50-lndos-comparison.py
 c .pyc
 
 # | python3 figs/comparison-plot.py 0 s000/periodic-ww1.50-ff0.17-N256 default noshow
