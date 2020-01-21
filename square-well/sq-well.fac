@@ -21,11 +21,11 @@ c .pyc
 # | python3 figs/comparison-plot.py 0 s000/periodic-ww1.50-ff0.17-N256 default noshow
 # c .pyc
 
-# | python3 figs/gamma-and-entropy-plot.py 0 s000/periodic-ww1.30-ff0.30-N50 default noshow
-# c .pyc
+| python3 ../scripts-python/gamma-and-entropy-plot.py 0 periodic-ww1.30-ff0.30-N50 default s000 noshow
+c .pyc
 
-# | python3 figs/gamma-and-entropy-plot.py 0 s000/periodic-ww1.30-ff0.30-N50 slow noshow
-# c .pyc
+| python3 ../scripts-python/gamma-and-entropy-plot.py 0 periodic-ww1.30-ff0.30-N50 slow s000 noshow
+c .pyc
 
 # | python3 lj-comparison-plot.py noshow
 # c .pyc

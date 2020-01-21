@@ -19,9 +19,10 @@ if os.path.exists('../data'):
 # Arguments for entropy portion
 energy = int(sys.argv[1])
 filebase = sys.argv[2]
-transcale = sys.argv[3] 
+transcale = sys.argv[3]
 
-tex_filebase = filebase.replace('.','_') # latex objects to extra "." characters
+save_filebase = filebase.split('/')[-1]
+tex_filebase = save_filebase.replace('.','_') # latex objects to extra "." characters
 
 methods = ['-sad3','-vanilla_wang_landau']
 if 'allmethods' not in sys.argv:
@@ -34,7 +35,7 @@ if 'allmethods' not in sys.argv:
         methods = ['-sad3-fast','-vanilla_wang_landau-fast']
 
 # For SAMC compatibility with LVMC
-lvextra1 = glob('data/comparison/%s-samc*' % filebase)
+lvextra1 = glob('../square-well/data/comparison/%s-samc*' % filebase)
 split3 = [i.split('%s-'%filebase, 1)[-1] for i in lvextra1]
 split4 = [i for i in split3 if i[-3:-1] != '-s']
 
@@ -56,7 +57,8 @@ print('methods are', methods)
 for method in methods:
     print('trying method', method)
     try:
-        dirname = 'data/comparison/%s%s/' % (filebase,method)
+        dirname = '../square-well/data/comparison/%s%s/' % (filebase,method)
+        print(dirname)
         if not os.path.exists(dirname) or os.listdir(dirname) == []:
                 continue
 
@@ -67,9 +69,6 @@ for method in methods:
         errorinentropy = data[1]
         maxerror = data[2]
         best_ever_max = min(best_ever_max, maxerror.min())
-
-        if not os.path.exists('figs/s000'):
-                os.makedirs('figs/s000')
 
         if filebase.startswith('s000'):
                 N = filebase.split('-N')[-1]
@@ -116,13 +115,13 @@ moves = np.array([1e3, 1e12])
 for i in np.arange(-8, 19, 1.0):
     colors.loglog(moves, 10**i/np.sqrt(0.1*moves), method = r'1/sqrt(t)')
 plt.xlim(moves[0], moves[1])
-if filebase == 's000/periodic-ww1.30-ff0.30-N50':
+if filebase == 'periodic-ww1.30-ff0.30-N50':
     plt.ylim(1e-3, 1e4)
     if "slow" in transcale:
         plt.ylim(1e-2, 1e5)
-elif filebase == 's000/periodic-ww1.30-ff0.30-N500':
+elif filebase == 'periodic-ww1.30-ff0.30-N500':
     plt.ylim(1e-1, 1e3)
-elif filebase == 's000/periodic-ww1.50-ff0.17-N256':
+elif filebase == 'periodic-ww1.50-ff0.17-N256':
     plt.ylim(1e-3, 1e3)
 #colors.legend()
 #plt.tight_layout()
@@ -144,7 +143,7 @@ elif "slow" in transcale:
     plt.text(10**3, 10**0.3, '(d)',fontsize=14)
 
 try:
-    for wl in glob("data/gamma/n%s/%s" % (N,wl_globstring)):
+    for wl in glob("../square-well/data/gamma/n%s/%s" % (N,wl_globstring)):
         print('in wl')
         print('vanilla_wang_landau'+ wl[len("data/gamma/n%s/wl" % N):-4])
         wlmoves, wlfactor = np.loadtxt(wl, dtype = float, unpack = True)
@@ -171,7 +170,7 @@ except:
     pass
 
 try:
-    for sad in glob("data/gamma/n%s/%s" % (N,sad_globstring)):
+    for sad in glob("../square-well/data/gamma/n%s/%s" % (N,sad_globstring)):
         data = np.loadtxt(sad)
         #print(data.shape)
         if data.shape[1] > 2:
@@ -205,7 +204,7 @@ for t0 in t0s:
 plt.tight_layout()
 plt.subplots_adjust(hspace=0.0)
 
-print('filename', 'figs/%s-gamma-and-entropy-error-%s.pdf' % (tex_filebase,transcale))
-plt.savefig('figs/%s-gamma-and-entropy-error-%s.pdf' % (tex_filebase,transcale))
+print('filename', '%s-gamma-and-entropy-error-%s.pdf' % (tex_filebase,transcale))
+plt.savefig('%s-gamma-and-entropy-error-%s.pdf' % (tex_filebase,transcale))
 if 'noshow' not in sys.argv:
     plt.show()
