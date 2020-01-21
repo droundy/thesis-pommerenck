@@ -12,9 +12,9 @@ Tmin = float(sys.argv[2])
 plt.figure(figsize=(5, 4))
 
 try:
-    for wl in glob.glob("data/gamma/%s/wl*.txt" % filename):
+    for wl in glob.glob("../square-well/data/gamma/%s/wl*.txt" % filename):
         print("in wl")
-        print(('vanilla_wang_landau'+ wl[len("data/gamma/%s/wl" % filename):-4]))
+        print(('vanilla_wang_landau'+ wl[len("../square-well/data/gamma/%s/wl" % filename):-4]))
         wlmoves, wlfactor = np.loadtxt(wl, dtype = float, unpack = True)
         data = np.loadtxt(wl)
         moves = data[:, 0]
@@ -31,7 +31,7 @@ try:
                 factor[2*i+2] = wlfactor[i]
         colors.loglog(moves, factor,
                       'wl'
-                         + wl[len("data/gamma/%s/wl" % filename):-4])
+                         + wl[len("../square-well/data/gamma/%s/wl" % filename):-4])
         plt.ylim(ymin=1e-10, ymax=1e1)
         plt.xlim(xmin=1e3, xmax=1e12)
 
@@ -40,7 +40,7 @@ except:
 
 
 try:
-    for sad in glob.glob("data/gamma/%s/sad*.dat" % filename):
+    for sad in glob.glob("../square-well/data/gamma//%s/sad*.dat" % filename):
         data = np.loadtxt(sad)
         print((data.shape))
         if data.shape[1] > 2: # i.e. we are not using parse-yaml-out.py
@@ -87,7 +87,7 @@ for t0 in t0s:
     plt.ylabel(r'$\gamma_{t}$')
     colors.legend()
 plt.tight_layout()
-plt.savefig('figs/gamma-%s.pdf' % filename.replace('.', '_'))
+plt.savefig('gamma-%s.pdf' % filename.replace('.', '_'))
 if 'noshow' not in sys.argv:
     plt.show()
 

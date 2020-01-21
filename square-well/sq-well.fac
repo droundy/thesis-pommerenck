@@ -7,11 +7,11 @@
 # | python3 figs/comparison-plot.py 0 s000/periodic-ww1.30-ff0.30-N50 fast noshow
 # c .pyc
 
-# | python3 figs/gamma-plot.py n50 0.333333333333 noshow
-# c .pyc
+| python3 ../scripts-python/gamma-plot.py n50 0.333333333333 noshow
+c .pyc
 
-# | python3 figs/gamma-plot.py n256 1.0 noshow
-# c .pyc
+| python3 ../scripts-python/gamma-plot.py n256 1.0 noshow
+c .pyc
 
 # | python3 figs/comparison-plot.py 0 s000/periodic-ww1.50-ff0.17-N256 default noshow
 # c .pyc
@@ -27,7 +27,7 @@
 # > figs/lj-cv-error.pdf
 # > figs/lj-cv.pdf
 
-| pdflatex square-well.tex && bibtex square-well && pdflatex square-well.tex && pdflatex square-well.tex
+| pdflatex sq-well.tex && bibtex sq-well && pdflatex sq-well.tex && pdflatex sq-well.tex
 # < hydrogen-298-hydrogen-298-n-vs-G.pdf
 # < methane-298-methane-298-n-vs-G.pdf
 # < hydrogen-77-hydrogen-77-n-vs-G.pdf
