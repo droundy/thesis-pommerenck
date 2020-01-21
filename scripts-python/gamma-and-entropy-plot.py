@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 from glob import glob
 import colors
 
-if os.path.exists('../data'):
+if os.path.exists('square-well/data'):
     os.chdir('..')
 
 # Arguments for entropy portion
@@ -115,13 +115,13 @@ moves = np.array([1e3, 1e12])
 for i in np.arange(-8, 19, 1.0):
     colors.loglog(moves, 10**i/np.sqrt(0.1*moves), method = r'1/sqrt(t)')
 plt.xlim(moves[0], moves[1])
-if filebase == 'periodic-ww1.30-ff0.30-N50':
+if filebase == 's000/periodic-ww1.30-ff0.30-N50':
     plt.ylim(1e-3, 1e4)
     if "slow" in transcale:
         plt.ylim(1e-2, 1e5)
-elif filebase == 'periodic-ww1.30-ff0.30-N500':
+elif filebase == 's000/periodic-ww1.30-ff0.30-N500':
     plt.ylim(1e-1, 1e3)
-elif filebase == 'periodic-ww1.50-ff0.17-N256':
+elif filebase == 's000/periodic-ww1.50-ff0.17-N256':
     plt.ylim(1e-3, 1e3)
 #colors.legend()
 #plt.tight_layout()
@@ -145,7 +145,7 @@ elif "slow" in transcale:
 try:
     for wl in glob("../square-well/data/gamma/n%s/%s" % (N,wl_globstring)):
         print('in wl')
-        print('vanilla_wang_landau'+ wl[len("data/gamma/n%s/wl" % N):-4])
+        print('vanilla_wang_landau'+ wl[len("../square-well/data/gamma/n%s/wl" % N):-4])
         wlmoves, wlfactor = np.loadtxt(wl, dtype = float, unpack = True)
         data = np.loadtxt(wl)
         moves = data[:,0]
@@ -162,7 +162,7 @@ try:
                 factor[2*i+2] = wlfactor[i]
         colors.loglog(moves, factor,
                       'wl'
-                         + wl[len("data/gamma/n%s/wl" % N):-4])
+                         + wl[len("../square-well/data/gamma/n%s/wl" % N):-4])
         plt.ylim(ymin=1e-10, ymax=1e1)
         plt.xlim(xmin=1e2, xmax=1e12)
 

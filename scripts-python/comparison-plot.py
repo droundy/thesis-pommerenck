@@ -15,6 +15,9 @@ import colors
 
 if os.path.exists('ising/data'):
     os.chdir('..')
+    
+if os.path.exists('square-well/data'):
+    os.chdir('..')
 
 energy = int(sys.argv[1])
 filebase = sys.argv[2]
@@ -53,8 +56,8 @@ for meth in split2:
             methods.append('-%s' % meth)
 
 # For SAMC compatibility with LVMC
-if filebase.startswith('s000'):
-    lvextra1 = glob('data/comparison/%s-samc*' % filebase)
+if system == 's000':
+    lvextra1 = glob('data/comparison/%s/%s-samc*' % (system,filebase))
 else:
     lvextra1 = glob('data/comparison/%s-*samc*' % filebase)
 split3 = [i.split('%s-'%filebase, 1)[-1] for i in lvextra1]
@@ -79,7 +82,11 @@ print('methods are', methods)
 for method in methods:
     print('trying method', method)
     try:
-        dirname = 'data/comparison/%s%s/' % (filebase,method)
+        if system == 's000':
+                dirname = 'data/comparison/%s/%s%s/' % (system,filebase,method)
+        else:
+                dirname = 'data/comparison/%s%s/' % (filebase,method)
+
         if not os.path.exists(dirname) or os.listdir(dirname) == []:
                 continue
 
@@ -197,7 +204,7 @@ for method in methods:
 plt.figure('maxerror')
 colors.loglog([1e6,max_time], [best_ever_max*np.sqrt(max_time/1e6), best_ever_max], method = r'$\frac{1}{\sqrt{t}}$')
 colors.legend()
-plt.savefig('%s-max-entropy-error-%s.pdf' % (tex_filebase,transcale))
+#plt.savefig('%s-max-entropy-error-%s.pdf' % (tex_filebase,transcale))
 
 plt.figure('errorinentropy')
 if filebase == 'N128':
@@ -223,7 +230,7 @@ elif filebase == 'N128':
 
 colors.legend()
 plt.tight_layout()
-print('filename', 'figs/%s-entropy-error-%s.pdf' % (tex_filebase,transcale))
+print('filename', '%s-entropy-error-%s.pdf' % (tex_filebase,transcale))
 plt.savefig('%s-entropy-error-%s.pdf' % (tex_filebase,transcale))
 
 #plt.figure('error-vs-energy')

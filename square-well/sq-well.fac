@@ -1,15 +1,6 @@
-# | python3 figs/comparison-plot.py 0 s000/periodic-ww1.30-ff0.30-N50 default noshow
+# BUILD THE GAMMA PLOT FIGURE(S)
+# | python3 ../scripts-python/gamma-plot.py n50 0.333333333333 noshow
 # c .pyc
-
-# | python3 figs/comparison-plot.py 0 s000/periodic-ww1.30-ff0.30-N50 slow noshow
-# c .pyc
-
-# | python3 figs/comparison-plot.py 0 s000/periodic-ww1.30-ff0.30-N50 fast noshow
-# c .pyc
-
-# BUILD THE GAMMA PLOT FIGURES
-| python3 ../scripts-python/gamma-plot.py n50 0.333333333333 noshow
-c .pyc
 
 | python3 ../scripts-python/gamma-plot.py n256 1.0 noshow
 c .pyc
@@ -18,13 +9,14 @@ c .pyc
 | python3 ../scripts-python/create-N50-lndos-comparison.py
 c .pyc
 
-# | python3 figs/comparison-plot.py 0 s000/periodic-ww1.50-ff0.17-N256 default noshow
-# c .pyc
-
-| python3 ../scripts-python/gamma-and-entropy-plot.py 0 periodic-ww1.30-ff0.30-N50 default s000 noshow
+# BUILD THE COMPARISON PLOT FIGURE(S)
+| python3 ../scripts-python/comparison-plot.py 0 periodic-ww1.50-ff0.17-N256 default s000 noshow
 c .pyc
 
-| python3 ../scripts-python/gamma-and-entropy-plot.py 0 periodic-ww1.30-ff0.30-N50 slow s000 noshow
+| python3 ../scripts-python/gamma-and-entropy-plot.py 0 s000/periodic-ww1.30-ff0.30-N50 default noshow
+c .pyc
+
+| python3 ../scripts-python/gamma-and-entropy-plot.py 0 s000/periodic-ww1.30-ff0.30-N50 slow noshow
 c .pyc
 
 # | python3 lj-comparison-plot.py noshow
@@ -33,6 +25,13 @@ c .pyc
 # > figs/lj-cv.pdf
 
 | pdflatex sq-well.tex && bibtex sq-well && pdflatex sq-well.tex && pdflatex sq-well.tex
+< N50-lndos-comparison.pdf
+< gamma-n256.pdf
+< periodic-ww1_30-ff0_30-N50-gamma-and-entropy-error-default.pdf
+< periodic-ww1_30-ff0_30-N50-gamma-and-entropy-error-slow.pdf
+< periodic-ww1_50-ff0_17-N256-entropy-error-default.pdf
+
+
 # < hydrogen-298-hydrogen-298-n-vs-G.pdf
 # < methane-298-methane-298-n-vs-G.pdf
 # < hydrogen-77-hydrogen-77-n-vs-G.pdf
