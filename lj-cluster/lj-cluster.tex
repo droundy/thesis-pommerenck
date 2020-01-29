@@ -57,7 +57,7 @@
 \maketitle
 
 \section{Introduction}
-% (1) After examination, a major triump would be to determine $R_c$ theoretically particularly
+% (1) After examination, a major triumph would be to determine $R_c$ theoretically particularly
 % for large constraining radii i.e. extract volume independent heat capacity.
 %
 % (2) Examine how sad does on the magic number clusters? 38, 75, 104, and maybe some
@@ -66,13 +66,26 @@
 % (3) 2D histogram could give information out of all clusters for a single
 % simulation (will it converge?).
 
-What is a lennard-jones cluster? background and review of extensive literature
+What is a lennard-jones cluster? background and review of extensive literature?
 
-(1) Why is a `constraining' sphere necessary for simulation i.e. boil-off
+A lot of research has been done on the study of Lennard-Jones clusters over the last couple
+of decades. The global minima of many clusters with a number of atoms less than 1000 have been
+found and properties such as heat capacity and order parameter Q6 have been studied.
 
-(2) It is hard to choose a constraing sphere for a given simulation that achieves
-ergodicity and yet do not introdcue fluctations in the desired thermodynamic
-properties.
+A common practice to prevent cluster dissociation via boil-off is to place the atoms in a `constraining'
+sphere of a given radius. This presents critical problems in terms of accurately simulating thermodynamic
+properties. Ideally, the user would like the radius to be as small as possible to decrease simulation time.
+Unfortunately, too small of a radius for a given number N atoms results in incorrect simulation properties
+such as shifted heat capacity peaks. Likewise, too large a radius results in longer simulation times (IS THIS TRUE?)
+due to the time necessary for all the atoms to equilibrate.
+
+Early research on LJ clusters typically chose a small constraining radius to achieve convergence in
+a reasonable simulation time. Unfortunately, later research confirmed that these radii were too small
+to ensure accurate results but noted that they chose their radii empirically. The reason for this is that
+it is hard to choose a constraining sphere for any given LJ simulation that achieves ergodicity while not
+introducing fluctuations in the desired thermodynamic properties.
+
+
 
 (CLOSING) In this work, we explore the impact of the `constraining' sphere used for simulation
 using SAD.
