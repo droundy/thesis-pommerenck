@@ -48,7 +48,11 @@ simulations using flat-histogram methods
 Lennard-Jones (LJ) clusters have been extensively studied using both Monte Carlo methods~\cite{frantsuzov2005size, mandelshtam2006structural,
 mandelshtam2006multiple} and molecular dynamics~\cite{honeycutt1987molecular, calvo1995configurational, calvo2000phase} as global optimization
 problems~\cite{wales1997global, wales1998global, wales1999global, doye1999double} and systems with finite size phase
-transitions~\cite{neirotti2000phase, sabo2005pressure, sehgal2014phase}.
+transitions~\cite{neirotti2000phase, sabo2005pressure, sehgal2014phase}. The potential energy of a cluster interacting with the LJ potential can
+be written in terms of a well depth $\epsilon$ and pair separation $2^{1/6}\sigma$:
+\begin{align}
+E = 4\epsilon \sum_{i<j} \left[ \left( \frac{\sigma}{r_{ij}} \right)^{12} - \left( \frac{\sigma}{r_{ij}} \right)^{6} \right]
+\end{align}
 
 Over the last several decades, the global minima of various clusters with a number of atoms less than 1000 have been
 found using simulation techniques such as \jpsays{cite these two!  Xueguang Shao and DJ WALES} basin-hopping and genetic algorithms.
@@ -60,7 +64,7 @@ then be used to predict solid-solid and liquid-solid transitions in the cluster.
 % latent heat associated with the ﬁrst peak is approximately 0.67lm, where lm = 0.29/Nǫ is the latent heat of the second peak,
 % which, as we will show below, signals the melting of the cluster. (N = 309  https://arxiv.org/pdf/cond-mat/0512147.pdf)
 
-% Basin hopping apparently uses a MC simulation with an rc radius but only used 
+% Basin hopping apparently uses a MC simulation with an R_c radius but only used 
 A difficulty in Monte Carlo simulation of LJ clusters is the choice of a `constraining' radius $R_c$ necessary to prevent cluster dissociation.
 The choice of an ideal $R_c$ presents critical problems in terms of accurately simulating thermodynamic
 properties. Ideally, the user would like the radius to be as small as possible to decrease simulation time.
@@ -70,8 +74,8 @@ due to an increase in the time necessary to discover all energy states due to at
 sampling of the energies can become increasingly difficult with the addition of the liquid-like and vapor regions~\cite{neirotti2000phase}.
 
 Some research on LJ clusters choose a small constraining radius to achieve convergence in
-a reasonable simulation time~\cite{neirotti2000phase}. Unfortunately, later research~\cite{frantz2001magic} confirmed that these radii can be to small
-to ensure accurate results for arbitrary cluster sizes but noted that they chose their radii empirically. Additional work has been done to determine
+a reasonable simulation time~\cite{neirotti2000phase}. Unfortunately, later research~\cite{frantz2001magic} confirmed that these radii can be too small
+to ensure accurate results for any arbitrary cluster size but noted that they chose their own radii empirically. Additional work has been done to determine
 an ideal $R_c$ for atomic clusters~\cite{yin2012massively} but for particle numbers much larger than $N=10$, the task of choosing an appropriate radius is complicated and empirical
 in nature. 
 
