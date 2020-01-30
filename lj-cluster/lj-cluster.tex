@@ -45,20 +45,14 @@ simulations using flat-histogram methods
 % (3) 2D histogram could give information out of all clusters for a single
 % simulation (will it converge?).
 
-Lennard-Jones (LJ) clusters have been extensively studied using both Monte Carlo methods~\cite{frantsuzov2005size, mandelshtam2006structural,
-mandelshtam2006multiple} and molecular dynamics~\cite{honeycutt1987molecular, calvo1995configurational, calvo2000phase} as global optimization
-problems~\cite{wales1997global, wales1998global, wales1999global, doye1999double} and systems with finite size phase
-transitions~\cite{neirotti2000phase, sabo2005pressure, sehgal2014phase}. The potential energy of a cluster interacting with the LJ potential can
+Lennard-Jones (LJ) clusters have been extensively studied using both Monte Carlo methods~\cite{frantsuzov2005size, mandelshtam2006structural, mandelshtam2006multiple} and molecular dynamics~\cite{honeycutt1987molecular, calvo1995configurational, calvo2000phase} as global optimization problems~\cite{wales1997global, wales1998global, wales1999global, doye1999double} and systems with finite size phase transitions~\cite{neirotti2000phase, sabo2005pressure, sehgal2014phase}. The potential energy of a cluster interacting with the LJ potential can
 be written in terms of a well depth $\epsilon$ and pair separation $2^{1/6}\sigma$:
 \begin{align}
 E = 4\epsilon \sum_{i<j} \left[ \left( \frac{\sigma}{r_{ij}} \right)^{12} - \left( \frac{\sigma}{r_{ij}} \right)^{6} \right]
 \end{align}
 
 Over the last several decades, the global minima of various clusters with a number of atoms less than 1000 have been
-found using simulation techniques such as \jpsays{cite these two!  Xueguang Shao and DJ WALES} basin-hopping and genetic algorithms.
-Other Monte Carlo methods such as flat-histogram algorithms~\cite{?} and parallel tempering~\cite{?} have been used to provide insight to 
-the thermodynamic properties of small clusters such as heat capacity and latent heat. The heat capacity curves for various clusters can
-then be used to predict solid-solid and liquid-solid transitions in the cluster. 
+found using simulation techniques such as basin-hopping~\cite{wales1997global, yoo2003possible} and genetic algorithms~\cite{gregurick1996global, daven1996structural, doye1998thermodynamics}. Other Monte Carlo methods such as flat-histogram algorithms~\cite{poulain2006performances, pommerenck2020stochastic} and parallel tempering~\cite{mandelshtam2006multiple, mandelshtam2006structural} have been used to provide insight to the thermodynamic properties of small clusters such as heat capacity and latent heat. The heat capacity curves for various clusters can then be used to predict solid-solid and liquid-solid transitions in the cluster. 
 
 % The latent heat of these transitions was computed as the area under each peak in the heat capacity curve. It was found that the
 % latent heat associated with the ﬁrst peak is approximately 0.67lm, where lm = 0.29/Nǫ is the latent heat of the second peak,
@@ -79,22 +73,78 @@ to ensure accurate results for any arbitrary cluster size but noted that they ch
 an ideal $R_c$ for atomic clusters~\cite{yin2012massively} but for particle numbers much larger than $N=10$, the task of choosing an appropriate radius is complicated and empirical
 in nature. 
 
-The reason for this is that
-it is hard to choose a constraining sphere for any given LJ simulation that achieves ergodicity while not
-introducing fluctuations in the desired thermodynamic properties.
+The reason for this is that it is hard to choose a constraining sphere for any given LJ simulation that achieves ergodicity while not introducing fluctuations in the desired thermodynamic properties.
 
-In this work, we explore the impact of the `constraining' sphere on heat capacity calculations using flat-histogram
-methods.
+In this work, we explore the impact of the `constraining' sphere on heat capacity calculations using the flat-histogram
+method SAD which we discuss in Sec.~\ref{sec:methods}.
+
+\section{Methods}\label{sec:methods}
+In this section, we introduce Stochastic Approximation Monte Carlo (SAMC) and
+the refinement made by Pommerenck \emph{et al.}~\cite{pommerenck2020stochastic}
+called Stochastic Approximation with a dynamic update factor (SAD). We start with a general description of SAMC and provide background and brief implementation scheme for SAD (for in-depth discussion the reader is encouraged to consult the original implementation~\cite{pommerenck2020stochastic}).
+
+SAMC has a simple schedule by which the update factor $\gamma$ is continuously
+decreased~\cite{liang2007stochastic, werlich2015stochastic,
+schneider2017convergence}.  The update factor is defined in the
+original implementation~\cite{liang2007stochastic} in terms of an
+arbitrary tunable parameter $t_0$,
+\begin{align}
+\gamma_{t}^{\text{SA}} =\frac{t_0}{\max(t_0,t)}
+\end{align}
+where as above $t$ is the number of moves that have been attempted.
+
+SAMC offers extreme simplicity and proven convergence.
+Provided the update factor satisfies
+\begin{align}
+\sum_{t=1}^\infty \gamma_{t} = \infty \quad\textrm{and}\quad
+\sum_{t=1}^\infty \gamma_{t}^\zeta < \infty
+\end{align}
+where $\zeta \in \{1,2\}$, Liang has shown that the weights are proven
+to converge to the true density of states~\cite{liang2006theory,
+liang2007stochastic}. The convergence time depends only on the choice of
+parameter $t_0$.
+The parameter $t_0$ can unfortunately be difficult to chose in advance
+for arbitrary systems.
+Liang \emph{et al.} give a rule of thumb in
+which $t_0$ is chosen in the range from $2N_S$ to $100N_S$ where $N_S$
+is the number of energy bins~\cite{liang2007stochastic}.  Schneider
+\emph{et al.} found and later Pommerenck \emph{et al.} confirmed that for the Ising model this heuristic is helpful for small spin systems, but that larger systems require an even higher $t_0$ value~\cite{schneider2017convergence, pommerenck2020flat}.
+
+Pommerenck \emph{et al.} proposed a refinement~\cite{pommerenck2020stochastic} to SAMC where the update factor is determined dynamically rather than by the user. Stochastic Approximation with a dynamic $\gamma$ (SAD) requires the user to provide the lowest temperature of interest $T_{\min}$ rather than the unphysical SAMC parameter $t_0$. The update factor
+can be written in terms of the current estimates for the highest $E_H$ and
+lowest $E_L$ energies of interest and the last time that an energy in the range
+of interest is encountered $t_L$.
+\begin{align}
+  \gamma_{t}^{\text{SAD}} =
+     \frac{
+       \frac{E_{H}-E_{L}}{T_{\text{min}}} + \frac{t}{t_L}
+     }{
+       \frac{E_{H}-E_{L}}{T_{\text{min}}} + \frac{t}{N_S}\frac{t}{t_L}
+     }
+\end{align}
+SAD only explores the energy range of interest as specified by the minimum
+temperature of interest $T_{\min} < T < \infty$. During the simulation the two
+energies $E_H$ and $E_L$, are refined such that the range of energies are conservatively
+estimated. The weights are calculated for each energy region according to the original
+prescription.
+\begin{enumerate}
+\item {$E < E_L$:} $w(E>E_H) = w(E_H)$
+\item {$E_L < E < E_H$:} moves are handled the same as other weight-based
+methods that are mentioned
+\item {$E > E_H$:} $w(E<E_L) = w(E_L)e^{-\frac{E_L-E}{T_{\min}}}$
+\end{enumerate}
+Each time the simulation changes the value of $E_H$ or $E_L$, the weights
+within the new portion of the interesting energy range are updated.
+
+\section{Results}
+\jpsays{THE RESULTS GO HERE}
+We examine the impact of the `constraining' radius on the convergence of the heat capacity for a 38 atom LJ cluster.
+
+\section{Conclusions}
+\jpsays{THE CONCLUSTION GOES HERE}
 
 \jpsays{(Need to fix lj-comparison.py to plot data probably manually is best by command line with argparse)
 N = 38 for the radius comparison.}
-
-% \section{Methods}
-
-% \section{Results}
-
-% \section{Conclusions}
-
 
 \bibliography{lj-cluster}% Produces the bibliography via BibTeX.
 
