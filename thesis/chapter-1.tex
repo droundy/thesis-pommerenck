@@ -298,7 +298,8 @@ balance, due to the acceptance probabilities changing with each move, but the
 severity of this violation decreases as we decrease $\gamma_t$.  The four
 methods differ primarily in how they schedule the decrease of $\gamma_t$.
 
-In this work, we develop a new method called Stochastic Approximation with Dynamic update factor (SAD) method which is a variant of the SAMC Algorithm that attempts to dynamically choose
+In this work, we develop a new method called Stochastic Approximation with Dynamic update factor (SAD) method
+which is a variant of the SAMC Algorithm that attempts to dynamically choose
 the modification factor rather than relying on system dependent
 parameters such as $t_0$ or $\gamma_0$.  There is an immediate
 advantage of such an algorithm where parameters are chosen independent
@@ -312,10 +313,24 @@ flat-histogram methods must do.
 
 
 \section{Test System Details}
-We introduce a number of systems that are suitable for benchmarking the convergence properties of various flat-histogram MC methods. Testing on a variety of systems is necessary for ensuring the robustness of a given MC method. The square-well fluid is chosen as a test-bed due to the fact that convergence properties of flat-histogram weight-based MC methods have never been studied on this system. Secondly, the MC method will have to simulate the potentially complex liquid-vapor phase coexistence of the system. The 2D Ising model is a simple system with a second order phase transition. In addition, the majority of MC methods have been tested on the Ising model so the speed and accuracy with which a given MC method can converge can often be directly compared with the literature. A Lennard-Jones cluster is a heavily studied system that can be simple or incredibly complex for a MC method to accurately solve. In order to solve for solid-solid transitions for certain cluster configurations, it is necessary to explore incredibly low reduced temperatures. This can make finding the global minima configuration extremely difficult for MC methods in general.
+We introduce a number of systems that are suitable for benchmarking the convergence properties of various
+flat-histogram MC methods. Testing on a variety of systems is necessary for ensuring the robustness of a
+given MC method. The square-well fluid is chosen as a test-bed due to the fact that convergence properties
+of flat-histogram weight-based MC methods have never been studied on this system. Secondly, the MC method
+will have to simulate the potentially complex liquid-vapor phase coexistence of the system. The 2D Ising
+model is a simple system with a second order phase transition. In addition, the majority of MC methods have
+been tested on the Ising model so the speed and accuracy with which a given MC method can converge can often
+be directly compared with the literature. A Lennard-Jones cluster is a heavily studied system that can be
+simple or incredibly complex for a MC method to accurately solve. In order to solve for solid-solid transitions
+for certain cluster configurations, it is necessary to explore incredibly low reduced temperatures. This can
+make finding the global minima configuration extremely difficult for MC methods in general.
 
 \subsection{Square-Well Fluid}
-The square-well fluid is a system of particles whose interactions are governed by a square-well potential~\cite{singh2003surface, barker2004perturbationSW}.  The square-well potential is an ideal test-bed for Monte Carlo methods as it is a simple model for a liquid, which includes both attractive and repulsive interactions~\cite{barker1967-SW-perturbation, vega1992phase}. The potential $U(\textbf{r})$ for such a system is given by
+The square-well fluid is a system of particles whose interactions are governed by a square-well
+potential~\cite{singh2003surface, barker2004perturbationSW}.  The square-well potential is an ideal test-bed
+for Monte Carlo methods as it is a simple model for a liquid, which includes both attractive and repulsive
+interactions~\cite{barker1967-SW-perturbation, vega1992phase}. The potential $U(\textbf{r})$ for such a system
+is given by
 \begin{equation}
  U(\textbf{r})=\begin{cases} \infty &
  \lvert\textbf{r}\rvert< \sigma\\-\epsilon &
@@ -325,7 +340,10 @@ The square-well fluid is a system of particles whose interactions are governed b
 where $\sigma$ is the hard-sphere diameter of the particle, $\lambda$ is the reduced range of the potential well, and $\epsilon$ is its depth.
 
 \subsection{2D Ising Model}
-The 2D Ising spin-lattice system is widely used as a test-bed when benchmarking or comparing Monte-Carlo methods~\cite{ferdinand1969bounded, wang1999transition, trebst2004optimizing}. The \nth{2} order phase transition behavior and the ability to directly calculate the exact solution for finite lattices~\cite{beale1996exact} make the system sufficiently interesting for such theoretical comparisons.
+The 2D Ising spin-lattice system is widely used as a test-bed when benchmarking or comparing Monte-Carlo
+methods~\cite{ferdinand1969bounded, wang1999transition, trebst2004optimizing}. The \nth{2} order phase
+transition behavior and the ability to directly calculate the exact solution for finite
+lattices~\cite{beale1996exact} make the system sufficiently interesting for such theoretical comparisons.
 The Hamiltonian for the periodic 2D square lattice ferromagnetic Ising model with nearest
 neighbor interactions~\cite{landau2004new} cab be written as the following:
 \begin{align}
@@ -341,12 +359,24 @@ kaufman1949crystal}:
 where the sum is over nearest neighbor spin sites.
 
 \subsection{Lennard-Jones Clusters}
-Lennard-Jones cluster systems are widely used as a challenging test-bed when comparing Monte-Carlo methods~\cite{doye1998thermodynamics, poulain2006performances, martiniani2014superposition}. The potential energy for interacting atomic particles can be written as follows:
+Lennard-Jones cluster systems are widely used as a challenging test-bed when comparing Monte-Carlo
+methods~\cite{doye1998thermodynamics, poulain2006performances, martiniani2014superposition}. The potential
+energy for interacting atomic particles can be written as follows:
 \begin{align}
 U = 4\epsilon \left[\left( \sigma/r \right)^{12} - \left( \sigma/r \right)^{6}\right]
 \end{align}
-A number of challenges exit when trying to accurately simulate the density of states of a cluster system. Narrow potential energy funnels~\cite{mandelshtam2006multiple, wales1997global} and low temperature solid-solid transitions~\cite{neirotti2000phase, calvo2000phase, calvo2000entropic} make predicting thermodynamic properties such as heat capacity an extremely difficult process. In addition, since flat-histogram methods explore all energies and all temperatures it is possible that for high temperatures a large cluster volume is possible (which could lead to boil-off of the particles). A `constraining' sphere with radius $R_c$ is used to prevent this but it is usually empirically determined further complicating the simulation process.
+A number of challenges exit when trying to accurately simulate the density of states of a cluster system.
+Narrow potential energy funnels~\cite{mandelshtam2006multiple, wales1997global} and low temperature solid-solid
+transitions~\cite{neirotti2000phase, calvo2000phase, calvo2000entropic} make predicting thermodynamic properties
+such as heat capacity an extremely difficult process. In addition, since flat-histogram methods explore all
+energies and all temperatures it is possible that for high temperatures a large cluster volume is possible
+(which could lead to boil-off of the particles). A `constraining' sphere with radius $R_c$ is used to prevent
+this but it is usually empirically determined further complicating the simulation process.
 
 \section{Summary}
-
-We have provided the background necessary for understanding the various flat-histogram methods and the various applied test systems. In the following chapters, we detail our manuscripts and the method SAD applied to the various physical test systems. We test SAD against a variety of other weight-based flat-histogram methods on the square-well fluid, Lennard-Jones clusters, and the 2D Ising model. Each of these systems provides unique challenges to our newly developed method SAD and convergence robustness is determined best by the application to multiple systems.
+We have provided the background necessary for understanding the various flat-histogram methods and the
+various applied test systems. In the following chapters, we detail our manuscripts and the method SAD
+applied to the various physical test systems. We test SAD against a variety of other weight-based flat-histogram
+methods on the square-well fluid, Lennard-Jones clusters, and the 2D Ising model. Each of these systems provides
+unique challenges to our newly developed method SAD and convergence robustness is determined best by the application
+to multiple systems.

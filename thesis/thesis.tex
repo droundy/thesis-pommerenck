@@ -55,7 +55,7 @@
 %\titleformat{\chapter}[display]{\normalfont\bfseries\Large\centering}{}{18pt}{\Large}
 %\titlespacing{\chapter}{0pt}{0pt}{1cm}
 
-\usepackage{blindtext}
+%\usepackage{blindtext}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[document]{ragged2e}
@@ -75,7 +75,7 @@
 \usepackage{amsmath,amssymb}
 \usepackage{nicefrac}
 
-%\usepackage[backend=bibtex,maxnames=200,sorting=none]{biblatex}
+\usepackage[backend=bibtex,maxnames=200,sorting=none]{biblatex}
 %\usepackage[square,numbers]{natbib}
 
 %\addbibresource{thesis.bib}
@@ -105,6 +105,9 @@
 \renewcommand{\listfigurename}{\hfill\Large\normalfont LIST OF FIGURES\hfill}
 \renewcommand{\cftaftertoctitle}{\hfill}
 
+% THE BIBLIOGRAPHY NEEDS TO COME BEFORE ALL OF THE CHAPTERS
+\bibliography{thesis}
+
 \begin{document}
 \input{pretext.tex}
 
@@ -124,15 +127,15 @@
 % introduction
 \input{chapter-1}
 % sq-well paper
-\input{chapter-2}
+%\input{chapter-2}
 % ising paper
-%\input{chapter-3}
+\input{chapter-3}
 
 
 %\chapter{Conclusion}
 %\input{Chapters/chapter06}
 
-\bibliography{thesis}
+
 \printbibliography[title={Bibliography}]
 
 \clearpage{}
