@@ -198,6 +198,13 @@ for method in methods:
                     elif "fast" in transcale:
                         plt.title(r'$N=%d$, $\delta_0 = 0.5$' % (int(N)))
                 colors.legend()
+                if data.shape[0] > 5:
+                    heat_capacity = data[5]
+                    plt.figure('heat_capacity')
+                    colors.loglog(moves, heat_capacity, method = method[1:])
+                    plt.xlabel(r'Moves')
+                    plt.ylabel(r'Cv')
+                    colors.legend()
 
     except:
         raise
