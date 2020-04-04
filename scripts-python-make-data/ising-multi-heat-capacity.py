@@ -151,7 +151,7 @@ for f in filename:
             maxerror = np.zeros(N_save_times)
             cverror = np.zeros(N_save_times)
 
-            for i in range(60, N_save_times):
+            for i in range(0, N_save_times):
                 # below just set average S equal between lndos and lndosref
                 if 'ising' in save_dir:
 
@@ -181,17 +181,17 @@ for f in filename:
                 errorinentropy[i] = np.sum(abs(doserror))/len(doserror) #- np.mean(doserror)
                 maxerror[i] = np.amax(doserror) - np.amin(doserror)
                 cverror[i] = np.sum(abs(my_cv_error))/len(my_cv_error)
-                plt.figure('foo')
-                plt.clf()
-                plt.plot(T, heat_capacity(T, flip_ising_E, ising_lndos), label='myself')
-                plt.plot(T, cvref, label='cvref')
-                plt.legend(loc='best')
-                plt.title(f'save {i}')
-                plt.figure('foo diff')
-                plt.clf()
-                plt.plot(T, heat_capacity(T, flip_ising_E, ising_lndos) - cvref)
-                plt.title(f'error {i}')
-                plt.pause(0.000001)
+                # plt.figure('foo')
+                # plt.clf()
+                # plt.plot(T, heat_capacity(T, flip_ising_E, ising_lndos), label='myself')
+                # plt.plot(T, cvref, label='cvref')
+                # plt.legend(loc='best')
+                # plt.title(f'save {i}')
+                # plt.figure('foo diff')
+                # plt.clf()
+                # plt.plot(T, heat_capacity(T, flip_ising_E, ising_lndos) - cvref)
+                # plt.title(f'error {i}')
+                # plt.pause(0.000001)
                 # DEBUG by looking into DOS and DOS ERROR!
                 
             
