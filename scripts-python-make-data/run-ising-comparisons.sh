@@ -27,5 +27,3 @@ python3 scripts-python-make-data/ising-multi-heat-capacity.py --file_dir=../sad-
 python3 scripts-python-make-data/ising-multi-heat-capacity.py --file_dir=../sad-monte-carlo/ --reference=../deft/papers/histogram/data/ising-32-reference-lndos.dat --save_dir=ising/data/comparison/N32 --filename ising-wl-32-minGamma --N=32 --Emin=2048 --Emax=0 --seed_avg=1
 
 python3 scripts-python-make-data/ising-multi-heat-capacity.py --file_dir=../sad-monte-carlo/ --reference=../deft/papers/histogram/data/ising-32-reference-lndos.dat --save_dir=ising/data/comparison/N32 --filename ising-wl-32-minGamma-1e12 --N=32 --Emin=2048 --Emax=0 --seed_avg=1
-
-python3 scripts-python-make-data/ising-multi-heat-capacity.py --file_dir=../sad-monte-carlo/ --reference=../deft/papers/histogram/data/ising-32-reference-lndos.dat --save_dir=ising/data/comparison/N32 --filename ising-wl-32-minGamma-1e16 --N=32 --Emin=2048 --Emax=0 --seed_avg=1
