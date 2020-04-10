@@ -217,7 +217,7 @@ for method in methods:
                         colors.loglog(moves, 10**i/np.sqrt(0.1*moves), method = r'1/sqrt(t)')
                     if filebase == 'N32':
                         plt.xlim(1e5,1e12)
-                        plt.ylim(1e-1,1e3)
+                        plt.ylim(1,1e4)
                     else:
                         plt.xlim(1e5,10**(13.8))
                         plt.ylim(1e-1,1e4)
