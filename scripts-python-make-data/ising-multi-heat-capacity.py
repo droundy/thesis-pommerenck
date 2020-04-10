@@ -220,6 +220,9 @@ for f in filename:
     maxerror = np.average(err_max, axis=0)
     
     cverror = np.average(err_in_cv, axis = 0)
+    max_mean_cv = np.amax(err_in_cv, axis=0)
+    min_mean_cv = np.amin(err_in_cv, axis=0)
+
     dirname = '%s-%s' % (save_dir, name.replace('-s%s.yaml' %seed_avg, ''))
     
     print('saving to', dirname)
@@ -230,7 +233,7 @@ for f in filename:
     else:
         print("Successfully created the directory %s " % dirname)
     np.savetxt('%s/errors.txt' %(dirname),
-              np.c_[min_moves, errorinentropy, maxerror, minmean, maxmean, cverror],
+              np.c_[min_moves, errorinentropy, maxerror, minmean, maxmean, cverror, min_mean_cv, max_mean_cv],
               fmt = ('%.4g'),
               delimiter = '\t',
-              header = 'iterations\t errorinentropy\t maxerror\t minmean\t maxmean\t cverror\t (generated with python %s' % ' '.join(sys.argv))
+              header = 'iterations\t errorinentropy\t maxerror\t minmean\t maxmean\t cverror\t mincv\t maxcv\t(generated with python %s' % ' '.join(sys.argv))
