@@ -181,6 +181,7 @@ for f in filename:
                 errorinentropy[i] = np.sum(abs(doserror))/len(doserror) #- np.mean(doserror)
                 maxerror[i] = np.amax(doserror) - np.amin(doserror)
                 cverror[i] = np.sum(abs(my_cv_error))/len(my_cv_error)
+                max_cverror[i] = np.amax(abs(my_cv_error))
                 # plt.figure('foo')
                 # plt.clf()
                 # plt.plot(T, heat_capacity(T, flip_ising_E, ising_lndos), label='myself')
@@ -205,7 +206,7 @@ for f in filename:
             err_in_S.append(errorinentropy)
             err_max.append(maxerror)
             
-            err_in_cv.append(cverror)
+            err_in_cv.append(max_cverror)
 
 
     for i in range(len(err_in_S)):
