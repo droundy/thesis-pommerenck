@@ -150,6 +150,7 @@ for f in filename:
             errorinentropy = np.zeros(N_save_times)
             maxerror = np.zeros(N_save_times)
             cverror = np.zeros(N_save_times)
+            max_cverror = np.zeros(N_save_times)
 
             for i in range(0, N_save_times):
                 # below just set average S equal between lndos and lndosref
