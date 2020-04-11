@@ -176,6 +176,9 @@ for f in filename:
 
                     my_cv_error = heat_capacity(T, flip_ising_E, ising_lndos) - cvref
 
+                    # if i == arb:
+                    
+
                 else:
                     print('Error! ising must be in save_dir pathname.')
 
