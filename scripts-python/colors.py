@@ -25,6 +25,9 @@ _colors = { 'SAD': 'tab:orange',
             '1/sqrt(t)': 'xkcd:dark gray',
             'converged result': 'xkcd:black',
             r'$\frac{1}{\sqrt{t}}$': '#eeeeee',
+            'Exact': 'xkcd:black',
+            'WL-$\gamma_{t}$-min': 'r', 
+            
 }
 
 _linestyles = {
@@ -84,10 +87,12 @@ _legend_order = [
     '1/sqrt(t)',
 
     # This is for the Ising paper
+    'Exact',
     'ising-sad-128',
     'ising-sad-32',
     'ising-wl-128',
     'ising-wl-32',
+    'WL-$\gamma_{t}$-min',
     'ising-wl-inv-t-128',
     'ising-wl-inv-t-32',
     'ising-samc-1e3-32',
@@ -169,10 +174,12 @@ _legend_label = {
     '1/sqrt(t)': r'$\frac{1}{\sqrt{t}}$',
 
     # This is for the Ising paper
+    'cvref': 'Exact',
     'ising-sad-128': 'SAD',
     'ising-sad-32': 'SAD',
     'ising-wl-128': 'WL',
     'ising-wl-32': 'WL',
+    'ising-wl-32-minGamma': 'WL-$\gamma_{t}$-min',
     'ising-wl-inv-t-128': '$1/t$-WL',
     'ising-wl-inv-t-32': '$1/t$-WL',
     'ising-samc-1e3-32': 'SAMC ($t_0 =10^{3}$)',

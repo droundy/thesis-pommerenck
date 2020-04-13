@@ -1,11 +1,18 @@
 #!/usr/bin/env python
 
 from __future__ import division
-import sys, os
+import sys, os, matplotlib
 import numpy as np
 import readnew
 from glob import glob
 import matplotlib.pyplot as plt
+matplotlib.rcParams['text.usetex'] = True
+matplotlib.rc('font', family='serif')
+matplotlib.rcParams['figure.figsize'] = (5, 4)
+
+if 'noshow' in sys.argv:
+        matplotlib.use('Agg')
+
 import yaml
 import os.path
 import time # Need to wait some time if file is being written
@@ -99,7 +106,7 @@ cvref = heat_capacity(T, eref[0:Emin-Emax+1], lndosref[0:Emin-Emax+1])
 
 # Begin plotting the heat capacity
 plt.figure('heat capacity plot')
-colors.plot(1/T, cvref, method='cvref')
+colors.plot(1/T, cvref / N**2, method='cvref')
 
 for f in filename:
     name = '%s.yaml' % (f)
@@ -148,7 +155,9 @@ for f in filename:
                 lndos = lndos_new
                 minyaml = lndos.shape[1]-1
 
-            index = np.argwhere(my_time == 100000000)[0][0]
+            
+            times = [100000000, 1333521432, 1778279410,2371373716,3162277660, 4216965034, 5623413252, 7498942093]
+            index = np.argwhere(my_time == times[2])[0][0]
             # below just set average S equal between lndos and lndosref
             if 'ising' in save_dir:
 
@@ -172,11 +181,16 @@ for f in filename:
             else:
                 print('Error! ising must be in save_dir pathname.')
 
-            colors.plot(1/T, my_cv, method='%s' % (name.replace('-s%s.yaml' %seed_avg, '')))
+            colors.plot(1/T, my_cv / N**2, method='%s' % (name.replace('-s%s.yaml' %seed_avg, '')))
             colors.legend(loc='best')
 
 #print(cv_store)
+plt.xlabel(r'$\beta$')
+plt.ylabel(r'$c_V$ / $ k_B$')
 plt.xlim(0.3,0.6)
 if N == 32:
-    plt.ylim(200,3000)
+    plt.ylim(0,2.5)
+
+plt.savefig('ising/N%i-Cv.pdf' % N)
+
 plt.show()

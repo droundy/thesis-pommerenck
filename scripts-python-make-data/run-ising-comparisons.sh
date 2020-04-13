@@ -31,4 +31,5 @@ python3 scripts-python-make-data/ising-multi-heat-capacity.py --file_dir=../sad-
 
 python3 scripts-python-make-data/ising-multi-heat-capacity.py --file_dir=../sad-monte-carlo/ --reference=/home/jordan/deft/papers/histogram/data/ising-128-T15-reference-lndos.dat --save_dir=ising/data/comparison/N128 --filename ising-wl-128-minGamma --N=128 --Emin=31972 --Emax=0 --seed_avg=8
 
-python3 scripts-python/ising-cv-plot.py --file_dir=../sad-monte-carlo/ --reference=../deft/papers/histogram/data/ising-32-reference-lndos.dat --save_dir=ising/data/comparison/N32 --filename ising-wl-32-minGamma --N=32 --Emin=2048 --Emax=0 --seed_avg=8
+# Heat Capacity Plotting
+python3 scripts-python/ising-cv-plot.py --file_dir=../ising-cp-data/ --reference=../deft/papers/histogram/data/ising-32-reference-lndos.dat --save_dir=ising/data/comparison/N32 --filename ising-sad-32 ising-samc-1e5-32 ising-samc-1e6-32 ising-samc-1e7-32 ising-wl-32 ising-wl-inv-t-32 ising-wl-32-minGamma --N=32 --Emin=2048 --Emax=0 --seed_avg=1
