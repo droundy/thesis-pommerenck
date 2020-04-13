@@ -1,4 +1,4 @@
-# iterations	 errorinentropy	 maxerror	 minmean	 maxmean	 cverror	 mincv	 maxcv	(generated with python scripts-python-make-data/ising-multi-heat-capacity.py --file_dir=../ising-cp-data/ --reference=/home/jordan/deft/papers/histogram/data/ising-128-T15-reference-lndos.dat --save_dir=ising/data/comparison/N128 --filename ising-sad-128 ising-sad-128-T15 ising-samc-1e7-128 ising-wl-128 ising-wl-inv-t-128 ising-samc-1e8-128 ising-samc-1e9-128 --N=128 --Emin=31972 --Emax=0 --seed_avg=8
+# iterations	 errorinentropy	 maxerror	 minmean	 maxmean	 cverror	 mincv	 maxcv	(generated with python scripts-python-make-data/ising-multi-heat-capacity.py --file_dir=../ising-cp-data/ --reference=/home/jordan/deft/papers/histogram/data/ising-128-T15-reference-lndos.dat --save_dir=ising/data/comparison/N128 --filename ising-sad-128 ising-wl-inv-t-128 ising-samc-1e8-128 ising-samc-1e9-128 --N=128 --Emin=31972 --Emax=0 --seed_avg=8
 0.007812	2833	1.073e+04	2833	2833	4.202e+04	4.202e+04	4.202e+04
 0.01562	2833	1.073e+04	2833	2833	4.202e+04	4.202e+04	4.202e+04
 0.02344	2833	1.073e+04	2833	2833	4.202e+04	4.202e+04	4.202e+04
