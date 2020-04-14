@@ -10,7 +10,7 @@ c .pyc
 | python3 ../scripts-python/ising-gamma-plot.py n128 1.0 noshow
 c .pyc
 
-| python3 ../scripts-python/ising-cv-plot.py --file_dir=../ising/data/heat-capacity --N=32 noshow
+| python3 ../scripts-python/ising-cv-plot.py --file_dir=../ising/data/heat-capacity --N=32 --noshow
 c .pyc
 
 | pdflatex ising.tex && bibtex ising && pdflatex ising.tex && pdflatex ising.tex

@@ -10,9 +10,6 @@ matplotlib.rcParams['text.usetex'] = True
 matplotlib.rc('font', family='serif')
 matplotlib.rcParams['figure.figsize'] = (5, 4)
 
-if 'noshow' in sys.argv:
-        matplotlib.use('Agg')
-
 import yaml
 import os.path
 import time # Need to wait some time if file is being written
@@ -45,6 +42,8 @@ parser.add_argument('--N', type=int, required=True,
 # parser.add_argument('--filename', required=True,
 #                     help='The filename to perform analysis on. \
 #                           Exmaple:ising-sad-32')
+parser.add_argument('--noshow', action='store_true',
+                    help='Whether to show the figure or not')
 
 args = parser.parse_args()
 
@@ -53,6 +52,9 @@ file_dir = args.file_dir
 # save_dir = args.save_dir
 N = args.N
 # filename = args.filename
+if args.noshow==True:
+    matplotlib.use('Agg')
+    print('true?')
 
 cv_data = pd.read_csv('%s/N%s-heat-capacity.csv' % (file_dir,N),delimiter='\t',encoding='utf-8',engine='python')
 
