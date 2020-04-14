@@ -19,7 +19,7 @@ parser = argparse.ArgumentParser(description =
         is computed and compared to the reference.
         
         EXAMPLE USAGE:
-        python3 scripts-python-make-data/ising-cv-save-csv.py
+        python3 scripts-python/ising-cv-save-csv.py
         --file_dir=../ising-cp-data/
         --reference=../deft/papers/histogram/data/ising-32-reference-lndos.dat
         --save_dir=ising/data/heat-capacity
@@ -151,7 +151,7 @@ for f in filename:
 
             
             times = [100000000, 1333521432, 1778279410,2371373716,3162277660, 4216965034, 5623413252, 7498942093]
-            index = np.argwhere(my_time == times[2])[0][0]
+            index = np.argwhere(my_time == times[1])[0][0]
             # below just set average S equal between lndos and lndosref
             if 'ising' in save_dir:
 
