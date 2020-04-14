@@ -1,23 +1,15 @@
 #!/usr/bin/env python
 
 from __future__ import division
-import sys, os, matplotlib
+import sys, os
 import numpy as np
 import readnew
 from glob import glob
-import matplotlib.pyplot as plt
-matplotlib.rcParams['text.usetex'] = True
-matplotlib.rc('font', family='serif')
-matplotlib.rcParams['figure.figsize'] = (5, 4)
-
-if 'noshow' in sys.argv:
-        matplotlib.use('Agg')
 
 import yaml
 import os.path
 import time # Need to wait some time if file is being written
 import argparse
-import colors
 import pandas as pd
 
 parser = argparse.ArgumentParser(description =
@@ -195,6 +187,10 @@ except OSError:
     pass
 else:
     print("Successfully created the directory %s " % save_dir)
+
+# opening the file with w+ empties the file I am creating
+open(('%s/N%s-heat-capacity.csv' % (save_dir, N)), "w+").close()
+
 
 df.to_csv(('%s/N%s-heat-capacity.csv' % (save_dir, N)), sep='\t', encoding='utf-8', index=False, mode='a')
 
