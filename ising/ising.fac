@@ -19,3 +19,5 @@ c .pyc
 < N32-entropy-error-default.pdf
 < N128-entropy-error-default.pdf
 < N32-Cv.pdf
+< N32-Cv-error-default.pdf
+< N128-Cv-error-default.pdf
