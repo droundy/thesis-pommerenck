@@ -18,6 +18,7 @@ import os.path
 import time # Need to wait some time if file is being written
 import argparse
 import colors
+import pandas as pd
 
 parser = argparse.ArgumentParser(description =
     """
@@ -26,15 +27,15 @@ parser = argparse.ArgumentParser(description =
         is computed and compared to the reference.
         
         EXAMPLE USAGE:
-        python3 scripts-python-make-data/ising-multi-heat-capacity.py
+        python3 scripts-python-make-data/ising-cv-save-csv.py
         --file_dir=../ising-cp-data/
         --reference=../deft/papers/histogram/data/ising-32-reference-lndos.dat
-        --save_dir=ising/data/comparison/N32
+        --save_dir=ising/data/heat-capacity
         --filename ising-sad-32
         --N=32
         --Emin=2048
         --Emax=0
-        --seed_avg=8
+        --seed_avg=1
     """)
 
 parser.add_argument('--file_dir', required=True,
@@ -104,9 +105,10 @@ except:
 #cvref = heat_capacity(T, eref, lndosref)
 cvref = heat_capacity(T, eref[0:Emin-Emax+1], lndosref[0:Emin-Emax+1])
 
-# Begin plotting the heat capacity
-plt.figure('heat capacity plot')
-colors.plot(1/T, cvref / N**2, method='cvref')
+# form a dictionary to place into a pandas dataframe.
+mydictionary = {'Temperature': T,
+	'cvref': cvref,}
+df = pd.DataFrame(mydictionary)
 
 for f in filename:
     name = '%s.yaml' % (f)
@@ -177,20 +179,39 @@ for f in filename:
                 flip_ising_E = np.flip(np.copy(ising_E))
 
                 my_cv = heat_capacity(T, flip_ising_E, ising_lndos)
-                #cv_store = np.vstack((cv_store, my_cv))
+                        
+                # add column
+                df['%s' % f] = my_cv
+                print('\n\nDataFrame after adding "%s" column\n--------------' % f)
+                print(df.head(10))
             else:
                 print('Error! ising must be in save_dir pathname.')
 
-            colors.plot(1/T, my_cv / N**2, method='%s' % (name.replace('-s%s.yaml' %seed_avg, '')))
-            colors.legend(loc='best')
 
-#print(cv_store)
-plt.xlabel(r'$\beta$')
-plt.ylabel(r'$c_V$ / $ k_B$')
-plt.xlim(0.3,0.6)
-if N == 32:
-    plt.ylim(0,2.5)
+print('saving to', save_dir)
+try:
+    os.mkdir(save_dir)
+except OSError:
+    pass
+else:
+    print("Successfully created the directory %s " % save_dir)
 
-plt.savefig('ising/N%i-Cv.pdf' % N)
+df.to_csv(('%s/N%s-heat-capacity.csv' % (save_dir, N)), sep='\t', encoding='utf-8', index=False, mode='a')
 
-plt.show()
+# # Begin plotting the heat capacity
+# plt.figure('heat capacity plot')
+# colors.plot(1/T, cvref / N**2, method='cvref')
+
+#             colors.plot(1/T, my_cv / N**2, method='%s' % (name.replace('-s%s.yaml' %seed_avg, '')))
+#             colors.legend(loc='best')
+
+# #print(cv_store)
+# plt.xlabel(r'$\beta$')
+# plt.ylabel(r'$c_V$ / $ k_B$')
+# plt.xlim(0.3,0.6)
+# if N == 32:
+#     plt.ylim(0,2.5)
+
+# plt.savefig('ising/N%i-Cv.pdf' % N)
+
+# plt.show()
