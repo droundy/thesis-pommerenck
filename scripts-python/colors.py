@@ -180,6 +180,7 @@ _legend_label = {
     'ising-wl-128': 'WL',
     'ising-wl-32': 'WL',
     'ising-wl-32-minGamma': 'WL-$\gamma_{t}$-min',
+    'ising-wl-128-minGamma': 'WL-$\gamma_{t}$-min',
     'ising-wl-inv-t-128': '$1/t$-WL',
     'ising-wl-inv-t-32': '$1/t$-WL',
     'ising-samc-1e3-32': 'SAMC ($t_0 =10^{3}$)',

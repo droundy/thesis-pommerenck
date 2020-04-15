@@ -35,7 +35,7 @@
   update factor (SAD) algorithm applied to the 2D ising model. Comparison with
   SAMC and WL methods show that SAD performs robustly and without user input
   knowledge of an energy range. We confirm that SAD is more powerful in the
-  common case in which the range of energies is not known in advance.
+  common case in which the range of energies is not known in advance. 
 \end{abstract}
 
 \maketitle
@@ -118,7 +118,7 @@ The 2D Ising spin-lattice system is widely used as a testbed when
 benchmarking or comparing Monte-Carlo
 methods~\cite{ferdinand1969bounded, wang1999transition, trebst2004optimizing}. The 2nd order
 phase transition behavior and the ability to directly calculate the
-exact solution for finite lattices~\cite{beale1996exact} make the
+exact solution for finite lattices~\cite{beale1996exact, haggkvist2004computation} make the
 system sufficiently interesting for such theoretical comparisons. It is
 also important to note that direct comparison of the other methods can
 be made with WL as its original implementation was done on this
@@ -355,6 +355,12 @@ simulations have begun to converge as $1/\sqrt{t}$. We then see the WL error
 saturate around $10^{12}$ moves. The error in the SAD method will continue to
 converge faster than $1/\sqrt{t}$ until the update factor approaches that of
 1/t-WL at which point both methods will converge equivalently.
+
+\begin{figure}
+  \includegraphics[width=\columnwidth]{N128-Cv-error-default.pdf}
+  \caption{The error in the heat capacity of the $N=128 \times 128$ after $10^{9}$ moves as calculated with each method.}
+  \label{fig:N128-cv-error}
+\end{figure}
 
 \section{Conclusion}
 We have examined the convergence of SAD versus other widely used weight-based

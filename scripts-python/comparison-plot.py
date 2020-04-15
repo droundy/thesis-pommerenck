@@ -219,8 +219,8 @@ for method in methods:
                         plt.xlim(1e5,1e12)
                         plt.ylim(1,1e4)
                     else:
-                        plt.xlim(1e8,10**(13.8))
-                        plt.ylim(1e1,1e6)
+                        plt.xlim(1e9,10**(13.8))
+                        plt.ylim(5e1,1e6)
                     plt.xlabel(r'Moves')
                     plt.ylabel(r'Cv')
                     colors.legend()
