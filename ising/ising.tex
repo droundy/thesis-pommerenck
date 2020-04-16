@@ -219,6 +219,8 @@ $1/t$ implementation~\cite{belardinelli2007fast}, the update factor is
 decreased once all $N_S$ energy states are visited at least once (i.e.
 $H(E) \neq 0$) effectively avoiding the concept of `flatness'.
 
+\jpsays{consider adding in minGamma WL here or before 1/t-WL method}
+
 Another weight-based flat histogram method is
 the Stochastic Approximation Monte Carlo (SAMC) algorithm. SAMC has a simple
 schedule by which the update factor $\gamma$ is continuously
@@ -344,7 +346,8 @@ converge as $1/\sqrt{t}$. We then see the WL error saturate around $10^9$ moves.
 \subsection{128 $\times$ 128 Ising system}
 For this simulation, we chose a minimum reduced temperature of $1$, which
 corresponds to an interesting energy range from $-32768$ to $100$.  The number of
-important energy states for this system is $N_S = 8214$.
+important energy states for this system is $N_S = 8214$~
+\jpsays{This is wrong! This is simulation range. This section needs rewritten.  Why is displacement distance even mentioned?}.
 Fig.~\ref{fig:n128} shows the average error in the entropy as a function of time
 for this system with the displacement distance of $\delta_0 = 0.05$. The solid/dashed
 lines represent the average of the absolute value of the error in the entropy
@@ -357,10 +360,34 @@ converge faster than $1/\sqrt{t}$ until the update factor approaches that of
 1/t-WL at which point both methods will converge equivalently.
 
 \begin{figure}
+  \includegraphics[width=\columnwidth]{N32-Cv-error-default.pdf}
+  \caption{The error in the heat capacity of the $N=32 \times 32$ as calculated with each method.}
+  \label{fig:N32-cv-error}
+\end{figure}
+
+\begin{figure}
   \includegraphics[width=\columnwidth]{N128-Cv-error-default.pdf}
-  \caption{The error in the heat capacity of the $N=128 \times 128$ after $10^{9}$ moves as calculated with each method.}
+  \caption{The error in the heat capacity of the $N=128 \times 128$ as calculated with each method.}
   \label{fig:N128-cv-error}
 \end{figure}
+
+\subsection{Separate Heat Capacity Section?}
+Why does the heat capacity error saturate (i.e. the error is around 1 out 
+but the heat capacity value is much as 1600!)
+The smaller system SAD does great and minGamma does great but minGamma needs
+the user to pick the right minGamma for the production run otherwise you get
+the 128 by 128 results.
+
+We can either break this up or mix in?
+
+Why are we looking at Cv?
+
+(1) the errors in the derivative will be more pronounced. (numerical differentiation of noisy data)
+
+(2) interested in computing thermodynamic quantities
+
+(3) compare with published literature?
+
 
 \section{Conclusion}
 We have examined the convergence of SAD versus other widely used weight-based
