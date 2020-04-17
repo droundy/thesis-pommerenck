@@ -48,10 +48,9 @@ nearby temperatures~\cite{ferrenberg1988new}. While the method effectively
 samples a narrow energy range given limited by a narrow temperature range, it
 proves computationally inefficient at sampling large energy ranges.
 
-Due to a canonical Monte Carlo simulation's inefficient sampling of large
-energies, a variety of ``flat'' (or ``broad'') histogram
+Multicanonical methods, introduced by Berg and Neuhaus, enabled flat-histogram sampling which improved the exploration of configuration space and allowed the system to overcome free-energy barriers~\cite{berg1991multicanonical, berg1992multicanonical}.  These works led to increase in the development of a variety of ``flat'' (or ``broad'') histogram
 methods~\cite{penna1996broad, penna1998broad, swendsen1999transition,
-wang2001determining, wang2001efficient} were developed to explore a wider range
+wang2001determining, wang2001efficient} which could explore a wider range
 of energies.  In addition to obtaining thermodynamic information for the entire
 energy range for a single simulation, these approaches cannot be easily trapped
 in a local energy minimum like a canonical simulation.
@@ -390,6 +389,7 @@ Why are we looking at Cv?
 
 
 \section{Conclusion}
+\jpsays{add something here about production run WL-minGamma}
 We have examined the convergence of SAD versus other widely used weight-based
 histogram methods.  We have shown that Sad samples the energy space
 corresponding to a desired range of temperatures for a variety of system sizes.
@@ -403,6 +403,13 @@ interest rather than an energy range of interest as 1/t-WL does. For use cases
 in which a range of desired temperatures is known, this will make the SAD method
 considerably more convenient.
 
+\section{Acknowledgments}
+We thank Klas Markstr\"{o}m for discussions regarding the exact computation of the partition function for the 2D Ising model.
+
+Johannes Zierenberg for production run discussions
+
+
+Martin Weigel for talking about EPA could cite earlier.
 \bibliography{ising} % Produces the bibliography via BibTeX.
 
 \end{document}
