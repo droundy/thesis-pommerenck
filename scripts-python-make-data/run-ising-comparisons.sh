@@ -6,7 +6,7 @@ python figs/parse-ising-out.py /home/jordan/ising-cp-data/ising-wl-32-s1 32 isin
 python figs/parse-ising-out.py /home/jordan/ising-cp-data/ising-sad-32-s1 32 ising-sad-32
 python figs/parse-ising-out.py /home/jordan/ising-cp-data/ising-wl-inv-t-32-s1 32 ising-wl-inv-t-32
 
-python figs/parse-ising-out.py /home/jordan/sad-monte-carlo/ising-wl-128-minGamma-s1 32 ising-wl-32-minGamma
+python figs/parse-ising-out.py /home/jordan/sad-monte-carlo/ising-wl-32-minGamma-s1 32 ising-wl-32-minGamma
 #cp data/gamma/ising/n32/ising-wl-32-minGamma.txt ../../../thesis-pommerenck/ising/data/gamma/n32/.
 
 # This is the reference for 128 X 128 system
