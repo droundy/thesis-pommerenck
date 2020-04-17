@@ -35,12 +35,16 @@
   update factor (SAD) algorithm applied to the 2D ising model. Comparison with
   SAMC and WL methods show that SAD performs robustly and without user input
   knowledge of an energy range. We confirm that SAD is more powerful in the
-  common case in which the range of energies is not known in advance. 
+  common case in which the range of energies is not known in advance.
+  \jpsays{production run WL is also tested and does well} 
 \end{abstract}
 
 \maketitle
 
 \section{Introduction}
+
+\jpsays{comment out the graphs we are not going to use i.e. the average entropy error.  Change Cv to cv in plots i.e. divide by 32 X 32 etc...}
+
 Flat histogram Monte-Carlo simulation algorithms calculate the thermodynamic
 properties of various systems over a range of temperatures.  The first histogram
 method used a single canonical Monte Carlo simulation to predict properties for
@@ -65,6 +69,8 @@ to determine the ideal parameters in order to apply the method. The Wang-Landau
 algorithm is also known to violate detailed balance (although only for brief
 time intervals)~\cite{yan2003fast, shell2002generalization}. With the violation
 of detailed balance, convergence of the algorithm is not guaranteed.
+
+\jpsays{here might be a good place to mention production run WL}
 
 Because of the uncertainty of convergence for WL, many studies were undertaken
 to understand how the modification (or update) factor $\gamma$ impacts the
@@ -152,7 +158,7 @@ As per the implementation by Wang and
 Landau~\cite{wang2001determining}, the total number of available energy
 states are $N-1$.
 
-\jpsays{add in the heat capacity formula here.}
+\jpsays{add in the heat capacity formula here and comment out the average deviation form the exact solution for the entropy}
 
 \section{Flat histogram methods}\label{sec:histogram}
 Flat histogram methods determine the density of states $D(E)$ over a broad range
@@ -220,7 +226,8 @@ $1/t$ implementation~\cite{belardinelli2007fast}, the update factor is
 decreased once all $N_S$ energy states are visited at least once (i.e.
 $H(E) \neq 0$) effectively avoiding the concept of `flatness'.
 
-\jpsays{consider adding in minGamma WL here or before 1/t-WL method}
+\jpsays{consider adding in minGamma WL here or before 1/t-WL method.
+An alternative method of implementing the WL algorithm is to first implement a “production” run~\cite{}. The WL method updates the weights w(E) until some Gamma min is reached. At this point, the weights are fixed and the method proceeds.}
 
 Another weight-based flat histogram method is
 the Stochastic Approximation Monte Carlo (SAMC) algorithm. SAMC has a simple
@@ -286,6 +293,8 @@ Each time the simulation changes the value of $E_H$ or $E_L$, the weights
 within the new portion of the interesting energy range are updated.
 
 \section{Results}
+
+\jpsays{this all needs rewritten in terms of heat capacity and WL min gamma.}
 We tested the algorithms on two 2D Ising model systems.  The first is a smaller
 simulation with a lattic size of 32 and the second has a lattice size of 128.
 For each system we use a reasonable root-mean-square displacement distance
@@ -406,6 +415,8 @@ in which a range of desired temperatures is known, this will make the SAD method
 considerably more convenient.
 
 \section{Acknowledgments}
+
+\jpsays{edit here!}
 We thank Klas Markstr\"{o}m for discussions regarding the exact computation of the partition function for the 2D Ising model.
 
 Johannes Zierenberg for production run discussions
