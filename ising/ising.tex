@@ -42,9 +42,6 @@
 \maketitle
 
 \section{Introduction}
-
-\jpsays{comment out the graphs we are not going to use i.e. the average entropy error.  Change Cv to cv in plots i.e. divide by 32 X 32 etc...}
-
 Flat histogram Monte-Carlo simulation algorithms calculate the thermodynamic
 properties of various systems over a range of temperatures.  The first histogram
 method used a single canonical Monte Carlo simulation to predict properties for
@@ -121,7 +118,7 @@ Carlo methods (WL, 1/t-WL, SAMC, SAD) to the 2D Ising model.
 \section{Ising Model}
 The 2D Ising spin-lattice system is widely used as a testbed when
 benchmarking or comparing Monte-Carlo
-methods~\cite{ferdinand1969bounded, wang1999transition, trebst2004optimizing}. The 2nd order
+methods~\cite{ferdinand1969bounded, wang1999transition, trebst2004optimizing, barash2019estimating}. The 2nd order
 phase transition behavior and the ability to directly calculate the
 exact solution for finite lattices~\cite{beale1996exact, haggkvist2004computation} make the
 system sufficiently interesting for such theoretical comparisons. It is
@@ -312,15 +309,21 @@ the WL methods where both of these parameters are needed a priori).
 \end{figure}
 
 \begin{figure}
-\includegraphics[width=\columnwidth]{N32-entropy-error-default.pdf}
-  \caption{
-  The average entropy error for each MC method for $N=32 \times 32$,
-               $\delta_0 = 0.05\sigma$, and $T_{\min} = 1$
-               as a function of number of iterations run.  The error is
-               averaged over 8 independent simulations, and the best
-               and worst simulations for each method are shown as a
-               semi-transparent shaded area.}\label{fig:n32}
+  \includegraphics[width=\columnwidth]{N32-Cv-error-default.pdf}
+  \caption{The maximum error in the heat capacity for each method for the $N=32 \times 32$ and $T_{\min} = 1$ as a function of number of iterations run.  The maximum error is averaged over 8 independent simulations, and the best and worst simulations for each method are shown as a semi-transparent shaded area.}
+  \label{fig:N32-cv-error}
 \end{figure}
+
+% \begin{figure}
+% \includegraphics[width=\columnwidth]{N32-entropy-error-default.pdf}
+%   \caption{
+%   The average entropy error for each MC method for $N=32 \times 32$,
+%                $\delta_0 = 0.05\sigma$, and $T_{\min} = 1$
+%                as a function of number of iterations run.  The error is
+%                averaged over 8 independent simulations, and the best
+%                and worst simulations for each method are shown as a
+%                semi-transparent shaded area.}\label{fig:n32}
+% \end{figure}
 
 \subsection{The 32 $\times$ 32 Ising model}
 For this simulation, we chose a minimum reduced temperature of $1$, which
@@ -343,15 +346,21 @@ converge as $1/\sqrt{t}$. We then see the WL error saturate around $10^9$ moves.
 \end{figure}
 
 \begin{figure}
-\includegraphics[width=\columnwidth]{N128-entropy-error-default.pdf}
-  \caption{
-  The average entropy error for each MC method for $N=128 \times 128$,
-               $\delta_0 = 0.05\sigma$, and $T_{\min} = 1$
-               as a function of number of iterations run.  The error is
-               averaged over 8 independent simulations, and the best
-               and worst simulations for each method are shown as a
-               semi-transparent shaded ar.}\label{fig:n128}
+  \includegraphics[width=\columnwidth]{N128-Cv-error-default.pdf}
+  \caption{The maximum error in the heat capacity for each method for the $N=128 \times 128$ and $T_{\min} = 1$ as a function of number of iterations run.  The maximum error is averaged over 8 independent simulations, and the best and worst simulations for each method are shown as a semi-transparent shaded area.}
+  \label{fig:N128-cv-error}
 \end{figure}
+
+% \begin{figure}
+% \includegraphics[width=\columnwidth]{N128-entropy-error-default.pdf}
+%   \caption{
+%   The average entropy error for each MC method for $N=128 \times 128$,
+%                $\delta_0 = 0.05\sigma$, and $T_{\min} = 1$
+%                as a function of number of iterations run.  The error is
+%                averaged over 8 independent simulations, and the best
+%                and worst simulations for each method are shown as a
+%                semi-transparent shaded ar.}\label{fig:n128}
+% \end{figure}
 
 \subsection{128 $\times$ 128 Ising system}
 For this simulation, we chose a minimum reduced temperature of $1$, which
@@ -368,18 +377,6 @@ simulations have begun to converge as $1/\sqrt{t}$. We then see the WL error
 saturate around $10^{12}$ moves. The error in the SAD method will continue to
 converge faster than $1/\sqrt{t}$ until the update factor approaches that of
 1/t-WL at which point both methods will converge equivalently.
-
-\begin{figure}
-  \includegraphics[width=\columnwidth]{N32-Cv-error-default.pdf}
-  \caption{The error in the heat capacity of the $N=32 \times 32$ as calculated with each method.}
-  \label{fig:N32-cv-error}
-\end{figure}
-
-\begin{figure}
-  \includegraphics[width=\columnwidth]{N128-Cv-error-default.pdf}
-  \caption{The error in the heat capacity of the $N=128 \times 128$ as calculated with each method.}
-  \label{fig:N128-cv-error}
-\end{figure}
 
 \subsection{Separate Heat Capacity Section?}
 Why does the heat capacity error saturate (i.e. the error is around 1 out 
@@ -400,7 +397,8 @@ Why are we looking at Cv?
 
 
 \section{Conclusion}
-\jpsays{add something here about production run WL-minGamma}
+\jpsays{add something here about production run WL-minGamma
+The method performs as well as 1/t-WL and SAD.  Unfortunately, the addition of another tunable parameter Gamma min makes the method somewhat more difficult to implement in practice.}
 We have examined the convergence of SAD versus other widely used weight-based
 histogram methods.  We have shown that Sad samples the energy space
 corresponding to a desired range of temperatures for a variety of system sizes.
@@ -416,13 +414,9 @@ considerably more convenient.
 
 \section{Acknowledgments}
 
-\jpsays{edit here!}
-We thank Klas Markstr\"{o}m for discussions regarding the exact computation of the partition function for the 2D Ising model.
+We thank Klas Markstr\"{o}m for discussions regarding the exact computation of the partition function for the 2D Ising model. We also with to thank Johannes Zierenberg for helpful discussions regarding WL production simulations and
+Martin Weigel for discussions regarding entropic population annealing.
 
-Johannes Zierenberg for production run discussions
-
-
-Martin Weigel for talking about EPA could cite earlier.
 \bibliography{ising} % Produces the bibliography via BibTeX.
 
 \end{document}

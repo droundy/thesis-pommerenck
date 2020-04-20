@@ -201,11 +201,18 @@ for method in methods:
                 colors.legend()
                 if data.shape[0] > 5:
                     plt.figure('heat_capacity')
-                    heat_capacity = data[5]
+                    if filebase == 'N32':
+                        plt.xlim(1e5,1e12)
+                        plt.ylim(1e-3,1e1)
+                        cv_factor = (32*32)
+                    else:
+                        plt.xlim(1e9,10**(13.8))
+                        plt.ylim(1e-3,1e1)
+                        cv_factor = 128*128
                     try:
-                        minmean_cv = data[6]
-                        maxmean_cv = data[7]
-
+                        heat_capacity = data[5] / cv_factor
+                        minmean_cv = data[6] / cv_factor
+                        maxmean_cv = data[7] / cv_factor
                         plt.fill_between(moves, minmean_cv, maxmean_cv,
                                         edgecolor='none', linewidth=0,
                                         color=colors.color(method[1:]),
@@ -215,14 +222,8 @@ for method in methods:
                     colors.loglog(moves, heat_capacity, method = method[1:])
                     for i in np.arange(-8, 19, 1.0):
                         colors.loglog(moves, 10**i/np.sqrt(0.1*moves), method = r'1/sqrt(t)')
-                    if filebase == 'N32':
-                        plt.xlim(1e5,1e12)
-                        plt.ylim(1,1e4)
-                    else:
-                        plt.xlim(1e9,10**(13.8))
-                        plt.ylim(5e1,1e6)
-                    plt.xlabel(r'Moves')
-                    plt.ylabel(r'Cv')
+                    plt.xlabel(r'$\textrm{Moves}$')
+                    plt.ylabel(r'Maximum error in $c_V$')
                     colors.legend()
                     plt.savefig('%s-Cv-error-%s.pdf' % (tex_filebase,transcale))
 
