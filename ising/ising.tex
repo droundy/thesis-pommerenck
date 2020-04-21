@@ -32,11 +32,10 @@
 
 \begin{abstract}
   We examine the convergence of the Stochastic Approximation with a Dynamic
-  update factor (SAD) algorithm applied to the 2D ising model. Comparison with
+  update factor (SAD) algorithm applied to the 2D Ising model. Comparison with
   SAMC and WL methods show that SAD performs robustly and without user input
-  knowledge of an energy range. We confirm that SAD is more powerful in the
-  common case in which the range of energies is not known in advance.
-  \jpsays{production run WL is also tested and does well} 
+  knowledge of an energy range. We also compare SAD with a final production run WL simulation with fixed weights. While SAD is more powerful in the
+  common case in which the range of energies is not known in advance, the 2D Ising model energy range is readily known and easily discovered by WL methods.
 \end{abstract}
 
 \maketitle
@@ -49,7 +48,10 @@ nearby temperatures~\cite{ferrenberg1988new}. While the method effectively
 samples a narrow energy range given limited by a narrow temperature range, it
 proves computationally inefficient at sampling large energy ranges.
 
-Multicanonical methods, introduced by Berg and Neuhaus, enabled flat-histogram sampling which improved the exploration of configuration space and allowed the system to overcome free-energy barriers~\cite{berg1991multicanonical, berg1992multicanonical}.  These works led to increase in the development of a variety of ``flat'' (or ``broad'') histogram
+Multicanonical methods, introduced by Berg and Neuhaus, enabled flat-histogram
+sampling which improved the exploration of configuration space and allowed the
+system to overcome free-energy barriers~\cite{berg1991multicanonical, berg1992multicanonical}.
+These works led to increase in the development of a variety of ``flat'' (or ``broad'') histogram
 methods~\cite{penna1996broad, penna1998broad, swendsen1999transition,
 wang2001determining, wang2001efficient} which could explore a wider range
 of energies.  In addition to obtaining thermodynamic information for the entire
@@ -67,7 +69,13 @@ algorithm is also known to violate detailed balance (although only for brief
 time intervals)~\cite{yan2003fast, shell2002generalization}. With the violation
 of detailed balance, convergence of the algorithm is not guaranteed.
 
-\jpsays{here might be a good place to mention production run WL}
+The WL method can also be implemented as part of a production run which aids in
+equilibration~\cite{gross2018massively}. WL is used to generate the weights
+resulting in a flat-histogram~\cite{janke2017generalized}. Once a user-defined
+minimum $\gamma$ is reached, the simulation switches to a final production run
+with fixed weights. WL implemented in this way can ensure ergodicity and
+detailed-balance. The converge of the production run is still impacted by the
+choice of the minimum $\gamma$.
 
 Because of the uncertainty of convergence for WL, many studies were undertaken
 to understand how the modification (or update) factor $\gamma$ impacts the
@@ -144,18 +152,24 @@ function~\cite{beale1996exact}
 \begin{align}
 Z = \sum_E g(E) e^{-{\beta E}}
 \end{align}
+% where $g(E)$ is the multiplicity of the system which is proportional to
+% $D(E)$. We can estimate the average deviation from the exact solution
+% using the relation~\cite{schneider2017convergence, shakirov2018convergence,
+% barash2017control}:
+% \begin{align}
+% \braket{\epsilon(t)}_E = \frac{1}{N_E - 1} \sum_E \left( \frac{S(E,t) - S_{\text{Beale}(E)}}{S_{\text{Beale}(E)}} \right)
+% \end{align}
 where $g(E)$ is the multiplicity of the system which is proportional to
-$D(E)$. We can estimate the average deviation from the exact solution
-using the relation~\cite{schneider2017convergence, shakirov2018convergence,
-barash2017control}:
+$D(E)$. We can estimate the maximum deviation in the canonical specific heat capacity $c_V$ from the exact solution~\cite{schneider2017convergence, shakirov2018convergence,
+barash2017control,barash2017gpu}:
 \begin{align}
-\braket{\epsilon(t)}_E = \frac{1}{N_E - 1} \sum_E \left( \frac{S(E,t) - S_{\text{Beale}(E)}}{S_{\text{Beale}(E)}} \right)
+\braket{\epsilon(t)}_E = \max_E \left( c_V(E,S,T,t) - c_V(E,S,T,t)_{\text{Beale}}\right)
 \end{align}
-As per the implementation by Wang and
-Landau~\cite{wang2001determining}, the total number of available energy
-states are $N-1$.
-
-\jpsays{add in the heat capacity formula here and comment out the average deviation form the exact solution for the entropy}
+% As per the implementation by Wang and
+% Landau~\cite{wang2001determining}, the total number of available energy
+% states are $N-1$.
+Computing the specific heat capacity $c_V$ presents a difficult challenge for
+any Monte-Carlo method due to fluctuations in the derivative of the internal energy.  Methods that accurately compute $c_V$ also by extension accurately compute the internal energy.
 
 \section{Flat histogram methods}\label{sec:histogram}
 Flat histogram methods determine the density of states $D(E)$ over a broad range
@@ -414,7 +428,7 @@ considerably more convenient.
 
 \section{Acknowledgments}
 
-We thank Klas Markstr\"{o}m for discussions regarding the exact computation of the partition function for the 2D Ising model. We also with to thank Johannes Zierenberg for helpful discussions regarding WL production simulations and
+We thank Klas Markstr\"{o}m for discussions regarding the exact computation of the partition function for the 2D Ising model. We also with to thank Johannes Zierenberg for helpful discussions regarding WL production run simulations and
 Martin Weigel for discussions regarding entropic population annealing.
 
 \bibliography{ising} % Produces the bibliography via BibTeX.
