@@ -23,7 +23,7 @@
 \newcommandx{\jpcom}[2][1=inline]{\todo[linecolor=gray,backgroundcolor=light-gray,bordercolor=dark-gray,#1]{\textbf{Jordan says:} #2} }
 \begin{document}
 
-\title{Flat histogram method comparison on 2D Ising Model
+\title{Flat-histogram method comparison on 2D Ising Model
 }
 
 \author{Jordan K. Pommerenck} \author{David Roundy}
@@ -41,7 +41,7 @@
 \maketitle
 
 \section{Introduction}
-Flat histogram Monte-Carlo simulation algorithms calculate the thermodynamic
+Flat-histogram Monte-Carlo simulation algorithms calculate the thermodynamic
 properties of various systems over a range of temperatures.  The first histogram
 method used a single canonical Monte Carlo simulation to predict properties for
 nearby temperatures~\cite{ferrenberg1988new}. While the method effectively
@@ -69,14 +69,6 @@ algorithm is also known to violate detailed balance (although only for brief
 time intervals)~\cite{yan2003fast, shell2002generalization}. With the violation
 of detailed balance, convergence of the algorithm is not guaranteed.
 
-The WL method can also be implemented as part of a production run which aids in
-equilibration~\cite{gross2018massively}. WL is used to generate the weights
-resulting in a flat-histogram~\cite{janke2017generalized}. Once a user-defined
-minimum $\gamma$ is reached, the simulation switches to a final production run
-with fixed weights. WL implemented in this way can ensure ergodicity and
-detailed-balance. The converge of the production run is still impacted by the
-choice of the minimum $\gamma$.
-
 Because of the uncertainty of convergence for WL, many studies were undertaken
 to understand how the modification (or update) factor $\gamma$ impacts the
 convergence~\cite{zhou2005understanding,lee2006convergence,
@@ -86,7 +78,9 @@ calculations after the error in the density of states is
 saturated~\cite{belardinelli2008analysis}. Modification factors that decrease
 faster than $1/t$ were found to lead to
 non-convergence~\cite{belardinelli2007fast}.  These findings led to the
-formation of the $1/t$-WL algorithm.
+formation of the $1/t$-WL algorithm and also sparked some debate as to whether
+the simulation should be split into multiple parts, called ``production run" WL, in order to preserve ergodicity and
+detailed balance~\cite{jayasri2005wang, mukhopadhyay2008monte}.
 
 Liang independently considered whether WL could be treated as a special case of
 Stochastic Approximation whose convergence could be mathematically
@@ -120,7 +114,7 @@ dependent parameters. SAD shares the same convergence properties with SAMC while
 replacing un-physical user-defined parameters with the algorithms dynamic
 choice.
 
-In this work, we apply the family of weight-based flat histogram Monte
+In this work, we apply the family of weight-based flat-histogram Monte
 Carlo methods (WL, 1/t-WL, SAMC, SAD) to the 2D Ising model.
 
 \section{Ising Model}
@@ -133,7 +127,7 @@ system sufficiently interesting for such theoretical comparisons. It is
 also important to note that direct comparison of the other methods can
 be made with WL as its original implementation was done on this
 system~\cite{wang2001determining,wang2001efficient}.
-We test the convergence of several flat histogram methods
+We test the convergence of several flat-histogram methods
 on the periodic 2D square lattice ferromagnetic Ising model with nearest
 neighbor interactions~\cite{landau2004new}.
 \begin{align}
@@ -171,15 +165,15 @@ barash2017control,barash2017gpu}:
 Computing the specific heat capacity $c_V$ presents a difficult challenge for
 any Monte-Carlo method due to fluctuations in the derivative of the internal energy.  Methods that accurately compute $c_V$ also by extension accurately compute the internal energy.
 
-\section{Flat histogram methods}\label{sec:histogram}
-Flat histogram methods determine the density of states $D(E)$ over a broad range
-of energies by simulating each energy with equivalent accuracy. Flat histogram
+\section{Flat-histogram methods}\label{sec:histogram}
+Flat-histogram methods determine the density of states $D(E)$ over a broad range
+of energies by simulating each energy with equivalent accuracy. Flat-histogram
 Monte Carlo methods propose randomly chosen ``moves'' which change the state of
 the system and must satisfy detailed balance.  Each algorithm differs in how it
 determines the probability of accepting a move and in what additional statistics
 must be collected in order decide on that probability.
 
-We describe four closely related flat histogram methods which each rely on a
+We describe several closely related flat-histogram methods which each rely on a
 weight function $w(E)$ to determine $D(E)$.  For these algorithms, the
 probability of accepting a move is given by
 \begin{equation}
@@ -187,12 +181,11 @@ probability of accepting a move is given by
 	= \min\left[1,\frac{w(E_\text{old})}{w(E_\text{new})}\right]
 \end{equation}
 which biases the simulation in favor of energies with low weights. The result of
-weights $w(E)$ that are proportional to $D(E)$ is an entirely flat histogram. We
+weights $w(E)$ that are proportional to $D(E)$ is an entirely flat-histogram. We
 can relate the entropy to the weights in the microcanonical ensemble, since the
 entropy is defined as $S(E) \equiv k_B\ln(D(E)) \approx \ln w(E)$.
 
-Each approach uses a random walk in energy space to estimate $D(E)$.  At the
-core of each of these approaches is to continuously update the weights at each
+Flat-histogram methods employ a random walk in energy space to estimate $D(E)$.  Each method operates by continuously updating the weights at each
 step of the simulation
 \begin{equation}
 	\ln{w_{t+1}(E)}=\ln{w_{t}(E)}
@@ -200,21 +193,16 @@ step of the simulation
 \end{equation}
 where $t$ is number of the current move, $\gamma(t)$ is a move-dependent update
 factor, and $E$ is the current energy.  This update causes the random walk to
-avoid energies that have been frequently sampled, leading to a rapid exploration
-of energy space. The four methods differ primarily in how they schedule the
-decreasing of $\gamma_t$.
+avoid frequently sampling the same energies, leading to a rapid exploration
+of energy space. Flat-histogram methods differ primarily in how they schedule
+the decrease of $\gamma_t$.
 
 The Wang-Landau algorithm~\cite{wang2001efficient,wang2001determining,
-landau2014guide} explores energy space by initially setting $\gamma=1$, and then
-decreases $\gamma$ in discrete stages. An energy range of interest must be
-specified~\cite{wang2001efficient, schulz2003avoiding, yan2003fast},
-which can require multiple simulations if unknown.
+landau2014guide} explores energy space by setting $\gamma_{t=0}^{\text{WL}}=1$,and then decreases $\gamma^{\text{WL}}$ in prescribed stages. An energy range of
+interest must be specified~\cite{wang2001efficient, schulz2003avoiding,yan2003fast}, which often requires multiple simulations if unknown.
 
 The number (``counts'') of moves ending at each energy are stored in a
-histogram.  For a sufficiently flat energy histogram (specified by the user to
-typically be 0.8), $\gamma$ is decreased by a specified factor of $\frac12$ and
-the histogram is reset to zero. The entire process is repeated until $\gamma$
-reaches a desired cutoff.
+histogram.  For a sufficiently flat energy histogram (typically user-specified to be 0.8), $\gamma^{\text{WL}}$ is decreased by a specified factor of $\frac12$ and the histogram is reset to zero. The entire process is repeateduntil $\gamma^{\text{WL}}$ reaches a desired cutoff.
 
 Zhou et. al also showed that the WL algorithm never converges
 exponentially~\cite{zhou2008optimal} and succesfully bounded the statistical
@@ -237,10 +225,15 @@ $1/t$ implementation~\cite{belardinelli2007fast}, the update factor is
 decreased once all $N_S$ energy states are visited at least once (i.e.
 $H(E) \neq 0$) effectively avoiding the concept of `flatness'.
 
-\jpsays{consider adding in minGamma WL here or before 1/t-WL method.
-An alternative method of implementing the WL algorithm is to first implement a “production” run~\cite{}. The WL method updates the weights w(E) until some Gamma min is reached. At this point, the weights are fixed and the method proceeds.}
+The WL method can also be implemented as part of a production run which aids in
+equilibration~\cite{gross2018massively}. WL is used to generate the weights
+resulting in a flat-histogram~\cite{janke2017generalized}. Once a user-defined
+minimum $\gamma$ is reached, the simulation switches to a final production run
+with fixed weights. WL implemented in this way can ensure ergodicity and
+detailed-balance; however, the convergence of simulation is still impacted by
+the choice of the minimum $\gamma$.
 
-Another weight-based flat histogram method is
+Another weight-based flat-histogram method is
 the Stochastic Approximation Monte Carlo (SAMC) algorithm. SAMC has a simple
 schedule by which the update factor $\gamma$ is continuously
 decreased~\cite{liang2007stochastic, werlich2015stochastic,
@@ -268,9 +261,8 @@ for arbitrary systems.
 Liang \emph{et al.} give a rule of thumb in
 which $t_0$ is chosen in the range from $2N_S$ to $100N_S$ where $N_S$
 is the number of energy bins~\cite{liang2007stochastic}.  Schneider
-\emph{et al.} found that for the Ising model this heuristic is helpful
-for small spin systems, but that larger systems require an even higher
-$t_0$ value~\cite{schneider2017convergence}. Our work also confirms this.
+\emph{et al.} found and we confirm that for the Ising model this heuristic is helpful for small spin systems, but that larger systems require an even higher
+$t_0$ value~\cite{schneider2017convergence}.
 
 Pommerenck et al. propose a refinement~\cite{pommerenck2020stochastic} to SAMC
 where the update factor is determined dynamically rather than by the user.
