@@ -48,7 +48,7 @@ try:
             time = data[:,1]
             ehi = data[:,2]
             elo = data[:,3]
-            ts = np.exp(np.linspace(0, np.log(max(time)*1e4), 2000))
+            ts = np.exp(np.linspace(0, np.log(max(time)*1e6), 2000))
             gamma = np.zeros_like(ts)
             print(sad, time)
             for j in range(len(time)):
@@ -80,8 +80,12 @@ def gamma_sa(t,t0):
 
 if '128' in filename:
     t0s = ['1e5','1e6','1e7','1e8','1e9']
+    plt.ylim(1e-10, 1e1)
+    plt.xlim(1e3, 1e13)
 elif '32' in filename:
     t0s = ['1e3','1e4','1e5','1e6','1e7']
+    plt.ylim(1e-10, 1e1)
+    plt.xlim(1e3, 1e13)
 
 
 
@@ -91,8 +95,7 @@ for t0 in t0s:
     plt.ylabel(r'$\gamma_{t}$')
     colors.legend()
 plt.tight_layout()
-plt.ylim(1e-10, 1e1)
-plt.xlim(1e3, 1e13)
+
 
 plt.savefig('gamma-%s.pdf' % filename.replace('.','_'))
 if 'noshow' not in sys.argv:

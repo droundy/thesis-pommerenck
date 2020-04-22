@@ -206,7 +206,7 @@ for method in methods:
                         plt.ylim(1e-3,1e1)
                         cv_factor = (32*32)
                     else:
-                        plt.xlim(1e9,10**(13.8))
+                        plt.xlim(1e8,10**(13.8))
                         plt.ylim(1e-3,1e1)
                         cv_factor = 128*128
                     try:
