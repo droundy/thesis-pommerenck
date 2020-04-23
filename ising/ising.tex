@@ -34,8 +34,7 @@
   We examine the convergence of the Stochastic Approximation with a Dynamic
   update factor (SAD) algorithm applied to the 2D Ising model. Comparison with
   SAMC and WL methods show that SAD performs robustly and without user input
-  knowledge of an energy range. We also compare SAD with a final production run WL simulation with fixed weights. While SAD is more powerful in the
-  common case in which the range of energies is not known in advance, the 2D Ising model energy range is readily known and easily discovered by WL methods.
+  knowledge of an energy range. We also compare SAD with a final production run WL simulation with fixed weights which is the first of its kind recorded. Since SAD is more powerful in the common case in which the range of energies is not known in advance, the 2D Ising model presents a unique challenge since the energy range is readily known and easily discovered by WL methods.
 \end{abstract}
 
 \maketitle
@@ -319,7 +318,7 @@ the WL methods where both of these parameters are needed \emph{a priori.}).
 % \end{figure}
 
 \subsection{The 32 $\times$ 32 Ising model}
-Fig.~\ref{fig:N32-gamma} shows the update factor $\gamma_t$ for each of the flat-histogram methods. All of the update factors initially start at 1 $\gamma_{t=0} = 1$. SAD dynamically updates $\gamma_t$ throughout the simulation. After about $10^{10}$ moves, $\gamma^{\text{SAD}}_t$ proceeds as $1/t$. Both WL and ``production'' WL update factors $\gamma_t$ are shown. The production WL begins after $\gamma_t$ has reached $10^{-4}$. The update factor for $1/t$-WL decreases similarly to WL before finding all the energy states and switching to $1/t$. All of the SAMC update factors equal 1 until the number of moves is equal to $t_0$ at which point the decrease as $1/t$.
+Fig.~\ref{fig:N32-gamma} shows the update factor $\gamma_t$ for each of the flat-histogram methods. All of the update factors initially start at $\gamma_{t=0} = 1$. SAD dynamically updates $\gamma_t$ throughout the simulation. After about $10^{10}$ moves, $\gamma^{\text{SAD}}_t$ proceeds as $1/t$. Both WL and ``production'' WL update factors $\gamma^{\text{WL}}_t$ are shown. The production WL begins after $\gamma^{\text{WL}}_t$ has reached $10^{-4}$. The update factor for $1/t$-WL decreases similarly to WL before finding all the energy states and switching to $1/t$. All of the SAMC update factors equal 1 until the number of moves is equal to $t_0$ at which point the decrease as $1/t$.
 
 Fig.~\ref{fig:N32-cv-error} shows the maximum error in the heat capacity as a function of time for
 this system. The solid/dashed lines
@@ -355,7 +354,7 @@ converge as $1/\sqrt{t}$. We then see the WL error saturate around $10^9$ moves.
 % \end{figure}
 
 \subsection{128 $\times$ 128 Ising system}
-Fig.~\ref{fig:N128-gamma} shows the update factor $\gamma_t$ for each of the flat-histogram methods. All of the update factors initially start at 1 $\gamma_{t=0} = 1$. SAD dynamically updates $\gamma_t$ throughout the simulation. After about $10^{13}$ moves, $\gamma^{\text{SAD}}_t$ proceeds as $1/t$. Both WL and ``production'' WL update factors $\gamma_t$ are shown. The production WL begins after $\gamma_t$ has reached $10^{-4}$ and $10^{-6}$. The update factor for $1/t$-WL decreases similarly to WL before finding all the energy states and switching to $1/t$. All of the SAMC update factors equal 1 until the number of moves is equal to $t_0$ at which point the decrease as $1/t$.
+Fig.~\ref{fig:N128-gamma} shows the update factor $\gamma_t$ for each of the flat-histogram methods. All of the update factors initially start at $\gamma_{t=0} = 1$. SAD dynamically updates $\gamma_t$ throughout the simulation. After about $10^{13}$ moves, $\gamma^{\text{SAD}}_t$ proceeds as $1/t$. Both WL and ``production'' WL update factors $\gamma^{\text{WL}}_t$ are shown. The production WL begins after $\gamma^{\text{WL}}_t$ has reached $10^{-4}$ and $10^{-6}$. The update factor for $1/t$-WL decreases similarly to WL before finding all the energy states and switching to $1/t$. All of the SAMC update factors equal 1 until the number of moves is equal to $t_0$ at which point the decrease as $1/t$.
 
 Fig.~\ref{fig:N128-cv-error} shows the maximum error in the heat capacity as a function of time for
 this system. The solid/dashed lines
@@ -366,20 +365,16 @@ the time $10^13$ moves have been made all but the WL simulation have begun to
 converge as $1/\sqrt{t}$. We then see the WL error saturate around $10^12$ moves.
 
 \section{Conclusion}
-\jpsays{add something here about production run WL-minGamma
-The method performs as well as 1/t-WL and SAD.  Unfortunately, the addition of another tunable parameter Gamma min makes the method somewhat more difficult to implement in practice.}
-We have examined the convergence of SAD versus other widely used weight-based
-histogram methods.  We have shown that Sad samples the energy space
-corresponding to a desired range of temperatures for a variety of system sizes.
-We find that both SAD and 1/t-WL demonstrate excellent and robust convergence.
-They both converge more rapidly than SAMC, and unlike WL do not suffer from
+The method performs as well as 1/t-WL and SAD.  Unfortunately, the addition of another tunable parameter Gamma min makes the method somewhat more difficult to implement in practice.
+
+We find that both SAD, 1/t-WL, and production WL (provided an ideal minimum update factor before beginning the production run) demonstrate excellent and robust convergence.
+They all converge more rapidly than SAMC, and unlike WL do not suffer from
 error saturation. We find that for larger systems SAD reduces the updated factor
-more slowly (and conservatively) than 1/t-WL. This means that SAD will take
+more slowly (and conservatively) than 1/t-WL and production WL. This means that SAD will take
 proportionately more moves to converge to the same value as 1/t-WL as system
 size is increased. SAD requires the user to specify a temperature range of
-interest rather than an energy range of interest as 1/t-WL does. For use cases
-in which a range of desired temperatures is known, this will make the SAD method
-considerably more convenient.
+interest rather than an energy range of interest as the WL methods do. The 2D Ising model is a system where the energy range is known \emph{a priori.}, which makes a comparison between WL methods and SAD (which requires a minimum temperature) more biased towards WL methods. For the majority of cases in which the energy range of the system is not known and where a range of desired temperatures is known, this will make the SAD method
+considerably more convenient. This work also visually demonstrates that production WL performs extremely well and is preferable to WL for ensuring both ergodicity and detailed-balance.
 
 \section{Acknowledgments}
 
