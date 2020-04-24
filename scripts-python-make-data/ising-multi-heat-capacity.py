@@ -170,6 +170,8 @@ for f in filename:
                     # invoke np.flip since ising_E is indexed backward!
                     # this is critical for my_cv_error or you get wrong answer.
                     flip_ising_E = np.flip(np.copy(ising_E))
+                    print('max discrepancy in energy:',
+                          abs(eref[0:Emin-Emax+1] - flip_ising_E).max())
 
                     norm_factor = np.mean(ising_norm) - np.mean(lndosref[0:Emin-Emax+1])
                     doserror = ising_lndos - lndosref[0:Emin-Emax+1] - norm_factor
