@@ -156,27 +156,22 @@ for f in filename:
                 # below just set average S equal between lndos and lndosref
                 if 'ising' in save_dir:
 
-                    ising_norm = lndos[i][maxyaml:minyaml+1] # remove impossible state
-
-                    ising_lndos = lndos[i][maxyaml:minyaml+1][::-1] # remove impossible state
+                    ising_lndos = np.flip(np.copy(lndos[i][maxyaml:minyaml+1])) # remove impossible state
 
                     # the states are counted backward hence the second to last state would be at index = 1
-                    ising_norm = np.delete(ising_norm, [1])
                     ising_lndos = np.delete(ising_lndos, [len(ising_lndos)-2])
 
-                    ising_E = np.array(energies[maxyaml:minyaml+1])
-                    ising_E = np.delete(ising_E, [len(ising_E)-2])
-                    
-                    # invoke np.flip since ising_E is indexed backward!
+                    # invoke np.flip since ising_E and ising_lndos are indexed backward!
                     # this is critical for my_cv_error or you get wrong answer.
-                    flip_ising_E = np.flip(np.copy(ising_E))
-                    print('max discrepancy in energy:',
-                          abs(eref[0:Emin-Emax+1] - flip_ising_E).max())
+                    ising_E = np.flip(np.copy(energies[maxyaml:minyaml+1]))
+                    ising_E = np.delete(ising_E, [len(ising_E)-2])
 
-                    norm_factor = np.mean(ising_norm) - np.mean(lndosref[0:Emin-Emax+1])
+                    norm_factor = np.mean(ising_lndos) - np.mean(lndosref[0:Emin-Emax+1])
                     doserror = ising_lndos - lndosref[0:Emin-Emax+1] - norm_factor
+                    # print(np.array([ising_E, eref[0:Emin-Emax+1],
+                    #                 ising_lndos-norm_factor, lndosref[0:Emin-Emax+1]]).T)
 
-                    my_cv_error = heat_capacity(T, flip_ising_E, ising_lndos) - cvref
+                    my_cv_error = heat_capacity(T, ising_E, ising_lndos) - cvref
 
                     # if i == arb:
                     
