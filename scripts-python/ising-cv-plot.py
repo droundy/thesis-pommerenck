@@ -74,9 +74,9 @@ for name in cv_headers:
 colors.legend(loc='best')
 plt.xlabel(r'$k_B\beta$')
 plt.ylabel(r'$c_V$ / $ k_B$')
-plt.xlim(0.4,0.5)
+plt.xlim(0.3,0.6)
 if N == 32:
-    plt.ylim(0.6,2.4)
+    plt.ylim(0.3,2.0)
 
 plt.savefig('../ising/N%i-Cv.pdf' % N)
 

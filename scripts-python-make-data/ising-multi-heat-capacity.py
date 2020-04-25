@@ -85,7 +85,7 @@ def heat_capacity(T, E, S):
         C[i] = ((E-U)**2*P).sum()/T[i]**2
     return C
 
-T = np.arange(1.5, 5, 0.01)
+T = np.arange(1.66, 3.33, 0.01)
 
 # Compute the reference energy, entropy, and heat capacity once.
 try:
