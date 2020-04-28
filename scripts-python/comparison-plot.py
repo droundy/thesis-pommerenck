@@ -224,7 +224,10 @@ for method in methods:
                         colors.loglog(moves, 10**i/np.sqrt(0.1*moves), method = r'1/sqrt(t)')
                     plt.xlabel(r'$\textrm{Moves}$')
                     plt.ylabel(r'Maximum error in $c_V$')
-                    colors.legend()
+                    if filebase == 'N128':
+                      colors.legend(loc='lower left')
+                    else:
+                      colors.legend()
                     plt.savefig('%s-Cv-error-%s.pdf' % (tex_filebase,transcale))
 
     except:
@@ -255,6 +258,7 @@ elif filebase == 'N32':
     plt.ylim(1e-3,1e3)
 elif filebase == 'N128':
     plt.ylim(1e-3,1e4)
+
 
 colors.legend()
 plt.tight_layout()
