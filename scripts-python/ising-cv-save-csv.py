@@ -150,27 +150,21 @@ for f in filename:
                 minyaml = lndos.shape[1]-1
 
             
-            times = [100000000, 1333521432, 1778279410,2371373716,3162277660, 4216965034, 5623413252, 7498942093]
-            index = np.argwhere(my_time == times[1])[0][0]
+            times = [1000000000, 1333521432, 1778279410,2371373716,3162277660, 4216965034, 5623413252, 7498942093]
+            index = np.argwhere(my_time == times[0])[0][0]
             # below just set average S equal between lndos and lndosref
             if 'ising' in save_dir:
-
-                ising_norm = lndos[index][maxyaml:minyaml+1] # remove impossible state
-
-                ising_lndos = lndos[index][maxyaml:minyaml+1][::-1] # remove impossible state
-
+                
+                ising_lndos = np.flip(np.copy(lndos[index][maxyaml:minyaml+1])) # remove impossible state
                 # the states are counted backward hence the second to last state would be at index = 1
-                ising_norm = np.delete(ising_norm, [1])
                 ising_lndos = np.delete(ising_lndos, [len(ising_lndos)-2])
-
-                ising_E = np.array(energies[maxyaml:minyaml+1])
-                ising_E = np.delete(ising_E, [len(ising_E)-2])
-                    
-                # invoke np.flip since ising_E is indexed backward!
+                
+                # invoke np.flip since ising_E and ising_lndos are indexed backward!
                 # this is critical for my_cv_error or you get wrong answer.
-                flip_ising_E = np.flip(np.copy(ising_E))
+                ising_E = np.flip(np.copy(energies[maxyaml:minyaml+1]))
+                ising_E = np.delete(ising_E, [len(ising_E)-2])
 
-                my_cv = heat_capacity(T, flip_ising_E, ising_lndos)
+                my_cv = heat_capacity(T, ising_E, ising_lndos)
                         
                 # add column
                 df['%s' % f] = my_cv

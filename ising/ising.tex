@@ -219,7 +219,7 @@ resulting in a flat-histogram~\cite{janke2017generalized}. Once a user-defined
 minimum $\gamma^{\text{WL}}_t$ is reached, the simulation switches to a final production run
 with fixed weights. WL implemented in this way can ensure ergodicity and
 detailed balance; however, the convergence of simulation is still impacted by
-the choice of the minimum $\gamma^{\text{WL}}_t$.
+the choice of the minimum $\gamma^{\min}_t$.
 
 Another weight-based flat-histogram method is
 the stochastic approximation Monte Carlo (SAMC) algorithm. SAMC has a simple
@@ -299,8 +299,15 @@ the WL methods where both of these parameters are needed \emph{a priori.}).
 \end{figure}
 
 \begin{figure}
+  \includegraphics[width=\columnwidth]{N32-Cv.pdf}
+    \caption{
+    The specific heat capacity versus the reciprocal temperature $\beta$ for the $N=32 \times 32$ system for each histogram method.}
+    \label{fig:N32-cv}
+  \end{figure}
+
+\begin{figure}
   \includegraphics[width=\columnwidth]{N32-Cv-error-default.pdf}
-  \caption{The maximum error in the heat capacity for each method for the $N=32 \times 32$ and $T_{\min} = 1$ as a function of number of iterations run.  The maximum error is averaged over 8 independent simulations, and the best and worst simulations for each method are shown as a semi-transparent shaded area.}
+  \caption{The maximum error in the specific heat capacity for each method for the $N=32 \times 32$ and $T_{\min} = 1$ as a function of number of iterations run.  The maximum error is averaged over 8 independent simulations, and the best and worst simulations for each method are shown as a semi-transparent shaded area.}
   \label{fig:N32-cv-error}
 \end{figure}
 
@@ -336,7 +343,7 @@ converge as $1/\sqrt{t}$. We then see the WL error saturate around $10^9$ moves.
 
 \begin{figure}
   \includegraphics[width=\columnwidth]{N128-Cv-error-default.pdf}
-  \caption{The maximum error in the heat capacity for each method for the $N=128 \times 128$ and $T_{\min} = 1$ as a function of number of iterations run.  The maximum error is averaged over 8 independent simulations, and the best and worst simulations for each method are shown as a semi-transparent shaded area.}
+  \caption{The maximum error in the specific heat capacity for each method for the $N=128 \times 128$ and $T_{\min} = 1$ as a function of number of iterations run.  The maximum error is averaged over 8 independent simulations, and the best and worst simulations for each method are shown as a semi-transparent shaded area.}
   \label{fig:N128-cv-error}
 \end{figure}
 

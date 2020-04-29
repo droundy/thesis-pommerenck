@@ -50,6 +50,7 @@ _linestyles = {
 
     r'$\frac{1}{\sqrt{t}}$': '-',
     'converged result': ':',
+    'Exact': '--',
 }
 
 _legend_order = [
@@ -272,6 +273,9 @@ def style_args(method):
     if method == '1/sqrt(t)':
         args['zorder'] = -59
         args['linewidth'] = 1.1
+    if 'Exact' in fix_legend(method):
+        args['zorder'] = 60
+        args['linewidth'] = 0.75
     return args
 
 def plot(x, y, method=None, axes=None):
