@@ -325,6 +325,8 @@ the WL methods where both of these parameters are needed \emph{a priori.}).
 \subsection{The 32 $\times$ 32 Ising model}
 Fig.~\ref{fig:N32-gamma} shows the update factor $\gamma_t$ for each of the flat-histogram methods. All of the update factors initially start at $\gamma_{t=0} = 1$. SAD dynamically updates $\gamma_t$ throughout the simulation. After about $10^{10}$ moves, $\gamma^{\text{SAD}}_t$ proceeds as $1/t$. Both WL and ``production'' WL update factors $\gamma^{\text{WL}}_t$ are shown. The production WL begins after $\gamma^{\text{WL}}_t$ has reached $10^{-4}$. The update factor for $1/t$-WL decreases similarly to WL before finding all the energy states and switching to $1/t$. All of the SAMC update factors equal 1 until the number of moves is equal to $t_0$ at which point they decrease as $1/t$.
 
+Fig.~\ref{fig:N32-cv} shows the specific heat capacity vs. the reciprocal temperature $\beta$ at $10^{9}$ moves. Each method (except for the SAMC methods) is shown using the same single random number seed.
+
 Fig.~\ref{fig:N32-cv-error} shows the maximum error in the heat capacity as a function of time for
 this system. The solid/dashed lines
 represent the average of the maximum value of the error in the specific heat capacity $c_V$ averaged
