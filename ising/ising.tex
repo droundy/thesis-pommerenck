@@ -347,7 +347,7 @@ Figure~\ref{fig:N32-cv} shows the specific heat capacity vs. the reciprocal temp
   \label{fig:N32-cv-error}
 \end{figure}
 
-Figure~\ref{fig:N32-cv-error} shows the maximum error in the heat capacity as a function of time for
+\davidsays{Explain the range of temperature compared, and why} Figure~\ref{fig:N32-cv-error} shows the maximum error in the heat capacity as a function of time for
 this system. The solid/dashed lines
 represent the average of the maximum value of the error in the specific heat capacity $c_V$ averaged
 over eight simulations using different random number seeds. The range of maximum
@@ -397,9 +397,11 @@ the time $10^{13}$ moves have been made all but the WL simulation have begun to
 converge as $1/\sqrt{t}$. We then see the WL error saturate around $10^{12}$ moves.
 
 \section{Conclusion}
+\davidsays{remove this?}
 The method performs as well as 1/t-WL and SAD.  Unfortunately, the addition of another tunable parameter $\gamma_{t}^{\min}$ makes the method somewhat more difficult to implement in practice.
 
-We find that both SAD, 1/t-WL, and WL followed by a production run (provided an ideal minimum update factor before beginning the production run) demonstrate excellent and robust convergence.
+We find that both SAD, 1/t-WL, and WL followed by a production run
+(with an adequately small $\gamma^{\min}$) demonstrate excellent and robust convergence.
 They all converge more rapidly than SAMC, and unlike pure WL do not suffer from
 error saturation. We find that for larger systems SAD reduces the updated factor
 more slowly (and conservatively) than 1/t-WL and WL followed by a
