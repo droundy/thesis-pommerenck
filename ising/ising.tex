@@ -147,16 +147,20 @@ Z = \sum_E g(E) e^{-{\beta E}}
 % \braket{\epsilon(t)}_E = \frac{1}{N_E - 1} \sum_E \left( \frac{S(E,t) - S_{\text{Beale}(E)}}{S_{\text{Beale}(E)}} \right)
 % \end{align}
 where $g(E)$ is the multiplicity of the system which is proportional to
-$D(E)$. We can estimate the maximum deviation in the canonical specific heat capacity $c_V$ from the exact solution~\cite{schneider2017convergence, shakirov2018convergence,
+$D(E)$. We can compute the maximum deviation in the canonical specific heat capacity $c_V$ from the exact solution~\cite{schneider2017convergence, shakirov2018convergence,
 barash2017control,barash2017gpu}:
 \begin{align}
-\braket{\epsilon(t)}_E = \left|\max_E \left(c_V(E,S,T,t) - c_V(E,S,T,t)_{\text{Beale}}\right)\right|
+\epsilon \equiv \max_T \left|\left(c_V(T)_{\text{MC}} - c_V(T)_{\text{Beale}}\right)\right|
 \end{align}
 % As per the implementation by Wang and
 % Landau~\cite{wang2001determining}, the total number of available energy
 % states are $N-1$.
 Computing the specific heat capacity $c_V$ presents a difficult challenge for
-any Monte Carlo method due to fluctuations in the derivative of the internal energy.  Methods that accurately compute $c_V$ also by extension accurately compute the internal energy.
+any Monte Carlo method due to fluctuations in the derivative of the
+internal energy.  Methods that accurately compute $c_V$ also by
+extension accurately compute the internal energy.
+
+\davidsays{talk about phase transition, e.g. at what temperature?}
 
 \section{Flat-histogram methods}\label{sec:histogram}
 Flat-histogram methods determine the density of states $D(E)$ over a broad range
@@ -188,12 +192,21 @@ where $t$ is number of the current move, $\gamma(t)$ is a move-dependent update
 factor, and $E$ is the current energy.  This update causes the random walk to
 avoid frequent sampling of the same energies, leading to a rapid exploration
 of energy space. Flat-histogram methods differ primarily in how they schedule
-the decrease of $\gamma_t$.
+the decrease of $\gamma_t$.  Figure~\ref{fig:N32-gamma} shows ...
+
+\begin{figure}
+\includegraphics[width=\columnwidth]{gamma-n32.pdf}
+  \caption{
+  The update factor $\gamma_t$ versus the iteration number for the $N=32 \times 32$
+  system.}
+  \label{fig:N32-gamma}
+\end{figure}
 
 The Wang-Landau algorithm~\cite{wang2001efficient,wang2001determining,
-landau2014guide} explores energy space by setting $\gamma_{t=0}^{\text{WL}}=1$,and then decreases $\gamma^{\text{WL}}$ in prescribed stages. An energy range of
+landau2014guide} explores energy space by setting
+$\gamma_{t=0}^{\text{WL}}=1$, and then decreases $\gamma^{\text{WL}}$ in prescribed stages. An energy range of
 interest must be specified~\cite{wang2001efficient, schulz2003avoiding,yan2003fast}, which often requires multiple simulations if unknown.
-
+%
 The number (``counts'') of moves ending at each energy are stored in a
 histogram.  For a sufficiently flat energy histogram (typically user-specified to be 0.8), $\gamma^{\text{WL}}$ is decreased by a specified factor of $\frac12$ and the histogram is reset to zero. The entire process is repeated until $\gamma^{\text{WL}}$ reaches a desired cutoff.
 
@@ -213,13 +226,16 @@ $\gamma_t = N_S/t$ for the remainder of the simulation:
 where $t$ is the number of moves, $\gamma^{\text{WL}}_t$ is the Wang-Landau update factor
 at move $t$, and $N_S$ is the number of energy bins.
 
-The WL method can alternatively be implemented as part of a production run which aids in
-equilibration~\cite{gross2018massively}. WL is used to generate the weights
-resulting in a flat-histogram~\cite{janke2017generalized}. Once a user-defined
-minimum $\gamma^{\text{WL}}_t$ is reached, the simulation switches to a final production run
-with fixed weights. WL implemented in this way can ensure ergodicity and
-detailed balance; however, the convergence of simulation is still impacted by
-the choice of the minimum $\gamma^{\min}_t$.
+The WL method can be terminated after $\gamma$ reaches a specified
+minimum $\gamma^{\min}$ followed by a \emph{production run} in which the
+weights are held fixed~\cite{gross2018massively}. WL is used to
+generate the weights resulting in a
+flat-histogram~\cite{janke2017generalized}.  The entropy is then
+computed (up to a constant) by adding the logarithm of the production
+histogram to the logarithm of the weights.  The production run thus
+satisfies detailed balance, and will ideally be ergodic; however, the
+convergence of the simulation is still impacted by the choice of the
+minimum $\gamma^{\min}$.
 
 Another weight-based flat-histogram method is
 the stochastic approximation Monte Carlo (SAMC) algorithm. SAMC has a simple
@@ -290,14 +306,6 @@ space of each system using a minimum reduced temperature of $T_{\text{min}} = 1$
 and maximum entropy energy $E_{\max}$ being calculated (with the exception of
 the WL methods where both of these parameters are needed \emph{a priori.}).
 
-\begin{figure}
-\includegraphics[width=\columnwidth]{gamma-n32.pdf}
-  \caption{
-  The update factor $\gamma_t$ versus the iteration number for the $N=32 \times 32$
-  system.}
-  \label{fig:N32-gamma}
-\end{figure}
-
 % \begin{figure}
 % \includegraphics[width=\columnwidth]{N32-entropy-error-default.pdf}
 %   \caption{
@@ -317,7 +325,17 @@ the WL methods where both of these parameters are needed \emph{a priori.}).
 \end{figure}
 
 \subsection{The 32 $\times$ 32 Ising model}
-Figure~\ref{fig:N32-gamma} shows the update factor $\gamma_t$ for each of the flat-histogram methods. All of the update factors initially start at $\gamma_{t=0} = 1$. SAD dynamically updates $\gamma_t$ throughout the simulation. After about $10^{10}$ moves, $\gamma^{\text{SAD}}_t$ proceeds as $1/t$. Both WL and ``production'' WL update factors $\gamma^{\text{WL}}_t$ are shown. The production WL begins after $\gamma^{\text{WL}}_t$ has reached $10^{-4}$. The update factor for $1/t$-WL decreases similarly to WL before finding all the energy states and switching to $1/t$. All of the SAMC update factors equal 1 until the number of moves is equal to $t_0$ at which point they decrease as $1/t$.
+Figure~\ref{fig:N32-gamma} shows the update factor $\gamma_t$ for each
+of the flat-histogram methods. All of the update factors initially
+start at $\gamma_{t=0} = 1$. SAD dynamically updates $\gamma_t$
+throughout the simulation. After about $10^{10}$ moves,
+$\gamma^{\text{SAD}}_t$ proceeds as $1/t$. We show
+$\gamma^{\text{WL}}_t$ for WL both with and without a production
+run. The WL production run begins after $\gamma^{\text{WL}}_t$ has reached
+$10^{-4}$. The update factor for $1/t$-WL decreases similarly to WL
+before finding all the energy states and switching to $1/t$. All of
+the SAMC update factors equal 1 until the number of moves is equal to
+$t_0$ at which point they decrease as $1/t$.
 
 All the methods except for SAMC gave a reasonable approximation for
 the heat capacity peak resulting from the phase transition within 10$^9$ moves.
@@ -363,7 +381,12 @@ converge as $1/\sqrt{t}$. We then see the WL error saturate around $10^9$ moves.
 % \end{figure}
 
 \subsection{128 $\times$ 128 Ising system}
-Fig.~\ref{fig:N128-gamma} shows the update factor $\gamma_t$ for each of the flat-histogram methods. All of the update factors initially start at $\gamma_{t=0} = 1$. SAD dynamically updates $\gamma_t$ throughout the simulation. After about $10^{13}$ moves, $\gamma^{\text{SAD}}_t$ proceeds as $1/t$. Both WL and ``production'' WL update factors $\gamma^{\text{WL}}_t$ are shown. The production WL begins after $\gamma^{\text{WL}}_t$ has reached $10^{-4}$ and $10^{-6}$. The update factor for $1/t$-WL decreases similarly to WL before finding all the energy states and switching to $1/t$. All of the SAMC update factors equal 1 until the number of moves is equal to $t_0$ at which point they decrease as $1/t$.
+Fig.~\ref{fig:N128-gamma} shows the update factor $\gamma_t$ for each
+of the flat-histogram methods. All of the update factors initially
+start at $\gamma_{t=0} = 1$. SAD dynamically updates $\gamma_t$
+throughout the simulation. After about $10^{13}$ moves,
+$\gamma^{\text{SAD}}_t$ proceeds as $1/t$. \davidsays{fixme similarly}
+Both WL and ``production'' WL update factors $\gamma^{\text{WL}}_t$ are shown. The production WL begins after $\gamma^{\text{WL}}_t$ has reached $10^{-4}$ and $10^{-6}$. The update factor for $1/t$-WL decreases similarly to WL before finding all the energy states and switching to $1/t$. All of the SAMC update factors equal 1 until the number of moves is equal to $t_0$ at which point they decrease as $1/t$.
 
 Fig.~\ref{fig:N128-cv-error} shows the maximum error in the heat capacity as a function of time for
 this system. The solid/dashed lines
@@ -376,14 +399,16 @@ converge as $1/\sqrt{t}$. We then see the WL error saturate around $10^{12}$ mov
 \section{Conclusion}
 The method performs as well as 1/t-WL and SAD.  Unfortunately, the addition of another tunable parameter $\gamma_{t}^{\min}$ makes the method somewhat more difficult to implement in practice.
 
-We find that both SAD, 1/t-WL, and production WL (provided an ideal minimum update factor before beginning the production run) demonstrate excellent and robust convergence.
-They all converge more rapidly than SAMC, and unlike WL do not suffer from
+We find that both SAD, 1/t-WL, and WL followed by a production run (provided an ideal minimum update factor before beginning the production run) demonstrate excellent and robust convergence.
+They all converge more rapidly than SAMC, and unlike pure WL do not suffer from
 error saturation. We find that for larger systems SAD reduces the updated factor
-more slowly (and conservatively) than 1/t-WL and production WL. This means that SAD will take
+more slowly (and conservatively) than 1/t-WL and WL followed by a
+production run. This means that SAD will take
 proportionately more moves to converge to the same value as 1/t-WL as system
 size is increased. SAD requires the user to specify a temperature range of
 interest rather than an energy range of interest as the WL methods do. The 2D Ising model is a system where the energy range is known \emph{a priori.}, which makes a comparison between WL methods and SAD (which requires a minimum temperature) more biased towards WL methods. For the majority of cases in which the energy range of the system is not known and where a range of desired temperatures is known, this will make the SAD method
-considerably more convenient. This work also visually demonstrates that ``production'' WL performs extremely well and is preferable to WL for ensuring both ergodicity and detailed balance.
+considerably more convenient. This work also visually demonstrates
+that WL followed by a production run performs extremely well and is preferable to WL for ensuring both ergodicity and detailed balance.
 
 \section{Acknowledgments}
 
