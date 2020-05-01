@@ -1,0 +1,353 @@
+%% Template for a preprint Letter or Article for submission
+%% to the journal Nature.
+%% Written by Peter Czoschke, 26 February 2004
+%%
+
+\documentclass{nature}
+\usepackage{graphicx} % Include figure files
+\usepackage{color}
+\usepackage{amsmath}
+
+\usepackage{nicefrac} % Include for inline fractions
+\usepackage{url}
+
+%% make sure you have the nature.cls and naturemag.bst files where
+%% LaTeX can find them
+
+\bibliographystyle{naturemag}
+
+% \usepackage{cite}
+\usepackage{xargs}                      % Use more than one optional parameter in a new commands
+\usepackage[pdftex,dvipsnames]{xcolor}  % Coloured text etc.
+%
+\usepackage[colorinlistoftodos,prependcaption,textsize=normalsize]{todonotes}
+\newcommandx{\unsure}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2} }
+\usepackage{mdframed}
+
+\newcommand{\addcite}{{\bf \color{red} []}}
+\newcommand{\xvec}{\mathbf{x}}
+\newcommand{\thetavec}{\boldsymbol \theta}
+
+\newcommand\V{\Phi}
+\newcommand\Vk{\tilde\Phi(\vec k)}
+\newcommand\volume{V}
+
+\newcommand{\red}[1]{{\bf \color{red} #1}}
+\newcommand{\green}[1]{{\bf \color{green} #1}}
+\newcommand{\blue}[1]{{\bf \color{blue} #1}}
+\newcommand{\cyan}[1]{{\bf \color{cyan} #1}}
+
+\newcommand{\davidsays}[1]{{\color{red} [\blue{D:} \emph{#1}]}}
+\newcommand{\jpsays}[1]{{\color{red} [\blue{Jordan:} \emph{#1}]}}
+\newcommandx{\corysays}[2][1=inline]{\todo[linecolor=green,backgroundcolor=green!25,bordercolor=green,#1]{\textbf{Cory says:} #2} }
+
+% The title should be less than 90 characters! Ours is currently 84.
+\title{An upper bound to gas delivery via pressure-swing adsorption in nanoporous materials}
+
+%% Notice placement of commas and superscripts and use of &
+%% in the author list
+\author{Jordan K. Pommerenck$^1$, Cory M. Simon$^2$ \& David Roundy$^1$}
+
+\begin{document}
+
+\maketitle
+
+\begin{affiliations}
+ \item Department of Physics, Oregon State University, Corvallis, OR 97331
+ \item School of Chemical, Biological, and Environmental Engineering,
+       Corvallis, OR 97331.
+\end{affiliations}
+
+% For Nature, the abstract is really an introductory paragraph set
+% in bold type.  This paragraph must be ``fully referenced'' and
+% less than 180 words for Letters.  This is the thing that is
+% supposed to be aimed at people from other disciplines and is
+% arguably the most important part to getting your paper past the
+% editors.  End this paragraph with a sentence like ``Here we
+% show...'' or something similar.
+\begin{abstract}
+  We present a framework that places an intrinsic upper limit on the amount of
+  gas that can be stored in a given volume of material and then delivered at a
+  lower pressure.
+\end{abstract}
+
+\section{Background}
+
+\subsection{Review of previous work}
+
+\section{Introduction}
+The transportation sector accounts for 38\% of US energy-related carbon dioxide emissions \cite{useia} and generates toxic air pollution (particulate matter, ozone, NO$_x$, SO$_x$, carbon monoxide, volatile organic compounds) \cite{caiazzo2013air}. Alternative transportation fuels cleaner than petroleum, which currently dominates the transportation fuel market \cite{davis2009transportation}, are therefore critical to mitigate climate change \cite{mcglade2015geographical} and improve air quality for human health. Further motivating the development of technologies to produce sustainable transportation fuels at low cost, the finite global petroleum resources are declining rapidly \cite{sorrell2010global}.
+
+Natural gas, mostly methane, is considered a transition [to a renewable and clean] fuel because, on an energy basis, it emits 25\% less carbon dioxide upon combustion than gasoline \cite{eia2013much} as well as less other toxic byproducts \cite{wang2000full}. Moreover, owing to advances in hydraulic fracturing and horizontal drilling, natural gas is abundant \cite{usnatgassupply} and cheap in the US. A positive environmental outlook for natural gas, however, is predicated on mitigating fugitive emissions (methane is a potent greenhouse gas itself) \cite{alvarez2012greater} and groundwater contamination \cite{osborn2011methane} from hydraulic fracturing.
+
+Hydrogen (H$_2$) is the ultimate transportation fuel because it emits only water when it electrochemically reacts with oxygen in a fuel cell to produce electricity and power a vehicle. Moreover, elemental hydrogen is very abundant, though bonded with oxygen (in water) or carbon (in hydrocarbons); H$_2$ does not occur naturally. Currently, hydrogen (H$_2$) is primarily produced by the steam reforming of natural gas followed by the water-gas shift reaction, which emits carbon dioxide \cite{crabtree2004hydrogen}. Notably, the environmental allure of hydrogen is predicated on its production via a renewable means, e.g.\ splitting water using wind-generated electricity.
+
+Gaseous at ambient conditions, both natural gas ({\color{red} x} MJ/L) and hydrogen ({\color{red} x} MJ/L) possess a very low volumetric energy density compared to (liquid) gasoline (34.2 MJ/L). Consequently, under storage space constraints in passenger vehicles, natural gas and hydrogen must be densified for onboard vehicle storage to drive a reasonable distance on a full tank of fuel. Traditional densification approaches are liquefaction (1 atm, CH$_4$: 111 K, H$_2$: 20 K to achieve 22.2 ML/L \cite{makal2012methane} and 8 MJ/L \cite{suh2011hydrogen}, respectively) or compression to high pressures (room temperature, CH$_4$: up to 200 bar to achieve 9.2 MJ/L \cite{makal2012methane}, H$_2$: up to 700 bar to achieve {\color{red} x} MJ/L). Both suffer several drawbacks. High-pressure storage tanks pose a safety hazard and require heavy, thick-walled, non-conforable vessels. Cryogenic storage vessels are bulky and expensive. Due to imperfect insulation, boil-off losses are a concern for cryogenic storage at ambient pressure, especially for methane since it is a potent greenhouse gas \cite{hasan2009minimizing}. Both compression to high pressures and liquefaction require expensive infrastructure at refilling stations and significant energy input; e.g., liquefaction of hydrogen consumes at least 30\% of its energy content \cite{bossel2003energy}.
+
+A different approach to densify natural gas and hydrogen for vehicular storage is through physical adsorption on nanoporous materials \cite{schoedel2016role}. Consequent to van der Waals interactions between gas molecules and their internal surfaces, porous materials can achieve adsorbed gas densities competitive to compressed gas vessels but at significantly lower pressures. This would thereby reduce the cost of infrastructure at refilling stations, allow thinner-walled and therefore cheaper and lighter pressure vessels, reduce the energy requirements for densification, and alleviate safety concerns with high pressure storage. As most homes in the US are connected to natural gas lines \addcite, adsorbed natural gas fuel tanks could permit at-home fueling. Current research is towards synthesizing a nanoporous material that can maximally densify natural gas and hydrogen whilst satisfying cost and stability constraints. So far, metal-organic frameworks (MOFs) \cite{furukawa2013chemistry} have demonstrated the highest internal surface areas ($>$7000 m$^2$/g \cite{farha2012metal}) and absorptive capacities for hydrogen \cite{suh2011hydrogen,garcia2018benchmark} and methane \cite{makal2012methane,mason2014evaluating}. Importantly, MOFs are highly tunable materials synthesized by combining organic molecules (struts) and metal clusters (nodes) that [often] coordinate to form a three-dimensional, porous framework \cite{furukawa2013chemistry}. This tunability offers the intriguing possibility to synthesize the optimal material for methane or hydrogen storage and delivery \cite{schoedel2016role}.
+
+\unsure[inline]{I'm reading they want to get a H2 density higher than liquid with a porous material. is that possible?!}
+
+Employing nanoporous materials for gas storage and delivery \cite{schoedel2016role}. Pressure swing \cite{sircar2002pressure}.
+
+Targets.
+For methane storage, the Advanced \cite{arpaemove}
+
+Generally, knowledge on the thermodynamic limits of a technology is important for allocating research funds to technologies with the most potential for development and setting realistic performance targets.
+
+\begin{figure}
+    \centering
+    picture of MOF + example methane adsorption isotherm illustrating deliverable capacity or too basic?
+    \caption{FIXME}
+    \label{fig:example-experiment}
+\end{figure}
+
+\section{Gas storage \& delivery by pressure swing adsorption}
+% Here, we pose the context and question that we address in this work.
+Consider an empty porous material that is packed into a volume $V$ comprising the space within a pressure vessel onboard a vehicle. The pressure swing adsorption process \cite{sircar2002pressure} for vehicular gas storage and delivery (to the engine) is idealized as follows. First, at the filling stage, the pressure vessel is hooked up to a (pure) gaseous reservoir exhibiting a pressure $P_{H}$ at the fuel station. The adsorbed phase is allowed to reach thermodynamic equilibrium with the bulk gas phase. At this point, the adsorbed gas fuel tank is considered full, and the vehicle is ready for a road trip along the Oregon coast. While driving, gas is driven off of the adsorbent and into the engine by a pressure differential. A pressure of $P_{L}$ must be sustained in the fuel tank for sufficient flow to the engine\unsure{or does the natural gas engine need this pressure?}; therefore, the fuel tank is fully used when it exhibits a pressure of $P_{L}$. However, given $P_{L} \neq 0$ (pulling vacuum), so-called cushion or stranded gas will remain in the adsorbent within a fully used fuel tank. Therefore, the amount of gas adsorbed on the porous material at $P_H$ does not determine the driving range of the vehicle. Instead, the \emph{deliverable capacity}, defined as the amount of gas adsorbed in the volume at pressure $P_H$ minus that retained in the adsorbent at pressure $P_L$, determines the driving range. The deliverable capacity of an adsorbent is predicted on the assumption of (i) isothermal operation and (ii) maintenance of thermal equilibrium between the adsorbed and gas phase within the fuel tank.
+
+Mathematically, let $n(P; T)$ be the amount of gas adsorbed per volume of adsorbent at thermodynamic equilibrium when immersed in a bath of gas at pressure $P$ and temperature $T$, the \emph{adsorption isotherm}. The [intrinsic, isothermal] deliverable capacity $\rho_D$ of the adsorbent is then defined as:
+\begin{equation}
+    \rho_D(P_H, P_L; T) = \rho(P_H; T) - \rho(P_L; T).
+    \label{eq:delcap}
+\end{equation}
+Note that the pressures $P_H$ and $P_L$ correspond to chemical potentials $\mu_H$ and $\mu_L$ via an equation of state for the gas.
+
+The assumption of isothermal operation in eqn.~\ref{eq:delcap} neglects the heat that is (i) released to the surroundings upon adsorption during the filling process and (ii) taken from the surroundings upon desorption during the delivery process. If the heat upon ad/desorption is not properly managed, significant losses in the deliverable capacity result as a consequence of (i) less gas adsorbed in a hot adsorbent during filling and (ii) more gas retained in a cold adsorbent during delivery \cite{mota1997dynamics,chang1996behavior}. A pessimistic performance metric for a material that accounts for heat effects is the adiabatic deliverable capacity, i.e. the gas delivered under adiabatic conditions; while independent of tank design, this depends on the heat capacity of the material.
+
+An engineering strategy to increase the usable capacity of a tank beyond the isothermal deliverable capacity is to use waste heat from the engine to increase the temperature of the adsorbent and thereby drive off cushion gas when the tank approaches pressure $P_L$ \cite{gomez2014exploring}. In such a case, the usable capacity of the tank is $n(P_H, T)-n(P_L; T_H)$ where $T_H$ is the temperature to which we heat the adsorbent. This strategy, however, requires a complicated design.
+
+\begin{limitation}\label{limit:isothermal}
+This work assumes isothermal pressure-swing adsorption.  It is possible to achieve greater deliverable capacity by raising the temperature at which the gas is extracted.
+\end{limitation}
+
+Finally, we remark that eqn.~\ref{eq:delcap} assumes thermodynamic equilibrium, neglecting the kinetics of ad/desorption during filling and delivery.
+
+\section{Review of previous work}
+Several authors have sought to determine an upper bound on the deliverable capacity in a pressure swing adsorption process, particularly for methane storage \& delivery.
+
+Matranga et al. \cite{matranga1992storage} and, later, Bhatia and Myers \cite{bhatia2006optimum} initiated research on the thermodynamics of the optimal adsorption site for gas storage and delivery via pressure swing adsorption and determined the maximal utility of an adsorption site. Under a Langmuir adsorption model, they reasoned that there exists an optimal affinity of the gas for the material (Langmuir constant) that maximizes the deliverable capacity $\rho_D$. If the gas adsorbs too weakly, too little gas will adsorb at $P_H$; too strongly, too much gas will be retained at $P_L$; both diminish $\rho_D$. Following is the optimal utility of each adsorption site if it is endowed with the optimal free energy of adsorption. Assuming a typical entropy of adsorption, Bhatia and Myers \cite{bhatia2006optimum} set widely used rules of thumb for the optimal enthalpy of adsorption of hydrogen and methane to maximize $\rho_D$. Simon et al. \cite{simon2014optimizing}, through molecular simulations of methane adsorption in zeolites, later showed that there exists significant variation in the entropy of adsorption and therefore an optimal heat of adsorption is a flawed target to pursue. Following from these studies is a theoretical upper bound of the fraction of adsorption sites that can deliver a molecule in a pressure swing adsorption process, but these studies neglected (i) guest-guest interactions which can enhance the utility of an adsorption site \cite{simon2014optimizing} and (ii) the question of how many adsorption sites one can pack into a nanoporous material that harbor the optimal free energy of adsorption.
+
+Gomez-Gualdron et al.\ \cite{gomez2017impact} obtained an upper bound on the methane deliverable capacity via a few different methods. First, they packed adsorption sites into an FCC lattice (the most efficient packing of spheres into a volume), endowed each adsorption site with the optimal energy of adsorption, and accounted for methane-methane interactions via a Lennard-Jones potential. The ARPA-E target of 315 v STP/v was reached when adsorption sites were endowed with an optimal heat of adsorption of 11.5 kJ/mol and adsorption sites were $5.3$ \AA~apart. Second, similar to here, they endowed a volume with a background energy field, then simulated the adsorption of methane in the volume using a Lennard-Jones potential for methane-methane interactions. The maximal deliverable capacity of 357 v STP/v was achieved with a background heat of adsorption of 8.6 kJ/mol. Both of these methods did not explicitly consider the space taken up by the material atoms that create the background energy field. To address this, Gomez-Gualdron also constructed pseudo materials by placing Lennard-Jones spheres in space with tunable well depths. When constrained to form a connected network, none of the psuedo-materials reached the ARPA-E target.
+
+Another strategy to assess the feasibility of deliverable capacity targets is by conducting molecular simulations of adsorption in tens of thousands of existing and (realistic) hypothetical materials and observing the tail of the distribution of simulated deliverable capacities \cite{gomez2014exploring,simon2015materials}. For example, Simon et al.\ \cite{simon2015materials} simulated methane adsorption in hundreds of thousands of existing and hypothetical nanoporous crystal structures and found the highest simulated methane deliverable capacity to be 196 v STP/v, suggesting the ARPA-E target could be impossible to reach. Such a conclusion rest upon the accuracy of the molecular model describing molecular interactions as well as the sufficient sampling of achievable ``chemical space'' by the sets of materials considered. However, Gomez-Gualdron et al.\ \cite{gomez2014exploring} scaled the Lennard-Jones potential well depths in the simulations and still found no materials meeting the ARPA-E deliverable capacity target.
+
+Finally, Lee et al.\ \cite{lee2019predicting} trained a generative adversarial network to generate fictitious but realistic potential energy surfaces hosted by zeolites for methane adsorption, then conducted molecular simulations of methane adsorption in 100 000 generated potential energy surfaces to assess performance limitations. No generated potential energy surface met the ARPA-E target. Conclusions under this framework are also predicated on the accuracy of the molecular model as well as sufficient sampling of the space of possible potential energy surfaces fed to the generative adversarial network during training. 
+
+Brown and Freeman \cite{bhown2011analysis}
+
+\section{An upper bound on gas adsorption in control volume}
+We consider a host (which could be a MOF, another porous solid, or even a liquid solvent) interacting with a gas.  Although the process of adding guest to host could be anything from adsorption to solvation, we will refer to it as adsorption throughout this paper, since that is the common case.  The goal of this process is to load the guest into the host at some high pressure, and then extract the guest until it reaches some lower pressure.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\columnwidth]{methane-298-rho-mu}
+  \caption{The density as a function of chemical potential for bulk
+    methane.  The density is written as a ratio of the volume of
+    methane at STP to the volume of the gas. The pressure axis is labelled
+    along the top.  We plot with dashed lines the density of adsorbed
+    methane as a function of chemical potential for several
+    adsorbents~\cite{long} \davidsays{we should also mention the MOFs
+      here}}
+  \label{fig:density-vs-mu-ch4}
+\end{figure}
+
+Each guest is characterized by a set of equations of state for the pure guest system.  We will focus on the number density as a function of chemical potential $\mu$ (or equivalently molar Gibbs free energy) and temperature $\rho(\mu,T)$.  We illustrate in Fig.~\ref{fig:density-vs-mu-ch4} this equation of state for methane. We also show a somewhat more familiar equation of state illustrating the density as a function of pressure $\rho(p,T)$.  For comparison, we also show the number density as a function of chemical potential for methane in a variety of hosts.
+
+% \davidsays{This paragraph could move considerably later. Or cut entirely?}
+% We model the interaction of host with guest as a simple Gibbs free energy of adsorption per mole (or atom) $\Delta G_{st}$.  We will assume that this Gibbs free energy is independent of the concentration of guest.  At low concentrations, this assumption is reasonable, because the guests can be assumed to be widely separated and their interactions weak.  In the limit of high concentrations, we expect that the attraction of the guest to the host will be diminished, since the ``good spots'' will already be occupied.  The choice of a concentration-independent $\Delta G_{st}$ will thus have a tendency to overestimate the deliverable capacity, providing an upper bound (for more on this, see Sec.~\ref{sec:qualitative-max}).
+
+To place an upper bound on the deliverable capacity $\rho_D$ in Eq.~\ref{eq:delcap}, we consider a host whose sole interaction with the guest is to introduce an attractive potential energy $\V$ for gas molecules in the control volume.  Because this interaction is uniform within the host, the interactions between gas molecules are identical to that of a pure gas, which allows us to predict the properties of this model host using the experimentally known properties of the pure gas~\cite{nist}.
+
+%\subsection{Finding the density}\label{sec:finding-n}
+
+The spatially uniform ``external'' potential $\V$ representing guest-host interactions has the effect of shifting the chemical potential of the material, in the same way that the gravitational potential energy causes the density of the atmosphere to vary with altitude.  The density at a chemical potential $\mu$ is thus given by
+\begin{align}
+    \rho(\mu) &= \rho_0(\mu + \V)\label{eq:mof-density}
+\end{align}
+where $\rho_0(\mu)$ is the density of the pure gas at chemical potential $\mu$ \davidsays{we could maybe find a better name than $\rho_0$?}.  Figure~\ref{fig:density-vs-mu-ch4}a shows $\rho_0$ for methane using data available from NIST~\cite{nist}.
+
+% Formally, we recover Eq.~\ref{eq:mof-density} by imposing that the energy of a system of $N$ particles at positions $\mathbf{x}_1,...\mathbf{x}_N \in \Omega$ in a space $\Omega$ with volume $V=|\Omega|$ endowed with uniform external potential $\V$ is:
+% \begin{equation}
+%     E(\mathbf{x}_1,...\mathbf{x}_N) = N\V + E_{gg}(\mathbf{x}_1,...\mathbf{x}_N),
+% \end{equation} where $E_{gg}$ is the (unknown and complicated) interatomic potential for guest-guest interactions that governs the (real) gas properties. Then, the grand-canonical partition function of this control volume in equilibrium with a bulk gas exhibiting chemical potential $\mu$ is:
+% \begin{multline}
+%     \Xi(\mu, V, T)= \\ \displaystyle \sum_{N=0}^\infty \frac{\Lambda^{-3N}}{N!} \int_{\Omega} \cdots \int_{\Omega} e^{-\beta E_{gg}(\xvec_1, ..., \xvec_N)} e^{\beta (\mu - \V) N} d\xvec_1 \cdots d\xvec_N \\ =
+%     \Xi_0(\mu-\V, V, T),
+% \end{multline} where $\Xi_0(\mu, V, T)$ is the grand-canonical partition function of the real gas. Therefore, the thermodynamic properties of the gas sitting in this external potential $\V$, in equilibrium with a bath of gas of chemical potential $\mu$, are equivalent to the properties of the gas at chemical potential $\mu-\V$.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.95\columnwidth]{methane-298-methane-298-n-vs-G.pdf}
+    \caption{The optimal deliverable capacity for methane as a function of the attractive Gibbs free energy $\Delta G_{st}$.  Experimental deliverable capacities for several MOFs are shown along with the experimental values for $\Delta G_{st}$ at the empty and full pressures shown as dots connected by a line.}
+    \label{fig:methane-298-D}
+\end{figure}
+
+The deliverable capacity is given by
+\begin{align}
+    \rho_D &= \rho(\mu_H) - \rho(\mu_L)
+\end{align}
+where $\mu_H$ and $\mu_L$ are the chemical potentials when the tank is filled and when it is considered empty, respectively.  For a uniform potential $\V$ we can use Eq.~\ref{eq:mof-density} to relate this to the properties of the bulk fluid
+\begin{equation}
+    \rho_D(\V) = \rho_0(\mu_H+\V) - \rho_0(\mu_L+\V).
+    \label{eq:DofPhi}
+\end{equation}
+Thus the deliverable capacity $\rho_D(\V)$ is the difference between the curve shown in Fig.~\ref{fig:density-vs-mu-ch4}a shifted by the upper and lower chemical potentials and offset by $\V$.  Figure~\ref{fig:methane-298-D} shows the two shifted density curves as well as their difference.  There exists an optimal adsorption free energy, which balances the need to maximize the full-tank density against the need to minimize the empty-tank density.
+%
+%As a ballpark, we can expect the attractive potential to be optimal around the maximum slope of $\rho_0(\mu)$.  This is the point where the steric repulsion between the gas atoms starts leading to saturation of the density.
+
+An essential question is whether this approach of solving for the potential shift $\V$ that yields the maximum deliverable capacity.  In the supplementary material we show that this approach yields an \emph{extremum} of the deliverable capacity, provided the guest does not crystallize in the density range and temperature of interest.  We will argue in the remainder of this section that this extremum is actually a maximum.  To show this, we must further address two possibilities:  the extremum may turn out to actually be a saddle point, or it could turn out to be a local rather than global maximum.
+
+% \subsection{Why is the uniform potential optimal?}\label{sec:qualitative-max}
+
+To qualitatively argue that the homogeneous potential provides a \emph{maximum} deliverable capacity, let us now consider the case of a more realistic material which causes the guest molecules to feel a non-uniform potential energy.  This means that there are some lower-energy sites (and orientations) and some higher-energy sites (and orientations).  We wish to show that this material will have a lower deliverable capacity.  At low densities of guests, the low-energy sites will be preferentially occupied, while at higher densities the some of the guest molecules will be forced by steric repulsion into higher energy locations.  Thus the mean attraction will be minimum when the tank is ``full,'' and maximum when the tank is ``empty.''  This is the opposite of what we would want to acheive a high deliverable capacity.  Based on this qualitative reasoning, we expect a homogeneous potential to give optimal deliverable capacity, since it will provide the most attraction for the molecules added at high densities.
+
+% \davidsays{Is this paragraph out of place, or duplicated?
+% %
+% Before going on to show that a uniform potential gives an optimal deliverable capacity, we will first point out a limitation of this maximum capacity.  In general, one can increase the deliverable capacity by extracting the gas at a higher temperature than the temperature at which the tank is filled.  A higher temperature will always drive off more of the gas from the MOF, since the gas state has maximal entropy.  When the temperature of extraction differs in this way, a uniform potential does \emph{not} give an optimum deliverable capacity, because it maximizes the entropy of the adsorbed gas, which thus tends to reduce the effect of higher temperatures driving off more gas.}
+
+\subsection*{Limitations}
+Here we will articulate the assumptions required for our upper bound.  Some of these assumptions may serve as a guide for those who wish to violate our upper bound, while others are more solid.
+
+\begin{limitation}\label{limit:crystallization}
+Our proof assumes the gas is stable with regard to crystallization.
+\end{limitation}
+
+Our proof that the homogeneous potential is an extremum makes a very important assumption that the fluid is stable at the temperature and densities involved.  Our upper bound will \emph{not} be valid for guests which may crystallize in their pure form.  This is because a periodic potential can interact with a high-density crystal far more strongly than it interacts with a low-density gas.  We are not aware of a practical application of this principle, but theoretically it is possible.  For the application of gas storage for light gasses such as methane or hydrogen at moderately high temperatures (say liquid nitrogen or warmer), the pure guest is sufficiently far from its crystal form that we need not concern ourselves with crystallization.  We do not see this particular assumption as one that can be worked around.
+
+There remains the possibility that the homogeneous potential is a local maximum, but there is another global maximum.  We do not see how to formally rule out this possibility for an arbitrary gas-gas interaction, but the qualitative arguments above seem sufficient to rule out this possibility for a real gas.
+
+\begin{limitation}\label{limit:field}
+Our proof assumes the interaction of the gas with the substrate does not modify the substrate.  This is equivalent to the assumption that the interaction of substrate with gas operates as a simple potential energy field.
+\end{limitation}
+
+However, there was a more fundamental assumption, which is that the porous material acts as an effective potential for the guest molecules, and that the guest-guest interaction is unmodified.  For \emph{most} porous materials this seems likely to be a pretty good approximation.  However, there are unusual cases where the host can in effect provide a very strongly density-dependent interaction.  This is perhaps easiest to see in the example of \davidsays{look up the collapsing MOFs description from the RMS-MOF paper}, in which the guest can introduce a phase change in the solid, which has the effect of drastically lowering the density of guest in the material.  Such materials can indeed violate our upper bound. \davidsays{Remember to discuss this in the conclusions or perhaps discussion, we can frame these limitations as guides.  The limitations of our upper bound are the design requirements for a material that will do any better.}
+
+
+\section{Results}
+We explore the theoretical deliverable capacity for two gases stored in a homogeneous potential. We consider methane and hydrogen gas due to the significant environmental and transportation implications. Experimental data is obtained from NIST and naturally includes quantum effects. We are able to place a theoretical upper bound for \emph{any} adsorbent material with a uniform potential. In the context of light vehicle storage, we compare the experimental data obtained from the literature for porous material MOFs and compare with important goals and research targets set by DOE.
+
+\subsection{Methane}
+Fig.~\ref{fig:methane-298-D} shows the theoretical upper bound for methane storage. In addition to the predicted maximum deliverable capacity as a function of $\Delta G_{st}$, the ARPA-E target of 315~cm$^3$~STP/cm$^3$~\cite{arpaemove} is shown for context.  For any adsorbent with a 100\% void fraction, the target appears to be theoretically possible. The experimental deliverable capacity for several adsorbents~\cite{mason2014evaluating} are also shown over a range of $\Delta G_{st}$ (converted from $q_\text{st}$ as explained above). These can be compared with the highest observed deliverable capacity for methane at room temperature of 206~cm$^3$~STP/cm$^3$~\cite{gomez2014exploring}. In order, to
+reach the ARPA-E target, an adsorbent material would have to be identified with a higher $\Delta G_{st}$.
+
+\subsection{Hydrogen}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.95\columnwidth]{hydrogen-298-hydrogen-298-n-vs-G}
+    \caption{Deliverable capacity of hydrogen at room temperature as a function of the attractive Gibbs free energy $\Delta G_{st}$.  Experimental deliverable capacities for several MOFs are shown along with the experimental values for $\Delta G_{st}$ at the empty and full pressures shown as x's connected by a line.}
+    \label{fig:hydrogen-298-D}
+\end{figure}
+
+Storage of hydrogen is considerably more challenging, and the DOE ULTIMATE deliverable capacity target~\cite{DOE} is close to thermodynamically impossible at 25$^\circ$C.  Figure~\ref{fig:hydrogen-298-D} shows the theoretical maximum curve for hydrogen storage along with a range of experimental measurements for known MOFs.  The DOE ULTIMATE deliverable capacity target is theoretically possible, however by such a small margin that we can safely rule out the possibility of reaching this target through storage and removal of hydrogen in \emph{any} adsorbent material at room temperature and with this pressure range.  We also note that actual MOFs have a $\Delta G_{st}$ that is far below that which is required to reach this target.  This reflects the known fact that hydrogen interacts much more weakly with substrates, and has a much lower isosteric heat.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.95\columnwidth]{hydrogen-77-hydrogen-77-n-vs-G}
+    \caption{Deliverable capacity of hydrogen at liquid nitrogren temperature as a function of the attractive Gibbs free energy $\Delta G_{st}$.  Experimental deliverable capacities for several MOFs are shown along with the experimental values for $\Delta G_{st}$ at the empty and full pressures shown as x's connected by a line.}
+    \label{fig:hydrogen-77-D}
+\end{figure}
+
+One approach to increase the deliverable capacity is to reduce the temperature.  This is illustrated in Fig.~\ref{fig:hydrogen-77-D}, which shows the upper bound to the deliverable capacity for hydrogen at liquid nitrogen temperatures.  The DOE ULTIMATE target in this case looks far more achievable, and with a much lower $\Delta G_{st}$.  In fact, an empty tank at this temperature can satisfy the DOE 2020 target.  Actual MOFs fall far short of the theoretical maximum.
+
+\section{Conclusion}
+As many have suspected \davidsays{cite previous work}, pressure swing adsorption in rigid porous solid is not going to enable reaching targets.  \davidsays{conclude explicitly about each target}  Unlike previous work, our upper bound on deliverable capacity is based on experimentally known properties of the gas of interest rather than simulations.
+
+The limitations on our proof of an upper bound on the deliverable capacity provide hints as to approaches that could in principle achieve the targets.  In this paper we have identified three limitations of our upper bound on the deliverable capacity.  Two of these three limitations suggest engineering strategies that do hold promise of achieving the targets for hydrogen and methane storage.  Limitation \ref{limit:crystallization}, which states that the gas must not crystallize does not means for improvement, since it is a limit on the gasses to which our bound may be applied, and neither hydrogen nor methane are in any danger of crystallizing.
+
+Limitation~\ref{limit:isothermal}
+
+Limitation~\ref{limit:field}
+
+One such approach is to use temperature swings along with pressure swings.
+
+A more subtle limitation of our proof is that it assumes that the substrate itself is not modified by the presence of the gas.  While this assumption is never precisely true, since any adsorbed atom will change the electron distribution of the substrate to some degree, it tends to be sufficiently accurate that most atomistic simulations can get away with assuming that the substrate is unmodified.  A dramatic exception to that rule is the field of flexible MOFs, in which the presence of the gas can induce a phase change which \emph{drastically} modifies the gas-substrate interaction~\davidsays{cite experiments}.
+
+\clearpage 
+% Then the body of the main text appears after the intro paragraph.
+% Figure environments can be left in place in the document.
+% \verb|\includegraphics| commands are ignored since Nature wants
+% the figures sent as separate files and the captions are
+% automatically moved to the end of the document (they are printed
+% out with the \verb|\end{document}| command. However, tables must
+% be manually moved to the end of the document, after the addendum.
+
+
+% \begin{figure}
+% %%%\includegraphics{something} % this command will be ignored
+% \caption{Each figure legend should begin with a brief title for
+% the whole figure and continue with a short description of each
+% panel and the symbols used. For contributions with methods
+% sections, legends should not contain any details of methods, or
+% exceed 100 words (fewer than 500 words in total for the whole
+% paper). In contributions without methods sections, legends should
+% be fewer than 300 words (800 words or fewer in total for the whole
+% paper).}
+% \end{figure}
+
+% \section*{Another Section}
+
+% Sections can only be used in Articles.  Contributions should be
+% organized in the sequence: title, text, methods, references,
+% Supplementary Information line (if any), acknowledgements,
+% interest declaration, corresponding author line, tables, figure
+% legends.
+
+% Spelling must be British English (Oxford English Dictionary)
+
+% In addition, a cover letter needs to be written with the
+% following:
+% \begin{enumerate}
+%  \item A 100 word or less summary indicating on scientific grounds
+% why the paper should be considered for a wide-ranging journal like
+% \textsl{Nature} instead of a more narrowly focussed journal.
+%  \item A 100 word or less summary aimed at a non-scientific audience,
+% written at the level of a national newspaper.  It may be used for
+% \textsl{Nature}'s press release or other general publicity.
+%  \item The cover letter should state clearly what is included as the
+% submission, including number of figures, supporting manuscripts
+% and any Supplementary Information (specifying number of items and
+% format).
+%  \item The cover letter should also state the number of
+% words of text in the paper; the number of figures and parts of
+% figures (for example, 4 figures, comprising 16 separate panels in
+% total); a rough estimate of the desired final size of figures in
+% terms of number of pages; and a full current postal address,
+% telephone and fax numbers, and current e-mail address.
+% \end{enumerate}
+
+% See \textsl{Nature}'s website
+% (\texttt{http://www.nature.com/nature/submit/gta/index.html}) for
+% complete submission guidelines.
+
+% \begin{methods}
+% Put methods in here.  If you are going to subsection it, use
+% \verb|\subsection| commands.  Methods section should be less than
+% 800 words and if it is less than 200 words, it can be incorporated
+% into the main text.
+
+% \subsection{Method subsection.}
+
+% Here is a description of a specific method used.  Note that the
+% subsection heading ends with a full stop (period) and that the
+% command is \verb|\subsection{}| not \verb|\subsection*{}|.
+
+% \end{methods}
+
+\bibliographystyle{naturemag}
+\bibliography{bibfile}
+
+
+%% Here is the endmatter stuff: Supplementary Info, etc.
+%% Use \item's to separate, default label is "Acknowledgements"
+
+\begin{addendum}
+ \item Put acknowledgements here.
+ \item[Competing Interests] The authors declare that they have no
+competing financial interests.
+ \item[Correspondence] Correspondence and requests for materials
+should be addressed to A.B.C.~(email: myaddress@nowhere.edu).
+\end{addendum}
+
+\end{document}

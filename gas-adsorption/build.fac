@@ -1,0 +1,47 @@
+#| python3 adsorbed-gas-read.py methane-298 methane-298 5 35 noshow
+
+# * python3 adsorbed-gas-read.py hydrogen-233 hydrogen-233 5 100 noshow
+# C __pycache__
+
+# * python3 adsorbed-gas-isosteric-data.py MOF5 excess methane 250 noshow
+# C __pycache__
+
+# * python3 adsorbed-gas-isosteric-data.py MOF5 absolute methane 400 noshow
+# C __pycache__
+
+# MAIN FIGURES 2 - 4
+# OLD
+# * python3 adsorbed-gas-read.py methane-298 methane-298 5.8 65 noshow
+# C __pycache__
+
+# * python3 adsorbed-gas-read.py hydrogen-298 hydrogen-298 5 100 noshow
+# C __pycache__
+
+# NEW
+* python3 isothermal-ads-gas-plot.py hydrogen 298 5 100 noshow
+C __pycache__
+
+* python3 isothermal-ads-gas-plot.py methane 298 5.8 65 noshow
+C __pycache__
+
+
+# SUPPLEMENTAL FIGURES S2 AND S3
+* python3 gibbs-qst.py noshow
+C __pycache__
+
+# * python3 adsorbed-gas-read.py hydrogen-77 hydrogen-77 5 100 noshow
+# C __pycache__
+
+* python3 isothermal-ads-gas-plot.py hydrogen 77 5 100 noshow
+C __pycache__
+
+# BUILD THE MAIN PAPER
+
+| pdflatex main.tex && bibtex main && pdflatex main.tex && pdflatex main.tex
+< figs/hydrogen-298-n-vs-G.pdf
+< figs/methane-298-n-vs-G.pdf
+< figs/hydrogen-77-n-vs-G.pdf
+
+# | pdflatex isosteric-heat.tex && bibtex isosteric-heat && pdflatex #isosteric-heat.tex && pdflatex isosteric-heat.tex
+
+| inkscape --export-pdf figs/four-cases.pdf figs/four-cases.svg

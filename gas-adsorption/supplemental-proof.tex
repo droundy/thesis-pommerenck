@@ -1,0 +1,53 @@
+\documentclass[twocolumn]{article}
+\usepackage{amsmath}
+
+\begin{document}
+
+\section*{Proof of extremum}
+\davidsays{I think this section should probably move to supplementary information, if we're going to send to Nature.  It suddenly gets way more mathematical here, and we start introducing Fourier space, etc.}
+
+To show that a uniform potential gives the highest deliverable capacity, we consider a potential of interaction between guest and substrate $\V(\vec r)$ that varies with space.  In this proof we will actually make use of the Fourier transform of this potential:
+\begin{align}
+    \Vk \equiv \iiint \V(\vec r) e^{-i\vec k\cdot \vec r} d\vec r
+\end{align}
+The Fourier transform of a uniform potential is a Dirac delta function $\tilde{\V}(\vec k)\propto\delta(\vec k)$. Therefore, to show that a uniform potential extremizes the deliverable capacity, we must show that the functional derivative of the deliverable capacity with respect to $\Vk$ is zero for \emph{nonzero} values of $\vec k$, i.e.
+\begin{align}
+    \frac{\delta D}{\delta \Vk} &= 0, \text{ if } \vec k\ne 0.
+\end{align}
+We note that this functional derivative may be non-zero for $\vec k=0$ because we separately maximize with respect to the particular uniform potential $\V$.
+This means that
+\begin{align}
+    \frac{\delta N_H}{\delta \V(\vec k)} &= -\frac{\delta N_L}{\delta \Vk}
+\end{align}
+where $N_H$ and $N_L$ are the number of particles at the low and high pressure.
+
+Because the chemical potential $\mu$ varies monotonically with $N$ at fixed temperature, we can consider how the chemical potential varies as we change $\Vk$ with the number of molecules held fixed.  We demonstrate this using the cyclic chain rule, which shows us that
+\begin{align}
+    \left(\frac{\delta N}{\delta \Vk}\right)_{\mu} &=
+    -\left(\frac{\delta \mu}{\delta \V(\vec k)}\right)_{N}
+    \left(\frac{\partial N}{\partial \mu}\right)_{\Vk}.
+\end{align}
+Since changing the chemical potential changes the number of molecules in the general case, if we can show that $\left(\frac{\delta \mu}{\delta \V(\vec k)}\right)_{N}=0$ then we will have shown that $\left(\frac{\delta N}{\delta \V(\vec k)}\right)_{\mu}=0$.  Thus we consider
+\begin{align}
+    \left(\frac{\delta \mu}{\delta \tilde\V(\vec k)}\right)_N
+    &= \left(\frac{\delta \left(\frac{\partial F}{\partial N}\right)_{\volume}}{\delta \Vk}\right)_N
+    \\
+    &= \left(\frac{\partial \left(\frac{\delta F}{\delta \Vk}\right)_{\volume}}{\partial N}\right)_{\volume}
+    \label{eq:dmudpot}
+\end{align}
+where we have made use of the derivative relationship between $\mu$ and the Helmholtz free energy $F$, and have then reorderd the functional and partial derivatives.
+Let us consider the interior derivative first.  The derivative of the Helmholtz free energy with respect to the external potential $\Vk$ just gives the number density:
+\begin{align}
+    \frac{\delta F}{\delta \Vk} &= \rho(\vec k)
+\end{align}
+The number density is itself homogeneous for any system that is stable in a fluid state at this density (i.e. does not spontaneously crystallize), and thus has a Fourier transform that is proportional to a Dirac $\delta$-function.  Thus the functional derivative $\frac{\delta F}{\delta \V(\vec r)}$ is actually a uniform function.
+We can insert this expression into Eq.~\ref{eq:dmudpot} to find that
+\begin{align}
+    \frac{\delta \mu}{\delta \Vk} &\propto \delta(\vec k) \\
+    \frac{\delta N}{\delta \Vk} &\propto \delta(\vec k)
+\end{align}
+Thus the functional derivative of both the chemical potential and $N$ with regard to $\V(\vec r)$ are itself homogeneous.  Since we already maximize $D$ with respect to the homogeneous component of the potential (i.e. $\vec k=0$), the derivative of $D$ with respect to any change of potential is zero.
+
+This demonstrates that a homogeneous potential leads to an extremum value of the deliverable capacity.  This proof is insufficient, however, to show that it must be a true maximum.
+
+\end{document}

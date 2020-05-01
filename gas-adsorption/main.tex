@@ -1,0 +1,557 @@
+\documentclass[letterpaper,twocolumn,amsmath,amssymb,jcp]{revtex4-1}
+\usepackage{graphicx} % Include figure files
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{subfig}
+
+\usepackage{nicefrac} % Include for inline fractions
+\usepackage{url}
+
+% \usepackage{cite}
+\usepackage{xargs}                      % Use more than one optional parameter in a new commands
+\usepackage{color}  % Coloured text etc.
+%
+\usepackage[colorinlistoftodos,prependcaption,textsize=normalsize]{todonotes}
+\usepackage{mdframed}
+
+\newcommand{\addcite}{{\bf \color{red} []}}
+\newcommand{\xvec}{\mathbf{x}}
+\newcommand{\thetavec}{\boldsymbol \theta}
+
+\newcommand\V{\Phi}
+\newcommand\Vk{\tilde\Phi(\vec k)}
+\newcommand\volume{V}
+
+\newcommand{\pink}[1]{{\bf \color{pink} #1}}
+\newcommand{\red}[1]{{\bf \color{red} #1}}
+\newcommand{\orange}[1]{{\bf \color{orange} #1}}
+\newcommand{\green}[1]{{\bf \color{green} #1}}
+\newcommand{\blue}[1]{{\bf \color{blue} #1}}
+\newcommand{\cyan}[1]{{\bf \color{cyan} #1}}
+
+%\newcommandx{\davidsays}[1]{\begin{mdframed}[backgroundcolor=blue!24]\textbf{David says:} #1\end{mdframed} }
+%\newcommandx{\davidsays}[2][1=inline]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{\textbf{David says:} #2} }
+\newcommand{\davidsays}[1]{{\color{red} [\blue{D:} \emph{#1}]}}
+\newcommand{\jpsays}[1]{{\color{red} [\blue{Jordan:} \emph{#1}]}}
+\newcommandx{\jordan}[2][1=inline]{\todo[linecolor=gray,backgroundcolor=gray!25,bordercolor=gray,#1]{\textbf{Jordan says:} #2} }
+\newcommandx{\corysays}[2][1=inline]{\todo[linecolor=green,backgroundcolor=green!25,bordercolor=green,#1]{\textbf{Cory says:} #2} }
+
+%% \renewcommand\davidsays[1]{}
+%% \renewcommand{\corysays}[2][1=inline]{}
+%TC:macro \corysays [ignore]
+%TC:macro \davidsays [ignore]
+%TC:macro \jordan [ignore]
+
+\newcommandx{\maybecut}[1]{\begin{mdframed}[backgroundcolor=cyan!24]\textbf{Maybe cut:} #1\end{mdframed} }
+
+\newtheorem{limitation}{Limitation}
+
+\begin{document}
+\title{
+An upper bound to gas delivery via pressure-swing adsorption in nanoporous materials}
+% other ideas:
+%Gas delivery via pressure-swing adsorption in nanoporous materials: setting storage targets}
+% A thermodynamic upper bound to gas delivery via pressure-swing adsorption in nanoporous materials:}
+
+\author{Jordan K. Pommerenck}
+\affiliation{Department of Physics, Oregon State University,
+  Corvallis, OR 97331}
+\author{Cory M. Simon}
+\affiliation{School of Chemical, Biological, and Environmental Engineering,
+  Corvallis, OR 97331}
+\author{David Roundy}
+\affiliation{Department of Physics, Oregon State University,
+  Corvallis, OR 97331}
+
+\begin{abstract}
+  Due to their low volumetric energy density at ambient conditions, both hydrogen and natural gas are challenging to economically store onboard environmentally sustainable vehicles []. One strategy to densify these gases is to pack the fuel tank with a porous material [].
+  Metal-organic frameworks are tunable, nanoporous materials with large internal surface areas and show considerable promise for densifying gases []. The US Department of Energy (DOE) has set volumetric deliverable capacity targets [] which, if met, would help to enable commercial adoption of hydrogen/natural gas as transportation fuels. Many have attempted to establish theoretical upper bounds on the deliverable capacity via pressure-swing adsorption using simplified models of the gas-substrate and gas-gas interaction []; none have established a rigorous upper bound on the deliverable capacity.
+  Here, we present a theoretical upper bound on the deliverable capacity of a rigid material via an isothermal pressure-swing. % "pressure-swing storage doesn't make sense to me. storage and delivery  maybe but awk.
+  % I added rigid since that could be important...
+  To provide an extremum, we consider a substrate that provides a spatially uniform potential energy field for the gas. 
+  \davidsays{Maybe we can add a phrase for an optimal uniform attraction?}
+  Our bound is unique in that it directly relies on experimentally measured properties of the (real) bulk gas, without making approximations.
+  We conclude that the goals set by the US DOE for natural gas and hydrogen storage are theoretically possible, but sufficiently close to the upper bound as to be impractical for any real porous material.
+  % However, this upper bound directly leads to important realizations which should guide future development.
+  However, limitations to the scope of applicability of our upper bound guide future material development efforts.
+ % Firstly, one could extract the gas at a higher temperature than that used while filling [].
+  Firstly, one could heat the adsorbent to drive off residual gas when the pressure diminishes [].
+  Secondly, the fundamental physics of our upper bound do not pertain to
+  % rule out
+  any material that changes its structure in response to adsorbed gas, suggesting that flexible materials could still satisfy the DOE target [].
+  % firstly, secondly vs first, second?
+\end{abstract}
+
+\newcommand\pfull{\ensuremath{p_{\text{full}}}}
+\newcommand\pempty{\ensuremath{p_{\text{empty}}}}
+
+\newcommand\mufull{\ensuremath{\mu_{\text{full}}}}
+\newcommand\muempty{\ensuremath{\mu_{\text{empty}}}}
+
+\newcommand\rhofull{\ensuremath{\rho_{\text{full}}}}
+\newcommand\rhoempty{\ensuremath{\rho_{\text{empty}}}}
+
+\maketitle
+
+\newcommand\gst{\ensuremath{\Delta g_{st}}}
+
+\paragraph*{to do}
+\begin{enumerate}
+    \item See david/corysays
+    \item make the code presentable
+    \item do the FIXME in code
+\end{enumerate}
+
+\section{Introduction}
+The transportation sector is dominantly powered by petroleum-based fuels \cite{davis2009transportation}. In the US, it is responsible for 36\% of energy-related carbon dioxide emissions \cite{useia} and 50,000 premature deaths per year associated with particulate matter and ozone emissions \cite{caiazzo2013air}. 
+Natural gas and hydrogen (H$_2$) are alternative transportation fuels that emit fewer/less pollutants 
+than petroleum-based fuels, and thus their widespread adoption could mitigate climate change 
+\cite{mcglade2015geographical} and improve air quality for human health. Further, as the finite global 
+petroleum resources are declining rapidly \cite{sorrell2010global}, the development of technologies for the widespread
+adoption of sustainable transportation fuels, such as hydrogen, is critical.
+
+Natural gas, mostly methane, is considered a transition (to a renewable and clean) fuel because 
+it emits 25\% less carbon dioxide \cite{eia2013much} and less toxic 
+byproducts \cite{wang2000full} upon combustion per unit energy produced compared to gasoline. From an 
+economic standpoint, the supply of natural gas in the US is increasing as a result of hydraulic 
+fracturing and horizontal drilling techniques \cite{usnatgassupply}. A positive environmental outlook 
+for natural gas, however, is predicated on mitigating fugitive emissions (methane is itself a potent 
+greenhouse gas) \cite{alvarez2012greater} and groundwater contamination \cite{osborn2011methane}
+from hydraulic fracturing.
+
+Hydrogen (H$_2$) is the ultimate transportation fuel because it emits only water when it electrochemically reacts with oxygen in a fuel cell to produce electricity and power a vehicle.
+% Moreover, elemental hydrogen is very abundant, though bonded with oxygen (in water) or carbon (in hydrocarbons); H$_2$ does not occur naturally in abundant quantities.
+Currently, hydrogen (H$_2$) is primarily produced by steam reforming of natural gas followed by the
+water-gas shift reaction, which emits carbon dioxide \cite{crabtree2004hydrogen}. Notably, the 
+environmental allure of hydrogen is predicated on its production via a renewable means, e.g.\ splitting
+water using wind-generated electricity.
+
+% \jordan{I got the values from wikipedia but the citation that wikipedia gave didn't link to the correct paper? Article is Energy Density.
+% THIS PAPER says H2 at 700 bar is 4.7 MJ/L: Review on processing of metal–organic framework (MOF) materials towards system integration for hydrogen storage
+% }
+At ambient conditions, both methane
+%(0.036 MJ/L)
+and hydrogen gas
+%(0.01 MJ/L)
+possess a very low volumetric energy density compared to (liquid) gasoline.
+%(34.2 MJ/L)
+Consequently, under storage space constraints in passenger vehicles, natural gas and hydrogen must be densified for onboard storage to achieve a reasonable driving range on a ``full'' tank of fuel. Traditional densification approaches are liquefaction (cryogenic storage near atmospheric pressure)
+% (at 1 atm, liquid CH$_4$ at 111~K to achieve 22.2 MJ/L~\cite{makal2012methane}, liquid H$_2$ at 20 K to achieve 8~MJ/L \cite{suh2011hydrogen})
+or compression to high pressures (room temperature storage).
+% (200 bar for CH$_4$ to achieve 9.2 MJ/L \cite{makal2012methane} and 700 bar for H$_2$ to achieve 4.5-5.3 MJ/L~\cite{unknown}).
+Both approaches require expensive infrastructure at refilling stations and significant energy input; e.g., liquefaction of hydrogen consumes at least 30\% of its energy content \cite{bossel2003energy}. Moreover, high-pressure storage tanks are heavy, thick-walled, and non-conformable, while cryogenic storage tanks are bulky, expensive, and afflicted by boil-off losses \cite{hasan2009minimizing}.
+% \jordan{
+% Both forms of densification suffer several drawbacks varying from safety issues,  excessively expensive, boil-off~\cite{hasan2009minimizing}, and extensive refilling infrastructure~\cite{bossel2003energy}. 
+% }
+% % Jordan: I commented this out! % Cory: I shorted it. I think it's important.
+
+A promising approach to densify natural gas \cite{makal2012methane,mason2014evaluating} and hydrogen \cite{suh2011hydrogen,garcia2018benchmark} for vehicular storage is through physical adsorption in nanoporous materials at room temperature~\cite{schoedel2016role}. The internal surfaces of porous materials attract gas molecules through van der Waals, electrostatic, etc. interactions to achieve a higher adsorbed gas density than the bulk gas at the same temperature and pressure, allowing for room temperature and lower-pressure storage and alleviating many drawbacks of high-pressure storage.
+% This would thereby reduce the cost of infrastructure at refilling stations, allow thinner-walled and therefore cheaper and lighter pressure vessels, reduce the energy requirements for gas densification, and alleviate safety concerns with high pressure storage. 
+
+%As most homes in the US are connected to a natural gas pipeline \addcite, adsorbed natural gas fuel tanks could permit at-home fueling.
+
+% Jordan: I commented this out!
+% Cory: I think I agree that this paragraph is not necessary, thanks.
+% Current research is towards synthesizing a nanoporous material that can maximally densify natural gas/hydrogen whilst satisfying cost and stability constraints. So far, metal-organic frameworks (MOFs) \cite{furukawa2013chemistry} have demonstrated the highest internal surface areas ($>$7000 m$^2$/g \cite{farha2012metal}) and absorptive capacities for hydrogen \cite{suh2011hydrogen,garcia2018benchmark} and methane \cite{makal2012methane,mason2014evaluating}. Importantly, MOFs are highly adjustable materials synthesized by combining organic molecules (struts) and metal clusters (nodes) that
+% % I cut [often] here, since I'm not sure what the exception is and I don't think it's relevant.
+% coordinate to form a three-dimensional, porous framework \cite{furukawa2013chemistry}. This modular synthesis enables one to fine-tune the MOF chemistry to arrive at an optimal material for methane or hydrogen storage and delivery \cite{schoedel2016role}. See Fig.~\ref{fig:example_MOF} for the crystal structure of a canonical MOF, CuBTC \cite{chui1999chemically}.
+
+For a vehicle employing a porous material to store natural gas or hydrogen, the (volumetric) \emph{deliverable capacity} of the gas is the primary thermodynamic property of the material that determines the driving range~\cite{mason2014evaluating}. The adsorbed gas storage tank delivers the gaseous fuel to the engine via an (assumed) isothermal pressure swing \cite{sircar2002pressure}. The deliverable capacity (see Fig.~\ref{fig:delcap}) is the density of the gas in the material at the storage pressure $\pfull$ minus the residual gas that remains adsorbed at the lowest pressure $\pempty$ such that sufficient flow is maintained to feed the engine.
+For commercial feasibility, the US Department of Energy (DOE) has set deliverable capacity targets for both adsorbed methane and hydrogen storage and delivery for vehicles. For methane, the Advanced Research Projects Agency--Energy (ARPA-E) set a deliverable capacity target of 315\ L STP CH$_4$ per L of adsorbent at 298 K using a 65\ bar to 5.8\ bar pressure swing \cite{simon2015materials}. For hydrogen, the DOE set a series of progressive targets at five year intervals, with the ultimate target of 0.05 kg H$_2$/L \cite{h2targetsDOE} using a 100\ bar to 5\ bar pressure swing at a minimum of -40 $^\circ$C \cite{allendorf2018assessment}. Thus far, despite the emergence of highly tunable materials with enormous surface areas, such as metal-organic frameworks \cite{furukawa2013chemistry}, no porous material has met these deliverable capacity targets. 
+
+\begin{figure}
+    \centering
+    \subfloat[][]{
+        \includegraphics[width=0.6\columnwidth]{figs/hkust-1_fancy.png} \label{fig:example_MOF}
+    }
+    \qquad
+    \subfloat[][]{
+        \includegraphics[width=0.98\columnwidth]{figs/usable_capacity_illustration_toy_ish.pdf} \label{fig:delcap}
+    }
+    \caption{Gas storage and delivery using metal-organic frameworks (MOFs). (a) the crystal structure of an archetype MOF, CuBTC \cite{chui1999chemically}. (b) the methane adsorption isotherm in CuBTC \cite{chui1999chemically} at 298 K (blue) (data from Ref.~\cite{mason2014evaluating}). The deliverable capacity $\rho_D$ is illustrated as the density of gas in the MOF at the storage pressure $\pfull$ minus the density at the discharge pressure $\pempty$.
+    }
+    \label{fig:fig1}
+\end{figure}
+
+To set realistic performance targets and optimally allocate resources for research efforts, in this work, we present a theoretical framework that places an intrinsic upper limit on the deliverable capacity of gas in a rigid porous material and uses as input the experimentally measured properties of the bulk gas. Our extremum is provided by a substrate that offers a spatially uniform potential energy field felt by the gas. Applying our framework to methane and hydrogen gas, we find the US DOE deliverable capacity targets for natural gas and hydrogen storage and delivery are theoretically possible, but sufficiently close to the upper bound as to be impractical for any real porous material. Optimistically, new paradigms outside the scope of applicability of our theoretical framework, such as gas-induced structural transitions of the material, hold promise for meeting these targets, as evidenced by flexible MOF Co(bdp) which currently boasts the largest methane deliverable capacity~\cite{mason2015methane}.
+
+% Jordan: I commented this out!
+% To optimally allocate resources for research efforts and set realistic performance targets, it is important to assess the thermodynamic limits of technologies. Here, we present a theoretical framework that places an intrinsic upper limit on the deliverable capacity of gas in a nanoporous material and uses as input experimental measurements of the bulk gas. Applying our framework to methane and hydrogen gas, we find the DOE deliverable capacity targets for natural gas and hydrogen storage and delivery are theoretically possible, but sufficiently close to the upper bound as to be impractical for any real porous material.
+
+\section{Gas storage \& delivery by isothermal, pressure-swing adsorption}
+% Here, we pose the context and question that we address in this work.
+% Consider pure gas storage and delivery by isothermal, pressure-swing adsorption \cite{sircar2002pressure}.
+Consider a pressure vessel onboard a vehicle (i.e. fuel tank) packed with porous material. At the filling stage, the tank is connected to a (pure) gaseous reservoir at pressure $\pfull$ and allowed to equilibrate. At this point, the adsorbed gas tank is considered full. While driving, gas desorbs from the adsorbent to the engine/fuel cell, driven by a pressure differential.
+The tank is considered depleted/empty when the pressure has dropped to $\pempty$, the pressure at which the flow rate of gas from the tank to the engine is insufficient.
+%
+However, given $\pempty \neq 0$ (pulling vacuum), residual gas will remain trapped in the adsorbent. Therefore, the driving range of the vehicle is primarily determined by the \emph{deliverable capacity}, defined as the density of gas in the tank at $\pfull$ minus density of the the residual gas remaining at $\pempty$. The [isothermal, volumetric] deliverable capacity is an intrinsic property of the nanoporous material and its interaction with the gas.
+%Precisely, let $\rho(p; T)$ be the density of gas in the adsorbent when in equilibrium with a bath of pure gas at pressure $p$ and temperature $T$, the \emph{adsorption isotherm}; $\rho(p,T)$ is essentially the equation of state of the gas adsorbed in the porous material. The [intrinsic, isothermal] deliverable capacity $\rho_D$ of the gas in the adsorbent is:
+%\begin{equation}
+%    \rho_D(\pfull, \pempty; T) \equiv \rho(\pfull; T) - \rho(\pempty; T).
+%    \label{eq:delcap}
+%\end{equation}
+% The pressures $\pfull$ and $\pempty$ correspond to chemical potentials $\mufull$ and $\muempty$ via an equation of state for the gas.
+% Eqn.~\ref{eq:delcap}
+% This assumes that the tank reaches equilibrium %, neglecting the kinetics of ad/desorption
+% at the end of the filling and depletion stages. 
+
+%The assumption of isothermal operation neglects (i) heat released/consumed during ad/desorption, which can diminish the deliverable capacity by raising/lowering the temperature of the adsorbent during filling/discharge \cite{mota1997dynamics,chang1996behavior}, and (ii) an engineering strategy to use waste heat from the engine to heat the adsorbent and drive off residual gas when it nears $\pempty$ \cite{gomez2014exploring}. 
+
+%Second, an engineering strategy to increase the deliverable capacity beyond the isothermal deliverable capacity is to reroute waste heat from the engine to the adsorbed gas tank during delivery. By raising the temperature of the adsorbent during the discharge stage, we drive off a fraction of the residual gas that would otherwise remain when the tank reaches $\pempty$ . In such a case, the [non-isothermal] deliverable capacity of the tank is $\rho(\pfull, T)-\rho(\pempty; T_H)$ where $T_H$ is the temperature to which we heat the adsorbent at discharge. This strategy, however, requires a more complicated design.
+
+% \begin{limitation}\label{limit:isothermal}
+% We assume isothermal pressure-swing adsorption. It is possible to achieve a greater deliverable capacity by raising the temperature of the adsorbent as the gas is extracted to drive off the residual gas.
+% \end{limitation}
+
+\section{Review of previous work}
+There has been considerable work attempting to establish an upper bound on the isothermal deliverable capacity in pressure-swing adsorption.
+% We now review previous work towards placing an upper bound on the isothermal deliverable capacity of hydrogen or methane by pressure-swing adsorption.
+% The first body of work rests on the simplified Langmuir model; the second body of work rests upon imposing energetic models for the gas-substrate and gas-gas interactions.
+
+Early work showed that, in the simplified Langmuir model, there exists an optimal free energy of adsorption (which determines the Langmuir constant) that maximizes the deliverable capacity $\rho_D$~\cite{matranga1992storage,bhatia2006optimum,simon2014optimizing}.
+If the gas-substrate interaction is too weak (strong), too little (much) gas adsorbs (is retained) at $\pfull$ ($\pempty$), diminishing $\rho_D$. An upper bound on the deliverable capacity of a Langmuir material follows if each adsorption site is endowed with the optimal free energy of adsorption. However, remaining is the question of how many adsorption sites per volume a porous material can practically offer, under the constraint that these adsorption sites offer the optimal free energy of adsorption. Moreover, gas-gas attractions, neglected in the Langmuir model, could recruit more gas in the material at $\pfull$ than at $\pempty$ and enhance the deliverable capacity~\cite{simon2014optimizing}.
+
+G\'omez-Gualdr\'on \emph{et al.} \cite{gomez2017impact} introduced a model that accounted for gas-gas interactions via an intermolecular potential and idealized the substrate in two different ways: (1) discrete adsorption sites packed into an FCC lattice and (2) a volume endowed with a spatially uniform, background potential energy field. According to molecular simulation of methane adsorption, the ARPA-E deliverable capacity target of 315 L STP/L could be reached in both of these idealized substrates.
+%The ARPA-E target of 315 L STP/L was reached when adsorption sites were endowed with an optimal heat of adsorption of 11.5 kJ/mol and adsorption sites were $5.3$ \AA~apart. In a second model, they endowed a volume with a background potential energy field, then simulated the adsorption of methane in the volume in the grand-canonical ensemble, using a Lennard-Jones potential for methane-methane interactions. The maximal deliverable capacity of 357 L STP/L was achieved with a background heat of adsorption of 8.6 kJ/mol. 
+However, both models neglected the space occupied by atoms of the porous material that are needed to endow the adsorption sites/volume with the attractive potential energy. % To address this, in the third model, they constructed pseudo materials by placing Lennard-Jones spheres in space with tunable well depths. When constrained to form a connected network, none of the psuedo-materials reached the ARPA-E deliverable capacity target.
+
+A third body of work attempted to account for both gas-gas interactions \emph{and} steric interactions of the gas with the atoms of the porous material.
+% explores the upper limits of the deliverable capacity while accounting for gas-gas interactions \emph{and} the atoms of the porous material that are required to attract the guest; these material atoms exclude the adsorbate from regions of the control volume. 
+%More works obtained an empirical upper bound on the deliverable capacity by explicitly accounting for the atoms of the material needed to create the potential energy field felt by the gas molecules.
+Simulations of methane adsorption in hundreds of thousands of explicit nanoporous crystal structures---both real and hypothetical---suggested that the ARPA-E deliverable capacity target is infeasible \cite{simon2015materials}; the highest simulated methane deliverable capacity was 196 cm$^3$~STP/cm$^3$. Confidence in this conclusion rests upon (i) the accuracy of the intermolecular potentials describing the molecular interactions and (ii) the sufficient sampling of material space, i.e.\ that the structures considered are representative of the set of possible materials. To further explore material space and address sensitivity to the potentials used, scaling the Lennard-Jones potential well depths of material atoms to model enhanced interactions \cite{gomez2014exploring}, placing Lennard-Jones spheres in a unit cell randomly to form ``pseudo-materials'' \cite{kaija2018high}, and generating fictitious potential energy fields via a generative adversarial network trained on zeolite structures \cite{lee2019predicting} all generated model substrates that all failed to meet the ARPA-E methane deliverable capacity target.
+
+% Brown and Freeman \cite{bhown2011analysis}
+
+In this work, we place a rigorous upper bound on the deliverable capacity of a pure gas in a rigid substrate by endowing a control volume with a spatially uniform background energy field. Instead of using a molecular model for the gas~\cite{gomez2017impact}, we use the experimental equation of state to account for gas-gas interactions. In addition, we prove using the calculus of variations that this spatially uniform substrate yields a maximal deliverable capacity. We use our framework to place an upper bound on the deliverable capacity of methane and hydrogen.
+
+\section{An upper bound on the deliverable capacity of a pure gas in a rigid porous material}\label{sec:upper-bound}
+\begin{figure}
+  \centering
+  \includegraphics[width=\columnwidth]{figs/methane-298-rho-mu}
+  \caption{The density of bulk methane, the ideal gas, and adsorbed gas in several MOFs at 298\ K as a function of chemical potential (bottom axis) and pressure (top axis). The bulk methane density is from the National Institute of Standards and Technology (NIST)~\cite{nist}. The methane adsorption isotherms in the MOFs are experimental data from Ref.~\cite{mason2014evaluating, furukawa2009storage}.
+  }
+  \label{fig:density-vs-mu-ch4}
+\end{figure}
+
+We now develop a thermodynamic framework that places an upper bound on the deliverable capacity of any pure gas in a rigid porous material.
+
+The thermodynamic properties of a bulk, pure gas are characterized by an equation of state. 
+Of particular interest for gas storage and delivery is the density of the gas as a function of chemical potential $\mu$ and temperature $T$, $\rho_g(\mu,T)$, which is shown for methane gas in Fig.~\ref{fig:density-vs-mu-ch4} at $T=298$\ K. For comparison, we also show the density of methane adsorbed into several porous materials.
+
+% \davidsays{This paragraph could move considerably later. Or cut entirely?}
+% We model the interaction of substrate with gas as a simple Gibbs free energy of adsorption per mole (or atom) \gst.  We will assume that this Gibbs free energy is independent of the concentration of gas.  At low concentrations, this assumption is reasonable, because the gas molecules can be assumed to be widely separated and their interactions weak.  In the limit of high concentrations, we expect that the attraction of the gas to the substrate will be diminished, since the ``good spots'' will already be occupied.  The choice of a concentration-independent $\gst$ will thus have a tendency to overestimate the deliverable capacity, providing an upper bound (for more on this, see Sec.~\ref{sec:qualitative-max}).
+
+To place an upper bound on the deliverable capacity, consider a substrate whose sole interaction with the gas is to introduce a spatially uniform potential energy $\V$
+for gas molecules in the control volume (where $\V<0$ for an attractive potential). Because this interaction is uniform within the substrate, the gas-gas interactions and thus fluid structure in such a substrate are identical to those of the pure gas at the same density and temperature. This allows us to obtain the adsorption properties of this model substrate using the experimentally measured properties of the pure gas~\cite{nist}. 
+Intuitively, the deliverable capacity of a gas in such a homogeneous substrate with the optimal potential energy is an upper bound because, in a realistic material, (i) spatial inhomogeneity of the potential energy results in some points in the control volume offering a suboptimal attraction for the gas and (ii) the atoms required to create the potential field will exclude gas from occupying a fraction of the control volume.
+%\corysays{the suboptimal energy is hard to argue since that would affect entropy too...}
+
+% \corysays{I propose to replace ``homogenous'' with ``spatially uniform'' everywhere instead of using both interchangeably.
+% \davidsays{We replaced ``homogeneous potential'' with spatially uniform, but were less confident replacing ``homogeneous substrate'', which has a slightly different meaning, and might need a slightly different name.  e.g. maybe ``uniform substrate'' or ``model substrate''?}}
+
+%\corysays{what do u think about callin this an ``ideal substrate'' or giving it some name so we can refer to it hereon? \davidsays{I think I'd prefer ``homogeneous substrate'' or ``idealized substrate''}}
+
+%\subsection{Finding the density}\label{sec:finding-n}
+
+The spatially uniform potential $\V$ representing gas-substrate interactions behaves as an external potential and effectively shifts the chemical potential (or, equivalently, molar Gibbs free energy) of the gas in the material, just as gravitational potential energy causes the density of air to vary with altitude.  Consequently, the density of gas in our homogeneous substrate is:
+\begin{align}
+    \rho(\mu,T) &= \rho_g(\mu - \V,T). \label{eq:mof-density}
+\end{align}
+See Sec.~\ref{sec:V_shifts_chem_pot} for a derivation.
+% where $\rho_g(\mu,T)$ is the density of the pure gas at chemical potential $\mu$, shown for methane in Fig.~\ref{fig:density-vs-mu-ch4}. 
+% cory says: ^ we already defined \rho_g in pargraph above.
+
+The deliverable capacity of gas in our homogeneous substrate is thus:
+\begin{align}
+    \rho_D(\V,T) &= \rho(\mufull,T) - \rho(\muempty,T),
+    \label{eq:DofPhi}
+    \\
+    &= \rho_g(\mufull-\V,T) - \rho_g(\muempty-\V,T),
+\end{align}
+where $\mufull$ and $\muempty$ are the chemical potentials corresponding to the pressures $\pfull$ and $\pempty$, respectively.
+Thus, $\rho_D$ for our homogeneous substrate as a function of $\V$ is the difference between two shifted versions of $\rho_g(\mu; T)$.
+Figure~\ref{fig:methane-298-D} shows the two shifted bulk methane density curves and their difference.
+The horizontal axis
+is the difference in molar Gibbs free energy at fixed density and temperature between the gas within the substrate and the pure gas (\gst), which is equal to $\V$ in our model.
+We see a potential $\V$ that maximizes the deliverable capacity of our ideal substrate, balancing the need to maximize the density at $\pfull$ against the need to minimize residual gas retained at $\pempty$. 
+%Our theoretical framework thus recovers an upper bound on the deliverable capacity of methane (298\ K, $\pfull=$65\ bar, $\pempty=$5.8\ bar) in porous materials as 374\ L STP/L.
+The optimal deliverable capacity of methane (298\ K, $\pfull=$ 65\ bar, $\pempty=$ 5.8\ bar) in our ideal, spatially uniform substrate is 374\ L STP/L, \red{achieved for $\V_{opt} = ...$}.
+%
+%As a ballpark, we can expect the attractive potential to be optimal around the maximum slope of $\rho_g(\mu)$.  This is the point where the steric repulsion between the gas atoms starts leading to saturation of the density.
+
+An essential question is whether our idealized substrate offering the spatially uniform potential $\V_{opt}$ for the gas places an upper bound on the deliverable capacity in all rigid porous materials. 
+%yields the maximum deliverable capacity over all possible potential energy fields. 
+In the SI (see Section~\ref{sec:fixme} \davidsays{Look up section label}), we show that our idealized substrate with spatially uniform potential $\V_{opt}$ yields an \emph{extremum} of the deliverable capacity over all possible \emph{static potential energy fields}, provided the gas does not crystallize at the temperature and in the density range of interest. The potential energy field is \emph{static} if it is unaffected by the presence of the gas; consequently, our model does not apply to flexible materials that undergo gas-induced conformation changes \cite{schneemann2014flexible}. We next argue that this extremum is a maximum by addressing two alternative possibilities: the extremum could turn out to be (i) a saddle point or (ii) a local, rather than global, maximum.
+
+Fig.~\ref{fig:methane-298-D} clearly shows that $\V_{opt}$ provides a maximum $\rho_D$ over all \emph{spatially uniform}, static potential energy fields. To qualitatively argue that the spatially uniform potential $\V_{opt}$ provides a maximum deliverable capacity over \emph{all} (including non-spatially uniform) static potential energy fields (a broader claim), consider a non-spatially-uniform variation on $\V_{opt}$.
+We will show that the effect of this variation is to reduce the deliverable capacity.
+At low adsorbed gas densities, the lowest-energy positions will be preferentially occupied, while at higher densities, the additional gas molecules will be forced into higher energy locations. Thus, the mean attraction will be lowest at \pfull\  and highest at \pempty.  This will result in $\gst$ increasing monotonically with with pressure.  As shown in the Supplementary Information (see Sec.~\ref{sec:monotonic}), this results in the deliverable capacity of a non-uniform potential being lower than the deliverable capacity of a uniform potential with $\V=\gst$ for either $\pfull$ or $\pempty$.
+Thus a spatially uniform potential will give the best deliverable capacity amongst all static potential energy fields that give the same $\gst$, and the \emph{optimal} uniform potential $\V_{opt}$ will give the a greater deliverable than any static non-uniform potential.
+
+% Yo David, I changed ur paragraph below. tell me wut u think.
+% To qualitatively argue that the spatially uniform potential $\V_{opt}$ provides a \emph{maximum} deliverable capacity over all static potential energy fields, consider the case of a material that offers a non-spatially-uniform potential energy felt by the gas molecules.We wish to show that this material will have a lower deliverable capacity than our ideal substrate. At low adsorbed gas densities, the lowest-energy positions will be preferentially occupied, while at higher densities, some of the gas molecules will be forced into higher energy locations. Thus, the mean attraction will be lowest when the tank is ``full,'' and highest when the tank is ``empty.'' This is the opposite of what we would want to achieve a high deliverable capacity. Based on this qualitative reasoning, we expect the spatially uniform potential \red{$\V_{opt}$} to give the maximal deliverable capacity, since it will provide the most attraction for the molecules added at high densities.
+
+% \corysays{``To qualitatively argue that the spatially uniform potential provides a \emph{maximum} deliverable capacity'' do we need to qualify that this spatially uniform potential must hv the optimal $\V$? obviously a spatially uniform potential can be better than a spatially uniform one with a poor $\V$. maybe we should start with our optimal homogenous potential, then say introduce a little blip in it from there, like in calculus of variations.}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.95\columnwidth]{figs/methane-298-n-vs-G}
+    \caption{The deliverable capacity of methane as a function of the attractive Gibbs free energy $|\gst|$.
+    Experimental deliverable capacities for several MOFs (data from Ref.~\cite{mason2014evaluating, furukawa2009storage}) are shown along with the experimental values for $\gst$ at the empty and full pressures shown as dots connected by a line (not visible at this scale).}
+    \label{fig:methane-298-D}
+\end{figure}
+
+\section{Results}
+Although our theoretical framework allows us to place an upper bound on the deliverable capacity of many different gases in a rigid porous material, we focus on the maximal deliverable capacity of methane and hydrogen gas in our homogeneous substrate due to their application as transportation fuels. To characterize the density of the gases, $\rho_g(p, T)$, we use experimental data from NIST~\cite{nist}, which naturally includes quantum effects that particularly affect hydrogen at low temperature~\cite{kumar2006quantum}. In the context of storage onboard passenger vehicles, we compare our upper bound with several prominent porous materials using experimental adsorption isotherms from the literature; we also compare with deliverable capacity targets set by the US DOE.
+
+Figure~\ref{fig:methane-298-D} shows the upper bound for methane storage at room temperature~(374~cm$^3$~STP/cm$^3$). In addition to the predicted maximum deliverable capacity as a function of \gst,
+\corysays{subtlety here: isnt ur proof restricted to saying $\V_{opt}$ provides the upper bound? does it really prove that, for fixed and nonoptimal $\gst$, a spatially uniform potential is optimal over a non-spatially uniform one? I don't think it does...}
+the ARPA-E target of 315~cm$^3$~STP/cm$^3$~\cite{arpaemove} is shown for context. For an adsorbent with at least 84\% void fraction, the ARPA-E target is theoretically possible. The experimental deliverable capacities of several adsorbents~\cite{mason2014evaluating} are also shown over a range of $\gst$ (converted from the measured adsorption isotherm as explained in \davidsays{confirm this} Sec.~\ref{sec:phi-is-delta-g}). These can be compared with the highest observed deliverable capacities for methane at room temperature in rigid materials, up to 208~cm$^3$~STP/cm$^3$~\cite{simon2015materials}. 
+% don't think the below is helpful or correct: Gst opt is reached by some... there are void fraction constraints too.
+% To reach the ARPA-E target, an adsorbent material with a higher $|\gst|$ would need to be found. 
+
+\corysays{I know it doesn't matter, but should we choose L STP/L or cm3 STP/cm3? we use both, some might get confused/distracted? \davidsays{We chose to use the units used for each of the targets thinking it would be more familiar and/or easier to compare.  I don't like either set of units, and if we were to pick ``our'' choice, I'd lean towards something dimensionless with a sane comparison (e.g. relative to the gas density at our high pressure)}}
+
+\corysays{need to explain why the MOFs are lines not points... that \gst has a range for MOFs.
+\jpsays{due to a different deliverable capacity at full pressure and empty pressure. For hydrogen the SI (by Paula Garcia-Holley) has total uptake plots so we could make a curve even but would have a lot of error due to manual extraction?}}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.95\columnwidth]{figs/hydrogen-298-n-vs-G}
+    \caption{Deliverable capacity of hydrogen at room temperature as a function of the attractive Gibbs free energy $|\gst|$.  Experimental deliverable capacities for several MOFs are shown along with the experimental values for $\gst$ at the empty and full pressures shown as x's connected by a line.}
+    \label{fig:hydrogen-298-D}
+\end{figure}
+
+\corysays{Figs.~\ref{fig:hydrogen-298-D} ~\ref{fig:methane-298-D} why not just let $\gst$ be negative and have an arrow pointing in direction of more attraction? as written the legend is not correct since those are not the functions being shown. in the main text we never discussed what \gst is for the MOF and why the MOFs are lines not points (\gst is a function of density now)}
+
+\jpsays{I edited everything below this comment. The original is commented out}
+
+Storage of hydrogen is considerably more challenging owing to its relatively weak interaction with adsorbents. The DOE ULTIMATE deliverable capacity target~\cite{DOE} is within 6\% of the upper bound at 25$^\circ$C \red{check}. Figure~\ref{fig:hydrogen-298-D} shows the theoretical upper bound curve for hydrogen storage along with a range of experimental measurements for known MOFs.  The DOE ULTIMATE deliverable capacity target is theoretically possible, however by such a small margin that we can safely rule out the possibility of reaching this target through storage and delivery of hydrogen in \emph{any} rigid substrate at room temperature. Such a material would require a void fraction of at least 94\% \red{check}. On top of this, the DOE ULTIMATE target requires an optimal $|\gst|$ of 10~kJ/mol which is far greater than what is found in observed porous materials. This reflects the known fact that hydrogen interacts with substrates far more weakly than methane does. One possibility that has been pursued is storage at cryogenic temperatures. See Section~\ref{sec:cryo-hydrogen} in the Supplementary Information for the upper bound for storage of hydrogen at 77 K.
+
+Why do we not experimentally observe materials approaching the upper bound on the deliverable capacity? Foremost, any adsorbent substrate will be composed of atoms, which will exclude the gas from some volume. Due to strong short-range interactions, substrate atoms must be uniformly distributed to achieve strong attraction for gas atoms. Uniform atom distribution sets a limit on the pore volume.
+% Because strong interactions are short-range, achieving a strong attraction requires that substrate atoms be distributed throughout the volume, which places a limit on the pore volume.
+In contrast, real materials have a spatially non-uniform attraction for gas atoms. The result of this is that there are regions of space with non-optimal attraction. For hydrogen, there is the further issue that there are \emph{no} known physical interactions that are sufficiently strong to give an optimal deliverable capacity at room temperature.
+% Finally, real materials must have a spatially non-uniform attraction for gas atoms, resulting in some regions of space where the attraction is not optimal. For hydrogen, there is the further issue that there are \emph{no} known physical interactions that are sufficiently strong to give an optimal deliverable capacity at room temperature.
+
+\section{Conclusion}
+We have established an upper bound on the deliverable capacity via pressure-swing adsorption in rigid porous solids based on experimentally measured properties of pure gases. While these upper bounds do not rule out the discovery of materials that reach current DOE targets, they cast strong doubt on the possibility of achieving these goals when we consider the additional constraints imposed due to steric hindrance between substrate atoms and the adsorbate. Our upper bound does indicate that those goals cannot be exceeded by more than 19\% for methane and 6\% for hydrogen \red{check}. Fortunately, there are some limitations to these upper bounds which suggest avenues for future developments which could allow the targets to be met.
+
+The first limitation of our proof is that we restricted ourselves to \emph{isothermal} pressure swing storage. By raising the temperature of the adsorbent during gas discharge to drive off residual gas \cite{gomez2014exploring}, the deliverable capacity could be enhanced, albeit at the cost of a more complicated engineering design of the fuel tank and vehicle.
+%While this approach poses engineering challenges, in principle it could allow an arbitrarily large deliverable capacity.
+
+% \corysays{no, cant lower filling temp. when park it will heat up then go above pressure rating of tank...}
+
+The second limitation of our proof arises in the assumption of a rigid substrate. The rigid substrate acts as a static potential energy field for gas molecules that is unchanged by the adsorption of gas.
+% The second limitation of our proof arises in the assumption of a rigid substrate, which acts as a static potential energy field for gas molecules that is unchanged by the adsorption of gas.
+For most porous materials this is a reasonable approximation, and this assumption is frequently made in both the simulation and theory of porous materials~\cite{witman2017influence}. However, there are cases where the substrate can in effect provide a very strongly gas-density-dependent interaction through structural flexibility~\cite{schneemann2014flexible}. A flagship example is MOF Co(bdp)~\cite{choi2008broadly}, which possesses a wine-rack-like topology capable of hinge motion. At low methane pressure, Co(bdp) adopts a collapsed, nonporous state, but expands to a porous state and fills with gas at higher pressures \cite{mason2015methane}. This allows Co(bdp) to fully expel its residual gas at low pressures.
+Our upper bound does not consider such material effects and thus flexible materials could have significantly higher deliverable capacities.
+% Such materials can indeed violate our upper bound and thus could lead to significantly improved deliverable capacities.
+
+We note that our upper bound can readily be applied to the storage of other gasses of interest, with the proviso that the gas is far from crystallization. Our code is available at \davidsays{XXXXX}.
+
+% \clearpage
+
+
+% Here we will articulate the assumptions required for our upper bound to hold. Some of these assumptions serve as a guide for chemists who aim to synthesize a material that violates our upper bound.
+
+% Our proof that the spatially uniform potential is an extremum assumes that the fluid is stable at the temperature and densities involved.
+% \begin{limitation}\label{limit:crystallization}
+% Our proof assumes the gas is cannot become spontaneously solid at the temperature of interest.
+% \end{limitation}
+% Our upper bound will \emph{not} be valid for gasses which may crystallize in their pure form. This is because a periodic potential can interact with a high-density crystal far more strongly than it interacts with a low-density gas.  We are not aware of a practical application of this principle, but theoretically it is possible.  For the application of gas storage for light gasses such as methane or hydrogen at moderately high temperatures (say liquid nitrogen or warmer), the pure gas is sufficiently far from its crystal form that we need not concern ourselves with crystallization.  We do not see this particular assumption as one that can be worked around.
+
+% There remains the possibility that the spatially uniform potential is a local maximum, but there is another global maximum.  We do not see how to formally rule out this possibility for an arbitrary gas-gas interaction, but the qualitative arguments above seem sufficient to rule out this possibility for a real gas.
+
+% However, there was a more fundamental assumption, which is that the porous material acts as an effective potential for the gas molecules, and that the gas-gas interaction is unmodified.
+% \begin{limitation}\label{limit:field}
+% Our proof assumes the interaction of the gas with the substrate does not modify the substrate.  Equivalently,  the interaction of substrate with gas operates as a simple potential energy field.
+% \end{limitation}
+% For \emph{most} porous materials this seems likely to be a pretty good approximation.  However, there are unusual cases where the substrate can in effect provide a very strongly density-dependent interaction.  This is perhaps easiest to see in the example of \davidsays{look up the collapsing MOFs description from the RMS-MOF paper}, in which the gas can introduce a phase change in the solid, which has the effect of drastically lowering the density of gas in the material.  Such materials can indeed violate our upper bound. \davidsays{Remember to discuss this in the conclusions or perhaps discussion, we can frame these limitations as guides.  The limitations of our upper bound are the design requirements for a material that will do any better.}
+
+
+% [impurities?]
+
+% \section{Conclusion}
+% As many have suspected \davidsays{cite previous work}, pressure-swing adsorption in rigid porous solids is not going to enable reaching targets.  \davidsays{conclude explicitly about each target}  Unlike previous work, our upper bound on deliverable capacity is based on experimentally known properties of the gas of interest rather than simulations.
+
+% The limitations on our proof of an upper bound on the deliverable capacity provide hints as to approaches that could in principle achieve the targets.  In this paper we have identified three limitations of our upper bound on the deliverable capacity.  Two of these three limitations suggest engineering strategies that do hold promise of achieving the targets for hydrogen and methane storage.  Limitation \ref{limit:crystallization}, which states that the gas must not crystallize does not means for improvement, since it is a limit on the gasses to which our bound may be applied, and neither hydrogen nor methane are in any danger of crystallizing.
+
+% Crystal density vs. pelletiziation density.
+
+% A more subtle limitation of our proof is that it assumes that the substrate itself is not modified by the presence of the gas.  While this assumption is never precisely true, since any adsorbed atom will change the electron distribution of the substrate to some degree, it tends to be sufficiently accurate that most atomistic simulations can get away with assuming that the substrate is unmodified.  A dramatic exception to that rule is the field of flexible MOFs, in which the presence of the gas can induce a phase change which can \emph{drastically} modify the gas-substrate interaction~\davidsays{cite experiments}\cite{witman2019}.
+
+
+% wut about mixtures?
+
+%TC:ignore
+
+\bibliography{bibfile}
+
+\appendix
+\clearpage
+\setcounter{table}{0}
+\renewcommand{\thetable}{S\arabic{table}}%
+\setcounter{figure}{0}
+\renewcommand{\thefigure}{S\arabic{figure}}%
+\renewcommand{\thesection}{SI \Alph{section}}%
+
+\section{An external, spatially uniform potential $\V$ shifts the chemical potential $\mu$ of the gas} \label{sec:V_shifts_chem_pot}
+We show that imposing an external, spatially uniform potential $\V$ to a gas has the effect of shifting the chemical potential $\mu$ of the gas, recovering eqn.~\ref{eq:mof-density}. Consider a control volume $\Omega$ with volume $V=|\Omega|$ (large enough to neglect boundary effects) that is endowed with the external, spatially uniform potential $\V$. Impose the grand-canonical ensemble, where this control volume can exchange energy and particles with a bath of gas at temperature $T$ and chemical potential $\mu$.
+
+To denote a microstate of this system, let $N$ be the number of gas particles in the control volume and $\mathbf{x}_1,...,\mathbf{x}_N$ be their positions. Then, the potential energy $E$ of a microstate of the control volume is:
+\begin{equation}
+    E(\mathbf{x}_1,...,\mathbf{x}_N) = N\V + E_{gg}(\mathbf{x}_1,...,\mathbf{x}_N),
+\end{equation} where $E_{gg}$ is the (unknown and complicated) interatomic potential for gas-gas interactions that governs the (real) gas properties. The first term arises from each gas molecule feeling the external potential $\V$, where $\V < 0$ corresponds to attraction.
+
+\corysays{wut about orientations? shld we include those?}
+
+The grand-canonical partition function of the control volume is:
+\begin{multline}
+    \Xi(\mu, V, T)= \\ \displaystyle \sum_{N=0}^\infty \frac{1}{\Lambda^{3N}N!} \int_{\Omega} \cdots \int_{\Omega} e^{-\beta E_{gg}(\xvec_1, ..., \xvec_N)} e^{\beta (\mu - \V) N} d\xvec_1 \cdots d\xvec_N.
+    \label{eq:gcpf}
+\end{multline} We recognize this as the grand canonical partition function of the bulk gas in the control volume without the external potential, but shifted in chemical potential:
+\begin{equation}
+    \Xi(\mu, V, T)=\Xi_0(\mu - \V, V, T)
+    \label{eq:xi_vs_xi0}
+\end{equation}
+where $\Xi_0(\mu, V, T)$ is the grand-canonical partition function of the bulk gas in the control volume in the absence of an external potential. Importantly, this equivalency is predicated on the potential $\V$ being spatially uniform. Therefore, the thermodynamic properties of the gas sitting in the spatially uniform external potential $\V$-- i.e., adsorbed in our idealized substrate-- are equivalent to the properties of the bulk gas at chemical potential $\mu-\V$ ($T$ fixed here). 
+As $\V$ becomes more negative, corresponding to a more attractive adsorbent, the thermodynamic properties of the adsorbed gas in our ideal substrate are equivalent to the gas at higher chemical potential.
+
+\section{Proof of extremum}
+To show that a uniform potential gives the highest deliverable capacity, we consider a potential of interaction between gas and substrate $\V(\vec r)$ that varies with space.  In this proof we will make use of the Fourier transform of this potential:
+\begin{align}
+    \Vk \equiv \iiint \V(\vec r) e^{-i\vec k\cdot \vec r} d\vec r
+\end{align}
+The Fourier transform of a uniform potential is a Dirac delta function $\tilde{\V}(\vec k)\propto\delta(\vec k)$. Therefore, to show that a uniform potential extremizes the deliverable capacity, we must show that the functional derivative of the deliverable capacity with respect to $\Vk$ is zero for \emph{nonzero} values of $\vec k$, i.e.
+\begin{align}
+    \frac{\delta D}{\delta \Vk} &= 0, \text{ if } \vec k\ne 0.
+\end{align}
+We note that this functional derivative may be non-zero for $\vec k=0$ because we separately maximize with respect to the particular uniform potential $\V$.
+This means that
+\begin{align}
+    \frac{\delta N_H}{\delta \V(\vec k)} &= -\frac{\delta N_L}{\delta \Vk}
+\end{align}
+where $N_H$ and $N_L$ are the number of particles at the low and high pressure.
+
+Because the chemical potential $\mu$ varies monotonically with $N$ at fixed temperature, we can consider how the chemical potential varies as we change $\Vk$ with the number of molecules held fixed.  We demonstrate this using the cyclic chain rule, which shows us that
+\begin{align}
+    \left(\frac{\delta N}{\delta \Vk}\right)_{\mu} &=
+    -\left(\frac{\delta \mu}{\delta \V(\vec k)}\right)_{N}
+    \left(\frac{\partial N}{\partial \mu}\right)_{\Vk}.
+\end{align}
+Since changing the chemical potential changes the number of molecules in the general case, if we can show that $\left(\frac{\delta \mu}{\delta \V(\vec k)}\right)_{N}=0$ then we will have shown that $\left(\frac{\delta N}{\delta \V(\vec k)}\right)_{\mu}=0$.  Thus we consider
+\begin{align}
+    \left(\frac{\delta \mu}{\delta \tilde\V(\vec k)}\right)_N
+    &= \left(\frac{\delta \left(\frac{\partial F}{\partial N}\right)_{\volume}}{\delta \Vk}\right)_N
+    \\
+    &= \left(\frac{\partial \left(\frac{\delta F}{\delta \Vk}\right)_{\volume}}{\partial N}\right)_{\volume}
+    \label{eq:dmudpot}
+\end{align}
+where we have made use of the derivative relationship between $\mu$ and the Helmholtz free energy $F$, and have then reordered the functional and partial derivatives.
+Let us consider the interior derivative first.  The derivative of the Helmholtz free energy with respect to the external potential $\Vk$ just gives the number density:
+\begin{align}
+    \frac{\delta F}{\delta \Vk} &= \rho(\vec k)
+\end{align}
+The number density is itself spatially uniform for any system that is stable in a fluid state at this density (i.e. does not spontaneously crystallize), and thus has a Fourier transform that is proportional to a Dirac $\delta$-function.  Thus the functional derivative $\frac{\delta F}{\delta \V(\vec r)}$ is actually a uniform function.
+We can insert this expression into Eq.~\ref{eq:dmudpot} to find that
+\begin{align}
+    \frac{\delta \mu}{\delta \Vk} &\propto \delta(\vec k) \\
+    \frac{\delta N}{\delta \Vk} &\propto \delta(\vec k)
+\end{align}
+Thus the functional derivative of both the chemical potential and $N$ with regard to $\V(\vec r)$ are themselves spatially uniform.  Since we already maximize $D$ with respect to the spatially uniform component of the potential (i.e. $\vec k=0$), the derivative of $D$ with respect to any change of potential is zero.
+
+This demonstrates that a spatially uniform potential leads to an extremum value of the deliverable capacity.  This proof is insufficient, however, to show that it must be a true maximum.
+
+\section{The real-substrate analogy of $\V$ is $\gst$}
+\label{sec:phi-is-delta-g}
+\begin{figure}
+    \centering
+    \includegraphics[width=\columnwidth]{figs/g_st_piston_2.png}
+    \caption{Cartoon illustrating the definition of $\gst$ and a hypothetical experiment to measure it with a piston and removable barrier that separates two equal volumes, one with a porous material (bottom) and one with free space (top). The initial state (left) is a bulk gas phase at density $\rho$ and temperature $T$. An infinitely-thin, removable barrier separates the gas from the porous material (bottom). The barrier is then slowly removed, and the piston slowly pushes all gas molecules into the porous material in an isothermal process. The final state (right) is an adsorbed gas phase at density $\rho$ and temperature $T$. The quantity $\gst$ follows from {\color{red} the heat released?}.}
+    \label{fig:delta-G-cartoon}
+\end{figure}
+
+The parameter describing our idealized substrate is $\V$, the spatially uniform potential felt by a gas molecule adsorbed in the idealized substrate. 
+A natural question is how this potential relates to the properties of real substrates. 
+The effect of $\V$ in our model is to shift the chemical potential $\mu$ of the gas (see Sec.~\ref{sec:V_shifts_chem_pot}).
+Because our ideal substrate shifts the chemical potential of the gas molecules by providing a spatially uniform potential energy field, the entropy of the gas in the ideal substrate is equal to the entropy of the gas in its bulk state at the same density and temperature.
+In contrast, a real substrate provides a non-spatially uniform potential. Consequently, the entropy of the gas inside a real substrate is \emph{not} equal to the entropy of the bulk gas at the same density and temperature. 
+Therefore, the parameter analogous to $\V$ in a real substrate will involve both energy and entropy.
+The real-substrate analogy of $\V$ is the shift of molar Gibbs free energy provided by the substrate, specifically an \emph{isosteric} (or constant-density) shift of the Gibbs free energy:
+\begin{equation}
+   \gst(\rho, T) \equiv
+   %\frac{G_{\text{ads}}(\rho, T) - G_{\text{gas}}(\rho, T)}{N}\\ 
+    \mu_{\text{ads}}(\rho, T) - \mu_{\text{gas}}(\rho, T).
+  % \gst(\rho, T) &\equiv g_{\text{gas}}(\rho, T) - g_{\text{ads}}(\rho, T)
+  \label{eq:g_st}
+\end{equation}
+The isosteric Gibbs free energy difference $\gst$ is the difference in molar Gibbs free energy ($=$ chemical potential) between the adsorbed gas system and the bulk gas \emph{with the same density of gas molecules}. The quantity $\gst$ does \emph{not} correspond to a change in the molar Gibbs free energy as a molecule is adsorbed, which is zero under conditions of coexistence. 
+The quantity $\gst$ in a real substrate is a direct analogy to $\V$ in our ideal substrate because it is the chemical potential shift needed to impose on the bulk gas in coexistence with the real substrate to achieve the same density as in the substrate (compare with eqn.~\ref{eq:xi_vs_xi0}).
+Figure~\ref{fig:delta-G-cartoon} illustrates a hypothetical experiment to  measure $\gst$ via a piston with a removable partition that separates a volume of free space from the same volume of substrate. Note that $\gst$ is a property of both the substrate and the identity of the gas. Because real substrates offer a \emph{non}-spatially uniform potential, $\gst(\rho, T)$ is a function of $\rho$ and $T$, unlike our ideal, homogenous substrate where $\gst(\rho, T)=\V$. Consequently, throughout this article, we show $\gst(\rho, T)$ for real substrates at both conditions relevant to gas storage and delivery, $\pfull$ and $\pempty$. 
+% In the initial state, the partition isolates the bulk gas exhibiting density $\rho$ and temperature $T$. Then, the partition is removed and the piston pushes down on the gas so that the gas slowly adsorbs into the MOF in an isothermal process. \red{isothermal rite?} In the final state, the piston has pushed all gas into the MOF, resulting in an adsorbed gas phase with the same density $\rho$ and temperature $T$ as the initial state. The isosteric Gibbs free energy of adsorption, $\gst$, then follows from \red{is it the amount of heat released?}.
+
+\corysays{Fig.~\ref{fig:qst-vs-delta-G} looks too jumbled. two separate figs? plus $G_{st}$ is capitalized here, should be lowercase. where is all this data from}
+
+In practice, we can readily compute $\gst(\rho, T)$ of a real gas/substrate system from (i) the (experimental or simulated) equilibrium adsorption isotherm of the gas in the substrate and (ii) the (experimental or simulated) chemical potential of the bulk gas. 
+Consider the real substrate in thermodynamic equilibrium with a bulk gas at fixed temperature $T$ and pressure $p$, and let $\rho=\rho(p, T)$ be the density of gas in the substrate. 
+At coexistence, the chemical potential of the bulk gas is equal to the chemical potential of the adsorbed gas in the substrate. Thus, we can use the experimentally known molar Gibbs free energy of the pure, bulk gas system at temperature $T$ and pressure $p$ to determine the molar Gibbs free energy of the adsorbed system: $\mu_{\text{ads}}(\rho, T)=\mu_{\text{gas}}(p, T)$. We can then also look up the known chemical potential of the bulk gas at the same density and temperature as in the substrate, $\mu_{\text{gas}}(\rho, T)$. Via eqn.~\ref{eq:g_st}, $\gst$ follows from subtracting the two quantities.
+
+An interesting question is how $\gst$ relates to the commonly measured and reported isosteric heat of adsorption $q_{st}$, which is roughly the energy change when a gas molecule is adsorbed~\cite{sircar1999isosteric, tian2017differential}. Figure~\ref{fig:qst-vs-delta-G} shows how $q_{st}$ compares to $\gst$ for several prominent adsorbents. In every case, $|q_{st}|>|\gst|$ because the gas in the adsorbent always has less entropy than the gas in the bulk at the same density and temperature. That is, while adsorption is energetically favored, it is entropically disfavored due to the restrictions imposed on the configuration of the gas molecules via steric interactions with the substrate itself; this counters the energetic attraction. 
+
+\corysays{can u mathematically justify why $\gst$ is the relevant parameter through the grand canonical partition function in eqn.~\ref{eq:gcpf}? it is not true that $\Xi(\mu, V, T)$ for the real substrate is equal to $\Xi(\mu+\gst, V, T)$}
+
+\corysays{Fig.~\ref{fig:qst-vs-delta-G} should be split in two. one for methane one for h2.}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.95\columnwidth]{figs/qst-vs-delta-G}
+    \caption{Relationship between $\gst$ and the isosteric heat $q_{st}$ for several prominent adsorbents. The dots represent the properties of methane adsorption at 298\ K and at 5\ bar and 100\ bar. The $\times$'s represent the properties of hydrogen adsorption at 77\ K and at 5~bar and 100~bar.}
+    \label{fig:qst-vs-delta-G}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.95\columnwidth]{figs/methane-298-gst}
+    \caption{The density-dependence of $\gst$ of methane in several adsorbents (298\ K). Note that $\gst$ is monotonic in $\rho$. Data from Refs.~\ref{mason2014evaluating,furukawa2009storage}.
+    }
+    \label{fig:methane-gst}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.95\columnwidth]{figs/four-cases}
+    \caption{Four cases we consider.}
+    \label{fig:delta-gst-maximum}
+\end{figure}
+
+\section{An upper bound when $\gst(\rho)$ is monotonic}\label{sec:monotonic}
+Every MOF has a $\Delta g_\text{st}$ at a full and empty pressure corresponding to a full and empty density. The deliverable capacity of the MOF is equal to the difference between the full and empty density.
+Examining Fig.~\ref{fig:methane-gst}, we see that a significant variety of known experimental $\Delta g_\text{st}$ curves are monotonic.  Furthermore, our qualitative argument in Section~\ref{sec:upper-bound} suggests that this function \emph{should} be monotonically increasing for rigid substrates, as increasing the density of gas forces some of the gas to reside in higher-energy sites.  If this is always the case, the deliverable capacity will always be bounded by our theoretical upper bound, even for a value of $\V$ that is not optimal.
+
+To show this, we perform a thought experiment illustrated in Fig.~\ref{fig:delta-gst-maximum}.  We begin with two pairs of boxes containing gas.  Two of the boxes are filled with a MOF, and the other two have a uniform potential energy $\V$.  We could imagine the two boxes at $\V$ as being empty but at very low altitude where gravity provides a potential energy difference (relative to the box with the MOF in it) of $\V$ to each gas molecule (perhaps we are on Jupiter?).  One box of each sort has a density of gas $\rhofull$ corresponding to $\pfull$ in the MOF system, while the other two boxes has gas density $\rhoempty$.
+
+We now consider what happens if we introduce a diffusive connection between two boxes that are initially at the same density, for instance by connecting them with a tube.  If the chemical potential of the two boxes are equal, their density will be unchanged, otherwise gas will flow into the box with lower chemical potential.  The difference in chemical potential is equal to the difference
+\begin{align}
+   \gst(\rho) - \V &= \left(\mu_{\text{MOF}}(\rho) - \mu_{\text{gas}}(\rho)\right)
+   - \left(\mu_{\V}(\rho) - \mu_{\text{gas}}(\rho)\right)
+   \\
+   &= \mu_{\text{MOF}}(\rho) - \mu_{\V}(\rho).
+\end{align}
+Thus if $\gst(\rhoempty) = \V$ then the ``empty'' containers will remain at their initial density after they are connected.  Thus the deliverable capacity of the MOF will be greater than the deliverable capacity of the model with uniform potential $\V$ if and only if $\gst(\rhofull)<\V$, i.e. if $\gst(\rho)$ does \emph{not} monotonically increase.  By the same token, if we consider the case where $\gst(\rhofull) = \V$, then to achieve a greater deliverable capacity than our model, the MOF must have less residual gas, which means that gas must spontaneously flow from the low-density MOF to the box with potential $\V$, which means that $\gst(\rhoempty)>\V$.  So once again exceeding our upper bound requires a material with a $\gst(\rho)$ that does not increase monotonically.
+
+Taken together, this indicates that not only is our absolute upper bound an upper bound for rigid MOFs, but the green curve labeled $\rho_D(\gst)$ in Figs.~\ref{fig:methane-298-D}, \ref{fig:hydrogen-298-D}, and \ref{fig:hydrogen-77-D} is an upper bound for materials with a non-optimal $\gst$.
+
+\section{Cryogenic hydrogen storage}\label{sec:cryo-hydrogen}
+\begin{figure}
+    \centering
+    FIGURE HERE A B C D
+    \includegraphics[width=0.95\columnwidth]{figs/hydrogen-77-n-vs-G}
+    \caption{Deliverable capacity of hydrogen at liquid nitrogren temperature as a function of the attractive Gibbs free energy $\gst$. Experimental deliverable capacities for several MOFs are shown along with the experimental values for $\gst$ at the empty and full pressures shown as x's connected by a line.}
+    \label{fig:hydrogen-77-D}
+\end{figure}
+
+One approach to increase the deliverable capacity is to reduce the storage temperature. This is illustrated in Fig.~\ref{fig:hydrogen-77-D}, which shows the upper bound to the deliverable capacity of hydrogen at 77\ K, the boiling point of nitrogen. The DOE ULTIMATE target in this case looks far more achievable, and with a much lower $|\gst|$. In fact, an empty tank at this temperature can satisfy the DOE 2020 target. The DOE ULTIMATE target is 14\% below the upper bound. Actual MOFs fall far short of the theoretical maximum. \red{the target is not just a storage density, it specifies temps and pressures too... is 77 K allowed?} \davidsays{My recollection of my reading of the DOE target was that anything was allowed, but that the target included ``everything'', which would include both the tank and any cryogenic equipment required.  So the answer is not so simple.}
+
+%TC:endignore
+
+\end{document}

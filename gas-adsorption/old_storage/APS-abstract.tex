@@ -1,0 +1,37 @@
+\documentclass[letterpaper,onecolumn,amsmath,amssymb,jcp,aps,12pt]{revtex4-1}
+\usepackage{xargs}      % Use more than one optional parameter in a new commands
+\usepackage{titlesec}
+\newcommand{\sectionbreak}{\clearpage}
+\usepackage{color}
+%\usepackage[utf8]{inputenc}
+%\usepackage[english]{babel}
+\usepackage[document]{ragged2e}
+
+\begin{document}
+
+\pagenumbering{gobble}
+\begin{center}
+    \textbf{Abstract}: Limited to 1300 characters
+\end{center}
+
+\center{}
+\textbf{Authors:} Jordan K. Pommerenck, Cory M. Simon, David J. Roundy
+
+\justify{}
+The transportation sector accounts for 38\% of US energy-related carbon dioxide emissions \cite{useia} and generates toxic air pollution (particulate matter, ozone, NO$_x$, SO$_x$, carbon monoxide, volatile organic compounds) \cite{caiazzo2013air}. Alternative transportation fuels, such as natural gas or hydrogen, are therefore critical to mitigate climate change \cite{mcglade2015geographical} and improve air quality.
+%
+Both natural gas and hydrogen (gas) possess a very low volumetric energy density compared to (liquid) gasoline. Consequently, under storage space constraints in passenger vehicles, they must be densified such as through physical adsorption on nanoporous materials \cite{schoedel2016role} in order to drive a reasonable distance on a full tank of fuel.  
+%
+The US Department of Energy (DOE) set storage targets for adsorbed natural gas and hydrogen onboard light vehicles.
+To assess the feasibility of these targets, we provide a theoretical upper bound on the density of natural gas and hydrogen that can be stored in and delivered by nanoporous materials via a pressure swing.
+We conclude that, while the DOE storage targets are theoretically possible, the material would require a void fraction that is outside the range of void fractions in known materials exhibiting sufficient interactions with the gas.
+
+\justify{}
+\textbf{Keywords:} MOF, natural gas, hydrogen, void fraction, vehicular storage
+
+% used if I wanted a new page with new section and numbering
+%\section{NextSection}
+%\pagenumbering{arabic}
+
+\bibliography{bibfile}
+\end{document}

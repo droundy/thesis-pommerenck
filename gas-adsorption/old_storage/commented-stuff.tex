@@ -1,0 +1,106 @@
+
+% \section{Appendix}
+
+% \subsection{A thermodynamic upper bound on $\rho_u$ for an ideal gas does not exist}
+% We used experimental data to characterize the equation of state $\rho(\mu)$ for methane and hydrogen in Figs. X when determining an upper bound on the deliverable capacity $rho_u$. Of course, these $\rho(\mu)$ curves account for attraction and repulsion (excluded volume) between the gas molecules. An interesting question is, does $\rho_u$ present a maximum for an ideal gas when scanning all possible uniform background potential energy fields $\V$?
+
+% The density of an ideal gas $\rho(\mu)\propto e^{\beta\mu}$. According to eqn.~\ref{eq:DofPhi}, when a uniform background potential $\V$ is imposed, the usable capacity of an ideal gas is:
+% \begin{equation}
+%     \rho_{u,ig}(\V; \mu_H, \mu_L) \propto e^{-\beta \phi} \left( e^{\beta \mu_H} - e^{\beta \mu_L} \right).
+% \end{equation} This shows that $\rho_{u,ig}$ grows unbounded as we make the background potential energy field more attractive. Thus, gas-gas repulsion (excluded volume) is critical to describe when assessing usable capacity limits.
+
+
+% \clearpage
+% \section{Old stuff}
+
+% \unsure[inline]{The reality: $E_{gh}=E_0(\mathbf{x}, \mathbf{\theta})$ where $\mathbf{x}$ is center of mass of gas molecule and $\mathbf{\theta}$ includes orientation of gas (rigid assumption here). How to go from this to saying spatial uniform is best for upper bound? David, you said this essentially knocks out states? And upper bound for $n(P_H)$ is not upper bound for $D$! awkward. So maybe instead of saying this is a thermodynamic upper bound, say that, we pose a simple model to estimate at best, what the performance could be. Then we need to multiply for factor that accounts for material taking up space.
+% }
+
+% For a generous upper bound on the amount adsorbed at $P_H$, we neglect the space taken up by the atoms comprising the material (which would manifest in a repulsive potential energy field felt by the gas) and endow the control volume with a spatially uniform potential energy field $E_{gh}$. The potential energy of the control volume with $n$ adsorbed molecules is then, under these assumptions:
+% \begin{equation}
+%     E(n) = n E_{gh} +E_{gg}(n/V).
+% \end{equation} The grand-canonical partition function $\Xi$ of the control volume is:
+% \begin{equation}
+%     \Xi(\mu, V, T)=\displaystyle \sum_{n=0}^\infty (\Lambda ^{-3} V)^n e^{\beta (\mu -E_{gh})n - \beta E_{gg}(n/V)}.
+%     \label{eq:xi}
+% \end{equation} From eqn.~\ref{eq:xi}, we see that the grand-canonical partition function of the control volume endowed with background potential energy $E_{gh}$ is that of a real gas exhibiting chemical potential $\mu^*$:
+% \begin{equation}
+%     \Xi_{real gas}(\mu^*, V, T)=\displaystyle \sum_{n=0}^\infty (\Lambda ^{-3} V)^n e^{\beta \mu^*n -\beta E_{gg}(n/V)}.
+%     \label{eq:xi_real}
+% \end{equation} with $\mu^*=\mu-E_{gh}$. This indicates that, under these assumptions, the thermodynamic properties of the control volume endowed with background energy field $E_{gh}$ at chemical potential $\mu$ are the same as the cognate real gas but with chemical potential increased by $-E_{gh}$.
+
+% \unsure[inline]{OKAY, the above is not optimal. so mean field theory is restrictive, this is more general. I think we can write the super general partition function of the real gas, then argue that, whatever that partition function is (we cant write it and don't know it), a *uniform* background energy will not bias any microstate over another if N is the same. the only necessary thing here is that Ugg and Ugh are additive.}
+
+% {\color{blue}
+% \subsection{Why does the chemical potential shift?!}
+% The classical view of a real gas in a container $\Omega$ where $|\Omega | =V$:
+
+% \begin{multline}
+%     \Xi_{real gas}(\mu, V, T)= \\ \displaystyle \sum_{N=0}^\infty \Lambda^{-3N} \int_{\Omega} \cdots \int_{\Omega} e^{-\beta E_{gg}(\xvec_1, ..., \xvec_N)} e^{\beta \mu N} d\xvec_1 \cdots d\xvec_N.
+%     \label{eq:xi_realgas}
+% \end{multline} We do not know the complicated function $E_{gg}(\xvec_1, ..., \xvec_N)$ that characterizes the multi-body potential of a configuration of gas molecules in the volume. However, we will represent the effect of $E_{gg}$ from experimental $(\rho, P, T)$ gas data from NIST~\cite{nist}.
+
+% If we endow the control volume $\Omega$ with a spatially uniform potential energy field $E_{gh}$, the potential energy of $E$ of a microstate is modeled as two additive contributions from gas-host and gas-gas interactions:
+% \begin{equation}
+%     E(\xvec_1, ..., \xvec_N) = N E_{gh} + E_{gg}(\xvec_1, ..., \xvec_N),
+% \end{equation} where the gas-gas interactions $E_{gg}$ are equivalent as in the real gas, which is justified by the \emph{spatially uniform} background potential energy that does not e.g. cause electronic density on the gas molecule to redistribute or incentivize the molecule to stretch \unsure{this part trips me up}. Under a Canonical ensemble, the background potential energy is spatially uniform and thus does not change the probability of observing a microstate compared to the cognate gas phase. The grand-canonical partition function of the control volume with spatially uniform energy is:
+% % Because a \emph{spatially uniform} background energy does not bias any Canonical ensemble gas microstate, the gas-gas potential
+
+% \begin{multline}
+%     \Xi(\mu, V, T)= \\ \displaystyle \sum_{N=0}^\infty \Lambda^{-3N} \int_{\Omega} \cdots \int_{\Omega} e^{-\beta E_{gg}(\xvec_1, ..., \xvec_N)} e^{\beta N( \mu - E_{gh})}  d\xvec_1 \cdots d\xvec_N \\
+%      \Xi_{real gas}(\mu - E_{gh}, V, T).
+%     \label{eq:xi_backgroundenergy}
+% \end{multline}
+
+% Comparing eqn.~\ref{eq:xi_backgroundenergy} to eqn.~\ref{eq:xi_realgas} indicates that the thermodynamic properties of the control volume endowed with background energy field $E_{gh}$ at chemical potential $\mu$ are the same as the cognate real gas with chemical potential increased by $-E_{gh}$.
+
+% }
+
+
+
+% The material penalty. Unfortunately the material penalty is correlated with the ability to create background energy field; need material to create the potential field!
+
+% \section{Molecular insights}
+% Given that our method of determining a
+
+% \section{Conclusions}
+
+% Consider a
+
+% \section{Discussion}
+
+% While our thermodynamic upper bound for gas delivery via a pressure swing was discussed within the context of nanoporous materials, we note that our methodology applies to a generic control volume regardless of its contents. That is, the external field within the control volume imposed by the metal-organic framework could be replaced by... instead of adsorption, absorption in a liquid; same applies right?
+
+% The isothermal deliverable capacity we investigated in this work neglects heat released/consumed upon ad/desorption, which changes the adsorbed amount at both filling and fully used conditions \cite{mota1997dynamics,chang1996behavior}. Intriguingly, advanced metal-organic frameworks that undergo first-order structural phase transitions upon ad/desorption of gas are being developed that intrinsically offset the heat of ad/desorption when undergoing the structural transition \cite{mason2015methane}.
+
+% \section{Acknowledgement}
+
+% We gratefully acknowledge
+
+% \section{Another attempt at establishing upper bound}
+% We will begin by considering the dilute limit, in which the guests may be assumed to be non-interacting.  At low concentration (in both MOF and gas phase), the equilibrium between the MOF and the gas phase has the usual behavior of any chemical reaction, where the equilibrium constant is governed by the change in Gibbs free energy.
+% \newcommand\gas{\text{gas}}
+% \newcommand\mof{\text{MOF}}
+% \begin{align}
+%     \frac{\rho_\mof}{\rho_\gas} &= e^{\beta \Delta G^\ominus}
+% \end{align}
+% This relationship is true for any substrate, and indicates that a large Gibbs free energy of adsorption will lead to a higher concentration.  We take this low concentration limit to define $\Delta G^\ominus$.  As we increase the concentration of guests, however, we need to use the \emph{activity} rather than the concentration in the equilibrium relation:
+% \begin{align}
+%     \frac{a_\mof}{a_\gas} &= e^{\beta \Delta G^\ominus}\label{eq:activity-ratio}
+% \end{align}
+% where $a_\mof$ is the activity of the guests in the substrate.  This is again precisely true.  The remaining challenge is to relate the activity to the concentration of guests.  \davidsays{Note that by taking a logarithm of each side we can relate this to chemical potentials, but that gets confusing because it really means "internal" chemical potentials.  Advantage of talking about activities is that an activity by definition is "internal" and is normally used in this way.}
+
+% \maybecut{
+% We note that the activity is defined as an exponential of the internal chemical potential:
+% \begin{align}
+%     a &\equiv e^{\beta (\mu-\mu^\ominus)}
+% \end{align}
+% where $\mu_0$ is the standard chemical potential for the species.  In our case, the species is identical for each state, so we will use the same standard chemical potential and it will drop out of the ratio in Eq.~\ref{eq:activity-ratio}.  This tells us that the "internal" chemical potential of the gas and the MOF will differ by $\Delta G^\ominus$
+% }
+
+% \subsection{Activity in the substrate}
+% The task now is to model the relationship between the density of guests and their activity in the substrate.  If the effect of the substrate were to add a uniform attractive potential energy felt by the guests, then the relationship between activity and density would be identical in the substrate and the gas (i.e. the only difference would be the potential energy given by $\Delta G^\ominus$).
+
+% We aim to show that the density corresponding to a given activity would be lower for any non-uniform interaction that results in the same $\Delta G^\ominus$.  Further, we will argue that this discrepancy from ideal behavior will be greater at higher densities, which will mean that using the equation of state for the pure substance provides an upper bound on the deliverable capacity of any substrate.
+
+% \davidsays{I don't think the reasoning here can be universal, because in some substances the concentration is higher than that of an ideal gas.  I think we need to argue that adsorption on a substrate is primarily of interest for gasses that do not liquify at a the temperature we are considering (i.e. we are supercritical).  This means that repulsive guest-guest interactions dominate over attractive interactions, and the density goes down in a sense.}

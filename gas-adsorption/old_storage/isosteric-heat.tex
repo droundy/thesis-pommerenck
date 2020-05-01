@@ -1,0 +1,573 @@
+\documentclass[letterpaper,twocolumn,amsmath,amssymb,jcp,aps,10pt]{revtex4-1}
+\usepackage{graphicx} % Include figure files
+\usepackage{color}
+\usepackage{amsmath}
+
+\usepackage{nicefrac} % Include for inline fractions
+\usepackage{url}
+
+% \usepackage{cite}
+\usepackage{xargs}                      % Use more than one optional parameter in a new commands
+\usepackage[pdftex,dvipsnames]{xcolor}  % Coloured text etc.
+%
+\usepackage[colorinlistoftodos,prependcaption,textsize=normalsize]{todonotes}
+\newcommandx{\unsure}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2} }
+\usepackage{mdframed}
+
+\newcommand{\addcite}{{\bf \color{red} []}}
+\newcommand{\xvec}{\mathbf{x}}
+\newcommand{\thetavec}{\boldsymbol \theta}
+
+\newcommand\V{\Phi}
+\newcommand\Vk{\tilde\Phi(\vec k)}
+\newcommand\volume{V}
+
+\newcommand{\red}[1]{{\bf \color{red} #1}}
+\newcommand{\green}[1]{{\bf \color{green} #1}}
+\newcommand{\blue}[1]{{\bf \color{blue} #1}}
+\newcommand{\cyan}[1]{{\bf \color{cyan} #1}}
+
+% define colors for comments
+\definecolor{dark-gray}{gray}{0.10}
+\definecolor{light-gray}{gray}{0.70}
+
+\newcommandx{\davidsays}[2][1=inline]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{\textbf{David says:} #2} }
+\newcommandx{\jpsays}[2][1=inline]{\todo[linecolor=gray,backgroundcolor=light-gray,bordercolor=dark-gray,#1]{\textbf{Jordan says:} #2} }
+\newcommandx{\corysays}[2][1=inline]{\todo[linecolor=green,backgroundcolor=green!25,bordercolor=green,#1]{\textbf{Cory says:} #2} }
+\newcommand{\jpinline}[1]{{\color{red} [\blue{Jordan:} \emph{#1}]}}
+\newcommandx{\maybecut}[1]{\begin{mdframed}[backgroundcolor=cyan!24]\textbf{Maybe cut:} #1\end{mdframed} }
+
+\begin{document}
+\title{Adsorbed, absorbed or sorbed gasses?}
+% other ideas:
+%Gas delivery via pressure-swing adsorption in nanoporous materials: setting storage targets}
+% A thermodynamic upper bound to gas delivery via pressure-swing adsorption in nanoporous materials:}
+
+\author{Jordan K. Pommerenck}
+\affiliation{Department of Physics, Oregon State University,
+  Corvallis, OR 97331}
+\author{Cory M. Simon}
+\affiliation{School of Chemical, Biological, and Environmental Engineering,
+  Corvallis, OR 97331}
+\author{David Roundy}
+\affiliation{Department of Physics, Oregon State University,
+  Corvallis, OR 97331}
+
+\begin{abstract}
+  We discuss the isosteric heat of adsorption, and how it is not the energy of adsorption and how it relates to
+  $\Phi$.
+\end{abstract}
+
+\maketitle
+
+\subsection{New ideas/things/points to make}
+\begin{enumerate}
+    \item ($Q_{st}$) Net vs. absolute for Clausius Clapeyron?
+    \item ($Q_{st}$) Can't use ideal gas for Qst Clausius Clapeyron things at 100 bar (try it!) Quantify error introduced.
+    \item ($Q_{st}$) Relate Qst to the actual adsorption energy, the potential field created by the MOF. (Also to other differences)
+    \item ($Q_{st}$) Relate calorimetry to T dependence of isotherms
+    \item how does $Q_{st}$ relate to the actual potential energy that an adsorbate experiences while in the MOF?
+    \item Point out that by measuring nabs vs p they measure the Gibbs free energy
+      (thus entropy comes from the T dependence)...
+      and does this lead to other ways of analyzing experimental data?
+      Question: How to find $Q_{st}$ from the Gibbs free energy?
+    \item Address mechanical pressure theoretically?
+    \item Calculating $Q_{st}$: method of interpolating the data: linear interpolation vs model fitting vs splines. An advantage of model: allows you to extrapolate to both low and high pressures.
+\end{enumerate}
+\subsection{Ideas/things/points that others have made which we should emphasize}
+\begin{enumerate}
+ \item Explain carefully excess/net/absolute distinction.
+    \item Argue carefully that surface excess is a red herring \textbf{This has already been done!}
+\end{enumerate}
+
+\section*{todo Tuesday June 25}
+
+\begin{description}
+    \item[Cory] does intro and abs/net/exc figure.
+    \item[Jordan] does n vs T isothermal and p vs T isosteric plot and maybe qst (S37 from supplemental could be interesting) from Long's data.  If there is no maximum excess then look for other data?
+    \item[David] visits relatives, thinks about what we can get from the Gibbs free energy (available volume)
+\end{description}
+
+\newcommand\Nabs{N_{\text{abs}}}
+\newcommand\Sabs{S_{\text{abs}}}
+\newcommand\Gabs{G_{\text{abs}}}
+\newcommand\sabs{s_{\text{abs}}}
+\newcommand\vabs{v_{\text{abs}}}
+\newcommand\muads{\mu_{\text{ads}}}
+
+\newcommand\Nmof{N_{\text{MOF}}}
+\newcommand\Vmof{V_{\text{MOF}}}
+\newcommand\mumof{\mu_{\text{MOF}}}
+
+\newcommand\Ngas{N_{\text{gas}}}
+\newcommand\Sgas{S_{\text{gas}}}
+\newcommand\sgas{s_{\text{gas}}}
+\newcommand\Vgas{V_{\text{gas}}}
+\newcommand\vgas{v_{\text{gas}}}
+\newcommand\mugas{\mu_{\text{gas}}}
+
+\newcommand\pisostere{p_{\text{iosteric}}} % this is the pressure isotherm with the density also held fixed
+
+\section{Introduction}
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.95\columnwidth]{MOF5-excess-methane-isotherm.pdf}
+    \includegraphics[width=0.95\columnwidth]{MOF5-absolute-methane-isotherm.pdf}
+    \caption{The absolute, net, and excess adsorption isotherms for methane in MOF-5
+    taken from Mason and Long paper 2014.}
+    \label{fig:mof-5-isotherms}
+\end{figure}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.95\columnwidth]{MOF5-excess-methane-isostere.pdf}
+    \includegraphics[width=0.95\columnwidth]{MOF5-absolute-methane-isostere.pdf}
+    \caption{The absolute, net, and excess adsorption isosteres for methane in MOF-5.  Note that the pressure is not a function of temperature for an excess adsorption isostere.}
+    \label{fig:mof-5-isosteres}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.95\columnwidth]{MOF5-excess-methane-Qst.pdf}
+    \includegraphics[width=0.95\columnwidth]{MOF5-absolute-methane-Qst.pdf}
+    \caption{The absolute, net, and excess adsorption Qst for methane in MOF-5.}
+    \label{fig:mof-5-isosteres}
+\end{figure}
+
+\subsection{Why gas storage matters (Cory TODO)}
+
+\section{Definitions (Cory TODO)}
+\emph{Densities excess/absolute/net.  Which matter for what.  While explaining, refer to Fig.~\ref{fig:mof-5-isotherms} and Fig.~\ref{fig:mof-5-isosteres}.}
+
+\section{Density measurement}
+\davidsays{I don't think we can write this paper without \emph{some} discussion of what is actually being measured.
+  Hopefully with less detail than a few other papers we like, which we will cite.}
+\subsection{Gravimetric measurement?}
+\subsection{Volumetric measurement?}
+\subsection{``Breakthrough'' measurement?}
+
+\section{What can we extract from isotherms?}
+
+\subsection{Isosteric heat}
+Aside from the density isotherms, the most widely reported adsorption property is the isosteric heat.  In this section, we will define this quantity, explain how it is measured experimentally, and discuss its properties~\footnote{Add citation for a few papers about it}.  The most widely used approach for measuring the isosteric heat uses the Clausius-Clapeyron relation together with an assumption that the gas phase is ideal~\footnote{Who gets cited for Clausius-Clapeyron equation?}.  We will begin by presenting a derivation of this result that starts with the Gibbs-Duhem relation.
+\subsubsection{Gibbs-Duhem}
+We will begin by reminding the reader of the origin of the Gibbs-Duhem relation.  It begins with Euler's homogeneous function theorem, which shows that an extensive function of extensive variables must be given by a product of its inputs with the partial derivative with respect to those inputs.  When applied to a system with adsorbate as well as an adsorbent, we must consider the number of each species as a separate extensive quantity.  Thus
+\begin{align}
+    U &= TS - p\Vmof + \mumof \Nmof + \muads \Nabs
+\end{align}
+where we $\Nabs$ refers to the \emph{absolute} number of molecules adsorbed, which is necessary because the pressure $p$ in this expression is the derivative of the internal energy with respect to the \textbf{total volume FIXME make this align with definitions above} of the system.
+Taking a differential of this expression and comparing with the thermodynamic identity gives us the Gibbs-Duhem relationship
+\begin{align}
+     0 &= S dT - \Vmof dp + \mumof d\Nmof + \Nabs d\muads
+\end{align}
+Once we agree that the quantity of MOF will not change, we can eliminate $d\Nmof$ from the equation, obtaining the more familiar expression.
+\begin{align}
+     \Nabs d\muads &= -S dT + \Vmof dp
+\end{align}
+We note that this expression is true for the pure gas as well as the adsorbed gas.  We can now compare equal quantities of gas in equilibrium with the adsorbent.  Since the two are in diffusive equilibrium, both systems will have equal chemical potentials.  Thus
+\begin{align}
+    0 &= Nd\mugas - Nd\muads \\
+    &= (-\Sgas dT + \Vgas dp) - (-\Sabs dT + \Vmof d\pisostere) \\
+    &= (\Sabs - \Sgas)dT - (\Vmof - \Vgas)d\pisostere \\
+    \left(\frac{\partial p}{\partial T}\right)_{\Nabs} &= \frac{\sabs - \sgas}{\vabs - \vgas}
+\end{align}
+where $\sabs$ is the molar entropy of the adsorbate, $\sgas$ is the molar entropy of the coexisting gas, $\vabs$ is the molar volume of the adsorbate, and $\vgas$ is the molar volume of the coexisting gas.  At this point, we can identify the isosteric heat as
+\begin{align}
+    Q_{st} &\equiv T(\sgas - \sabs) \\
+    &= T(\vgas - \vabs)\left(\frac{\partial p}{\partial T}\right)_{\Nabs}
+\end{align}
+At this point, two approximations are commonly made.  One is to assume that the density of the gas is much lower than the density in the MOF.  This assumption is false at sufficiently high pressures---i.e. the density of the gas is \emph{greater} than the adsorbed density---due to steric repulsion with the MOF atoms.  The second assumption is that the gas is ideal, which is also a poor approximation at high pressures.  In the low-pressure limit, we find the commonly used expression~\footnote{Cite numerous papers here that use this approximation}
+\begin{align}
+    Q_{st} &= \frac{RT^2}{p}\left(\frac{\partial p}{\partial T}\right)_{\Nabs}
+\end{align}
+which is derived by~\footnote{Who is cited for this?}.
+\davidsays{We should demonstrate how and when this breaks down.}
+
+\subsubsection{Clausius-Clapeyron}
+\subsubsection{Different expressions for Qst}
+\subsubsection{ideal gas simplifications}
+\paragraph{How big an error is it?}
+\subsection{Gibbs free energy}
+\emph{We know the density as a function of Gibbs free energy, which is readily determined from the bulk pressure in equilibrium.  Once $G(\rho,T)$ (or equivalently $\mu(\rho,T)$) is known we can work with that more easily?}
+
+\begin{align}
+    dG &= -SdT + Vdp + \mu dN
+\end{align}
+which reminds us that
+\begin{align}
+    S &= -\left(\frac{\partial G}{\partial T}\right)_{p,N}
+\end{align}
+Our definition of $Q_{st}$ was
+\begin{align}
+    Q_{st} &\equiv T\left(\frac{\Sgas}{\Ngas} - \frac{\Sabs}{\Nabs}\right)
+    \\
+    &= T\left(\frac{\Sgas}{\Ngas} + \frac{1}{\Nabs}\left(\frac{\partial \Gabs}{\partial T}\right)_{\Nabs}\right)
+\end{align}
+
+\subsection{Entropy}
+
+\emph{What entropy should we talk about?}
+
+\bibliography{bibfile}
+
+
+
+
+
+
+
+
+
+
+
+
+\clearpage
+\appendix
+
+\section{Literature Review}
+\jpsays{I will attempt to break up papers of interest by topic using forward/backward search.}
+\subsection{Derivation of $q_\text{st}$}
+\begin{enumerate}
+\item {\textbf{1985}} We read together Sircar et al.~\cite{sircar1985excess} which derives $q_\text{st}$ in a long and notationally difficult way (Cory noted the Maxwell relation not specifically stated in this paper).
+
+\item {\textbf{1998}} Huanhua Pan et al. greatly improves on this derivation of $q_\text{st}$~\cite{pan1998examination}. He has a much cleaner derivation, notes Maxwell relation, and discusses how assumtions (1) neglecting the adsorbed phase molar volume and (2) assuming an ideal gas are made to get to Classius-Clapeyron equation. These assumptions can be avoided by using 3 different methods which they discuss in detail.
+
+\item {\textbf{1999}} Sircar et al. derives $q_\text{st}$ using both GSE and conventional model. He is a strong proponent for using surface excess. He derives the heat of adsorption and notes assumptions necessary to use it in conjuction with isostere data~\cite{sircar1999isosteric}.
+
+\item {\textbf{2002}} Myers and Monson use a simple thermodynamic model, consisting of the Langmuir equation for the adsorption isotherm and the ideal gas equation of state for bulk properties, to calculate excess and absolute thermodynamic variables~\cite{myers2002adsorption}.
+
+\item {\textbf{2017}} Tian et al. cites~\cite{pan1998examination} stating that the Gibsean formalism [surface excess] predicts a nonphysical isosteric heat when the adsorption isotherm exhibits a maximum He cites~\cite{myers2014physical} for this idea. The paper introduces a rigorous thermodynamic procedure for heat analysis that is free of inconsistency yet convenient for practical applications. The controversial issues with conventional isostere methods have also been clarified in the context of the exact results~\cite{tian2017differential}.
+\textcolor{red}{This and Myers and Monson work both hint at or directly argue that surface excess is `red herring'}
+% New Subsection
+\subsection{Calorimetry experiments}
+\item {\textbf{1996} and \textbf{2001}} Dunne et al. (Myers and Sircar both coauthors) describes calorimetry experiments in detail~\cite{dunne1996calorimetric}. Cao and Sircar also further describe the calorimetry measurement process in this work~\cite{cao2001heats}.
+
+\item {\textbf{2005}} Sircar et al. references his derivation $q_\text{st}$ using GSE (He is a strong proponent of this). He references experiments using Tian–Calvet type micro-calorimeters to obtain isostere data~\cite{sircar2005heat}.
+
+% New Subsection
+\subsection{Net, Excess, and Absolute Adsorption}
+\item {\textbf{2013}} Talu et al. has an excellent discussion of the measurable properties of microporous adsorption (what things do experimentalists measure). Also, Figure 1 illustrates accessible regions for storage using the Gibbs `hyper-surface' (GSE) for each type of adsorption (N, E, or A)~\cite{talu2013net}.
+
+\item {\textbf{2014}} Myers and Monson state the GSE is inappropriate for porous solids. Absolute sorption should be reported particularly for high pressures 100 bar or more~\cite{myers2014physical}.
+
+\corysays{how exactly do they get the pore volume of the MOF?}
+\textbf{ANSWER} The pore size distribution from the gas adsorption method is commonly analyzed from the nitrogen or Ar adsorption (87.3 K) isotherm at their boiling temperature. From the isotherm data, DFT is used to calculate the pore size (with the user specifying the pore geometry~\cite{groen2003pore}.
+
+\corysays{why is cryogenic Ar useful for determining micropore volume in particular? and why is volumetric technique more accurate at low pressures?}
+\textbf{QUANTACHROME INSTRUMENTS}
+It is now well established (see the latest IUPAC recommendations in Pure. Appl. Chem. 87 (2015) 1051)) that argon molecules provide distinct advantages over nitrogen molecules for gas sorption analyses, including the following:
+Unlike nitrogen, argon has no quadrupole moment. Thus, using argon as adsorbate eliminates specific chemical interactions with polar/ionic surface sites;
+As a result, argon physisorption isotherms provide much more reliable fingerprints of the interactions modeled by today’s most advanced techniques (e.g., QSDFT) for pore size characterization; and
+Argon sorption analyses at its boiling point (87K) can be significantly faster than conventional N2/77K experiments, because the filling of similar pores can occur much more readily at much higher relative pressures;
+
+\item {\textbf{2016}} Brandani and Lev Sarkisov thermodyncamic models need the absolute adsorbed amount (opposed to net or excess). The authors recommend experimentalists including the non-accessible volume if they continue to report excess adsorbed so that net adsorption can be easily calculated~\cite{brandani2016net}.
+
+\item {\textbf{2017}} Brandani et al. The analysis presented is a further indication that absolute adsorption is the thermodynamic variable to use in describing adsorption~\cite{brandani2017net}. Notes that Talu~\cite{talu2013net} IAST (Ideal Adsorption Solution Theory) equations obtained are
+inconsistent.  Absolute adsorption is what should be used as Myers~\cite{myers2014physical} derived correctly.
+\end{enumerate}
+
+
+
+\section{Introduction}
+The isosteric heat of adsorption $q_\text{st}$ represents a cornerstone thermodynamic variable for
+designing
+experimental gas storage systems~\cite{rudzinski2012adsorption, sturluson2019role, patil2016noria, banerjee2016metal}. Adsorption isotherm measurements have been used to
+determine the amount of adsorbate that can viably transition to the adsorbent phase for storage~\cite{matranga1992storage, mulfort2007chemical}. For gas storage systems, $q_\text{st}$
+is useful in helping to determine which materials would work as an adsorbent. High $q_\text{st}$ leads to strong
+attraction (leading to storage), while a weak $q_\text{st}$ leads to easy extraction of the
+adsorbate. Finding the optimal balance yields the maximum deliverable capacity that can be extracted from
+the gas storage system~\cite{song2015nbo, bae2010optimal}.
+
+Experimentalists have long used the Clausius-Clapeyron equation in order to extract $q_\text{st}$ from
+isotherm data~\cite{pan1998examination, lee2005gas, geier2013selective}. The conventional method employed by researchers is to extract data from an isostere
+i.e. constant loading of a P vs. T dataset.  Next, a derivative is taken of the log of the pressure vs the temperature. $q_\text{st}$ can then be defined as~\cite{yang1997adsorption}:
+\begin{equation}
+    q_\text{st} \equiv R T^2\left( \frac{\delta \ln f}{\delta T}
+    \right)_{n}
+    \label{eq:qst-common}
+\end{equation}
+If the gas is ideal, then the fugacity is equal to the adsorption pressure $f = P$. The $q_\text{st}$ can directly be extracted from the slope of the experimental isostere.
+The Clausius-Clapeyron equation however assumes that the adsorbate behaves as an ideal gas which means at
+high pressures there will be error~\cite{pan1998examination} although for real gasses one could derive
+$q_\text{st}$~\cite{askalany2015derivation}.
+\jpsays{People also use the Van't Hoff equation or is that an intermediate step to get CC equation?}
+
+Describe $\Phi$ in terms of isosteric heat and what exactly it is in the system how it relates to the enthalpy of adsorption.
+\begin{equation}
+-q_\text{st} = \Phi + \Delta H
+\end{equation}
+\subsection{What is the problem}
+
+The differential heat of adsorption $q_\text{st}^d$ derived through the Gibbs Surface Excess (GSE) Model is actually (assuming an ideal gas mixture):
+\begin{equation}
+    q_\text{st}^d = R T^2\left( \frac{\delta \ln \left( P y_i \right)}{\delta T} \right)_{n_i^m} - RT
+\end{equation}
+For a single-component adsorbate $y_i = 1$. Thus the GSE model has an additional term $RT$ versus the conventional model
+in literature~\cite{sircar1999heat,sircar1999isosteric}.
+
+\subsection{How does this paper solve the problem}
+Because of the apparent misunderstanding in literature about $q_\text{st}$ and its relation to the
+experimentally measured heat of adsorption, we show via derivation and insightful cartoon how to relate
+the heat of adsorption $q_\text{st}$ to the potential field of the adsorbent $\Phi$.
+
+\section{David derives $q_\text{st}$ using Gibbs-Duhem}
+We can start with the Gibbs-Duhem equation
+\begin{align}
+  Nd\mu &= -SdT + Vdp
+\end{align}
+\davidsays{Note that this is only valid for the entire volume (absolute absorption)
+based on how Euler's Homogeneous Function Theorem is derived.}
+which is true for both the pure gas and the adsorbed gas, and tells us
+how the chemical potential changes when you change the temperature and
+pressure.
+
+So let's ask what the difference is between equal amounts of gas and
+adsorbate.  If we assume that the MOF is incompressible, then this
+means the density in the MOF is constant, thus isosteric.
+\begin{align}
+  Nd\mu_\text{gas} - Nd\mu_\text{ads} &= -S_\text{gas}dT +
+  V_\text{gas}dp
+  - \left(-S_\text{ads}dT + V_\text{ads}dp\right)
+  \\
+  0 &= -(s_\text{gas} - s_\text{ads})dT + (v_\text{gas}-v_\text{ads})dp
+\end{align}
+where we used the fact that the gas and adsorbate are taken to be in
+equilibrium.  This tells us that
+\begin{align}
+  \left(\frac{\partial p}{\partial T}\right)_{n_\text{ads}}
+  &= \frac{s_\text{gas} - s_\text{ads}}{v_\text{gas}-v_\text{ads}}
+\end{align}
+Once again we can solve for $\Delta s$ and thus $q_\text{st}$.  This
+heat, with think, is the heat that happens (leaves?) if you start with
+an empty mof and a full gas, and then gradually decrease the volume of
+the gas and fill up the MOF so you end up with all the atoms in the
+mof.
+\begin{align}
+  q_\text{st} &= T\Delta s \label{eq:david-qst}
+  \\
+  &= T(v_\text{gas}-v_\text{ads})
+  \left(\frac{\partial p}{\partial T}\right)_{n_\text{ads}}
+\end{align}
+and this lets us know the isosteric heat.  Again, we could assume that
+$v_\text{gas}\gg v_\text{ads}$ and that the gas is ideal.  This would
+tell us that
+\begin{align}
+  q_\text{st} &\approx
+  Tv_\text{gas}\left(\frac{\partial p}{\partial
+    T}\right)_{n_\text{ads}}
+  \\
+  &\approx T\frac{RT}{p}\left(\frac{\partial p}{\partial
+    T}\right)_{n_\text{ads}}
+\end{align}
+
+\subsection{What $\Delta s$?}
+The $\Delta s$ in Eq.~\ref{eq:david-qst} is the difference in entropy between the adsorbate in the MOF and the pure gas that coexists with it.  Since these two systems have the same molar Gibbs free energy (and chemical potential), we can see that
+\begin{align}
+    q_{st} &\equiv T(s_\text{gas} - s_\text{ads}) \\
+    g_\text{gas} &= g_\text{ads} \\
+    h_\text{gas} - Ts_\text{gas} &= h_\text{ads} - Ts_\text{ads} \\
+    h_\text{gas} - h_\text{ads} &= T(s_\text{gas} - s_\text{ads})
+    \\
+    &= q_{st}
+\end{align}
+Thus the isosteric heat is an enthalpy difference between these two coexisting states.  It is not (yet seen to be?) the differential change of enthalpy when a single atom moves from one state to the other, as some claim.
+
+\davidsays{If this is true, we need to show it is true, otherwise the opposite.}
+\jpsays{to self perhaps see what is done in here~\cite{pan1998examination}}
+\section{Measuring $q_{st}$}
+\corysays{
+Given that we are writing a paper to bring clarity Qst, I think it would strengthen the paper if we provided two experimental protocols to accurately measure it:
+(1) temperature dependence of adsorption isotherms [check mark]
+(2) calorimetry [getting there]
+}
+\subsection{Clausius-Clapeyron}
+\davidsays{This is where you measure a couple of isotherms and take the right derivative.}
+\subsection{Calorimetry} In the work by Sircar et al.~\cite{sircar1999isosteric}, he gives a description of experimental protocol for calorimetry. They measure the helium voids of the sample $v^0$ and dosage $v^d$ sides after placing in a calorimeter cell.  Thermopiles measure the heat as a voltage vs time. For adsorption of a single-component \emph{pure, ideal gas}:
+\begin{align}
+    q_i^0 = \frac{\frac{\Delta Q_i}{\Delta N_i} - \bar h_i - v^0\frac{\Delta P_i}{\Delta N_i}}{1-\frac{v^0}{RT}\frac{\Delta P_i}{\Delta N_i}}
+\end{align}
+The change in pressure in the sample side during the expt is $\Delta P_i$ and $q_i^0$ is the isosteric
+heat of adsorption of pure gas $i$ at $P^0$ and $T^0$.
+The isosteric heat of adsorption $q_\text{st}$ is calculated by~\cite{dunne1996calorimetric, parrillo1993characterization}:
+\begin{align}
+    q_\text{st} = q_d + RT
+\end{align}
+where $\Delta \bar u \equiv q_d$ is the differential energy of desorption.  If the gas enters the calorimeter at the temperature of the sample cell and if the same number of
+moles of gas enters the sample cell and a reference cell wired in reverse polarity, the calorimeter
+measures $q_\text{st}$ directly.
+
+\davidsays{I think this just comes from the definition of enthalpy.  $H=U+PV$  For an ideal gas, this means that $H=U+NkT$ by the ideal gas law.  Thus
+\begin{align}
+    Q_{st} &= \Delta H \\
+    &= \Delta U + \Delta(PV) \\
+    &\approx \Delta U + \Delta(NkT) \\
+   q_{st} &= \frac{Q_{st}}{N} \\
+     &\approx \Delta u + k_BT
+\end{align}
+}
+\davidsays{
+Remaining and related question:  when we define $\Delta u$ etc what are the two states being subtracted?
+}
+\section{Friday 4/26 Discussion on $q_\text{st}$}
+In the literature, the isosteric heat of adsorption is defined to be the following:
+\begin{align}
+    q_\text{st} = \left(\frac{\partial H_\text{Tot}}{\partial N_\text{Mof}}\right)_T
+\end{align}
+The total enthalpy can be written in terms of the number of molecules of adsorbate in the corresponding phase.
+\begin{align}
+    H_\text{Tot} = N_\text{Mof} h_\text{Mof}\left(p,T\right) + N_\text{Gas} h_\text{Gas}\left(p,T\right)
+\end{align}
+We derive the isosteric heat of adsorption using a thermodynamic approach.
+\begin{align}
+    q_\text{st} = \frac{H_\text{all Mof} - H_\text{all Gas}}{N}
+\end{align}
+This yields us that the single particle difference $q_\text{st}$.
+\begin{align}
+    q_\text{st} = \frac{\left(N_\text{Mof}+1\right) h_\text{Mof}\left(p,T\right) - \left(N_\text{Gas}-1\right) h_\text{Gas}\left(p,T\right)}{1}
+\end{align}
+
+\section{Discussion}
+\jpsays{Break this up into subsections in order to determine the ordering of thoughts.  (1) Discuss
+problem in terms of a potential $\Phi$ uniform or not i.e. we need a setup. (2) Show a cartoon or sketch
+that shows how to relate $\Phi$ to $q_\text{st}$.
+}
+
+
+\subsection{Relate $\Phi$ to $q_\text{st}$}
+\jpsays{took this from the other paper}
+We consider the density of an adsorbate given a spatially uniform ``external'' potential $\Phi$ created by
+interaction with an adsorbent.  This potential will have the effect of shifting the chemical potential of
+the material, the same way that the gravitational potential energy causes the density of the atmosphere to
+vary with altitude.  The density at a chemical potential $\mu$ is thus given by
+\begin{align}
+    \rho(\mu) &= \rho_0(\mu + \V)\label{eq:mof-density}
+\end{align}
+where $\rho_0(\mu)$ is the density of the pure gas at chemical potential $\mu$.
+
+Formally, we recover eqn.~\ref{eq:mof-density} by imposing that the energy of a system of $N$ particles at positions $\mathbf{x}_1,...\mathbf{x}_N \in \Omega$ in a space $\Omega$ with volume $V=|\Omega|$ endowed with uniform external potential $\Phi$ is:
+\begin{equation}
+    E(\mathbf{x}_1,...\mathbf{x}_N) = N\Phi + E_{gg}(\mathbf{x}_1,...\mathbf{x}_N),
+\end{equation} where $E_{gg}$ is the (unknown and complicated) interatomic potential for gas-gas interactions that governs the (real) gas properties. Then, the grand-canonical partition function of this control volume in equilibrium with a bulk gas exhibiting chemical potential $\mu$ is:
+\begin{multline}
+    \Xi(\mu, V, T)= \\ \displaystyle \sum_{N=0}^\infty \frac{\Lambda^{-3N}}{N!} \int_{\Omega} \cdots \int_{\Omega} e^{-\beta E_{gg}(\xvec_1, ..., \xvec_N)} e^{\beta (\mu - \V) N} d\xvec_1 \cdots d\xvec_N \\ =
+    \Xi_0(\mu-\V, V, T),
+    \label{eq:xi_realgas}
+\end{multline} where $\Xi_0(\mu, V, T)$ is the grand-canonical partition function of the real gas. Therefore, the thermodynamic properties of the gas sitting in this external potential $\Phi$, in equilibrium with a bath of gas of chemical potential $\mu$, are equivalent to the properties of the gas at chemical potential $\mu-\V$.
+
+\section{ORDERING THOUGHTS}
+{\color{red}
+\begin{enumerate}
+    \item Intro: An explanation for where $-q_\text{st}$ comes from. I presume from fitting adsorption gas isotherms? This would help to motivate the importance of understanding the subtleties between isosteric heat of adsorption and energy of adsorption.
+    \item Intro: Discussion of how $-q_\text{st}$ is often conflated in the literature with the energy of adsorption
+\end{enumerate}
+}
+
+The differential energy of adsorption is defined as the following equation~\cite{myers2002adsorption}:
+\begin{equation}
+    \Delta \bar u_i = \left( \frac{\delta U}{\delta n_i} \right)_{T,n_j} - u_i^o
+\end{equation}
+The reference state $u_i^o$ is a gas with infinite separation among its constituent molecules. The notation $e$ denotes excess. $\Delta \bar u_i$ could
+also be written in terms of the fugacity.
+\begin{equation}
+    \Delta \bar u_i = -R T^2\left( \frac{\delta \ln f_i}{\delta T} \right)_{n_i,n_j} + RT
+\end{equation}
+In this formulation, it is easier to see that the differential enthalpy of adsorption is the first term of the energy of adsorption if a suitable conversion between absolute $n_i$ to excess $n_i^e$ exists.
+\begin{equation}
+    \Delta \bar h_i^e = -R T^2\left( \frac{\delta \ln f_i}{\delta T} \right)_{n_i^e,n_j^e}
+\end{equation}
+The isosteric heat of adsorption is denoted as $\Delta \bar h_i^e$~\cite{myers2002adsorption}.
+\jpsays{Discuss the conversion between absolute and excess variables 6/13 in paper by Myers and Monson.  Read below and synthesize...}
+
+\subsection{Conversion of absolute to excess variables}
+\jpsays{translate this into something understandable...}
+4. Conversion of Absolute to Excess VariablesConversion of absolute (ni) to excess (nie) adsorption byeq 28 requires the volume of the gas phase (Vg). If thetheoretical  model  ignores  adsorption  on  the  externalsurface of the adsorbent particles, thenVgis the porevolume.  If  the  model  accounts  for  adsorption  on  theexternal surface, thenVgis the void volume of the system,which includes the pore volume and the space external tothe porous material. This conversion of absolute to excessadsorption is, in principle, precise. However, it does requirea definition of pore volume, which as we discuss belowdepends on the size of the molecule probing the porousmaterial.The reverse process of calculating absolute adsorption by  experimental  methods  is  impossible  in  principle.Absolute  adsorption  depends  on  the  model  selected  to divide the helium void space into two parts:  the spacewithin the potential field of the solid and the space outside the potential field of the solid. For example, a reasonablemodel of a microporous adsorbent might define the space lying within the potential field of the solid as its porevolume, so that absolute adsorption is the total amountof gas contained in the pores. The experimental heliumvoid volume is the sum of the pore volume plus the externalvolume of the gas phase. There is no way to determine experimentally the space lying within the potential fieldof the solid.
+
+\subsection{Gibbsian Surface Excess Model}
+Sircar et al. shows that the GSE (Gibbsian surface excess model)~\cite{sircar1999heat} model for an ideal gas mixture (for a pure gas $y_i = 1$) can be used to write the isosteric heat of adsorption~\cite{sircar1999isosteric} related to the total internal energy $U^o$:
+\begin{equation}
+    \left( \frac{\delta U^o}{\delta n_i^m}\right)_{T,n_{j\neq i}^m} = -R T^2\left( \frac{\delta \ln \bar p_i}{\delta T} \right)_{n_i^m} + RT
+\end{equation}
+where $\bar p_i$ is the partial pressure.
+\subsection{Conventional Model}
+The conventional model~\cite{sircar1999isosteric} assumes that a differential amount of pure
+adsorbate $dn$ is transferred from gas to the adsorbed phase denoted $a$ for a closed system with
+P and T held constant.  We can write (where $U^o=U+U^a$):
+\begin{equation}
+    dU^o = -dQ - Pdv^o
+\end{equation}
+The total volume in the gas phase is $V=v^o-V^a$ giving the pressure and volume in the gas phase.
+\begin{align}
+    V=\frac{nRT}{P}; \quad dV = -\frac{RT}{P}dn^a \qquad \textrm{constant} \quad P,T \\
+    Pdv^o=PdV^a - RTdn^a \qquad \textrm{constant} \quad P,T
+\end{align}
+These equations can be combined to produce an equation for the heat of adsorption.
+\begin{equation}
+    \left( \frac{\delta Q}{\delta n^a}\right)_{P,T} = h^* - \left( \frac{\delta H^a}{\delta n^a}\right)_{P,T}
+\end{equation}
+where $h^*$ is the molar enthalpy of a pure gas at temperature T and pressure P of 1 atm. Much of
+published literature simplifies (the above) by making a number of assumptions (which don't seem likely to
+be valid very often...). $\bar q$ is defined to be the isosteric heat of adsorption under these assumptions.
+\begin{equation}
+    \left( \frac{\delta Q}{\delta n^a}\right)_{P,T} = \bar q = R T^2\left( \frac{\delta \ln P}{\delta T} \right)_{n^a}
+\end{equation}
+The following assumptions:
+\begin{enumerate}
+    \item the adsorbed phase should be liquid like~\cite{young1962physical}.
+    \item the adsorbent should be energetically homogeneous or at the least a weakly heterogeneous adsorbent.
+\end{enumerate}
+In contrast, the GSE model requires no such assumptions.
+
+\subsection{Figures and Ideas}
+Figures and Ideas are below
+% \begin{figure}
+%   \begin{flushleft}
+%     a)\\\vspace{-3em}
+%     \includegraphics[width=\columnwidth]{methane-298-rho-mu.pdf}\\
+%     b)\\\vspace{-3em}
+%     \includegraphics[width=\columnwidth]{methane-298-rho-pressure.pdf}
+%   \end{flushleft}
+%   \vspace{-1em}
+%   \caption{The density as a function of (a) chemical potential and (b) pressure for pure methane.}
+%   \label{fig:density-vs-mu-ch4}
+% \end{figure}
+
+% \begin{figure}
+%   \begin{flushleft}
+%     \includegraphics[width=\columnwidth]{methane-298-experimental-gibbs}
+%   \end{flushleft}
+%   \vspace{-1em}
+%   \caption{The Gibbs free energy difference.}
+%   \label{fig:gibbs}
+% \end{figure}
+
+\jpsays{Ideas to think about: Gibbs adsorption equation (GAE), Gibbs dividing surface, differential heat of adsorption, a diagram
+showing how $\Phi$ and $\Delta H$ relate to $-q_\text{st}$}
+
+% cited papers!
+%https://pubs.acs.org/doi/full/10.1021/jp9903817
+%https://pubs.acs.org/doi/10.1021/la026399h
+
+% uncited yet...
+%Gibbs surface excess:
+%https://www.sciencedirect.com/science/article/pii/S0001868614000049
+
+
+\jpsays{We should define our $\Phi$ in terms of $-q_\text{st}$ (so that we could write our plots in terms of $q_\text{st}$ rather than $\Phi$) such that we would have:}
+\begin{equation}
+-q_\text{st} = \Phi + \Delta H
+\end{equation}
+In some papers I find that the Van't Hoff equation is used to fit for the isosteric heat of adsorption:
+\begin{equation}
+\left( \frac{\partial \ln K}{\partial \frac{1}{T}} \right)_\theta = -\frac{\Delta H}{R}
+\end{equation}
+Since the adsorption constants are at equilibrium they obey the equation and $K$ must be isosteric.
+
+In this work, the authors claim to fit CO2 isotherms using this equation:~\cite{sim2014gas}
+\begin{equation}
+\left( \frac{\partial \ln P}{\partial \frac{1}{T}} \right) = -\frac{\Delta q_\text{st}}{R}
+\end{equation}
+
+
+
+\end{document}
