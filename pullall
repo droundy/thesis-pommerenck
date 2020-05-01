@@ -2,5 +2,6 @@
 
 set -ev
 
-git pull https://github.com/droundy/thesis-pommerenck
-git pull https://github.com/Jordan-Pommerenck/thesis-pommerenck
+git pull git@github.com:Jordan-Pommerenck/thesis-pommerenck
+git pull git@github.com:droundy/thesis-pommerenck
+
