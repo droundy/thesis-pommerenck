@@ -77,8 +77,8 @@ detailed balance~\cite{jayasri2005wang, mukhopadhyay2008monte}.
 
 Liang independently considered whether WL could be treated as a special case of
 stochastic approximation whose convergence could be mathematically
-proven~\cite{liang2006theory, liang2007stochastic}. In 2007, Liang et
-al.~\cite{liang2007stochastic} argued that WL can be considered a form of
+proven~\cite{liang2006theory, liang2007stochastic}. In 2007, Liang \emph{et
+al.}~\cite{liang2007stochastic} argued that WL can be considered a form of
 stochastic approximation Monte Carlo (SAMC). Unlike WL, SAMC can guarantee
 convergence (if certain conditions are met). Despite the added benefit of
 guaranteed convergence, the method still has a system specific user-defined
@@ -252,7 +252,7 @@ is the number of energy bins~\cite{liang2007stochastic}.  Schneider
 \emph{et al.} found and we confirm that for the Ising model this heuristic is helpful for small spin systems, but that larger systems require an even higher
 $t_0$ value~\cite{schneider2017convergence}.
 
-Pommerenck et al. propose a refinement~\cite{pommerenck2020stochastic} to SAMC
+Pommerenck \emph{et al.} propose a refinement~\cite{pommerenck2020stochastic} to SAMC
 where the update factor is determined dynamically rather than by the user.
 stochastic approximation with a dynamic $\gamma$ (SAD) requires the user to
 provide the lowest temperature of interest $T_{\min}$. This is analogous to WL
@@ -298,19 +298,6 @@ the WL methods where both of these parameters are needed \emph{a priori.}).
   \label{fig:N32-gamma}
 \end{figure}
 
-\begin{figure}
-  \includegraphics[width=\columnwidth]{N32-Cv.pdf}
-    \caption{
-    The specific heat capacity versus the reciprocal temperature $\beta$ for the $N=32 \times 32$ system for each histogram method at $10^{9}$ moves.}
-    \label{fig:N32-cv}
-  \end{figure}
-
-\begin{figure}
-  \includegraphics[width=\columnwidth]{N32-Cv-error-default.pdf}
-  \caption{The maximum error in the specific heat capacity for each method for the $N=32 \times 32$ and $T_{\min} = 1$ as a function of number of iterations run.  The maximum error is averaged over 8 independent simulations, and the best and worst simulations for each method are shown as a semi-transparent shaded area.}
-  \label{fig:N32-cv-error}
-\end{figure}
-
 % \begin{figure}
 % \includegraphics[width=\columnwidth]{N32-entropy-error-default.pdf}
 %   \caption{
@@ -322,12 +309,27 @@ the WL methods where both of these parameters are needed \emph{a priori.}).
 %                semi-transparent shaded area.}\label{fig:n32}
 % \end{figure}
 
+\begin{figure}
+  \includegraphics[width=\columnwidth]{N32-Cv.pdf}
+  \caption{
+    The specific heat capacity versus the reciprocal temperature $\beta$ for the $N=32 \times 32$ system for each histogram method at $10^{9}$ moves.}
+  \label{fig:N32-cv}
+\end{figure}
+
 \subsection{The 32 $\times$ 32 Ising model}
-Fig.~\ref{fig:N32-gamma} shows the update factor $\gamma_t$ for each of the flat-histogram methods. All of the update factors initially start at $\gamma_{t=0} = 1$. SAD dynamically updates $\gamma_t$ throughout the simulation. After about $10^{10}$ moves, $\gamma^{\text{SAD}}_t$ proceeds as $1/t$. Both WL and ``production'' WL update factors $\gamma^{\text{WL}}_t$ are shown. The production WL begins after $\gamma^{\text{WL}}_t$ has reached $10^{-4}$. The update factor for $1/t$-WL decreases similarly to WL before finding all the energy states and switching to $1/t$. All of the SAMC update factors equal 1 until the number of moves is equal to $t_0$ at which point they decrease as $1/t$.
+Figure~\ref{fig:N32-gamma} shows the update factor $\gamma_t$ for each of the flat-histogram methods. All of the update factors initially start at $\gamma_{t=0} = 1$. SAD dynamically updates $\gamma_t$ throughout the simulation. After about $10^{10}$ moves, $\gamma^{\text{SAD}}_t$ proceeds as $1/t$. Both WL and ``production'' WL update factors $\gamma^{\text{WL}}_t$ are shown. The production WL begins after $\gamma^{\text{WL}}_t$ has reached $10^{-4}$. The update factor for $1/t$-WL decreases similarly to WL before finding all the energy states and switching to $1/t$. All of the SAMC update factors equal 1 until the number of moves is equal to $t_0$ at which point they decrease as $1/t$.
 
-Fig.~\ref{fig:N32-cv} shows the specific heat capacity vs. the reciprocal temperature $\beta$ at $10^{9}$ moves. Each method (except for the SAMC methods) is shown using the same single random number seed.
+All the methods except for SAMC gave a reasonable approximation for
+the heat capacity peak resulting from the phase transition within 10$^9$ moves.
+Figure~\ref{fig:N32-cv} shows the specific heat capacity vs. the reciprocal temperature $\beta$ at $10^{9}$ moves. Each method (except for the SAMC methods) is shown using the same single random number seed.
 
-Fig.~\ref{fig:N32-cv-error} shows the maximum error in the heat capacity as a function of time for
+\begin{figure}
+  \includegraphics[width=\columnwidth]{N32-Cv-error-default.pdf}
+  \caption{The maximum error in the specific heat capacity for each method for the $N=32 \times 32$ and $T_{\min} = 1$ as a function of number of iterations run.  The maximum error is averaged over 8 independent simulations, and the best and worst simulations for each method are shown as a semi-transparent shaded area.}
+  \label{fig:N32-cv-error}
+\end{figure}
+
+Figure~\ref{fig:N32-cv-error} shows the maximum error in the heat capacity as a function of time for
 this system. The solid/dashed lines
 represent the average of the maximum value of the error in the specific heat capacity $c_V$ averaged
 over eight simulations using different random number seeds. The range of maximum
