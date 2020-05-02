@@ -68,12 +68,20 @@
 
 \usepackage{indentfirst}
 \usepackage{graphicx}
-\graphicspath{{images/}}
+\graphicspath{{../square-well/}{../ising/}{../gas-adsorption/figs/}}
+
+
 \usepackage{caption}
-\usepackage{subcaption}
+%\usepackage{subcaption}
 \usepackage{float}
 \usepackage{amsmath,amssymb}
 \usepackage{nicefrac}
+
+\usepackage{xargs}                      % Use more than one optional parameter in a new commands
+\usepackage[pdftex,dvipsnames]{xcolor}  % Coloured text etc.
+\usepackage[colorinlistoftodos,prependcaption,textsize=normalsize]{todonotes}
+\usepackage{mdframed}
+\usepackage{braket}
 
 \usepackage[backend=bibtex,maxnames=200,sorting=none]{biblatex}
 %\usepackage[square,numbers]{natbib}
@@ -105,6 +113,34 @@
 \renewcommand{\listfigurename}{\hfill\Large\normalfont LIST OF FIGURES\hfill}
 \renewcommand{\cftaftertoctitle}{\hfill}
 
+% gas adsorption commands
+\usepackage{subfig}
+\usepackage{url}
+%
+\usepackage[colorinlistoftodos,prependcaption,textsize=normalsize]{todonotes}
+
+\newcommand{\addcite}{{\bf \color{red} []}}
+\newcommand{\xvec}{\mathbf{x}}
+\newcommand{\thetavec}{\boldsymbol \theta}
+\newcommand\V{\Phi}
+\newcommand\Vk{\tilde\Phi(\vec k)}
+\newcommand\volume{V}
+\newcommand\pfull{\ensuremath{p_{\text{full}}}}
+\newcommand\pempty{\ensuremath{p_{\text{empty}}}}
+\newcommand\mufull{\ensuremath{\mu_{\text{full}}}}
+\newcommand\muempty{\ensuremath{\mu_{\text{empty}}}}
+\newcommand\rhofull{\ensuremath{\rho_{\text{full}}}}
+\newcommand\rhoempty{\ensuremath{\rho_{\text{empty}}}}
+\newcommand\gst{\ensuremath{\Delta g_{st}}}
+
+\newcommandx{\jordan}[2][1=inline]{\todo[linecolor=gray,backgroundcolor=gray!25,bordercolor=gray,#1]{\textbf{Jordan says:} #2} }
+\newcommandx{\corysays}[2][1=inline]{\todo[linecolor=green,backgroundcolor=green!25,bordercolor=green,#1]{\textbf{Cory says:} #2} }
+
+\newcommandx{\maybecut}[1]{\begin{mdframed}[backgroundcolor=cyan!24]\textbf{Maybe cut:} #1\end{mdframed} }
+
+\newtheorem{limitation}{Limitation}
+
+
 % THE BIBLIOGRAPHY NEEDS TO COME BEFORE ALL OF THE CHAPTERS
 \bibliography{thesis}
 
@@ -131,7 +167,7 @@
 % ising paper
 \input{chapter-3}
 % gas-adsorption paper
-\input{chapter-4}
+%\input{chapter-4}
 % general conclusion linking all manuscripts
 \input{chapter-5}
 

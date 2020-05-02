@@ -36,12 +36,14 @@ C __pycache__
 C __pycache__
 
 # BUILD THE MAIN PAPER
-
-| pdflatex main.tex && bibtex main && pdflatex main.tex && pdflatex main.tex
-< figs/hydrogen-298-n-vs-G.pdf
-< figs/methane-298-n-vs-G.pdf
-< figs/hydrogen-77-n-vs-G.pdf
-
 # | pdflatex isosteric-heat.tex && bibtex isosteric-heat && pdflatex #isosteric-heat.tex && pdflatex isosteric-heat.tex
 
 | inkscape --export-pdf figs/four-cases.pdf figs/four-cases.svg
+
+| pdflatex gas-ads.tex && bibtex gas-ads && pdflatex gas-ads.tex && pdflatex gas-ads.tex
+< figs/hydrogen-298-n-vs-G.pdf
+< figs/methane-298-n-vs-G.pdf
+< figs/hydrogen-77-n-vs-G.pdf
+< figs/four-cases.svg
+< figs/hkust-1_fancy.png
+
