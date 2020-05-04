@@ -72,7 +72,7 @@ for name in cv_headers:
     colors.plot(1/Temp, cv / N**2, method=name)
 
 colors.legend(loc='best')
-plt.xlabel(r'$k_B\beta$')
+plt.xlabel(r'$\beta / J$')
 plt.ylabel(r'$c_V$ / $ k_B$')
 plt.xlim(0.3,0.6)
 if N == 32:

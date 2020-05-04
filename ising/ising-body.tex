@@ -81,17 +81,17 @@ also important to note that direct comparison of the other methods can
 be made with WL as its original implementation was done on this
 system~\cite{wang2001determining,wang2001efficient}.
 We test the convergence of several flat-histogram methods
-on the periodic 2D square lattice ferromagnetic Ising model with nearest
-neighbor interactions~\cite{landau2004new}.
+on the periodic 2D square lattice ferromagnetic Ising model with identical
+nearest neighbor interactions~\cite{landau2004new} ($J_{ij} = J$).
 \begin{align}
-\mathcal{H} = -\sum_{\braket{i,j}} \sigma_i \sigma_j - h \sum_i s_i
+\mathcal{H} = -J \sum_{\braket{i,j}} \sigma_i \sigma_j - h \sum_i s_i
 \end{align}
 The $N\times N$ spin system can take on values of $\sigma_i = \pm 1$
 for up or down spins respectively. In the absence of a magnetic field ($h =
 0$), We can write the Hamiltonian as follows~\cite{onsager1944crystal,
 kaufman1949crystal}:
 \begin{align}
-\mathcal{H} = -\sum_{\braket{i,j}} \sigma_i \sigma_j
+\mathcal{H} = - J\sum_{\braket{i,j}} \sigma_i \sigma_j
 \end{align}
 where the sum is over nearest neighbor spin sites. Beale showed that for finite
 lattices the Density of States could directly be calculated from the partition
@@ -374,5 +374,4 @@ that WL followed by a production run performs extremely well and is preferable t
 
 \section{Acknowledgments}
 
-We thank Klas Markstr\"{o}m for discussions regarding the exact computation of the partition function for the 2D Ising model. We also wish to thank Johannes Zierenberg for helpful discussions regarding WL production run simulations and
-Martin Weigel for discussions regarding entropic population annealing.
+We wish to thank Johannes Zierenberg for helpful discussions regarding WL followed by a production run and for insights into properties of a production run at different stages of convergence.
