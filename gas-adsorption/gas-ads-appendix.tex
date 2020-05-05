@@ -1,0 +1,164 @@
+\appendix
+\clearpage
+\setcounter{table}{0}
+\renewcommand{\thetable}{S\arabic{table}}%
+\setcounter{figure}{0}
+\renewcommand{\thefigure}{S\arabic{figure}}%
+\renewcommand{\thesection}{SI \Alph{section}}%
+
+\section{An external, spatially uniform potential $\V$ shifts the chemical potential $\mu$ of the gas} \label{sec:V_shifts_chem_pot}
+We show that imposing an external, spatially uniform potential $\V$ to a gas has the effect of shifting the chemical potential $\mu$ of the gas, recovering eqn.~\ref{eq:mof-density}. Consider a control volume $\Omega$ with volume $V=|\Omega|$ (large enough to neglect boundary effects) that is endowed with the external, spatially uniform potential $\V$. Impose the grand-canonical ensemble, where this control volume can exchange energy and particles with a bath of gas at temperature $T$ and chemical potential $\mu$.
+
+To denote a microstate of this system, let $N$ be the number of gas particles in the control volume and $\mathbf{x}_1,...,\mathbf{x}_N$ be their positions. Then, the potential energy $E$ of a microstate of the control volume is:
+\begin{equation}
+    E(\mathbf{x}_1,...,\mathbf{x}_N) = N\V + E_{gg}(\mathbf{x}_1,...,\mathbf{x}_N),
+\end{equation} where $E_{gg}$ is the (unknown and complicated) interatomic potential for gas-gas interactions that governs the (real) gas properties. The first term arises from each gas molecule feeling the external potential $\V$, where $\V < 0$ corresponds to attraction.
+
+\corysays{wut about orientations? shld we include those?}
+
+The grand-canonical partition function of the control volume is:
+\begin{multline}
+    \Xi(\mu, V, T)= \\ \displaystyle \sum_{N=0}^\infty \frac{1}{\Lambda^{3N}N!} \int_{\Omega} \cdots \int_{\Omega} e^{-\beta E_{gg}(\xvec_1, ..., \xvec_N)} e^{\beta (\mu - \V) N} d\xvec_1 \cdots d\xvec_N.
+    \label{eq:gcpf}
+\end{multline} We recognize this as the grand canonical partition function of the bulk gas in the control volume without the external potential, but shifted in chemical potential:
+\begin{equation}
+    \Xi(\mu, V, T)=\Xi_0(\mu - \V, V, T)
+    \label{eq:xi_vs_xi0}
+\end{equation}
+where $\Xi_0(\mu, V, T)$ is the grand-canonical partition function of the bulk gas in the control volume in the absence of an external potential. Importantly, this equivalency is predicated on the potential $\V$ being spatially uniform. Therefore, the thermodynamic properties of the gas sitting in the spatially uniform external potential $\V$-- i.e., adsorbed in our idealized substrate-- are equivalent to the properties of the bulk gas at chemical potential $\mu-\V$ ($T$ fixed here). 
+As $\V$ becomes more negative, corresponding to a more attractive adsorbent, the thermodynamic properties of the adsorbed gas in our ideal substrate are equivalent to the gas at higher chemical potential.
+
+\section{Proof of extremum}
+To show that a uniform potential gives the highest deliverable capacity, we consider a potential of interaction between gas and substrate $\V(\vec r)$ that varies with space.  In this proof we will make use of the Fourier transform of this potential:
+\begin{align}
+    \Vk \equiv \iiint \V(\vec r) e^{-i\vec k\cdot \vec r} d\vec r
+\end{align}
+The Fourier transform of a uniform potential is a Dirac delta function $\tilde{\V}(\vec k)\propto\delta(\vec k)$. Therefore, to show that a uniform potential extremizes the deliverable capacity, we must show that the functional derivative of the deliverable capacity with respect to $\Vk$ is zero for \emph{nonzero} values of $\vec k$, i.e.
+\begin{align}
+    \frac{\delta D}{\delta \Vk} &= 0, \text{ if } \vec k\ne 0.
+\end{align}
+We note that this functional derivative may be non-zero for $\vec k=0$ because we separately maximize with respect to the particular uniform potential $\V$.
+This means that
+\begin{align}
+    \frac{\delta N_H}{\delta \V(\vec k)} &= -\frac{\delta N_L}{\delta \Vk}
+\end{align}
+where $N_H$ and $N_L$ are the number of particles at the low and high pressure.
+
+Because the chemical potential $\mu$ varies monotonically with $N$ at fixed temperature, we can consider how the chemical potential varies as we change $\Vk$ with the number of molecules held fixed.  We demonstrate this using the cyclic chain rule, which shows us that
+\begin{align}
+    \left(\frac{\delta N}{\delta \Vk}\right)_{\mu} &=
+    -\left(\frac{\delta \mu}{\delta \V(\vec k)}\right)_{N}
+    \left(\frac{\partial N}{\partial \mu}\right)_{\Vk}.
+\end{align}
+Since changing the chemical potential changes the number of molecules in the general case, if we can show that $\left(\frac{\delta \mu}{\delta \V(\vec k)}\right)_{N}=0$ then we will have shown that $\left(\frac{\delta N}{\delta \V(\vec k)}\right)_{\mu}=0$.  Thus we consider
+\begin{align}
+    \left(\frac{\delta \mu}{\delta \tilde\V(\vec k)}\right)_N
+    &= \left(\frac{\delta \left(\frac{\partial F}{\partial N}\right)_{\volume}}{\delta \Vk}\right)_N
+    \\
+    &= \left(\frac{\partial \left(\frac{\delta F}{\delta \Vk}\right)_{\volume}}{\partial N}\right)_{\volume}
+    \label{eq:dmudpot}
+\end{align}
+where we have made use of the derivative relationship between $\mu$ and the Helmholtz free energy $F$, and have then reordered the functional and partial derivatives.
+Let us consider the interior derivative first.  The derivative of the Helmholtz free energy with respect to the external potential $\Vk$ just gives the number density:
+\begin{align}
+    \frac{\delta F}{\delta \Vk} &= \rho(\vec k)
+\end{align}
+The number density is itself spatially uniform for any system that is stable in a fluid state at this density (i.e. does not spontaneously crystallize), and thus has a Fourier transform that is proportional to a Dirac $\delta$-function.  Thus the functional derivative $\frac{\delta F}{\delta \V(\vec r)}$ is actually a uniform function.
+We can insert this expression into Eq.~\ref{eq:dmudpot} to find that
+\begin{align}
+    \frac{\delta \mu}{\delta \Vk} &\propto \delta(\vec k) \\
+    \frac{\delta N}{\delta \Vk} &\propto \delta(\vec k)
+\end{align}
+Thus the functional derivative of both the chemical potential and $N$ with regard to $\V(\vec r)$ are themselves spatially uniform.  Since we already maximize $D$ with respect to the spatially uniform component of the potential (i.e. $\vec k=0$), the derivative of $D$ with respect to any change of potential is zero.
+
+This demonstrates that a spatially uniform potential leads to an extremum value of the deliverable capacity.  This proof is insufficient, however, to show that it must be a true maximum.
+
+\section{The real-substrate analogy of $\V$ is $\gst$}
+\label{sec:phi-is-delta-g}
+\begin{figure}
+    \centering
+    \includegraphics[width=\columnwidth]{g_st_piston_2.png}
+    \caption{Cartoon illustrating the definition of $\gst$ and a hypothetical experiment to measure it with a piston and removable barrier that separates two equal volumes, one with a porous material (bottom) and one with free space (top). The initial state (left) is a bulk gas phase at density $\rho$ and temperature $T$. An infinitely-thin, removable barrier separates the gas from the porous material (bottom). The barrier is then slowly removed, and the piston slowly pushes all gas molecules into the porous material in an isothermal process. The final state (right) is an adsorbed gas phase at density $\rho$ and temperature $T$. The quantity $\gst$ follows from {\color{red} the heat released?}.}
+    \label{fig:delta-G-cartoon}
+\end{figure}
+
+The parameter describing our idealized substrate is $\V$, the spatially uniform potential felt by a gas molecule adsorbed in the idealized substrate. 
+A natural question is how this potential relates to the properties of real substrates. 
+The effect of $\V$ in our model is to shift the chemical potential $\mu$ of the gas (see Sec.~\ref{sec:V_shifts_chem_pot}).
+Because our ideal substrate shifts the chemical potential of the gas molecules by providing a spatially uniform potential energy field, the entropy of the gas in the ideal substrate is equal to the entropy of the gas in its bulk state at the same density and temperature.
+In contrast, a real substrate provides a non-spatially uniform potential. Consequently, the entropy of the gas inside a real substrate is \emph{not} equal to the entropy of the bulk gas at the same density and temperature. 
+Therefore, the parameter analogous to $\V$ in a real substrate will involve both energy and entropy.
+The real-substrate analogy of $\V$ is the shift of molar Gibbs free energy provided by the substrate, specifically an \emph{isosteric} (or constant-density) shift of the Gibbs free energy:
+\begin{equation}
+   \gst(\rho, T) \equiv
+   %\frac{G_{\text{ads}}(\rho, T) - G_{\text{gas}}(\rho, T)}{N}\\ 
+    \mu_{\text{ads}}(\rho, T) - \mu_{\text{gas}}(\rho, T).
+  % \gst(\rho, T) &\equiv g_{\text{gas}}(\rho, T) - g_{\text{ads}}(\rho, T)
+  \label{eq:g_st}
+\end{equation}
+The isosteric Gibbs free energy difference $\gst$ is the difference in molar Gibbs free energy ($=$ chemical potential) between the adsorbed gas system and the bulk gas \emph{with the same density of gas molecules}. The quantity $\gst$ does \emph{not} correspond to a change in the molar Gibbs free energy as a molecule is adsorbed, which is zero under conditions of coexistence. 
+The quantity $\gst$ in a real substrate is a direct analogy to $\V$ in our ideal substrate because it is the chemical potential shift needed to impose on the bulk gas in coexistence with the real substrate to achieve the same density as in the substrate (compare with eqn.~\ref{eq:xi_vs_xi0}).
+Figure~\ref{fig:delta-G-cartoon} illustrates a hypothetical experiment to  measure $\gst$ via a piston with a removable partition that separates a volume of free space from the same volume of substrate. Note that $\gst$ is a property of both the substrate and the identity of the gas. Because real substrates offer a \emph{non}-spatially uniform potential, $\gst(\rho, T)$ is a function of $\rho$ and $T$, unlike our ideal, homogenous substrate where $\gst(\rho, T)=\V$. Consequently, throughout this article, we show $\gst(\rho, T)$ for real substrates at both conditions relevant to gas storage and delivery, $\pfull$ and $\pempty$. 
+% In the initial state, the partition isolates the bulk gas exhibiting density $\rho$ and temperature $T$. Then, the partition is removed and the piston pushes down on the gas so that the gas slowly adsorbs into the MOF in an isothermal process. \red{isothermal rite?} In the final state, the piston has pushed all gas into the MOF, resulting in an adsorbed gas phase with the same density $\rho$ and temperature $T$ as the initial state. The isosteric Gibbs free energy of adsorption, $\gst$, then follows from \red{is it the amount of heat released?}.
+
+\corysays{Fig.~\ref{fig:qst-vs-delta-G} looks too jumbled. two separate figs? plus $G_{st}$ is capitalized here, should be lowercase. where is all this data from}
+
+In practice, we can readily compute $\gst(\rho, T)$ of a real gas/substrate system from (i) the (experimental or simulated) equilibrium adsorption isotherm of the gas in the substrate and (ii) the (experimental or simulated) chemical potential of the bulk gas. 
+Consider the real substrate in thermodynamic equilibrium with a bulk gas at fixed temperature $T$ and pressure $p$, and let $\rho=\rho(p, T)$ be the density of gas in the substrate. 
+At coexistence, the chemical potential of the bulk gas is equal to the chemical potential of the adsorbed gas in the substrate. Thus, we can use the experimentally known molar Gibbs free energy of the pure, bulk gas system at temperature $T$ and pressure $p$ to determine the molar Gibbs free energy of the adsorbed system: $\mu_{\text{ads}}(\rho, T)=\mu_{\text{gas}}(p, T)$. We can then also look up the known chemical potential of the bulk gas at the same density and temperature as in the substrate, $\mu_{\text{gas}}(\rho, T)$. Via eqn.~\ref{eq:g_st}, $\gst$ follows from subtracting the two quantities.
+
+An interesting question is how $\gst$ relates to the commonly measured and reported isosteric heat of adsorption $q_{st}$, which is roughly the energy change when a gas molecule is adsorbed~\cite{sircar1999isosteric, tian2017differential}. Figure~\ref{fig:qst-vs-delta-G} shows how $q_{st}$ compares to $\gst$ for several prominent adsorbents. In every case, $|q_{st}|>|\gst|$ because the gas in the adsorbent always has less entropy than the gas in the bulk at the same density and temperature. That is, while adsorption is energetically favored, it is entropically disfavored due to the restrictions imposed on the configuration of the gas molecules via steric interactions with the substrate itself; this counters the energetic attraction. 
+
+\corysays{can u mathematically justify why $\gst$ is the relevant parameter through the grand canonical partition function in eqn.~\ref{eq:gcpf}? it is not true that $\Xi(\mu, V, T)$ for the real substrate is equal to $\Xi(\mu+\gst, V, T)$}
+
+\corysays{Fig.~\ref{fig:qst-vs-delta-G} should be split in two. one for methane one for h2.}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.95\columnwidth]{qst-vs-delta-G}
+    \caption{Relationship between $\gst$ and the isosteric heat $q_{st}$ for several prominent adsorbents. The dots represent the properties of methane adsorption at 298\ K and at 5\ bar and 100\ bar. The $\times$'s represent the properties of hydrogen adsorption at 77\ K and at 5~bar and 100~bar.}
+    \label{fig:qst-vs-delta-G}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.95\columnwidth]{methane-298-gst}
+    \caption{The density-dependence of $\gst$ of methane in several adsorbents (298\ K). Note that $\gst$ is monotonic in $\rho$. Data from Refs.~\ref{mason2014evaluating,furukawa2009storage}.
+    }
+    \label{fig:methane-gst}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.95\columnwidth]{four-cases}
+    \caption{Four cases we consider.}
+    \label{fig:delta-gst-maximum}
+\end{figure}
+
+\section{An upper bound when $\gst(\rho)$ is monotonic}\label{sec:monotonic}
+Every MOF has a $\Delta g_\text{st}$ at a full and empty pressure corresponding to a full and empty density. The deliverable capacity of the MOF is equal to the difference between the full and empty density.
+Examining Fig.~\ref{fig:methane-gst}, we see that a significant variety of known experimental $\Delta g_\text{st}$ curves are monotonic.  Furthermore, our qualitative argument in Section~\ref{sec:upper-bound} suggests that this function \emph{should} be monotonically increasing for rigid substrates, as increasing the density of gas forces some of the gas to reside in higher-energy sites.  If this is always the case, the deliverable capacity will always be bounded by our theoretical upper bound, even for a value of $\V$ that is not optimal.
+
+To show this, we perform a thought experiment illustrated in Fig.~\ref{fig:delta-gst-maximum}.  We begin with two pairs of boxes containing gas.  Two of the boxes are filled with a MOF, and the other two have a uniform potential energy $\V$.  We could imagine the two boxes at $\V$ as being empty but at very low altitude where gravity provides a potential energy difference (relative to the box with the MOF in it) of $\V$ to each gas molecule (perhaps we are on Jupiter?).  One box of each sort has a density of gas $\rhofull$ corresponding to $\pfull$ in the MOF system, while the other two boxes has gas density $\rhoempty$.
+
+We now consider what happens if we introduce a diffusive connection between two boxes that are initially at the same density, for instance by connecting them with a tube.  If the chemical potential of the two boxes are equal, their density will be unchanged, otherwise gas will flow into the box with lower chemical potential.  The difference in chemical potential is equal to the difference
+\begin{align}
+   \gst(\rho) - \V &= \left(\mu_{\text{MOF}}(\rho) - \mu_{\text{gas}}(\rho)\right)
+   - \left(\mu_{\V}(\rho) - \mu_{\text{gas}}(\rho)\right)
+   \\
+   &= \mu_{\text{MOF}}(\rho) - \mu_{\V}(\rho).
+\end{align}
+Thus if $\gst(\rhoempty) = \V$ then the ``empty'' containers will remain at their initial density after they are connected.  Thus the deliverable capacity of the MOF will be greater than the deliverable capacity of the model with uniform potential $\V$ if and only if $\gst(\rhofull)<\V$, i.e. if $\gst(\rho)$ does \emph{not} monotonically increase.  By the same token, if we consider the case where $\gst(\rhofull) = \V$, then to achieve a greater deliverable capacity than our model, the MOF must have less residual gas, which means that gas must spontaneously flow from the low-density MOF to the box with potential $\V$, which means that $\gst(\rhoempty)>\V$.  So once again exceeding our upper bound requires a material with a $\gst(\rho)$ that does not increase monotonically.
+
+Taken together, this indicates that not only is our absolute upper bound an upper bound for rigid MOFs, but the green curve labeled $\rho_D(\gst)$ in Figs.~\ref{fig:methane-298-D}, \ref{fig:hydrogen-298-D}, and \ref{fig:hydrogen-77-D} is an upper bound for materials with a non-optimal $\gst$.
+
+\section{Cryogenic hydrogen storage}\label{sec:cryo-hydrogen}
+\begin{figure}
+    \centering
+    FIGURE HERE A B C D
+    \includegraphics[width=0.95\columnwidth]{hydrogen-77-n-vs-G}
+    \caption{Deliverable capacity of hydrogen at liquid nitrogren temperature as a function of the attractive Gibbs free energy $\gst$. Experimental deliverable capacities for several MOFs are shown along with the experimental values for $\gst$ at the empty and full pressures shown as x's connected by a line.}
+    \label{fig:hydrogen-77-D}
+\end{figure}
+
+One approach to increase the deliverable capacity is to reduce the storage temperature. This is illustrated in Fig.~\ref{fig:hydrogen-77-D}, which shows the upper bound to the deliverable capacity of hydrogen at 77\ K, the boiling point of nitrogen. The DOE ULTIMATE target in this case looks far more achievable, and with a much lower $|\gst|$. In fact, an empty tank at this temperature can satisfy the DOE 2020 target. The DOE ULTIMATE target is 14\% below the upper bound. Actual MOFs fall far short of the theoretical maximum. \red{the target is not just a storage density, it specifies temps and pressures too... is 77 K allowed?} \davidsays{My recollection of my reading of the DOE target was that anything was allowed, but that the target included ``everything'', which would include both the tank and any cryogenic equipment required.  So the answer is not so simple.}
