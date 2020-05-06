@@ -228,12 +228,12 @@ $t_0$ value~\cite{schneider2017convergence}.
 
 Pommerenck \emph{et al.} propose a refinement~\cite{pommerenck2020stochastic} to SAMC
 where the update factor is determined dynamically rather than by the user.
-stochastic approximation with a dynamic $\gamma$ (SAD) requires the user to
-provide the lowest temperature of interest $T_{\min}$. This is analogous to WL
+Stochastic approximation with a dynamic $\gamma$ (SAD) requires the user to
+provide a minimum temperature of interest $T_{\min}$. This is analogous to WL
 requiring \emph{a priori.} an energy range of interest; however, this is almost always easier to
 identify and is more physical than the SAMC parameter $t_0$. The update factor
 can be written in terms of the current estimates for the highest $E_H$ and
-lowest $E_L$ energies of interest and the last time that an energy in the range
+lowest $E_L$ interesting energies and the last time that an energy in the range
 of interest is encountered $t_L$.
 \begin{align}
   \gamma_{t}^{\text{SAD}} =
@@ -245,9 +245,8 @@ of interest is encountered $t_L$.
 \end{align}
 SAD only explores the energy range of interest as specified by the minimum
 temperature of interest $T_{\min} < T < \infty$. During the simulation the two
-energies $E_H$ and $E_L$, are refined such that the range of energies are conservatively
-estimated. The weights are calculated for each energy region according to the original
-prescription.
+energies $E_H$ and $E_L$, are refined such that the range of energies are
+conservatively estimated. The weights are calculated for each energy region according to the original prescription.
 \begin{enumerate}
 \item {$E < E_L$:} $w(E>E_H) = w(E_H)$
 \item {$E_L < E < E_H$:} moves are handled the same as other weight-based
@@ -258,11 +257,12 @@ Each time the simulation changes the value of $E_H$ or $E_L$, the weights
 within the new portion of the interesting energy range are updated.
 
 \section{Results}
-We tested the algorithms on two different system sizes of the 2D Ising model.  The first is a smaller
-simulation with a lattice size of $N = 32 \times 32$ and the second has a lattice size of $N = 128 \times 128$. The SAD method explores the energy
-space of each system using a minimum reduced temperature of $T_{\text{min}} = 1$. All simulations lead to the minimum important energy $E_{\min}$
-and maximum entropy energy $E_{\max}$ being calculated (with the exception of
-the WL methods where both of these parameters are needed \emph{a priori.}).
+We test the algorithms on two different system sizes of the 2D Ising model.
+The first is a smaller simulation with a lattice size of $N = 32 \times 32$ and
+the second has a lattice size of $N = 128 \times 128$. The SAD method explores 
+the energy space of each system using a minimum reduced temperature of $T_{\text{min}} = 1$. All simulations calculate the minimum important energy $E_{\min}$
+and maximum entropy energy $E_{\max}$ (with the exception of the WL methods
+where both of these parameters are needed \emph{a priori.}).
 
 % \begin{figure}
 % \includegraphics[width=\columnwidth]{N32-entropy-error-default.pdf}
@@ -295,9 +295,9 @@ before finding all the energy states and switching to $1/t$. All of
 the SAMC update factors equal 1 until the number of moves is equal to
 $t_0$ at which point they decrease as $1/t$.
 
-All the methods, except for SAMC, use the same single random number seed and
+All of the methods, except for SAMC, use the same single random number seed and
 give a reasonable approximation for the heat capacity peak resulting from the
-phase transition within 10$^9$ moves. Figure~\ref{fig:N32-cv} shows the
+phase transition after only 10$^9$ moves. Figure~\ref{fig:N32-cv} shows the
 specific heat capacity vs. the reciprocal temperature $\beta$ at $10^{9}$ moves.
 A temperature range of $1.5k_B$ to $5k_B$ is chosen to highlight
 the phase transition at the critical temperature $T_c$.
@@ -308,9 +308,9 @@ the phase transition at the critical temperature $T_c$.
   \label{fig:N32-cv-error}
 \end{figure}
 
-Figure~\ref{fig:N32-cv-error} shows the maximum error in the heat capacity as a function of time for
-this system. The solid/dashed lines
-represent the average of the maximum value of the error in the specific heat capacity $c_V$ averaged
+Figure~\ref{fig:N32-cv-error} shows the maximum error in the heat capacity as a
+function of time for this system. The solid/dashed lines represent the average
+of the maximum value of the error in the specific heat capacity $c_V$ averaged
 over eight simulations using different random number seeds. The range of maximum
 errors for each simulation is shown as a shaded region. By
 the time $10^8$ moves have been made all but the WL simulation have begun to
@@ -349,8 +349,8 @@ flat-histogram methods.
 We implement two WL simulations followed by a production run each beginning
 after $\gamma^{\text{WL}}_t$ has reached $10^{-4}$ and $10^{-6}$ respectively.
 Fig.~\ref{fig:N128-cv-error} shows the maximum error in the heat capacity as a 
-function of time for this system. The solid/dashed lines represent the average
-of the maximum value of the error in the specific heat capacity $c_V$ averaged
+function of time for this system. The solid/dashed lines represent the maximum
+value of the error in the specific heat capacity $c_V$ averaged
 over eight simulations using different random number seeds. The range of maximum
 errors for each simulation is shown as a shaded region. By
 the time $10^{13}$ moves have been made all but the WL simulation have begun to
@@ -377,7 +377,7 @@ the energy range of the system is not known and where a range of desired
 temperatures is known, this will make the SAD method
 considerably more convenient. This work also visually demonstrates
 that WL followed by a production run performs extremely well and is preferable
-to WL for ensuring both ergodicity and detailed balance.
+to pure WL for ensuring both ergodicity and detailed balance.
 
 \section{Acknowledgments}
 
