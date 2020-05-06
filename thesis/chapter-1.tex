@@ -385,18 +385,20 @@ this but it is usually empirically determined further complicating the simulatio
 % This is part of the abstract of our paper.
 Due to their low volumetric energy density at ambient conditions, both hydrogen
 and natural gas are challenging to economically store onboard environmentally
-sustainable vehicles~\cite{?}. One strategy to densify these gases is to pack
-the fuel tank with a porous material~\cite{?}. Metal-organic frameworks (MOFs)
-are tunable, nanoporous materials with large internal surface areas and show
-considerable promise for densifying gases~\cite{?}. The US Department of Energy
-(DOE) has set volumetric deliverable capacity targets~\cite{?} which, if met,
-would help to enable commercial adoption of hydrogen/natural gas as
+sustainable vehicles~\cite{mason2014evaluating, sircar2002pressure}. One
+strategy to densify these gases is to pack the fuel tank with a porous
+material~\cite{?}. Metal-organic frameworks (MOFs) are tunable, nanoporous
+materials with large internal surface areas and show considerable promise for
+densifying gases~\cite{makal2012methane,mason2014evaluating,
+suh2011hydrogen,garcia2018benchmark, schoedel2016role}. The US Department of
+Energy (DOE) has set volumetric deliverable capacity targets~\cite{simon2015materials, h2targetsDOE} which, if met, would help to enable 
+commercial adoption of hydrogen/natural gas as
 transportation fuels. Many have attempted to establish theoretical upper bounds
 on the deliverable capacity via pressure-swing adsorption using simplified
-models of the gas-substrate and gas-gas interaction~\cite{?}; none have
+models of the gas-substrate and gas-gas interaction~\cite{gomez2014exploring, 
+gomez2017impact, kaija2018high, lee2019predicting}; none have
 established a rigorous upper bound on the deliverable capacity.
 
-% This is part of the abstract(s) for APS Conferences.
 Here, we present a theoretical upper bound on the deliverable capacity of a
 rigid material via an isothermal pressure-swing. To provide an extremum, we
 consider a substrate that provides a spatially uniform potential energy field
@@ -405,13 +407,23 @@ measured properties of the (real) bulk gas, without making approximations.
 We conclude that the goals set by the US DOE for natural gas and hydrogen
 storage are theoretically possible, but sufficiently close to the upper bound
 as to be impractical for any real porous material. However, limitations to the
-scope of applicability of our upper bound guide future material development efforts. Firstly, one could heat the adsorbent to drive off residual gas when
-the pressure diminishes~\cite{?}. Secondly, the fundamental physics of our
-upper bound do not pertain to any material that changes its structure in
-response to adsorbed gas, suggesting that flexible materials could still
-satisfy the DOE targets~\cite{?}.
+scope of applicability of our upper bound guide future material development 
+efforts. Firstly, one could heat the adsorbent to drive off residual gas when
+the pressure diminishes~\cite{gomez2014exploring}. Secondly, the fundamental
+physics of our upper bound do not pertain to any material that changes its
+structure in response to adsorbed gas, suggesting that flexible materials could
+still satisfy the DOE targets~\cite{schneemann2014flexible, choi2008broadly, mason2015methane}.
 
 % Now add why a multidimensional 2D SAD would help and how we are working toward it.
+Due to the difficulty in designing the ``ideal'' MOF for gas storage
+applications, computational methods are necessary that can predict the
+associated thermodynamic properties of interest. While SAD is an invaluable tool
+for calculating a single isotherm (at a given density), an even more powerful
+method is necessary for determining the best MOF for gas storage applications.
+A multidimensional 2D SAD would allow researchers to compute all properties of
+interest for all densities and temperatures. Our preliminary research has
+yielded a robust method that has been tested on multiple systems and can be
+extended into a 2D formulation. 
 
 \section{Summary}
 We have provided the background necessary for understanding the various
@@ -423,3 +435,10 @@ the 2D Ising model. Each of these systems provides unique challenges to our
 newly developed method SAD and convergence robustness is determined best by the
 application to multiple systems.
 % Now tie this in with gas adsorption.
+We are currently working on two extensions which will enable a multidimensional
+SAD. The first is adaptive interpolation histogram binning. This technique will
+decrease the simulation time by orders of magnitude. The second is a version of
+SAD that simulates ``number'' space rather than energy space. With the success
+of these two extensions, we can begin the development of 2D SAD and thus provide
+a powerful way for researchers to work toward enabling environmentally
+sustainable light vehicle storage.
