@@ -4,7 +4,6 @@ properties of various systems over a range of temperatures.  The first histogram
 method used a single canonical Monte Carlo simulation to predict properties for
 nearby temperatures~\cite{ferrenberg1988new}. While the method effectively
 samples a narrow energy range, it proves computationally inefficient at sampling large energy ranges.
-
 Multicanonical methods, introduced by Berg and Neuhaus, enabled flat-histogram
 sampling which improved the exploration of configurational space and allowed the
 simulation to overcome free-energy barriers~\cite{berg1991multicanonical, berg1992multicanonical}.
@@ -60,15 +59,17 @@ Parinello~\cite{laio2002escaping}, and WL-based Monte Carlo methods, with STMD
 forging the connection~\cite{junghans2014molecular}.
 
 The SAD (stochastic approximation with a
-dynamic $\gamma$) method outlined by Pommerenck
+dynamic $\gamma$) method as outlined by Pommerenck
 et.al~\cite{pommerenck2020stochastic} is a special version of the SAMC algorithm
-that dynamically chooses the modification factor rather than relying on system
-dependent parameters. SAD shares the same convergence properties with SAMC while
-replacing un-physical user-defined parameters with the algorithms dynamic
-choice.
+that dynamically chooses the modification factor rather than relying on
+un-physical user-defined parameters. SAD shares the same convergence properties
+with SAMC while replacing un-physical user-defined parameters with the
+algorithms dynamic choice.
 
-In this work, we apply the family of weight-based flat-histogram Monte
-Carlo methods (WL, 1/t-WL, SAMC, SAD) to the 2D Ising model.
+In this work, we compare the convergence properties of five flat-histogram
+methods. We detail how each method is implemented and apply the family of
+weight-based flat-histogram Monte Carlo methods (pure WL, WL followed by a
+"production run", 1/t-WL, SAMC, and SAD) to the 2D Ising model.
 
 \section{Ising Model}
 The 2D Ising spin-lattice system is widely used as a testbed when
@@ -121,7 +122,7 @@ disordered to ordered magnetic state. Methods that accurately compute $c_V$
 also by extension accurately compute the internal energy.
 
 \section{Flat-histogram methods}\label{sec:histogram}
-Flat-histogram methods determine the density of states $D(E)$ over a broad range
+Flat-histogram methods compute the density of states $D(E)$ over a broad range
 of energies by simulating each energy with equivalent accuracy. Flat-histogram
 Monte Carlo methods propose randomly chosen ``moves'' which change the state of
 the system and must satisfy detailed balance.  Each algorithm differs in how it
@@ -150,7 +151,11 @@ where $t$ is number of the current move, $\gamma(t)$ is a move-dependent update
 factor, and $E$ is the current energy.  This update causes the random walk to
 avoid frequent sampling of the same energies, leading to a rapid exploration
 of energy space. Flat-histogram methods differ primarily in how they schedule
-the decrease of $\gamma_t$.  Figure~\ref{fig:N32-gamma} shows ...
+the decrease of $\gamma_t$.  Figure~\ref{fig:N32-gamma} shows several
+flat-histogram methods each decreasing $\gamma_t$ as a function of moves.
+Methods that decrease $\gamma_t$ too rapidly can fail to converge while methods
+that decrease too slowly can take infinitely long to converge to the correct
+$D(E)$.
 
 \begin{figure}
 \includegraphics[width=\columnwidth]{gamma-n32.pdf}
