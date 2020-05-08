@@ -365,16 +365,18 @@ choosing too large a $\gamma^{\text{WL}}_t$ will result in poor convergence
 properties.
 
 \section{Conclusion}
-We find that both SAD, 1/t-WL, and WL followed by a production run
+We find that SAD, 1/t-WL, and WL followed by a production run
 (with an adequately small $\gamma^{\min}$) demonstrate excellent and robust
 convergence. They all converge more rapidly than SAMC, and unlike pure WL do
 not suffer from
-error saturation. We find that for larger systems SAD reduces the updated factor
-more slowly (and conservatively) than 1/t-WL and WL followed by a
+error saturation. We find that for larger Ising systems SAD reduces the update
+factor more slowly (and conservatively) than 1/t-WL and WL followed by a
 production run. This means that SAD will take
 proportionately more moves to converge to the same value as 1/t-WL as system
-size is increased. SAD requires the user to specify a temperature range of
-interest rather than an energy range of interest as the WL methods do. The 2D
+size is increased (WL methods are given the energy range \emph{a priori.} and
+converge independent of system size). SAD requires the user to specify a
+temperature range of interest rather than an energy range of interest as the WL
+methods do. The 2D
 Ising model is a system where the energy range is known \emph{a priori.}, which
 makes a comparison between WL methods and SAD (which requires a minimum
 temperature) more biased towards WL methods. For the majority of cases in which
@@ -385,5 +387,4 @@ that WL followed by a production run performs extremely well and is preferable
 to pure WL for ensuring both ergodicity and detailed balance.
 
 \section{Acknowledgments}
-
 We wish to thank Johannes Zierenberg for helpful discussions regarding WL followed by a production run and for insights into properties of a production run at different stages of convergence.
