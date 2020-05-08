@@ -368,12 +368,11 @@ the time $10^{13}$ moves have been made all but the WL simulation have begun to
 converge as $1/\sqrt{t}$. We then see the WL error saturate around $10^{12}$
 moves.  The WL simulation followed by a production run when
 $\gamma^{\text{WL}}_t$ reached $10^{-4}$ sometimes dramatically failed to
-converge, and with a \davidsays{few} random seeds converged very
+converge, although five of the eight random seeds converged very
 nicely.  This highlights a risk taken when setting $\gamma^{\min}$.
 If the weights are insufficiently converged, the production run will
-fail to explore all energies. \davidsays{Can you identify whether it got
-stuck at high or low energy?}  With the smaller value of
-$\gamma^{\min}=10^{-6}$ consistently and efficiently converged.
+fail to explore all energies, in this case, three of the simulations became ``stuck'' at low energies. With the smaller value of
+$\gamma^{\min}=10^{-6}$, the method consistently and efficiently converged.
 
 %% The two WL simulations followed by a production run highlight that
 %% choosing too large a $\gamma^{\text{WL}}_t$ will result in poor convergence
