@@ -1,4 +1,4 @@
-| tar czvf sq-well-upload.tar.gz sq-well.tex sq-well.bbl N50-lndos-comparison.pdf gamma-n256.pdf periodic-ww1_30-ff0_30-N50-gamma-and-entropy-error-default.pdf periodic-ww1_30-ff0_30-N50-gamma-and-entropy-error-slow.pdf periodic-ww1_50-ff0_17-N256-entropy-error-default.pdf lj-cv.pdf lj-cv-error.pdf
+| tar czvf sq-well-upload.tar.gz sq-well.tex sq-well-body.tex sq-well.bbl N50-lndos-comparison.pdf gamma-n256.pdf periodic-ww1_30-ff0_30-N50-gamma-and-entropy-error-default.pdf periodic-ww1_30-ff0_30-N50-gamma-and-entropy-error-slow.pdf periodic-ww1_50-ff0_17-N256-entropy-error-default.pdf lj-cv.pdf lj-cv-error.pdf
 < sq-well.pdf
 < N50-lndos-comparison.pdf
 < gamma-n256.pdf
