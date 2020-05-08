@@ -30,9 +30,13 @@ to understand how the modification (or update) factor $\gamma$ impacts the
 convergence~\cite{zhou2005understanding,lee2006convergence,
 belardinelli2007wang}. Belardinelli and Pereyra showed that an update factor that decreases faster than $1/t$ leads to nonconvergence~\cite{belardinelli2007wang, belardinelli2008analysis, zhou2008optimal}, where $t$ corresponds to the number of moves. Schneider \emph{et al.} outline minor refinements algorithm including scaling the update factor with the number of energy bins~\cite{schneider2017convergence}.
 These studies led to the
-formation of the $1/t$-WL algorithm and also sparked some debate as to whether
-the entire simulation should be split into multiple parts, called ``production run" WL, in order to preserve ergodicity and
+formation of the $1/t$-WL algorithm and have also led some researchers to follow
+WL with a ``production run'' with fixed weights, in order to preserve ergodicity and
 detailed balance~\cite{jayasri2005wang, mukhopadhyay2008monte}.
+%
+To our knowledge, this work is the first test of the convergence
+properties of WL followed by a production run with comparison to other
+methods.
 
 Liang independently considered whether WL could be treated as a special case of
 stochastic approximation whose convergence could be mathematically
@@ -69,7 +73,7 @@ algorithms dynamic choice.
 In this work, we compare the convergence properties of five flat-histogram
 methods. We detail how each method is implemented and apply the family of
 weight-based flat-histogram Monte Carlo methods (pure WL, WL followed by a
-"production run", 1/t-WL, SAMC, and SAD) to the 2D Ising model.
+``production run'', $1/t$-WL, SAMC, and SAD) to the 2D Ising model.
 
 \section{Ising Model}
 The 2D Ising spin-lattice system is widely used as a testbed when
@@ -367,26 +371,26 @@ choosing too large a $\gamma^{\text{WL}}_t$ will result in poor convergence
 properties.
 
 \section{Conclusion}
-We find that SAD, 1/t-WL, and WL followed by a production run
-(with an adequately small $\gamma^{\min}$) demonstrate excellent and robust
-convergence. They all converge more rapidly than SAMC, and unlike pure WL do
-not suffer from
-error saturation. We find that for larger Ising systems SAD reduces the update
-factor more slowly (and conservatively) than 1/t-WL and WL followed by a
-production run. This means that SAD will take
-proportionately more moves to converge to the same value as 1/t-WL as system
-size is increased (WL methods are given the energy range \emph{a priori.} and
-converge independent of system size). SAD requires the user to specify a
-temperature range of interest rather than an energy range of interest as the WL
-methods do. The 2D
-Ising model is a system where the energy range is known \emph{a priori.}, which
-makes a comparison between WL methods and SAD (which requires a minimum
-temperature) more biased towards WL methods. For the majority of cases in which
-the energy range of the system is not known and where a range of desired
-temperatures is known, this will make the SAD method
-considerably more convenient. This work also visually demonstrates
-that WL followed by a production run performs extremely well and is preferable
-to pure WL for ensuring both ergodicity and detailed balance.
+We find that SAD, $1/t$-WL, and WL followed by a production run (with an
+adequately small $\gamma^{\min}$) demonstrate excellent and robust
+convergence. They all converge more rapidly than SAMC, and unlike pure
+WL do not suffer from error saturation. We find that for larger Ising
+systems SAD reduces the update factor more slowly (and conservatively)
+than $1/t$-WL and WL followed by a production run. This means that SAD
+will take proportionately more moves to converge to the same value as
+$1/t$-WL as system size is increased.  However, the WL methods are
+solving a simpler problem because they are given the energy range
+\emph{a priori}, rather than a temperature range of interest such as
+SAD requires.  The 2D Ising model is a system where the energy range
+is known \emph{a priori.}, which makes a comparison between WL methods
+and SAD more biased in favor of WL methods. For the general case in
+which the energy range of the system is not known and where a range of
+desired temperatures is known, this will make the SAD method
+considerably more convenient, and quite possibly more efficient than a
+process involving multiple simulations to determine the energy range
+of interest. This work also dramatically demonstrates that WL followed
+by a production run performs extremely well and is preferable to pure
+WL for ensuring both ergodicity and detailed balance.
 
 \section{Acknowledgments}
 We wish to thank Johannes Zierenberg for helpful discussions regarding WL followed by a production run and for insights into properties of a production run at different stages of convergence.
