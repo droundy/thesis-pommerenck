@@ -9,8 +9,9 @@
 \usepackage{url}
 
 % \usepackage{cite}
-\usepackage{xargs}                      % Use more than one optional parameter in a new commands
-\usepackage{color}  % Coloured text etc.
+\usepackage{xargs}
+% Use more than one optional parameter in a new commands
+\usepackage{color}
 %
 \usepackage[colorinlistoftodos,prependcaption,textsize=normalsize]{todonotes}
 \usepackage{mdframed}
@@ -30,18 +31,10 @@
 \newcommand{\blue}[1]{{\bf \color{blue} #1}}
 \newcommand{\cyan}[1]{{\bf \color{cyan} #1}}
 
-%\newcommandx{\davidsays}[1]{\begin{mdframed}[backgroundcolor=blue!24]\textbf{David says:} #1\end{mdframed} }
-%\newcommandx{\davidsays}[2][1=inline]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{\textbf{David says:} #2} }
 \newcommand{\davidsays}[1]{{\color{red} [\blue{D:} \emph{#1}]}}
 \newcommand{\jpsays}[1]{{\color{red} [\blue{Jordan:} \emph{#1}]}}
 \newcommandx{\jordan}[2][1=inline]{\todo[linecolor=gray,backgroundcolor=gray!25,bordercolor=gray,#1]{\textbf{Jordan says:} #2} }
 \newcommandx{\corysays}[2][1=inline]{\todo[linecolor=green,backgroundcolor=green!25,bordercolor=green,#1]{\textbf{Cory says:} #2} }
-
-%% \renewcommand\davidsays[1]{}
-%% \renewcommand{\corysays}[2][1=inline]{}
-%TC:macro \corysays [ignore]
-%TC:macro \davidsays [ignore]
-%TC:macro \jordan [ignore]
 
 \newcommandx{\maybecut}[1]{\begin{mdframed}[backgroundcolor=cyan!24]\textbf{Maybe cut:} #1\end{mdframed} }
 
@@ -123,13 +116,6 @@ still satisfy the DOE targets~\cite{schneemann2014flexible, choi2008broadly, mas
 \maketitle
 
 \newcommand\gst{\ensuremath{\Delta g_{st}}}
-
-\paragraph*{to do}
-\begin{enumerate}
-    \item See david/corysays
-    \item make the code presentable
-    \item do the FIXME in code
-\end{enumerate}
 
 \input{gas-ads-body.tex}
 
