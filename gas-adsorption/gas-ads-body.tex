@@ -110,50 +110,77 @@ Co(bdp) which currently boasts the largest methane deliverable
 capacity~\cite{mason2015methane}.
 
 \section{Gas storage \& delivery by isothermal, pressure-swing adsorption}
-% Here, we pose the context and question that we address in this work.
-% Consider pure gas storage and delivery by isothermal, pressure-swing adsorption \cite{sircar2002pressure}.
-Consider a pressure vessel onboard a vehicle (i.e. fuel tank) packed with porous material. At the filling stage, the tank is connected to a (pure) gaseous reservoir at pressure $\pfull$ and allowed to equilibrate. At this point, the adsorbed gas tank is considered full. While driving, gas desorbs from the adsorbent to the engine/fuel cell, driven by a pressure differential.
-The tank is considered depleted/empty when the pressure has dropped to $\pempty$, the pressure at which the flow rate of gas from the tank to the engine is insufficient.
-%
-However, given $\pempty \neq 0$ (pulling vacuum), residual gas will remain trapped in the adsorbent. Therefore, the driving range of the vehicle is primarily determined by the \emph{deliverable capacity}, defined as the density of gas in the tank at $\pfull$ minus density of the the residual gas remaining at $\pempty$. The [isothermal, volumetric] deliverable capacity is an intrinsic property of the nanoporous material and its interaction with the gas.
-%Precisely, let $\rho(p; T)$ be the density of gas in the adsorbent when in equilibrium with a bath of pure gas at pressure $p$ and temperature $T$, the \emph{adsorption isotherm}; $\rho(p,T)$ is essentially the equation of state of the gas adsorbed in the porous material. The [intrinsic, isothermal] deliverable capacity $\rho_D$ of the gas in the adsorbent is:
-%\begin{equation}
-%    \rho_D(\pfull, \pempty; T) \equiv \rho(\pfull; T) - \rho(\pempty; T).
-%    \label{eq:delcap}
-%\end{equation}
-% The pressures $\pfull$ and $\pempty$ correspond to chemical potentials $\mufull$ and $\muempty$ via an equation of state for the gas.
-% Eqn.~\ref{eq:delcap}
-% This assumes that the tank reaches equilibrium %, neglecting the kinetics of ad/desorption
-% at the end of the filling and depletion stages. 
-
-%The assumption of isothermal operation neglects (i) heat released/consumed during ad/desorption, which can diminish the deliverable capacity by raising/lowering the temperature of the adsorbent during filling/discharge \cite{mota1997dynamics,chang1996behavior}, and (ii) an engineering strategy to use waste heat from the engine to heat the adsorbent and drive off residual gas when it nears $\pempty$ \cite{gomez2014exploring}. 
-
-%Second, an engineering strategy to increase the deliverable capacity beyond the isothermal deliverable capacity is to reroute waste heat from the engine to the adsorbed gas tank during delivery. By raising the temperature of the adsorbent during the discharge stage, we drive off a fraction of the residual gas that would otherwise remain when the tank reaches $\pempty$ . In such a case, the [non-isothermal] deliverable capacity of the tank is $\rho(\pfull, T)-\rho(\pempty; T_H)$ where $T_H$ is the temperature to which we heat the adsorbent at discharge. This strategy, however, requires a more complicated design.
-
-% \begin{limitation}\label{limit:isothermal}
-% We assume isothermal pressure-swing adsorption. It is possible to achieve a greater deliverable capacity by raising the temperature of the adsorbent as the gas is extracted to drive off the residual gas.
-% \end{limitation}
+Consider a pressure vessel onboard a vehicle (i.e. fuel tank) packed with
+porous material. At the filling stage, the tank is connected to a (pure)
+gaseous reservoir at pressure $\pfull$ and allowed to equilibrate. At this
+point, the adsorbed gas tank is considered full. While driving, gas desorbs
+from the adsorbent to the engine/fuel cell, driven by a pressure differential.
+The tank is considered depleted/empty when the pressure has dropped to
+$\pempty$, the pressure at which the flow rate of gas from the tank to the
+engine is insufficient. However, given $\pempty \neq 0$ (pulling vacuum),
+residual gas will remain trapped in the adsorbent. Therefore, the driving range
+of the vehicle is primarily determined by the \emph{deliverable capacity}. The
+isothermal, volumetric deliverable capacity is an intrinsic property of the
+nanoporous material and its interaction with the gas.
 
 \section{Review of previous work}
-There has been considerable work attempting to establish an upper bound on the isothermal deliverable capacity in pressure-swing adsorption.
-% We now review previous work towards placing an upper bound on the isothermal deliverable capacity of hydrogen or methane by pressure-swing adsorption.
-% The first body of work rests on the simplified Langmuir model; the second body of work rests upon imposing energetic models for the gas-substrate and gas-gas interactions.
+There has been considerable work attempting to establish an upper bound on the
+isothermal deliverable capacity in pressure-swing adsorption.
 
-Early work showed that, in the simplified Langmuir model, there exists an optimal free energy of adsorption (which determines the Langmuir constant) that maximizes the deliverable capacity $\rho_D$~\cite{matranga1992storage,bhatia2006optimum,simon2014optimizing}.
-If the gas-substrate interaction is too weak (strong), too little (much) gas adsorbs (is retained) at $\pfull$ ($\pempty$), diminishing $\rho_D$. An upper bound on the deliverable capacity of a Langmuir material follows if each adsorption site is endowed with the optimal free energy of adsorption. However, remaining is the question of how many adsorption sites per volume a porous material can practically offer, under the constraint that these adsorption sites offer the optimal free energy of adsorption. Moreover, gas-gas attractions, neglected in the Langmuir model, could recruit more gas in the material at $\pfull$ than at $\pempty$ and enhance the deliverable capacity~\cite{simon2014optimizing}.
+Early work showed that, in the simplified Langmuir model, there exists an
+optimal free energy of adsorption (which determines the Langmuir constant) that
+maximizes the deliverable capacity
+$\rho_D$~\cite{matranga1992storage,bhatia2006optimum,simon2014optimizing}. If
+the gas-substrate interaction is too weak (strong), too little (much) gas
+adsorbs (is retained) at $\pfull$ ($\pempty$), diminishing $\rho_D$. An upper
+bound on the deliverable capacity of a Langmuir material follows if each
+adsorption site is endowed with the optimal free energy of adsorption. However,
+remaining is the question of how many adsorption sites per volume a porous
+material can practically offer, under the constraint that these adsorption
+sites provide the optimal free energy of adsorption. Moreover, gas-gas
+attractions, neglected in the Langmuir model, could recruit more gas in the
+material at $\pfull$ than at $\pempty$ and enhance the deliverable
+capacity~\cite{simon2014optimizing}.
 
-G\'omez-Gualdr\'on \emph{et al.}~\cite{gomez2017impact} introduced a model that accounted for gas-gas interactions via an intermolecular potential and idealized the substrate in two different ways: (1) discrete adsorption sites packed into an FCC lattice and (2) a volume endowed with a spatially uniform, background potential energy field. According to molecular simulation of methane adsorption, the ARPA-E deliverable capacity target of 315 L STP/L could be reached in both of these idealized substrates.
-%The ARPA-E target of 315 L STP/L was reached when adsorption sites were endowed with an optimal heat of adsorption of 11.5 kJ/mol and adsorption sites were $5.3$ \AA~apart. In a second model, they endowed a volume with a background potential energy field, then simulated the adsorption of methane in the volume in the grand-canonical ensemble, using a Lennard-Jones potential for methane-methane interactions. The maximal deliverable capacity of 357 L STP/L was achieved with a background heat of adsorption of 8.6 kJ/mol. 
-However, both models neglected the space occupied by atoms of the porous material that are needed to endow the adsorption sites/volume with the attractive potential energy. % To address this, in the third model, they constructed pseudo materials by placing Lennard-Jones spheres in space with tunable well depths. When constrained to form a connected network, none of the psuedo-materials reached the ARPA-E deliverable capacity target.
+G\'omez-Gualdr\'on \emph{et al.}~\cite{gomez2017impact} introduced a model that
+accounted for gas-gas interactions via an intermolecular potential and
+idealized the substrate in two different ways: (1) discrete adsorption sites
+packed into an FCC lattice and (2) a volume endowed with a spatially uniform,
+background potential energy field. According to molecular simulation of methane
+adsorption, the ARPA-E deliverable capacity target of 315 L STP/L could be
+reached in both of these idealized substrates. However, both models neglected
+the space occupied by atoms of the porous material that are needed to endow the
+adsorption sites/volume with the attractive potential energy.
 
-A third body of work attempted to account for both gas-gas interactions \emph{and} steric interactions of the gas with the atoms of the porous material.
-% explores the upper limits of the deliverable capacity while accounting for gas-gas interactions \emph{and} the atoms of the porous material that are required to attract the guest; these material atoms exclude the adsorbate from regions of the control volume. 
-%More works obtained an empirical upper bound on the deliverable capacity by explicitly accounting for the atoms of the material needed to create the potential energy field felt by the gas molecules.
-Simulations of methane adsorption in hundreds of thousands of explicit nanoporous crystal structures---both real and hypothetical---suggested that the ARPA-E deliverable capacity target is infeasible~\cite{simon2015materials}; the highest simulated methane deliverable capacity was 196 cm$^3$~STP/cm$^3$. Confidence in this conclusion rests upon (i) the accuracy of the intermolecular potentials describing the molecular interactions and (ii) the sufficient sampling of material space, i.e.\ that the structures considered are representative of the set of possible materials. To further explore material space and address sensitivity to the potentials used, scaling the Lennard-Jones potential well depths of material atoms to model enhanced interactions~\cite{gomez2014exploring}, placing Lennard-Jones spheres in a unit cell randomly to form ``pseudo-materials''~\cite{kaija2018high}, and generating fictitious potential energy fields via a generative adversarial network trained on zeolite structures~\cite{lee2019predicting} all generated model substrates that all failed to meet the ARPA-E methane deliverable capacity target.
+A third body of work attempted to account for both gas-gas interactions
+\emph{and} steric interactions of the gas with the atoms of the porous
+material. Simulations of methane adsorption in hundreds of thousands of
+explicit nanoporous crystal structures---both real and hypothetical---suggested
+that the ARPA-E deliverable capacity target is
+infeasible~\cite{simon2015materials}; the highest simulated methane deliverable
+capacity was 196 cm$^3$~STP/cm$^3$. Confidence in this conclusion rests upon
+(i) the accuracy of the intermolecular potentials describing the molecular
+interactions and (ii) the sufficient sampling of material space, i.e.\ that the
+structures considered are representative of the set of possible materials. To
+further explore material space and address sensitivity to the potentials used,
+scaling the Lennard-Jones potential well depths of material atoms to model
+enhanced interactions~\cite{gomez2014exploring}, placing Lennard-Jones spheres
+in a unit cell randomly to form ``pseudo-materials''~\cite{kaija2018high}, and
+generating fictitious potential energy fields via a generative adversarial
+network trained on zeolite structures~\cite{lee2019predicting} all generated
+model substrates that failed to meet the ARPA-E methane deliverable
+capacity target.
 
 % Brown and Freeman \cite{bhown2011analysis}
 
-In this work, we place a rigorous upper bound on the deliverable capacity of a pure gas in a rigid substrate by endowing a control volume with a spatially uniform background energy field. Instead of using a molecular model for the gas~\cite{gomez2017impact}, we use the experimental equation of state to account for gas-gas interactions. In addition, we prove using the calculus of variations that this spatially uniform substrate yields a maximal deliverable capacity. We use our framework to place an upper bound on the deliverable capacity of methane and hydrogen.
+In this work, we place a rigorous upper bound on the deliverable capacity of a
+pure gas in a rigid substrate by endowing a control volume with a spatially
+uniform background energy field. Instead of using a molecular model for the
+gas~\cite{gomez2017impact}, we use the experimental equation of state to
+account for gas-gas interactions. In addition, we prove using the calculus of
+variations that this spatially uniform substrate yields a maximal deliverable
+capacity. We use our framework to place an upper bound on the deliverable
+capacity of methane and hydrogen gas.
 
 \section{An upper bound on the deliverable capacity of a pure gas in a rigid porous material}\label{sec:upper-bound}
 \begin{figure}
@@ -168,9 +195,6 @@ We now develop a thermodynamic framework that places an upper bound on the deliv
 
 The thermodynamic properties of a bulk, pure gas are characterized by an equation of state. 
 Of particular interest for gas storage and delivery is the density of the gas as a function of chemical potential $\mu$ and temperature $T$, $\rho_g(\mu,T)$, which is shown for methane gas in Fig.~\ref{fig:density-vs-mu-ch4} at $T=298$\ K. For comparison, we also show the density of methane adsorbed into several porous materials.
-
-% \davidsays{This paragraph could move considerably later. Or cut entirely?}
-% We model the interaction of substrate with gas as a simple Gibbs free energy of adsorption per mole (or atom) \gst.  We will assume that this Gibbs free energy is independent of the concentration of gas.  At low concentrations, this assumption is reasonable, because the gas molecules can be assumed to be widely separated and their interactions weak.  In the limit of high concentrations, we expect that the attraction of the gas to the substrate will be diminished, since the ``good spots'' will already be occupied.  The choice of a concentration-independent $\gst$ will thus have a tendency to overestimate the deliverable capacity, providing an upper bound (for more on this, see Sec.~\ref{sec:qualitative-max}).
 
 To place an upper bound on the deliverable capacity, consider a substrate whose sole interaction with the gas is to introduce a spatially uniform potential energy $\V$
 for gas molecules in the control volume (where $\V<0$ for an attractive potential). Because this interaction is uniform within the substrate, the gas-gas interactions and thus fluid structure in such a substrate are identical to those of the pure gas at the same density and temperature. This allows us to obtain the adsorption properties of this model substrate using the experimentally measured properties of the pure gas~\cite{nist}. 
