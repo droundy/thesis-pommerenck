@@ -31,22 +31,54 @@ dioxide \cite{crabtree2004hydrogen}. Notably, the environmental allure of
 hydrogen is predicated on its production via a renewable means, e.g.\ splitting
 water using wind-generated electricity.
 
-At ambient conditions, both methane
-%(0.036 MJ/L)
-and hydrogen gas
-%(0.01 MJ/L)
-possess a very low volumetric energy density compared to (liquid) gasoline.
-%(34.2 MJ/L)
-Consequently, under storage space constraints in passenger vehicles, natural gas and hydrogen must be densified for onboard storage to achieve a reasonable driving range on a ``full'' tank of fuel. Traditional densification approaches are liquefaction (cryogenic storage near atmospheric pressure)
+% methane (0.036 MJ/L); hydrogen gas (0.01 MJ/L); liquid gasoline (34.2 MJ/L).
 % (at 1 atm, liquid CH$_4$ at 111~K to achieve 22.2 MJ/L~\cite{makal2012methane}, liquid H$_2$ at 20 K to achieve 8~MJ/L \cite{suh2011hydrogen})
-or compression to high pressures (room temperature storage).
 % (200 bar for CH$_4$ to achieve 9.2 MJ/L \cite{makal2012methane} and 700 bar for H$_2$ to achieve 4.5-5.3 MJ/L~\cite{unknown}).
-Both approaches require expensive infrastructure at refilling stations and significant energy input; e.g., liquefaction of hydrogen consumes at least 30\% of its energy content~\cite{bossel2003energy}. Moreover, high-pressure storage tanks are heavy, thick-walled, and non-conformable, while cryogenic storage tanks are bulky, expensive, and afflicted by boil-off losses~\cite{hasan2009minimizing}.
 
-A promising approach to densify natural gas~\cite{makal2012methane,mason2014evaluating} and hydrogen~\cite{suh2011hydrogen,garcia2018benchmark} for vehicular storage is through physical adsorption in nanoporous materials at room temperature~\cite{schoedel2016role}. The internal surfaces of porous materials attract gas molecules through van der Waals, electrostatic, etc. interactions to achieve a higher adsorbed gas density than the bulk gas at the same temperature and pressure, allowing for room temperature and lower-pressure storage and alleviating many drawbacks of high-pressure storage.
+At ambient conditions, both methane and hydrogen gas possess a very low
+volumetric energy density compared to gasoline. Consequently, under storage
+space constraints in passenger vehicles, natural gas and hydrogen must be
+densified for onboard storage to achieve a reasonable driving range on a
+``full'' tank of fuel. Traditional densification approaches are liquefaction,
+at cryogenic temperatures and atmospheric pressure, or compression, at room
+temperature and high pressures. Both approaches require expensive
+infrastructure at refilling stations and significant energy input; e.g.,
+liquefaction of hydrogen consumes at least 30\% of its energy
+content~\cite{bossel2003energy}. Moreover, high-pressure storage tanks are
+heavy, thick-walled, and non-conformable, while cryogenic storage tanks are
+bulky, expensive, and afflicted by boil-off losses~\cite{hasan2009minimizing}.
 
-For a vehicle employing a porous material to store natural gas or hydrogen, the (volumetric) \emph{deliverable capacity} of the gas is the primary thermodynamic property of the material that determines the driving range~\cite{mason2014evaluating}. The adsorbed gas storage tank delivers the gaseous fuel to the engine via an (assumed) isothermal pressure swing~\cite{sircar2002pressure}. The deliverable capacity (see Fig.~\ref{fig:delcap}) is the density of the gas in the material at the storage pressure $\pfull$ minus the residual gas that remains adsorbed at the lowest pressure $\pempty$ such that sufficient flow is maintained to feed the engine.
-For commercial feasibility, the US Department of Energy (DOE) has set deliverable capacity targets for both adsorbed methane and hydrogen storage and delivery for vehicles. For methane, the Advanced Research Projects Agency--Energy (ARPA-E) set a deliverable capacity target of 315\ L STP CH$_4$ per L of adsorbent at 298 K using a 65\ bar to 5.8\ bar pressure swing~\cite{simon2015materials}. For hydrogen, the DOE set a series of progressive targets at five year intervals, with the ultimate target of 0.05 kg H$_2$/L~\cite{h2targetsDOE} using a 100\ bar to 5\ bar pressure swing at a minimum of -40 $^\circ$C~\cite{allendorf2018assessment}. Thus far, despite the emergence of highly tunable materials with enormous surface areas, such as metal-organic frameworks~\cite{furukawa2013chemistry}, no porous material has met these deliverable capacity targets. 
+A promising approach to densify natural
+gas~\cite{makal2012methane,mason2014evaluating} and
+hydrogen~\cite{suh2011hydrogen,garcia2018benchmark} for vehicular storage is
+through physical adsorption in nanoporous materials at room
+temperature~\cite{schoedel2016role}. The internal surfaces of porous materials
+attract gas molecules through van der Waals, electrostatic, etc. interactions
+to achieve a higher adsorbed gas density than the bulk gas at the same
+temperature and pressure, allowing for room temperature and lower-pressure
+storage and alleviating many drawbacks of high-pressure storage.
+
+For a vehicle employing a porous material to store natural gas or hydrogen, the
+(volumetric) \emph{deliverable capacity} of the gas is the primary
+thermodynamic property that determines the driving
+range~\cite{mason2014evaluating}. The adsorbed gas storage tank delivers the
+gaseous fuel to the engine via an (assumed) isothermal pressure
+swing~\cite{sircar2002pressure}. The deliverable capacity (see
+Fig.~\ref{fig:delcap}) is the density of the gas in the material at the storage
+pressure $\pfull$ minus the residual gas that remains adsorbed at the lowest
+pressure $\pempty$ such that sufficient flow is maintained to feed the engine.
+For commercial feasibility, the US Department of Energy (DOE) has set
+deliverable capacity targets for both adsorbed methane and hydrogen storage and
+delivery for vehicles. For methane, the Advanced Research Projects
+Agency--Energy (ARPA-E) set a deliverable capacity target of 315\ L STP CH$_4$
+per L of adsorbent at 298 K using a 65\ bar to 5.8\ bar pressure
+swing~\cite{simon2015materials}. For hydrogen, the DOE set a series of
+progressive targets at five year intervals, with the ultimate target of 0.05 kg
+H$_2$/L~\cite{h2targetsDOE} using a 100\ bar to 5\ bar pressure swing at a
+minimum of -40 $^\circ$C~\cite{allendorf2018assessment}. Thus far, despite the
+emergence of highly tunable materials with enormous surface areas, such as
+metal-organic frameworks~\cite{furukawa2013chemistry}, no porous material has
+met these deliverable capacity targets.
 
 \begin{figure}
     \centering
@@ -62,10 +94,20 @@ For commercial feasibility, the US Department of Energy (DOE) has set deliverabl
     \label{fig:fig1}
 \end{figure}
 
-To set realistic performance targets and optimally allocate resources for research efforts, in this work, we present a theoretical framework that places an intrinsic upper limit on the deliverable capacity of gas in a rigid porous material and uses as input the experimentally measured properties of the bulk gas. Our extremum is provided by a substrate that offers a spatially uniform potential energy field felt by the gas. Applying our framework to methane and hydrogen gas, we find the US DOE deliverable capacity targets for natural gas and hydrogen storage and delivery are theoretically possible, but sufficiently close to the upper bound as to be impractical for any real porous material. Optimistically, new paradigms outside the scope of applicability of our theoretical framework, such as gas-induced structural transitions of the material, hold promise for meeting these targets, as evidenced by flexible MOF Co(bdp) which currently boasts the largest methane deliverable capacity~\cite{mason2015methane}.
-
-% Jordan: I commented this out!
-% To optimally allocate resources for research efforts and set realistic performance targets, it is important to assess the thermodynamic limits of technologies. Here, we present a theoretical framework that places an intrinsic upper limit on the deliverable capacity of gas in a nanoporous material and uses as input experimental measurements of the bulk gas. Applying our framework to methane and hydrogen gas, we find the DOE deliverable capacity targets for natural gas and hydrogen storage and delivery are theoretically possible, but sufficiently close to the upper bound as to be impractical for any real porous material.
+To set realistic performance targets and optimally allocate research resources,
+in this work, we present a theoretical framework that places an intrinsic upper
+limit on the deliverable capacity of any gas in a rigid porous material and
+uses as input the experimentally measured properties of the bulk gas. Our
+extremum is provided by a substrate that offers a spatially uniform potential
+energy field felt by the gas. Applying our framework to methane and hydrogen
+gas, we find the US DOE deliverable capacity targets for natural gas and
+hydrogen storage and delivery are theoretically possible, but sufficiently
+close to the upper bound as to be impractical for any real porous material.
+Optimistically, new paradigms outside the scope of applicability of our
+theoretical framework, such as gas-induced structural transitions of the
+material, hold promise for meeting these targets, as evidenced by flexible MOF
+Co(bdp) which currently boasts the largest methane deliverable
+capacity~\cite{mason2015methane}.
 
 \section{Gas storage \& delivery by isothermal, pressure-swing adsorption}
 % Here, we pose the context and question that we address in this work.
