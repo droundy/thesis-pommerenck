@@ -340,7 +340,7 @@ for mof in colors.order(CH4_298_E_Data): # For each MOF
     qst = CH4_298_E_Data[mof]
     plt.plot([delta_G_lo_p/(kJ/mol), delta_G_hi_p/(kJ/mol)],
              [qst/(kJ/mol), qst/(kJ/mol)],
-             '.-', label=colors.latex_mof(mof), color=colors.color(mof))
+             colors.symbol('methane')+'-', label=colors.latex_mof(mof), color=colors.color(mof))
     mofs_shown.add(colors.latex_mof(mof))
 
 
@@ -378,23 +378,23 @@ nh = 1/Vh
 mu_empty = my_interp(p_empty, ph, mu_h)
 mu_full = my_interp(p_full, pc, mu_c)
 
-for mof in colors.order(H2_77_Data): # For each MOF
-    rho_lo_p = H2_77_Data[mof]['rho_h']*H2_crystal_density[mof]
-    delta_G_lo_p = my_interp(rho_lo_p, nh, mu_h) - mu_empty
-    # convert units: mmol/gram*molecular_weight/crystal_density,
-    rho_hi_p = H2_77_Data[mof]['rho_c']*H2_crystal_density[mof]
-    delta_G_hi_p = my_interp(rho_hi_p, nc, mu_c) - mu_full
+# for mof in colors.order(H2_77_Data): # For each MOF
+#     rho_lo_p = H2_77_Data[mof]['rho_h']*H2_crystal_density[mof]
+#     delta_G_lo_p = my_interp(rho_lo_p, nh, mu_h) - mu_empty
+#     # convert units: mmol/gram*molecular_weight/crystal_density,
+#     rho_hi_p = H2_77_Data[mof]['rho_c']*H2_crystal_density[mof]
+#     delta_G_hi_p = my_interp(rho_hi_p, nc, mu_c) - mu_full
 
-    qst = H2_77_Data[mof]
-    if colors.latex_mof(mof) not in mofs_shown:
-        plt.plot([delta_G_lo_p/(kJ/mol), delta_G_hi_p/(kJ/mol)],
-                 [qst['qh']/(kJ/mol), qst['qc']/(kJ/mol)],
-                 'x-', label=colors.latex_mof(mof), color=colors.color(mof))
-        mofs_shown.add(colors.latex_mof(mof))
-    else:
-        plt.plot([delta_G_lo_p/(kJ/mol), delta_G_hi_p/(kJ/mol)],
-                 [qst['qh']/(kJ/mol), qst['qc']/(kJ/mol)],
-                 'x-', color=colors.color(mof))
+#     qst = H2_77_Data[mof]
+#     if colors.latex_mof(mof) not in mofs_shown:
+#         plt.plot([delta_G_lo_p/(kJ/mol), delta_G_hi_p/(kJ/mol)],
+#                  [qst['qh']/(kJ/mol), qst['qc']/(kJ/mol)],
+#                  'x-', label=colors.latex_mof(mof), color=colors.color(mof))
+#         mofs_shown.add(colors.latex_mof(mof))
+#     else:
+#         plt.plot([delta_G_lo_p/(kJ/mol), delta_G_hi_p/(kJ/mol)],
+#                  [qst['qh']/(kJ/mol), qst['qc']/(kJ/mol)],
+#                  'x-', color=colors.color(mof))
 
 NistData = None
 mu = None
@@ -438,17 +438,17 @@ for mof in colors.order(H2_298_Data): # For each MOF
     if colors.latex_mof(mof) not in mofs_shown:
         plt.plot([delta_G_lo_p/(kJ/mol), delta_G_hi_p/(kJ/mol)],
                  [qst['qh']/(kJ/mol), qst['qc']/(kJ/mol)],
-                 'x-', label=colors.latex_mof(mof), color=colors.color(mof))
+                 colors.symbol('hydrogen')+'-', label=colors.latex_mof(mof), color=colors.color(mof))
     else:
         plt.plot([delta_G_lo_p/(kJ/mol), delta_G_hi_p/(kJ/mol)],
                  [qst['qh']/(kJ/mol), qst['qc']/(kJ/mol)],
-                 'x-', color=colors.color(mof))
+                 colors.symbol('hydrogen')+'-', color=colors.color(mof))
 
 plt.plot([0,31],[0,31],'k:')
 plt.xlim(0,22)
 plt.ylim(0,22)
 plt.axes().set_aspect('equal')
-plt.xlabel(r'$|\Delta G_{st}|$ (kJ/mol)')
+plt.xlabel(r'$|\Delta g_{st}|$ (kJ/mol)')
 plt.ylabel(r'$|q_{st}|$ (kJ/mol)')
 plt.legend(loc='best', prop=colors.small_font)
 plt.savefig('figs/qst-vs-delta-G.pdf')

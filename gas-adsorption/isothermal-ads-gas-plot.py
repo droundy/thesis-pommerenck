@@ -256,7 +256,7 @@ for mof in colors.order(mof_isotherms): # For each MOF
 
     plt.plot([delta_G_lo_p/(kJ/mol), delta_G_hi_p/(kJ/mol)],
             [(rho_hi_p-rho_lo_p)/density_units, (rho_hi_p-rho_lo_p)/density_units],
-            'x-', label=colors.latex_mof(mof), color=colors.color(mof))
+            colors.symbol(basename)+'-', label=colors.latex_mof(mof), color=colors.color(mof))
 
 stepby = None
 if 20 < ymax < 200:
@@ -294,7 +294,7 @@ for mof in mof_isotherms: # For each MOF
         p_MOF = data[1]*bar
         rho_MOF = data[2]*density_units
         mu_ax.plot(mu_from_p(p_MOF)/(kJ/mol),
-                   rho_MOF/density_units, '.-', color=colors.color(mof), label=colors.latex_mof(mof))
+                   rho_MOF/density_units, colors.symbol(basename)+'-', color=colors.color(mof), label=colors.latex_mof(mof))
     except OSError: # Raise an OSError if file does not exist?
         print(f'Isotherm curves: The file "{fname}" does not existg continuing...')
         continue

@@ -43,6 +43,12 @@ def color(mof):
         return colors[the_order.index(mof)]
     return 'k'
 
+def symbol(gas):
+    if gas == 'methane':
+        return '.'
+    else:
+        return '+' 
+
 latex_mof_names = {
     'Ni2dobdc': 'Ni$_2$(dodbc)',
     'Co2dobdc': 'Co$_2$(dodbc)',
