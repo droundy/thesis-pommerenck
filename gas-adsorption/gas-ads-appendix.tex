@@ -14,10 +14,10 @@ ensemble, where this control volume can exchange energy and particles with a
 bath of gas at temperature $T$ and chemical potential $\mu$.
 
 To denote a microstate of this system, let $N$ be the number of gas particles
-in the control volume and $\mathbf{x}_1,...,\mathbf{x}_N$ be their positions.
+in the control volume and $\mathbf{r}_1,...,\mathbf{r}_N$ be their positions.
 Then, the potential energy $E$ of a microstate of the control volume is:
-\begin{equation} E(\mathbf{x}_1,...,\mathbf{x}_N) = N\V +
-E_{gg}(\mathbf{x}_1,...,\mathbf{x}_N), \end{equation} where $E_{gg}$ is the
+\begin{equation} E(\rvec_1,...,\rvec_N) = N\V +
+E_{gg}(\rvec_1,...,\rvec_N), \end{equation} where $E_{gg}$ is the
 (unknown and complicated) interatomic potential for gas-gas interactions that
 governs the (real) gas properties. The first term arises from each gas molecule
 experiencing the external potential $\V$, where $\V < 0$ corresponds to
@@ -27,7 +27,7 @@ attraction.
 
 The grand-canonical partition function of the control volume is:
 \begin{multline}
-    \Xi(\mu, V, T)= \\ \displaystyle \sum_{N=0}^\infty \frac{1}{\Lambda^{3N}N!} \int_{\Omega} \cdots \int_{\Omega} e^{-\beta E_{gg}(\xvec_1, ..., \xvec_N)} e^{\beta (\mu - \V) N} d\xvec_1 \cdots d\xvec_N.
+    \Xi(\mu, V, T)= \\ \displaystyle \sum_{N=0}^\infty \frac{1}{\Lambda^{3N}N!} \int_{\Omega} \cdots \int_{\Omega} e^{-\beta E_{gg}(\rvec_1, ..., \rvec_N)} e^{\beta (\mu - \V) N} d\rvec_1 \cdots d\rvec_N.
     \label{eq:gcpf}
 \end{multline}
 We recognize this as the grand canonical partition function of the bulk gas in
@@ -49,24 +49,24 @@ our ideal substrate are equivalent to the gas at higher chemical potential.
 
 \section{Proof of extremum}\label{sec:proof-extremum}
 To show that a uniform potential gives the highest deliverable capacity, we
-consider a interaction potential between gas and substrate $\V(\vec r)$ that
+consider a interaction potential between gas and substrate $\V(\rvec)$ that
 varies with space.  In this proof we will make use of the Fourier transform of
 this potential:
 \begin{align}
-    \Vk \equiv \iiint \V(\vec r) e^{-i\vec k\cdot \vec r} d\vec r
+    \Vk \equiv \iiint \V(\rvec) e^{-i\kvec\cdot \rvec} d\rvec
 \end{align}
-The Fourier transform of a uniform potential is a Dirac delta function $\tilde{\V}(\vec k)\propto\delta(\vec k)$. Therefore, to show that a uniform potential
+The Fourier transform of a uniform potential is a Dirac delta function $\tilde{\V}(\kvec)\propto\delta(\kvec)$. Therefore, to show that a uniform potential
 extremizes the deliverable capacity, we must show that the functional
 derivative of the deliverable capacity with respect to $\Vk$ is zero for
-\emph{nonzero} values of $\vec k$, i.e.
+\emph{nonzero} values of $\kvec$, i.e.
 \begin{align}
-    \frac{\delta D}{\delta \Vk} &= 0, \text{ if } \vec k\ne 0.
+    \frac{\delta D}{\delta \Vk} &= 0, \text{ if } \kvec\ne 0.
 \end{align}
-We note that this functional derivative may be non-zero for $\vec k=0$ because
+We note that this functional derivative may be non-zero for $\kvec=0$ because
 we separately maximize with respect to the particular uniform potential $\V$.
 This means that
 \begin{align}
-    \frac{\delta N_H}{\delta \V(\vec k)} &= -\frac{\delta N_L}{\delta \Vk}
+    \frac{\delta N_H}{\delta \V(\kvec)} &= -\frac{\delta N_L}{\delta \Vk}
 \end{align}
 where $N_H$ and $N_L$ are the number of particles at the low and high pressure.
 
@@ -76,12 +76,12 @@ $\Vk$ with the number of molecules held fixed. We demonstrate this using the
 cyclic chain rule, which shows us that
 \begin{align}
     \left(\frac{\delta N}{\delta \Vk}\right)_{\mu} &=
-    -\left(\frac{\delta \mu}{\delta \V(\vec k)}\right)_{N}
+    -\left(\frac{\delta \mu}{\delta \V(\kvec)}\right)_{N}
     \left(\frac{\partial N}{\partial \mu}\right)_{\Vk}.
 \end{align}
-Since changing the chemical potential changes the number of molecules in the general case, if we can show that $\left(\frac{\delta \mu}{\delta \V(\vec k)}\right)_{N}=0$ then we will have shown that $\left(\frac{\delta N}{\delta \V(\vec k)}\right)_{\mu}=0$.  Thus we consider
+Since changing the chemical potential changes the number of molecules in the general case, if we can show that $\left(\frac{\delta \mu}{\delta \V(\kvec)}\right)_{N}=0$ then we will have shown that $\left(\frac{\delta N}{\delta \V(\kvec)}\right)_{\mu}=0$.  Thus we consider
 \begin{align}
-    \left(\frac{\delta \mu}{\delta \tilde\V(\vec k)}\right)_N
+    \left(\frac{\delta \mu}{\delta \tilde\V(\kvec)}\right)_N
     &= \left(\frac{\delta \left(\frac{\partial F}{\partial N}\right)_{\volume}}{\delta \Vk}\right)_N
     \\
     &= \left(\frac{\partial \left(\frac{\delta F}{\delta \Vk}\right)_{\volume}}{\partial N}\right)_{\volume}
@@ -90,15 +90,15 @@ Since changing the chemical potential changes the number of molecules in the gen
 where we have made use of the derivative relationship between $\mu$ and the Helmholtz free energy $F$, and have then reordered the functional and partial derivatives.
 Let us consider the interior derivative first.  The derivative of the Helmholtz free energy with respect to the external potential $\Vk$ just gives the number density:
 \begin{align}
-    \frac{\delta F}{\delta \Vk} &= \rho(\vec k)
+    \frac{\delta F}{\delta \Vk} &= \rho(\kvec)
 \end{align}
-The number density is itself spatially uniform for any system that is stable in a fluid state at this density (i.e. does not spontaneously crystallize), and thus has a Fourier transform that is proportional to a Dirac $\delta$-function.  Thus the functional derivative $\frac{\delta F}{\delta \V(\vec r)}$ is actually a uniform function.
+The number density is itself spatially uniform for any system that is stable in a fluid state at this density (i.e. does not spontaneously crystallize), and thus has a Fourier transform that is proportional to a Dirac $\delta$-function.  Thus the functional derivative $\frac{\delta F}{\delta \V(\rvec)}$ is actually a uniform function.
 We can insert this expression into Eq.~\ref{eq:dmudpot} to find that
 \begin{align}
-    \frac{\delta \mu}{\delta \Vk} &\propto \delta(\vec k) \\
-    \frac{\delta N}{\delta \Vk} &\propto \delta(\vec k)
+    \frac{\delta \mu}{\delta \Vk} &\propto \delta(\kvec) \\
+    \frac{\delta N}{\delta \Vk} &\propto \delta(\kvec)
 \end{align}
-Thus, the functional derivative of both $\mu$ and $N$ with regard to $\V(\vec r)$ are themselves spatially uniform.  Since we already maximize $D$ with respect to the spatially uniform component of the potential (i.e. $\vec k=0$), the derivative of $D$ with respect to any change of potential is zero.
+Thus, the functional derivative of both $\mu$ and $N$ with regard to $\V(\rvec)$ are themselves spatially uniform.  Since we already maximize $D$ with respect to the spatially uniform component of the potential (i.e. $\kvec=0$), the derivative of $D$ with respect to any change of potential is zero.
 
 This demonstrates that a spatially uniform potential leads to an extremum value
 of the deliverable capacity. This proof is insufficient, however, to show that
