@@ -44,22 +44,22 @@ where $\Xi_0(\mu, V, T)$ is the grand partition function of the bulk
 gas in the control volume in the absence of an external potential. Importantly,
 this equivalency depends on the potential $\V$ being spatially uniform.
 Therefore, the thermodynamic properties of the gas atoms in the spatially
-uniform external potential $\V$-- i.e., adsorbed in our idealized substrate--
+uniform external potential $\V$ (adsorbed in our idealized substrate)
 are equivalent to the properties of the bulk gas at chemical potential $\mu-\V$
 (where $T$ is held fixed). As $\V$ becomes more negative, corresponding to a
 more attractive adsorbent, the thermodynamic properties of the adsorbed gas in
-our ideal substrate are equivalent to the gas at higher chemical potential.
+our ideal substrate are equivalent to the gas at a higher chemical potential.
 
 \section{Proof of extremum}\label{sec:proof-extremum}
 To show that a uniform potential gives the highest deliverable capacity, we
-consider a interaction potential between gas and substrate $\V(\rvec)$ that
-varies with space.  In this proof we will make use of the Fourier transform of
+consider an interaction potential between gas and substrate $\V(\rvec)$ that
+varies in space.  In this proof, we make use of the Fourier transform of
 this potential:
 \begin{align}
     \Vk \equiv \iiint \V(\rvec) e^{-i\kvec\cdot \rvec} d\rvec
 \end{align}
-The Fourier transform of a uniform potential is a Dirac delta function $\tilde{\V}(\kvec)\propto\delta(\kvec)$. Therefore, to show that a uniform potential
-extremizes the deliverable capacity, we must show that the functional
+The Fourier transform of a uniform potential is a Dirac delta function $\tilde{\V}(\kvec)\propto\delta(\kvec)$. In order for a uniform potential
+to extremize the deliverable capacity, we must show that the functional
 derivative of the deliverable capacity with respect to $\Vk$ is zero for
 \emph{nonzero} values of $\kvec$, i.e.
 \begin{align}
@@ -91,11 +91,11 @@ Since changing the chemical potential changes the number of molecules in the gen
     \label{eq:dmudpot}
 \end{align}
 where we have made use of the derivative relationship between $\mu$ and the Helmholtz free energy $F$, and have then reordered the functional and partial derivatives.
-Let us consider the interior derivative first.  The derivative of the Helmholtz free energy with respect to the external potential $\Vk$ just gives the number density:
+Let us consider the interior derivative first.  The derivative of the Helmholtz free energy with respect to the external potential $\Vk$ yields the number density:
 \begin{align}
     \frac{\delta F}{\delta \Vk} &= \rho(\kvec)
 \end{align}
-The number density is itself spatially uniform for any system that is stable in a fluid state at this density (i.e. does not spontaneously crystallize), and thus has a Fourier transform that is proportional to a Dirac $\delta$-function.  Thus the functional derivative $\frac{\delta F}{\delta \V(\rvec)}$ is actually a uniform function.
+The number density is itself spatially uniform for any stable system in a fluid state at this density (i.e. does not spontaneously crystallize), and thus has a Fourier transform that is proportional to a Dirac $\delta$-function.  Thus, the functional derivative $\frac{\delta F}{\delta \V(\rvec)}$ is actually a uniform function.
 We can insert this expression into Eq.~\ref{eq:dmudpot} to find that
 \begin{align}
     \frac{\delta \mu}{\delta \Vk} &\propto \delta(\kvec) \\
@@ -149,7 +149,7 @@ shift of molar Gibbs free energy provided by the substrate, specifically an
   \label{eq:g_st}
 \end{equation}
 The isosteric Gibbs free energy difference $\gst$ is the difference in molar
-Gibbs free energy ($=$ chemical potential) between the adsorbed gas system and
+Gibbs free energy (equivalent to chemical potential) between the adsorbed gas system and
 the bulk gas \emph{with the same density of gas molecules}. The quantity $\gst$
 does \emph{not} correspond to a change in the molar Gibbs free energy as a
 molecule is adsorbed, which is zero under conditions of coexistence. The
@@ -242,7 +242,7 @@ optimal.
 To show this, we perform a thought experiment illustrated in
 Fig.~\ref{fig:delta-gst-maximum}. We begin with two pairs of boxes containing
 gas. Two of the boxes are filled with a MOF, and the other two have a uniform
-potential energy $\V$. We could imagine the two boxes at $\V$ as being empty
+potential energy $\V$. We imagine the two boxes at $\V$ as being empty
 but at very low altitude where gravity provides a potential energy difference
 (relative to the box with the MOF in it) of $\V$ to each gas molecule (perhaps
 we are on Jupiter?). One box of each sort has a density of gas $\rhofull$
