@@ -2,7 +2,7 @@
 \renewcommand{\thetable}{S\arabic{table}}%
 \setcounter{figure}{0}
 \renewcommand{\thefigure}{S\arabic{figure}}%
-\renewcommand{\thesection}{SI \Alph{section}}%
+\renewcommand{\thesection}{SI~\Alph{section}}%
 
 \section{An external, spatially uniform potential $\V$ shifts the chemical potential $\mu$ of the gas} \label{sec:V_shifts_chem_pot}
 We show that imposing an external, spatially uniform potential $\V$ to a gas
@@ -69,7 +69,7 @@ We note that this functional derivative may be non-zero for $\kvec=0$ because
 we separately maximize with respect to the particular uniform potential $\V$.
 This means that
 \begin{align}
-    \frac{\delta N_H}{\delta \V(\kvec)} &= -\frac{\delta N_L}{\delta \Vk}
+    \frac{\delta N_H}{\delta \Vk} &= \frac{\delta N_L}{\delta \Vk}
 \end{align}
 where $N_H$ and $N_L$ are the number of particles at the low and high pressure.
 
@@ -79,12 +79,12 @@ $\Vk$ with the number of molecules held fixed. We demonstrate this using the
 cyclic chain rule, which shows us that
 \begin{align}
     \left(\frac{\delta N}{\delta \Vk}\right)_{\mu} &=
-    -\left(\frac{\delta \mu}{\delta \V(\kvec)}\right)_{N}
+    -\left(\frac{\delta \mu}{\delta \Vk}\right)_{N}
     \left(\frac{\partial N}{\partial \mu}\right)_{\Vk}.
 \end{align}
-Since changing the chemical potential changes the number of molecules in the general case, if we can show that $\left(\frac{\delta \mu}{\delta \V(\kvec)}\right)_{N}=0$ then we will have shown that $\left(\frac{\delta N}{\delta \V(\kvec)}\right)_{\mu}=0$.  Thus we consider
+Since changing the chemical potential changes the number of molecules in the general case, if we can show that $\left(\frac{\delta \mu}{\delta \Vk}\right)_{N}=0$ then we will have shown that $\left(\frac{\delta N}{\delta \Vk}\right)_{\mu}=0$.  Thus we consider
 \begin{align}
-    \left(\frac{\delta \mu}{\delta \tilde\V(\kvec)}\right)_N
+    \left(\frac{\delta \mu}{\delta \Vk}\right)_N
     &= \left(\frac{\delta \left(\frac{\partial F}{\partial N}\right)_{\volume}}{\delta \Vk}\right)_N
     \\
     &= \left(\frac{\partial \left(\frac{\delta F}{\delta \Vk}\right)_{\volume}}{\partial N}\right)_{\volume}
