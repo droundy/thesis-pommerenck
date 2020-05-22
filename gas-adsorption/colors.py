@@ -54,8 +54,9 @@ latex_mof_names = {
     'Co2dobdc': 'Co$_2$(dodbc)',
     'Mg2dobdc':'Mg$_2$(dodbc)',
     'Zn2bdc2dabco': 'Zn$_2$(bdc)$_2$(dabco)',
-    'CYCU3Al': 'CYCU$_3$Al',
-    'UiO68Ant': 'UiO68Ant',
+    'CuMOF74': 'Cu-MOF-74',
+    'CYCU3Al': 'CYCU-3-Al',
+    'UiO68Ant': 'UiO-68-Ant',
     'rhtMOF7': 'rht-MOF-7',
 }
 def latex_mof(mof):

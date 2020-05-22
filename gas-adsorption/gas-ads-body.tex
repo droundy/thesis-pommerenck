@@ -1,7 +1,7 @@
 \section{Introduction}
 The transportation sector is dominantly powered by petroleum-based
 fuels~\cite{davis2009transportation}. In the United Sates, it is responsible
-for 36\% of energy-related carbon dioxide emissions \cite{useia} and 50,000
+for 36\% of energy-related carbon dioxide emissions \cite{useia} and $\sim$50,000
 premature deaths per year associated with particulate matter and ozone
 emissions~\cite{caiazzo2013air}. Natural gas and hydrogen (H$_2$) are
 alternative transportation fuels that emit fewer/less pollutants than
@@ -42,21 +42,22 @@ densified for onboard storage to achieve a reasonable driving range on a
 ``full'' tank of fuel. Traditional densification approaches are liquefaction,
 at cryogenic temperatures and atmospheric pressure, or compression, at room
 temperature and high pressures. Both approaches require expensive
-infrastructure at refilling stations and significant energy input; e.g.,
-liquefaction of hydrogen consumes at least 30\% of its energy
+infrastructure at refilling stations and significant energy input; e.g., the
+energy input to liquify hydrogen is $\sim$30\% of its energy
 content~\cite{bossel2003energy}. Moreover, high-pressure storage tanks are
 heavy, thick-walled, and non-conformable, while cryogenic storage tanks are
 bulky, expensive, and afflicted by boil-off losses~\cite{hasan2009minimizing}.
 
 A promising approach to densify natural
 gas~\cite{makal2012methane,mason2014evaluating} and
-hydrogen~\cite{suh2011hydrogen,garcia2018benchmark} for vehicular storage is
-through physical adsorption in nanoporous materials at room
-temperature~\cite{schoedel2016role}. The internal surfaces of porous materials
+hydrogen~\cite{suh2011hydrogen,garcia2018benchmark} for vehicular storage at
+room temperature is through physical adsorption in nanoporous
+materials~\cite{schoedel2016role}. The internal surfaces of porous materials
 attract gas molecules through van der Waals, electrostatic, etc. interactions
 to achieve a higher adsorbed gas density than the bulk gas at the same
 temperature and pressure, allowing for room temperature and lower-pressure
-storage and alleviating many drawbacks of high-pressure storage.
+storage and alleviating many drawbacks of high-pressure, low-temperature
+storage.
 
 For a vehicle employing a porous material to store natural gas or hydrogen, the
 (volumetric) \emph{deliverable capacity} of the gas is the primary
@@ -76,7 +77,7 @@ swing~\cite{simon2015materials}. For hydrogen, the DOE set a series of
 progressive targets at five year intervals, with the ultimate target of 0.05 kg
 H$_2$/L~\cite{h2targetsDOE} using a 100\ bar to 5\ bar pressure swing at a
 minimum of -40 $^\circ$C~\cite{allendorf2018assessment}. Thus far, despite the
-emergence of highly tunable materials with enormous surface areas, such as
+emergence of highly tunable materials with large surface areas, such as
 metal-organic frameworks~\cite{furukawa2013chemistry}, no porous material has
 met these deliverable capacity targets.
 
@@ -119,9 +120,11 @@ The tank is considered depleted/empty when the pressure has dropped to
 $\pempty$, the pressure at which the flow rate of gas from the tank to the
 engine is insufficient. However, given $\pempty \neq 0$ (pulling vacuum),
 residual gas will remain trapped in the adsorbent. Therefore, the driving range
-of the vehicle is primarily determined by the \emph{deliverable capacity}. The
-isothermal, volumetric deliverable capacity is an intrinsic property of the
-nanoporous material and its interaction with the gas.
+of the vehicle is primarily determined by the \emph{deliverable capacity} of
+the gas in the material (see Fig.~\ref{fig:delcap}): the density of gas at
+$\pfull$ minus that at $\pempty$. The isothermal, volumetric deliverable
+capacity is an intrinsic property of the nanoporous material and its
+interaction with the gas.
 
 \section{Review of previous work}
 There has been considerable work attempting to establish an upper bound on the
@@ -150,26 +153,26 @@ background potential energy field. According to molecular simulation of methane
 adsorption, the ARPA-E deliverable capacity target of 315 L STP/L could be
 reached in both of these idealized substrates. However, both models neglected
 the space occupied by atoms of the porous material that are needed to endow the
-adsorption sites/volume with the attractive potential energy.
+adsorption sites/volume with the attractive potential energy and rely on a
+molecular model for methane.
 
-A third body of work attempted to account for both gas-gas interactions
-\emph{and} steric interactions of the gas with the atoms of the porous
-material. Simulations of methane adsorption in hundreds of thousands of
-explicit nanoporous crystal structures---both real and hypothetical---suggested
-that the ARPA-E deliverable capacity target is
-infeasible~\cite{simon2015materials}; the highest simulated methane deliverable
-capacity was 196 cm$^3$~STP/cm$^3$. Confidence in this conclusion rests upon
-(i) the accuracy of the intermolecular potentials describing the molecular
-interactions and (ii) the sufficient sampling of material space, i.e.\ that the
-structures considered are representative of the set of possible materials. To
-further explore material space and address sensitivity to the potentials used,
-scaling the Lennard-Jones potential well depths of material atoms to model
-enhanced interactions~\cite{gomez2014exploring}, placing Lennard-Jones spheres
-in a unit cell randomly to form ``pseudo-materials''~\cite{kaija2018high}, and
-generating fictitious potential energy fields via a generative adversarial
-network trained on zeolite structures~\cite{lee2019predicting} all generated
-model substrates that failed to meet the ARPA-E methane deliverable
-capacity target.
+A third body of work incorporated both gas-gas interactions \emph{and} steric
+interactions of the gas with the atoms of the porous material. Simulations of
+methane adsorption in hundreds of thousands of explicit nanoporous crystal
+structures---both real and hypothetical---suggested that the ARPA-E deliverable
+capacity target is infeasible~\cite{simon2015materials}; the highest simulated
+methane deliverable capacity was 196 cm$^3$~STP/cm$^3$. Confidence in this
+conclusion rests upon (i) the accuracy of the intermolecular potentials
+describing the molecular interactions and (ii) the sufficient sampling of
+material space, i.e.\ that the structures considered are representative of the
+set of possible materials. To further explore material space and address
+sensitivity to the intermolecular potentials, scaling the Lennard-Jones
+potential well depths of material atoms to model enhanced
+interactions~\cite{gomez2014exploring}, placing Lennard-Jones spheres in a unit
+cell randomly to form ``pseudo-materials''~\cite{kaija2018high}, and generating
+fictitious potential energy fields via a generative adversarial network trained
+on zeolite structures~\cite{lee2019predicting} all generated model substrates
+that failed to meet the ARPA-E methane deliverable capacity target.
 
 % Brown and Freeman \cite{bhown2011analysis}
 
@@ -196,7 +199,7 @@ We now develop a thermodynamic framework that places an upper bound on the deliv
 The thermodynamic properties of a bulk, pure gas are characterized by an
 equation of state. Of particular interest for gas storage and delivery is the
 density of the gas $\rho_g(\mu,T)$ as a function of chemical potential $\mu$
-and temperature $T$, which is shown for methane gas in
+and temperature $T$, is shown for methane gas in
 Fig.~\ref{fig:density-vs-mu-ch4} at $T=298$\ K. For comparison, we also show
 the density of methane adsorbed into several porous materials.
 
@@ -237,8 +240,8 @@ pressures $\pfull$ and $\pempty$, respectively. Thus, $\rho_D$ for our
 homogeneous substrate as a function of $\V$ is the difference between two
 shifted versions of $\rho_g(\mu; T)$. Figure~\ref{fig:methane-298-D} shows the
 two shifted bulk methane density curves and their difference. The horizontal
-axis is the difference in molar Gibbs free energy at fixed density and
-temperature between the gas within the substrate and the pure gas (\gst), which
+axis is the difference in molar Gibbs free energy, at fixed density and
+temperature, between the gas within the substrate and the pure gas (\gst), which
 is equal to $\V$ in our model. We see a potential $\V$ that maximizes the
 deliverable capacity of our ideal substrate, balancing the need to maximize the
 density at $\pfull$ against the need to minimize residual gas retained at
@@ -267,31 +270,30 @@ $\rho_D$ over all \emph{spatially uniform}, static potential energy fields. To
 qualitatively argue that the spatially uniform potential $\V_{opt}$ provides a
 maximum deliverable capacity over \emph{all} (including non-spatially uniform)
 static potential energy fields (a broader claim), consider a
-non-spatially-uniform variation on $\V_{opt}$. We will show that the effect of
-this variation is to reduce the deliverable capacity. At low adsorbed gas
+non-spatially-uniform variation on $\V_{opt}$. The effect of
+this variation is to reduce the deliverable capacity: At low adsorbed gas
 densities, the lowest-energy positions will be preferentially occupied, while
 at higher densities, the additional gas molecules will be forced into higher
 energy locations. Thus, the mean attraction will be lowest at \pfull\ and
-highest at \pempty. This will result in $\gst$ increasing monotonically with
+highest at \pempty. As a result, $\gst$ increases monotonically with
 pressure. As shown in the SI (see Sec.~\ref{sec:monotonic}), this results in
-the deliverable capacity of a non-uniform potential being lower than the
-deliverable capacity of a uniform potential with $\V=\gst$ for either $\pfull$
-or $\pempty$. Thus, a spatially uniform potential will give the best
+the deliverable capacity of a non-uniform potential with a given $\gst$ at $\pfull$ or $pempty$ being lower than the
+deliverable capacity of a uniform potential with $\V=\gst$. Thus, a spatially uniform potential gives the maximal
 deliverable capacity amongst all static potential energy fields that give the
 same $\gst$, and the \emph{optimal} uniform potential $\V_{opt}$ will yield a
-greater deliverable capacity over any static non-uniform potential.
+greater deliverable capacity over any static, non-uniform potential.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.95\columnwidth]{methane-298-n-vs-G}
     \caption{The deliverable capacity of methane as a function of the attractive Gibbs free energy $|\gst|$.
-    Experimental deliverable capacities for several MOFs (data from Ref.~\cite{mason2014evaluating, furukawa2009storage}) are shown along with the experimental values for $\gst$ at the empty and full pressures shown as dots connected by a line.}
+    Experimental deliverable capacities for several porous materials (data from Ref.~\cite{mason2014evaluating, furukawa2009storage}) are shown along with the experimental values for $\gst$ at the empty and full pressures shown as dots connected by a line.}
     \label{fig:methane-298-D}
 \end{figure}
 
 \section{Results}
 Although our theoretical framework allows us to place an upper bound on the
-deliverable capacity of many different gases in a rigid porous material, we
+deliverable capacity of many different gases in rigid porous materials, we
 focus on the maximal deliverable capacity of methane and hydrogen gas in our
 homogeneous substrate due to their application as transportation fuels. To
 characterize the density of the gases, $\rho_g(p, T)$, we use experimental data
