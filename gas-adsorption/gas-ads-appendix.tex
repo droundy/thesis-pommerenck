@@ -28,7 +28,7 @@ $\V$, where $\V < 0$ corresponds to attraction.  To account
   both \emph{intra-molecular} interactions and \emph{inter-molecular}
   interactions.
 
-The grand partition function of the control volume is:
+The grand canonical partition function of the control volume is:
 \begin{multline}
     \Xi(\mu, V, T)= \\ \displaystyle \sum_{N=0}^\infty \frac{1}{\Lambda^{3N}N!} \int_{\Omega} \cdots \int_{\Omega} e^{-\beta E_{gg}(\rvec_1, ..., \rvec_N)} e^{\beta (\mu - \V) N} d\rvec_1 \cdots d\rvec_N.
     \label{eq:gcpf}
@@ -98,8 +98,8 @@ Let us consider the interior derivative first.  The derivative of the Helmholtz 
 The number density is itself spatially uniform for any stable system in a fluid state at this density (i.e. does not spontaneously crystallize), and thus has a Fourier transform that is proportional to a Dirac $\delta$-function.  Thus, the functional derivative $\frac{\delta F}{\delta \V(\rvec)}$ is actually a uniform function.
 We can insert this expression into Eq.~\ref{eq:dmudpot} to find that
 \begin{align}
-    \frac{\delta \mu}{\delta \Vk} &\propto \delta(\kvec) \\
-    \frac{\delta N}{\delta \Vk} &\propto \delta(\kvec)
+    \left(\frac{\delta \mu}{\delta \Vk}\right)_N &\propto \delta(\kvec) \\
+    \left(\frac{\delta N}{\delta \Vk}\right)_\mu &\propto \delta(\kvec)
 \end{align}
 Thus, the functional derivative of both $\mu$ and $N$ with regard to $\V(\rvec)$ are themselves spatially uniform.  Since we already maximize $D$ with respect to the spatially uniform component of the potential (i.e. $\kvec=0$), the derivative of $D$ with respect to any change of potential is zero.
 
