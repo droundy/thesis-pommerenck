@@ -38,8 +38,8 @@ C __pycache__
 # BUILD THE MAIN PAPER
 # | pdflatex isosteric-heat.tex && bibtex isosteric-heat && pdflatex #isosteric-heat.tex && pdflatex isosteric-heat.tex
 
-| inkscape --export-type pdf --export-filename figs/four-cases.pdf figs/four-cases.svg
-| inkscape --export-type pdf --export-filename figs/four-cases-pro.pdf figs/four-cases-pro.svg
+| inkscape --export-filename figs/four-cases.pdf figs/four-cases.svg
+| inkscape --export-filename figs/four-cases-pro.pdf figs/four-cases-pro.svg
 
 | pdflatex gas-ads.tex && bibtex gas-ads && pdflatex gas-ads.tex && pdflatex gas-ads.tex
 < figs/hydrogen-298-n-vs-G.pdf
