@@ -1,11 +1,14 @@
-\documentclass[letterpaper,twocolumn,amsmath,amssymb,nature]{revtex4-1}
+\RequirePackage[mathlines]{lineno}
+\documentclass[letterpaper,twocolumn,amsmath,amssymb,nature]{revtex4-2}
+\setlength{\columnsep}{1cm}
+\linenumbers
+
 \usepackage{graphicx} % Include figure files
 \graphicspath{{figs/}}
 \usepackage{color}
 \usepackage{amsmath}
 \usepackage{subfig}
-
-\usepackage{lineno} % I added this to do line numbering
+%\usepackage{lineno} % I added this to do line numbering
 
 \usepackage{nicefrac} % Include for inline fractions
 \usepackage{url}
@@ -78,6 +81,7 @@ porous materials}
 \affiliation{Department of Physics, Oregon State University,
   Corvallis, OR 97331}
 
+\begin{linenomath}
 \begin{abstract}
 Due to their low volumetric energy density at ambient conditions, both hydrogen
 and natural gas are challenging to economically store onboard vehicles as
@@ -110,8 +114,8 @@ upper bound do not pertain to any material that changes its structure in
 response to adsorbed gas, suggesting that flexible materials could still
 satisfy the DOE targets~\cite{schneemann2014flexible, choi2008broadly,
 mason2015methane}.
-
 \end{abstract}
+\end{linenomath}
 
 \newcommand\pfull{\ensuremath{p_{\text{full}}}}
 \newcommand\pempty{\ensuremath{p_{\text{empty}}}}

@@ -16,19 +16,21 @@ bath of gas at temperature $T$ and chemical potential $\mu$.
 To denote a microstate of this system, let $N$ be the number of gas particles
 in the control volume and $\mathbf{r}_1,...,\mathbf{r}_N$ be their positions.
 Then, the potential energy $E$ of a microstate of the control volume is:
+
 \begin{equation} E(\rvec_1,...,\rvec_N) = N\V +
-E_{gg}(\rvec_1,...,\rvec_N), \end{equation} where $E_{gg}$ is the
-(unknown and complicated) interatomic potential for gas-gas
-interactions that governs the (real) gas properties. The first term
-arises from each gas molecule experiencing the external potential
-$\V$, where $\V < 0$ corresponds to attraction.  To account
-  for molecular rotational and vibrational degrees of freedom, we
-  could treat the positions $\rvec_i$ as the locations of atoms rather
-  than molecules.  In this case the gas-gas interactions will include
-  both \emph{intra-molecular} interactions and \emph{inter-molecular}
-  interactions.
+E_{gg}(\rvec_1,...,\rvec_N),
+\end{equation}
+where $E_{gg}$ is the (unknown and complicated) interatomic potential for
+gas-gas interactions that governs the (real) gas properties. The first term
+arises from each gas molecule experiencing the external potential $\V$, where
+$\V < 0$ corresponds to attraction. To account for molecular rotational and
+vibrational degrees of freedom, we could treat the positions $\rvec_i$ as the
+locations of atoms rather than molecules. In this case the gas-gas interactions
+will include both \emph{intra-molecular} interactions and
+\emph{inter-molecular} interactions.
 
 The grand canonical partition function of the control volume is:
+
 \begin{multline}
     \Xi(\mu, V, T)= \\ \displaystyle \sum_{N=0}^\infty \frac{1}{\Lambda^{3N}N!} \int_{\Omega} \cdots \int_{\Omega} e^{-\beta E_{gg}(\rvec_1, ..., \rvec_N)} e^{\beta (\mu - \V) N} d\rvec_1 \cdots d\rvec_N.
     \label{eq:gcpf}
@@ -36,6 +38,7 @@ The grand canonical partition function of the control volume is:
 We recognize this as the grand canonical partition function of the bulk gas in
 the control volume without the external potential, but shifted in chemical
 potential:
+
 \begin{equation}
     \Xi(\mu, V, T)=\Xi_0(\mu - \V, V, T)
     \label{eq:xi_vs_xi0}
@@ -55,6 +58,7 @@ To show that a uniform potential gives the highest deliverable capacity, we
 consider an interaction potential between gas and substrate $\V(\rvec)$ that
 varies in space.  In this proof, we make use of the Fourier transform of
 this potential:
+
 \begin{align}
     \Vk \equiv \iiint \V(\rvec) e^{-i\kvec\cdot \rvec} d\rvec
 \end{align}
@@ -62,12 +66,14 @@ The Fourier transform of a uniform potential is a Dirac delta function $\tilde{\
 to extremize the deliverable capacity, we must show that the functional
 derivative of the deliverable capacity with respect to $\Vk$ is zero for
 \emph{nonzero} values of $\kvec$, i.e.
+
 \begin{align}
     \frac{\delta D}{\delta \Vk} &= 0, \text{ if } \kvec\ne 0.
 \end{align}
 We note that this functional derivative may be non-zero for $\kvec=0$ because
 we separately maximize with respect to the particular uniform potential $\V$.
 This means that
+
 \begin{align}
     \frac{\delta N_H}{\delta \Vk} &= \frac{\delta N_L}{\delta \Vk}
 \end{align}
@@ -77,12 +83,14 @@ Because the chemical potential $\mu$ varies monotonically with $N$ at fixed
 temperature, we can consider how the chemical potential varies as we change
 $\Vk$ with the number of molecules held fixed. We demonstrate this using the
 cyclic chain rule, which shows us that
+
 \begin{align}
     \left(\frac{\delta N}{\delta \Vk}\right)_{\mu} &=
     -\left(\frac{\delta \mu}{\delta \Vk}\right)_{N}
     \left(\frac{\partial N}{\partial \mu}\right)_{\Vk}.
 \end{align}
 Since changing the chemical potential changes the number of molecules in the general case, if we can show that $\left(\frac{\delta \mu}{\delta \Vk}\right)_{N}=0$ then we will have shown that $\left(\frac{\delta N}{\delta \Vk}\right)_{\mu}=0$.  Thus we consider
+
 \begin{align}
     \left(\frac{\delta \mu}{\delta \Vk}\right)_N
     &= \left(\frac{\delta \left(\frac{\partial F}{\partial N}\right)_{\volume}}{\delta \Vk}\right)_N
@@ -92,11 +100,13 @@ Since changing the chemical potential changes the number of molecules in the gen
 \end{align}
 where we have made use of the derivative relationship between $\mu$ and the Helmholtz free energy $F$, and have then reordered the functional and partial derivatives.
 Let us consider the interior derivative first.  The derivative of the Helmholtz free energy with respect to the external potential $\Vk$ yields the number density:
+
 \begin{align}
     \frac{\delta F}{\delta \Vk} &= \rho(\kvec)
 \end{align}
 The number density is itself spatially uniform for any stable system in a fluid state at this density (i.e. does not spontaneously crystallize), and thus has a Fourier transform that is proportional to a Dirac $\delta$-function.  Thus, the functional derivative $\frac{\delta F}{\delta \V(\rvec)}$ is actually a uniform function.
 We can insert this expression into Eq.~\ref{eq:dmudpot} to find that
+
 \begin{align}
     \left(\frac{\delta \mu}{\delta \Vk}\right)_N &\propto \delta(\kvec) \\
     \left(\frac{\delta N}{\delta \Vk}\right)_\mu &\propto \delta(\kvec)
@@ -141,6 +151,7 @@ temperature. Therefore, the parameter analogous to $\V$ in a real substrate
 will involve both energy and entropy. The real-substrate analog of $\V$ is the
 shift of molar Gibbs free energy provided by the substrate, specifically an
 \emph{isosteric} (or constant-density) shift of the Gibbs free energy:
+
 \begin{equation}
    \gst(\rho, T) \equiv
    %\frac{G_{\text{ads}}(\rho, T) - G_{\text{gas}}(\rho, T)}{N}\\ 
@@ -255,6 +266,7 @@ with a tube. If the chemical potential of the two boxes are equal, their
 density will be unchanged, otherwise gas will flow into the box with lower
 chemical potential. The difference in chemical potential is equal to the
 difference
+
 \begin{align}
    \gst(\rho) - \V &= \left(\mu_{\text{MOF}}(\rho) - \mu_{\text{gas}}(\rho)\right)
    - \left(\mu_{\V}(\rho) - \mu_{\text{gas}}(\rho)\right)
