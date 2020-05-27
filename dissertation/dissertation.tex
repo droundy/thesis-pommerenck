@@ -1,24 +1,110 @@
 \documentclass[double,12pt]{beavtex}
+
+\usepackage{fancyhdr}
+% link to section command
+\newcommand{\HR}[1]{\textbf{\hyperref[#1]{\ref{#1}}}}
+
+% for creating an index at end of document
+\usepackage{imakeidx}
+\makeindex[columns=1, title=Alphabetical Index]
+
+% indexing commands
+\newcommand{\bind}[1]{\textbf{#1}\index{#1}}
+\newcommand{\iind}[1]{\textit{#1}\index{#1}}
+\newcommand{\ind}[1]{#1\index{#1}}
+
+\usepackage[hypertexnames=false]{hyperref}
+\hypersetup{
+    unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,        % show Acrobat’s toolbar?
+    pdfmenubar=true,        % show Acrobat’s menu?
+    pdffitwindow=false,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={Pommerenck Thesis},    % title
+    pdfauthor={Jordan K. Pommerenck},     % author
+    pdfsubject={Subject},   % subject of the document
+    pdfcreator={Creator},   % creator of the document
+    pdfproducer={Producer}, % producer of the document
+    pdfkeywords={flat-histogram, Monte Carlo, Thesis}, % list of keywords
+    pdfnewwindow=true,      % links in new PDF window
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=black,          % color of internal links (change box color with linkbordercolor)
+    citecolor=black,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=cyan           % color of external links
+}
+%\usepackage{blindtext}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[document]{ragged2e}
+% differential and partials package
+\usepackage[thinc]{esdiff}
+\usepackage{physics}
+\newcommand{\D}[1]{\text{d}#1}
+% the nth superscript package
+\usepackage[super]{nth}
+
+\usepackage{indentfirst}
 \usepackage{graphicx}
-\usepackage{rotating} %Package added to allow the rotation of figures and chart on a page, {sidewaysfigure} command
-\usepackage{tablefootnote} %Packaged added to allow footnotes in the tabular environment, use \tablefootnote command
+\graphicspath{{../square-well/}{../ising/}{../gas-adsorption/figs/}}
+
+\usepackage{caption}
+%\usepackage{subcaption}
+\usepackage{float}
+\usepackage{amsmath,amssymb}
+\usepackage{nicefrac}
+
+% Use more than one optional parameter in a new commands
+\usepackage{xargs}
+\usepackage[pdftex,dvipsnames]{xcolor}
+\usepackage[colorinlistoftodos,prependcaption,textsize=normalsize]{todonotes}
+\usepackage{mdframed}
+\usepackage{braket}
+
+% gas adsorption commands
+\usepackage{subfig}
+\usepackage{url}
+%
+\usepackage[colorinlistoftodos,prependcaption,textsize=normalsize]{todonotes}
+
+\newcommand{\addcite}{{\bf \color{red} []}}
+\newcommand{\rvec}{\mathbf{r}}
+\newcommand{\kvec}{\mathbf{k}}
+\newcommand{\thetavec}{\boldsymbol \theta}
+\newcommand\V{\Phi}
+\newcommand\Vk{\tilde\Phi(\kvec)}
+\newcommand\volume{V}
+\newcommand\pfull{\ensuremath{p_{\text{full}}}}
+\newcommand\pempty{\ensuremath{p_{\text{empty}}}}
+\newcommand\mufull{\ensuremath{\mu_{\text{full}}}}
+\newcommand\muempty{\ensuremath{\mu_{\text{empty}}}}
+\newcommand\rhofull{\ensuremath{\rho_{\text{full}}}}
+\newcommand\rhoempty{\ensuremath{\rho_{\text{empty}}}}
+\newcommand\gst{\ensuremath{\Delta g_{st}}}
+
+\newcommandx{\jordan}[2][1=inline]{\todo[linecolor=gray,backgroundcolor=gray!25,bordercolor=gray,#1]{\textbf{Jordan says:} #2} }
+\newcommandx{\corysays}[2][1=inline]{\todo[linecolor=green,backgroundcolor=green!25,bordercolor=green,#1]{\textbf{Cory says:} #2} }
+
+\newcommandx{\maybecut}[1]{\begin{mdframed}[backgroundcolor=cyan!24]\textbf{Maybe cut:} #1\end{mdframed} }
+
+\newtheorem{limitation}{Limitation}
 
 \renewcommand{\chaptername}{}
 
-\title{Branching Random Walk and Probability Problems
-from Physics and Biology}
-\author{Torrey Johnson}
+\title{Advancing Renewable Gas Storage using Flat-histogram Methods}
+\author{Jordan K. Pommerenck}
 \degree{Doctor of Philosophy}
 \doctype{Dissertation}
-\department{Mathematics}
+\department{Physics}
 \depttype{Department}
-\depthead{Chair}
-\major{Mathematics}
-\advisor{Edward C Waymire}
-\submitdate{June 7, 2012}
-\commencementyear{2013}
-\abstract{\input{chapter-5.tex}}
-\acknowledgements{\input{chapter-5.tex}}
+\depthead{Head}
+\major{Physics}
+\advisor{David Roundy}
+\submitdate{June 8, 2020}
+\commencementyear{2020}
+\abstract{\input{abstract.tex}}
+\acknowledgements{\input{acknowledgements.tex}}
+\contributors{\input{contributors.tex}}
 
 \begin{document}
 
@@ -30,32 +116,45 @@ from Physics and Biology}
 \let\clearpage\relax
 \begin{center}
 \large
-Branching Random Walk and Probability Problems
-from Physics and Biology
+Advancing Renewable Gas Storage using Flat-histogram Methods
 \normalsize
 \end{center}
 \chapter{Introduction}
-hello this is the chapter
-%\input{introduction.tex}
+\input{introduction.tex}
 \endgroup
 
+\chapter{Stochastic Approximation Monte Carlo with a Dynamic Update
+Factor}
+\vspace*{2.0cm}
 
-% \chapter{Tree Polymers in the Infinite Volume Limit at Critical Strong Disorder}
-% \input{csd.tex}
+\textbf{Authors:} \\
+Jordan K. Pommerenck, Tanner T. Simpson, Michael A. Perlin,
+and David Roundy
 
-% \chapter{Simple Branching Random Walk and an Associated Tree Polymer}
-% \input{brwtree.tex}
+\vspace*{4.0cm}
 
-% \chapter{Branching for a Decision: A Site-Selection Model for Honeybee Swarms}
-% \input{beetext.tex}
+\textbf{Physical Review E} \\
+\href{https://doi.org/10.1103/PhysRevE.101.013301}{Journal Online Access} \\
+\textbf{101(1)}, 013301 (2020)~\cite{pommerenck2020stochastic}
 
-% \chapter{Conclusion}
-% \input{conclusion.tex}
+\clearpage{}
 
-% \bibliographystyle{plain}
-% \bibliography{bib}
+\input{../square-well/sq-well-body.tex}
 
-% \appendix
-% \chapter{Code for Swarm Simulation}
-% \input{appendix.tex}
+\chapter{Flat-histogram method comparison on 2D Ising Model
+}
+\input{../ising/ising-body.tex}
+
+\chapter{An upper bound to gas storage and delivery via pressure-swing
+adsorption in porous materials}
+\input{../gas-adsorption/gas-ads-body.tex}
+
+\chapter{Conclusion}
+\input{conclusion.tex}
+
+\bibliographystyle{plain}
+\bibliography{thesis}
+
+\appendix
+\input{../gas-adsorption/gas-ads-appendix.tex}
 \end{document}

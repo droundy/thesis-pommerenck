@@ -23,6 +23,9 @@ __pycache__
 *.out
 *.aux
 *.lop
+*.loaf
+*.loat
+*.lot
 *.lof
 *.eps
 *.ps
@@ -58,3 +61,4 @@ isosteric-heat.pdf
 *__pycache__*
 *.pyc
 *.nfs*
+

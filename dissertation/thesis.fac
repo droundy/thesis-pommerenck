@@ -1,7 +1,4 @@
-
-| pdflatex dissertation.tex && pdflatex dissertation.tex && pdflatex dissertation.tex
-
-| pdflatex thesis.tex && bibtex thesis && pdflatex thesis.tex && pdflatex thesis.tex
+| pdflatex dissertation.tex && bibtex dissertation && pdflatex dissertation.tex && pdflatex dissertation.tex
 < ../square-well/N50-lndos-comparison.pdf
 < ../square-well/gamma-n256.pdf
 < ../square-well/periodic-ww1_30-ff0_30-N50-gamma-and-entropy-error-default.pdf
