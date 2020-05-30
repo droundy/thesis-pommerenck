@@ -40,6 +40,7 @@ C __pycache__
 
 | inkscape --export-filename figs/four-cases.pdf figs/four-cases.svg || inkscape --export-pdf figs/four-cases.pdf figs/four-cases.svg
 | inkscape --export-filename figs/four-cases-pro.pdf figs/four-cases-pro.svg || inkscape --export-pdf figs/four-cases-pro.pdf figs/four-cases-pro.svg
+| inkscape --export-filename figs/Combine_Figure.pdf figs/Combine_Figure.svg || inkscape --export-pdf figs/Combine_Figure.pdf figs/Combine_Figure.svg
 
 | pdflatex gas-ads.tex && bibtex gas-ads && pdflatex gas-ads.tex && pdflatex gas-ads.tex
 < figs/hydrogen-298-n-vs-G.pdf
@@ -48,3 +49,4 @@ C __pycache__
 < figs/four-cases.svg
 < figs/hkust-1_fancy.png
 < figs/four-cases-pro.svg
+< figs/Combine_Figure.svg

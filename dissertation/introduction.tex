@@ -1,4 +1,17 @@
-Monte Carlo methods are a powerful simulation tool that allow scientists to explore properties of systems that may otherwise by inaccessible via experimental methods. Monte Carlo methods can be used to solve a variety of physical problems yielding insight into statistical averages due to random processes. During the last two decades considerable research has been done on developing and refining flat-histogram Monte Carlo methods.  These Monte Carlo (MC) methods are capable of exploring all of the energy phase space for all given temperatures in a \emph{single} simulation. In this work, we first outline the necessary statistical mechanics background. We provide a description of MC methods and flat-histogram methods, as well as, our newly developed method SAD (stochastic approximation Monte Carlo with a dynamic update factor). We discuss physics rich test systems that can be used to explore the convergence and statistical properties of our newly developed method SAD. 
+Monte Carlo methods are a powerful simulation tool that allow scientists to
+explore properties of systems that may otherwise by inaccessible via
+experimental methods. Monte Carlo methods can be used to solve a variety of
+physical problems yielding insight into statistical averages due to random
+processes. During the last two decades considerable research has been done on
+developing and refining flat-histogram Monte Carlo methods. These Monte Carlo
+(MC) methods are capable of exploring all of the energy phase space for all
+given temperatures in a \emph{single} simulation. In this work, we first
+outline the necessary statistical mechanics background. We provide a
+description of MC methods and flat-histogram methods, as well as, our newly
+developed method SAD (stochastic approximation Monte Carlo with a dynamic
+update factor). We discuss physics rich test systems that can be used to
+explore the convergence and statistical properties of our newly developed
+method SAD.
 
 A driving motivation for developing novel Monte Carlo methods that have physically based tunable parameters is to provide simulation methods for exploring metal-organic frameworks (MOFs). In this work, we examine MOFs and
 their application to gas storage and delivery. We formulate a theoretical upper
@@ -26,12 +39,12 @@ The entropy $S(E)$ can be defined for any given system $\Gamma$ with discrete en
 where the entropy is defined as the logarithm of the density of states and $k_B$ is the Boltzmann constant. An important aspect of this definition in terms of logarithms is that the entropy for multiple isolated systems is additive.
 \begin{align}
     S(E_1,E_2) &= k_B \ln(\Omega(E_1)\Omega_2(E_2)) \\
-    &= k_B \left( \Omega_1(E_1) + \Omega_2(E_2)\right) \\
+    &= k_B \left( \ln(\Omega_1(E_1)) + \ln(\Omega_2(E_2))\right) \\
     &= k_B \left( S_1(E_1) + S_2(E_2)\right)
 \end{align}
 From the \nth{1} law of thermodynamics, the system temperature can be written in terms of the density of states by referring to Eq.~\HR{sdos}.
 \begin{align}
-    T = \left(\diff{S(E)}{E}\right)_V = \frac{k_B}{\Omega(E)}\left(\diff{\Omega(E)}{E}\right)_V
+    \frac{1}{T} = \left(\diff{S(E)}{E}\right)_V = \frac{k_B}{\Omega(E)}\left(\diff{\Omega(E)}{E}\right)_V
 \end{align}
 The relationship between entropy $S(E)$, $\Omega(E)$, and $T$ will be discussed in further depth in Section~\HR{laws}.
 
@@ -43,7 +56,7 @@ The \nth{1} law of thermodynamics states that for an isolated system $\Gamma$, t
 The \nth{1} law follows directly from conservation of energy. The thermodynamic identity states that for any infinitesimal change in the system and fixed number of particles $N$, the internal energy can be written in terms of the entropy.
 \begin{align}
     \D{U} =  T\D{S} - p\D{V} \\
-    T = \left(\diff{U}{S}\right)_V
+    T = \left(\pdv{U}{S}\right)_V
 \end{align}
 
 The \nth{2} law of thermodynamics states that for any isolated system $\Gamma$ the entropy $S(E) \geq 0$. The heat of the system can also be related to the entropy using the relation:
@@ -58,9 +71,9 @@ The canonical ensemble is for this reason also known as the $NVT$ ensemble.
 
 The probability $\mathcal{P}$ of selecting a given micro-state at random is
 \begin{align}
-    \mathcal{P} = e^{\nicefrac{F-E}{k_BT}}
+    \mathcal{P} = e^{\nicefrac{\left(F-E\right)}{k_BT}}
 \end{align}
-where $F\left(N,V,T\right)$ is the free energy of the system $\Gamma$ and will be discussed in detail in section~\HR{potentials}.
+where $F\left(N,V,T\right)$ is the free energy of the system $\Gamma$ and will be discussed in detail in Section~\HR{potentials}.
 
 
 
@@ -77,7 +90,7 @@ where $k_B$ is the Boltzmann constant. The partition function for a canonical en
 \subsection{Thermodynamic Potentials}\label{potentials}
 Thermodynamic potentials describe a given thermodynamic state of a given system and
 have units of energy $k_BT$. In this section, we will discuss five common thermodynamic potentials and how they are mathematically related through Maxwell relations.
-While the internal energy $U(E)$ has been briefly mentioned in section~\HR{laws}, we outline in detail the relationship between the state variables.
+While the internal energy $U(E)$ has been briefly mentioned in Section~\HR{laws}, we outline in detail the relationship between the state variables.
 \begin{align}
     \D{U(S,V,N)} = T\D{S}-p\D{V}+\mu\D{N}
 \end{align}
@@ -93,8 +106,8 @@ The Helmholtz free energy $F(T,V,N)$ can be written as follows:
 \end{align}
 We can write the entropy $S$, pressure $p$, and chemical potential $\mu$ in terms of derivatives of state variables.
 \begin{align}\label{maxF}
-    S = \left( \pdv{F}{T}\right )_{V,N}  \quad\quad 
-    p = -\left( \pdv{F}{V}\right )_{T,N}  \quad\quad 
+    S = -\left( \pdv{F}{T}\right )_{V,N}  \quad\quad 
+    p = \left( \pdv{F}{V}\right )_{T,N}  \quad\quad 
     \mu = \left( \pdv{F}{N}\right )_{T,V}  \quad
 \end{align}
 The Enthalpy $H(S,p,N)$ can be written as follows:
@@ -137,17 +150,17 @@ The relation involving the Enthalpy $H\left(S,p,N\right)$ relates the natural va
 \end{align}
 The relation involving the Gibbs free energy $G\left(T,p,N\right)$ relates the natural variables of entropy $S$ and volume $V$ and can be derived using Equation~\ref{maxG}.
 \begin{align}
-    \left( {\pdv{G}{T}{p}} \right )_{N} = -\left( \pdv{S}{p}\right )_{T,N} = - \left( \pdv{V}{T}\right )_{p,N}
+    \left( {\pdv{G}{T}{p}} \right )_{N} = -\left( \pdv{S}{p}\right )_{T,N} = \left( \pdv{V}{T}\right )_{p,N}
 \end{align}
 
 \subsection{Thermodynamic Properties}\label{thermoprop}
 The Maxwell relations from Section~\HR{maxwell} can be written in terms of thermodynamic properties of the material.  The isochoric heat capacity $C_V$ of a given material is defined as the amount of heat necessary to raise the temperature by a given amount.
 \begin{align}
-    C_V = \left(\pdv{U}{S}\right )_{V,N}\left( \pdv{S}{T} \right )_{V,N} = \frac{1}{T}\left(\pdv{S}{T}\right )_{V,N}
+    C_V = T\left(\pdv{S}{T}\right )_{V,N}
 \end{align}
 The isobaric heat capacity $C_p$, which is always greater than or equal to $C_V$ according to the Mayer relation, can also be written in terms of the entropy $S$ and temperature $T$ of the system.
 \begin{align}
-    C_p = \left(\pdv{U}{S}\right )_{V,N}\left( \pdv{S}{T} \right )_{p,N} = T\left(\pdv{S}{T}\right )_{p,N}
+    C_p = T\left(\pdv{S}{T}\right )_{p,N}
 \end{align}
 The Mayer relation gives the difference of the isobaric and isochoric heat capacities in terms of the thermal expansion coefficient and the isothermal compressibility.
 \begin{align}
@@ -191,7 +204,7 @@ The grand canonical ensemble is for this reason also known as the $\mu VT$ ensem
 
 The probability $\mathcal{P}$ of selecting a given micro-state at random is
 \begin{align}
-    \mathcal{P} = e^{\nicefrac{\Phi + \mu N-E}{k_BT}}
+    \mathcal{P} = e^{\nicefrac{\left(\Phi + \mu N-E\right)}{k_BT}}
 \end{align}
 where $\Phi\left(\mu,V,T\right)$ is the grand potential of the system $\Gamma$. The grand potential is often referred to as the Landau potential and written:
 \begin{align}

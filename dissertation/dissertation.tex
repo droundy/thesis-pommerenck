@@ -2,14 +2,14 @@
 
 \usepackage{fancyhdr}
 % link to section command
-\newcommand{\HR}[1]{\textbf{\hyperref[#1]{\ref{#1}}}}
+\newcommand{\HR}[1]{\hyperref[#1]{\ref{#1}}}
 
 % for creating an index at end of document
 \usepackage{imakeidx}
 \makeindex[columns=1, title=Alphabetical Index]
 
 % indexing commands
-\newcommand{\bind}[1]{\textbf{#1}\index{#1}}
+\newcommand{\bind}[1]{#1\index{#1}}
 \newcommand{\iind}[1]{\textit{#1}\index{#1}}
 \newcommand{\ind}[1]{#1\index{#1}}
 
@@ -49,7 +49,6 @@
 \graphicspath{{../square-well/}{../ising/}{../gas-adsorption/figs/}}
 
 \usepackage{caption}
-%\usepackage{subcaption}
 \usepackage{float}
 \usepackage{amsmath,amssymb}
 \usepackage{nicefrac}
@@ -62,7 +61,7 @@
 \usepackage{braket}
 
 % gas adsorption commands
-\usepackage{subfig}
+\usepackage{subcaption}
 \usepackage{url}
 %
 \usepackage[colorinlistoftodos,prependcaption,textsize=normalsize]{todonotes}
@@ -112,6 +111,7 @@
 
 \mainmatter
 
+\setlength\parindent{24pt}
 \begingroup
 \let\clearpage\relax
 \begin{center}
@@ -123,6 +123,7 @@ Advancing Renewable Gas Storage using Flat-histogram Methods
 \input{introduction.tex}
 \endgroup
 
+\setlength\parindent{0pt}
 \chapter{Stochastic Approximation Monte Carlo with a Dynamic Update
 Factor}
 \vspace*{2.0cm}
@@ -138,6 +139,8 @@ and David Roundy
 \textbf{101(1)}, 013301 (2020)~\cite{pommerenck2020stochastic}
 
 \clearpage{}
+
+\setlength\parindent{24pt}
 
 \input{../square-well/sq-well-body.tex}
 
