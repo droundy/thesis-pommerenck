@@ -70,8 +70,8 @@ derivative of the deliverable capacity with respect to $\Vk$ is zero for
 \begin{align}
     \frac{\delta D}{\delta \Vk} &= \mathbf{0}, \text{ if } \kvec\ne \mathbf{0}.
 \end{align}
-We note that this functional derivative may be non-zero for $\kvec=\mathbf{0}$ 
-because we separately maximize with respect to the particular uniform potential 
+We note that this functional derivative may be non-zero for $\kvec=\mathbf{0}$
+because we separately maximize with respect to the particular uniform potential
 $\V$. This means that
 
 \begin{align}
@@ -144,7 +144,7 @@ shift of molar Gibbs free energy provided by the substrate, specifically an
 
 \begin{equation}
    \gst(\rho, T) \equiv
-   %\frac{G_{\text{ads}}(\rho, T) - G_{\text{gas}}(\rho, T)}{N}\\ 
+   %\frac{G_{\text{ads}}(\rho, T) - G_{\text{gas}}(\rho, T)}{N}\\
     \mu_{\text{ads}}(\rho, T) - \mu_{\text{gas}}(\rho, T).
   % \gst(\rho, T) &\equiv g_{\text{gas}}(\rho, T) - g_{\text{ads}}(\rho, T)
   \label{eq:g_st}
@@ -218,10 +218,10 @@ interactions with the substrate itself; this counters the energetic attraction.
 \end{figure}
 
 \begin{figure}
-    \centering
-    \includegraphics[width=0.95\columnwidth]{four-cases-pro}
-    \caption{Two pairs of two connected and equal volumes containing gas. In the top pair, the density of gas in each volume is $\rhofull$. In the bottom pair, the density of gas in each volume is $\rhoempty$. The two volumes on the left are packed with a porous material. The two volumes on the right offer a spatially uniform background potential energy $\V$ (our idealized substrate). A connection between the two volumes in each pair has a valve to allow flow of gas between them}
-    \label{fig:delta-gst-maximum}
+\centering
+\includegraphics[width=0.95\columnwidth]{four-cases-pro}
+\caption{Two pairs of two connected and equal volumes containing gas. In the top pair, the density of gas in each volume is $\rhofull$. In the bottom pair, the density of gas in each volume is $\rhoempty$. The two volumes on the left are packed with a porous material. The two volumes on the right offer a spatially uniform background potential energy $\V$ (our idealized substrate). A connection between the two volumes in each pair has a valve to allow flow of gas between them}
+\label{fig:delta-gst-maximum}
 \end{figure}
 
 \section{An upper bound when $\gst(\rho)$ is monotonic}\label{sec:monotonic}
@@ -233,23 +233,28 @@ experimental $\Delta g_\text{st}$ curves are monotonic. Furthermore, our
 qualitative argument in Section~\ref{sec:upper-bound} suggests that this
 function \emph{should} monotonically increase for rigid substrates, as
 increasing the density of gas causes some of the gas to reside in higher-energy
-sites. If this is always the case, the deliverable capacity of a real material (with a non-spatially uniform potential) with a given $\gst$ at $\pfull$ or $\pempty$ is bounded below by the deliverable capacity in our idealized substrate with $\V=\gst$, even for a value of $\V$ that is not optimal
+sites. If this is always the case, the deliverable capacity of a real material
+(with a non-spatially uniform potential) with a given $\gst$ at $\pfull$ or
+$\pempty$ is bounded below by the deliverable capacity in our idealized
+substrate with $\V=\gst$, even for a value of $\V$ that is not optimal.
 
 To show this, we perform a thought experiment illustrated in
-Fig.~\ref{fig:delta-gst-maximum}. We begin with two pairs of volumes containing
-gas. Within each pair, one volume is filled with a porous material, while the
-other offers a uniform potential energy $\V$ (our idealized substrate). In the
-first (second) pair, the density of gas in each volume is $\rhofull$
-($\rhoempty$), corresponding to the density of gas adsorbed in the porous
-material at $\pfull$ ($\pempty$).
+Fig.~\ref{fig:delta-gst-maximum}. We begin with two pairs of volumes.  Two of
+these volumes contain a real adsorbent material.  These adsorbent volumes are
+connected to bulk gas reservoirs at $\pfull$ and $\pempty$ respectively, and
+therefore have densities $\rhofull$ and $\rhoempty$.  The other two volumes
+volumes have equal density to the two adsorbent volumes ($\rhofull$ and $\rhoempty$), but contain our
+idealized substrate with uniform potential energy $\V$.
 
-We now consider what happens if we introduce a diffusive connection between a
+We now consider what happens if we open a diffusive connection between a
 volume of MOF and a volume with an idealized substrate that initially contain
 the same density of gas, for instance by connecting them with a tube. If the
-chemical potential of the two volumes are equal, their density will be
-unchanged; otherwise gas will flow into the volume with lower chemical
-potential. The difference in chemical potential is equal to the difference
-
+chemical potential in the idealized substrate is higher than in the porous material,
+then gas will flow out of the idealized substrate, lowering its density.  Conversely
+if the chemical potential is lower in the idealized substrate than in the
+volume of porous material, then gas will flow into the idealized substrate, increasing
+its density.
+The difference in chemical potential between those two volumes is
 \begin{align}
    \gst(\rho) - \V &= \left(\mu_{\text{MOF}}(\rho) - \mu_{\text{gas}}(\rho)\right)
    - \left(\mu_{\V}(\rho) - \mu_{\text{gas}}(\rho)\right)
@@ -257,7 +262,8 @@ potential. The difference in chemical potential is equal to the difference
    &= \mu_{\text{MOF}}(\rho) - \mu_{\V}(\rho).
 \end{align}
 where $\mu_{\text{MOF}}(\rho)$ and $\mu_{\V}(\rho)$ are the chemical potentials
-of gas in the porous material and ideal substrate with potential $\V$, respectively. Thus if $\gst(\rhoempty) =
+of gas in the porous material and ideal substrate with potential $\V$, respectively.
+Thus if $\gst(\rhoempty) =
 \V$ then the low-density containers will remain at their initial density after
 they are connected. Thus, the deliverable capacity of the MOF will be greater
 than the deliverable capacity of the ideal substrate with uniform potential $\V$ if and
