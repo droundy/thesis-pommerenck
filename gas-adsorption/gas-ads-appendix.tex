@@ -68,16 +68,16 @@ derivative of the deliverable capacity with respect to $\Vk$ is zero for
 \emph{nonzero} values of $\kvec$, i.e.
 
 \begin{align}
-    \frac{\delta D}{\delta \Vk} &= 0, \text{ if } \kvec\ne 0.
+    \frac{\delta D}{\delta \Vk} &= \mathbf{0}, \text{ if } \kvec\ne \mathbf{0}.
 \end{align}
-We note that this functional derivative may be non-zero for $\kvec=0$ because
-we separately maximize with respect to the particular uniform potential $\V$.
-This means that
+We note that this functional derivative may be non-zero for $\kvec=\mathbf{0}$ 
+because we separately maximize with respect to the particular uniform potential 
+$\V$. This means that
 
 \begin{align}
-    \frac{\delta N_H}{\delta \Vk} &= \frac{\delta N_L}{\delta \Vk}
+    \frac{\delta N_\text{full}}{\delta \Vk} &= \frac{\delta N_\text{empty}}{\delta \Vk}
 \end{align}
-where $N_H$ and $N_L$ are the number of particles at the low and high pressure.
+where $N_\text{full}$ and $N_\text{empty}$ are the number of particles at the full and empty pressure, respectively.
 
 Because the chemical potential $\mu$ varies monotonically with $N$ at fixed
 temperature, we can consider how the chemical potential varies as we change
@@ -121,18 +121,8 @@ it must be a true maximum.
 \label{sec:phi-is-delta-g}
 \begin{figure}
     \centering
-    \includegraphics[width=\columnwidth]{g_st_piston_2.png}
-    \caption{Cartoon illustrating the definition of $\gst$ and a
-      hypothetical experiment to measure it with a piston and
-      removable barrier that separates two equal volumes, one with a
-      porous material (bottom) and one with free space (top). The
-      initial state (left) is a bulk gas phase at density $\rho$ and
-      temperature $T$. An infinitely-thin, removable barrier separates
-      the gas from the porous material (bottom). The barrier is then
-      slowly removed, and the piston slowly pushes all gas molecules
-      into the porous material in an isothermal process. The final
-      state (right) is an adsorbed gas phase at density $\rho$ and
-      temperature $T$.}
+    \includegraphics[width=\columnwidth]{g_st_simple.pdf}
+    \caption{Cartoon illustrating the definition of $\gst$. for a given adsorbent and gas, $\gst$=$\gst (\rho, T)$ is defined as the difference in chemical potential between the adsorbed gas system and bulk gas system when both exhibit the same density and temperature.}
     \label{fig:delta-G-cartoon}
 \end{figure}
 
@@ -230,10 +220,7 @@ interactions with the substrate itself; this counters the energetic attraction.
 \begin{figure}
     \centering
     \includegraphics[width=0.95\columnwidth]{four-cases-pro}
-    \caption{Two pairs of boxes containing gas with one of the pairs
-    filled with MOF. One box of each sort has a density of gas $\rhofull$
-    corresponding to $\pfull$ in the MOF system, while the other two boxes has
-    gas density $\rhoempty$}
+    \caption{Two pairs of two connected and equal volumes containing gas. In the top pair, the density of gas in each volume is $\rhofull$. In the bottom pair, the density of gas in each volume is $\rhoempty$. The two volumes on the left are packed with a porous material. The two volumes on the right offer a spatially uniform background potential energy $\V$ (our idealized substrate). A connection between the two volumes in each pair has a valve to allow flow of gas between them}
     \label{fig:delta-gst-maximum}
 \end{figure}
 
@@ -246,26 +233,22 @@ experimental $\Delta g_\text{st}$ curves are monotonic. Furthermore, our
 qualitative argument in Section~\ref{sec:upper-bound} suggests that this
 function \emph{should} monotonically increase for rigid substrates, as
 increasing the density of gas causes some of the gas to reside in higher-energy
-sites. If this is always the case, the deliverable capacity will always be
-bounded by our theoretical upper bound, even for a value of $\V$ that is not
-optimal.
+sites. If this is always the case, the deliverable capacity of a real material (with a non-spatially uniform potential) with a given $\gst$ at $\pfull$ or $\pempty$ is bounded below by the deliverable capacity in our idealized substrate with $\V=\gst$, even for a value of $\V$ that is not optimal
 
 To show this, we perform a thought experiment illustrated in
-Fig.~\ref{fig:delta-gst-maximum}. We begin with two pairs of boxes containing
-gas. Two of the boxes are filled with a MOF, and the other two have a uniform
-potential energy $\V$. We imagine the two boxes at $\V$ as being empty
-but at very low altitude where gravity provides a potential energy difference
-(relative to the box with the MOF in it) of $\V$ to each gas molecule (perhaps
-we are on Jupiter?). One box of each sort has a density of gas $\rhofull$
-corresponding to $\pfull$ in the MOF system, while the other two boxes has gas
-density $\rhoempty$.
+Fig.~\ref{fig:delta-gst-maximum}. We begin with two pairs of volumes containing
+gas. Within each pair, one volume is filled with a porous material, while the
+other offers a uniform potential energy $\V$ (our idealized substrate). In the
+first (second) pair, the density of gas in each volume is $\rhofull$
+($\rhoempty$), corresponding to the density of gas adsorbed in the porous
+material at $\pfull$ ($\pempty$).
 
-We now consider what happens if we introduce a diffusive connection between two
-boxes that are initially at the same density, for instance by connecting them
-with a tube. If the chemical potential of the two boxes are equal, their
-density will be unchanged, otherwise gas will flow into the box with lower
-chemical potential. The difference in chemical potential is equal to the
-difference
+We now consider what happens if we introduce a diffusive connection between a
+volume of MOF and a volume with an idealized substrate that initially contain
+the same density of gas, for instance by connecting them with a tube. If the
+chemical potential of the two volumes are equal, their density will be
+unchanged; otherwise gas will flow into the volume with lower chemical
+potential. The difference in chemical potential is equal to the difference
 
 \begin{align}
    \gst(\rho) - \V &= \left(\mu_{\text{MOF}}(\rho) - \mu_{\text{gas}}(\rho)\right)
@@ -273,17 +256,20 @@ difference
    \\
    &= \mu_{\text{MOF}}(\rho) - \mu_{\V}(\rho).
 \end{align}
-Thus if $\gst(\rhoempty) = \V$ then the ``empty'' containers will remain at
-their initial density after they are connected. Thus, the deliverable capacity
-of the MOF will be greater than the deliverable capacity of the model with
-uniform potential $\V$ if and only if $\gst(\rhofull)<\V$, i.e. if $\gst(\rho)$
-does \emph{not} monotonically increase. By the same token, if we consider the
-case where $\gst(\rhofull) = \V$, then to achieve a greater deliverable
-capacity than our model, the MOF must have less residual gas, which means that
-gas must spontaneously flow from the low-density MOF to the box with potential
-$\V$, which means that $\gst(\rhoempty)>\V$. Once again, exceeding our upper
-bound requires a material with a $\gst(\rho)$ that does not increase
-monotonically.
+where $\mu_{\text{MOF}}(\rho)$ and $\mu_{\V}(\rho)$ are the chemical potentials
+of gas in the porous material and ideal substrate with potential $\V$, respectively. Thus if $\gst(\rhoempty) =
+\V$ then the low-density containers will remain at their initial density after
+they are connected. Thus, the deliverable capacity of the MOF will be greater
+than the deliverable capacity of the ideal substrate with uniform potential $\V$ if and
+only if $\gst(\rhofull)<\V$, i.e. if $\gst(\rho)$ does \emph{not} monotonically
+increase, since the gas in the high-density system will flow from the ideal
+substrate to the MOF. By the same token, if we consider the case where
+$\gst(\rhofull) = \V$, then for the MOF to achieve a greater deliverable
+capacity than the idealized substrate, the MOF must have less residual gas,
+which means that gas must spontaneously flow from the low-density MOF to the
+volume with potential $\V$, which means that $\gst(\rhoempty)>\V$. Once again,
+exceeding our upper bound requires a material with a $\gst(\rho)$ that does not
+increase monotonically.
 
 Taken together, this indicates that not only is our absolute upper bound an
 upper bound for rigid MOFs, but the green curve labeled $\rho_D(\gst)$ in
@@ -295,7 +281,7 @@ $\gst$ at either $\pfull$ or $\pempty$.
 \begin{figure}
     \centering
     \includegraphics[width=0.95\columnwidth]{hydrogen-77-n-vs-G}
-    \caption{Deliverable capacity of hydrogen at 77\ K as a function of the attractive Gibbs free energy $\gst$. Experimental deliverable capacities for several MOFs (data from Ref.~\cite{garcia2018benchmark}) are shown along with the experimental values for $\gst$ at the empty and full pressures shown as $+$'s connected by a line.}
+    \caption{Deliverable capacity of hydrogen at 77\ K as a function of the attractive Gibbs free energy $\gst$. Experimental deliverable capacities for several porous materials (data from Ref.~\cite{garcia2018benchmark}) are shown along with the experimental values for $\gst$ at the empty and full pressures shown as $+$'s connected by a line.}
     \label{fig:hydrogen-77-D}
 \end{figure}
 
