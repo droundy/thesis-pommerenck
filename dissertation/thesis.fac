@@ -10,11 +10,14 @@
 < ../ising/gamma-n128.pdf
 < ../ising/N32-entropy-error-default.pdf
 < ../ising/N128-entropy-error-default.pdf
+< ../ising/N32-Cv.pdf
 
 < ../gas-adsorption/figs/hydrogen-298-n-vs-G.pdf
 < ../gas-adsorption/figs/methane-298-n-vs-G.pdf
 < ../gas-adsorption/figs/hydrogen-77-n-vs-G.pdf
-< ../gas-adsorption/figs/four-cases.svg
+< ../gas-adsorption/figs/four-cases.pdf
 < ../gas-adsorption/figs/hkust-1_fancy.png
 < ../gas-adsorption/figs/Combine_Figure.pdf
 < ../gas-adsorption/figs/g_st_simple.pdf
+< ../gas-adsorption/figs/qst-vs-delta-G.pdf
+< ../gas-adsorption/figs/four-cases-pro.pdf

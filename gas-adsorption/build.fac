@@ -18,22 +18,25 @@
 # C __pycache__
 
 # NEW
-* python3 isothermal-ads-gas-plot.py hydrogen 298 5 100 noshow
-C __pycache__
+| python3 isothermal-ads-gas-plot.py hydrogen 298 5 100 noshow
+c .pyc
+c __pycache__
 
-* python3 isothermal-ads-gas-plot.py methane 298 5.8 65 noshow
-C __pycache__
-
+| python3 isothermal-ads-gas-plot.py methane 298 5.8 65 noshow
+c .pyc
+c __pycache__
 
 # SUPPLEMENTAL FIGURES S2 AND S3
-* python3 gibbs-qst.py noshow
-C __pycache__
+| python3 gibbs-qst.py noshow
+c .pyc
+c __pycache__
 
 # * python3 adsorbed-gas-read.py hydrogen-77 hydrogen-77 5 100 noshow
 # C __pycache__
 
-* python3 isothermal-ads-gas-plot.py hydrogen 77 5 100 noshow
-C __pycache__
+| python3 isothermal-ads-gas-plot.py hydrogen 77 5 100 noshow
+c .pyc
+c __pycache__
 
 # BUILD THE MAIN PAPER
 # | pdflatex isosteric-heat.tex && bibtex isosteric-heat && pdflatex #isosteric-heat.tex && pdflatex isosteric-heat.tex
@@ -46,8 +49,9 @@ C __pycache__
 < figs/hydrogen-298-n-vs-G.pdf
 < figs/methane-298-n-vs-G.pdf
 < figs/hydrogen-77-n-vs-G.pdf
-< figs/four-cases.svg
+< figs/four-cases.pdf
 < figs/hkust-1_fancy.png
-< figs/four-cases-pro.svg
-< figs/Combine_Figure.svg
+< figs/four-cases-pro.pdf
+< figs/Combine_Figure.pdf
 < figs/g_st_simple.pdf
+< figs/qst-vs-delta-G.pdf
