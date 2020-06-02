@@ -48,6 +48,7 @@ c __pycache__
 | pdflatex gas-ads.tex && bibtex gas-ads && pdflatex gas-ads.tex && pdflatex gas-ads.tex
 < figs/hydrogen-298-n-vs-G.pdf
 < figs/methane-298-n-vs-G.pdf
+< figs/methane-298-rho-mu.pdf
 < figs/hydrogen-77-n-vs-G.pdf
 < figs/four-cases.pdf
 < figs/hkust-1_fancy.png
