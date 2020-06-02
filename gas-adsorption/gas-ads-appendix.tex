@@ -77,7 +77,7 @@ $\V$. This means that
 \begin{align}
     \frac{\delta N_\text{full}}{\delta \Vk} &= \frac{\delta N_\text{empty}}{\delta \Vk}
 \end{align}
-where $N_\text{full}$ and $N_\text{empty}$ are the number of particles at the full and empty pressure, respectively.
+where $N_\text{full}$ and $N_\text{empty}$ are the number of particles at the full and empty pressure, $\pfull$ and $\pempty$ respectively.
 
 Because the chemical potential $\mu$ varies monotonically with $N$ at fixed
 temperature, we can consider how the chemical potential varies as we change
@@ -122,7 +122,7 @@ it must be a true maximum.
 \begin{figure}
     \centering
     \includegraphics[width=\columnwidth]{g_st_simple.pdf}
-    \caption{Cartoon illustrating the definition of $\gst$. for a given adsorbent and gas, $\gst$=$\gst (\rho, T)$ is defined as the difference in chemical potential between the adsorbed gas system and bulk gas system when both exhibit the same density and temperature.}
+    \caption{Cartoon illustrating the definition of $\gst$. For a given adsorbent and gas, $\gst$=$\gst (\rho, T)$ is defined as the difference in chemical potential between the adsorbed gas system and bulk gas system when both exhibit the same density $\rho$ and temperature $T$.}
     \label{fig:delta-G-cartoon}
 \end{figure}
 
@@ -220,13 +220,13 @@ interactions with the substrate itself; this counters the energetic attraction.
 \begin{figure}
 \centering
 \includegraphics[width=0.95\columnwidth]{four-cases-pro}
-\caption{Two pairs of two connected and equal volumes containing gas. In the top pair, the density of gas in each volume is $\rhofull$. In the bottom pair, the density of gas in each volume is $\rhoempty$. The two volumes on the left are packed with a porous material. The two volumes on the right offer a spatially uniform background potential energy $\V$ (our idealized substrate). A connection between the two volumes in each pair has a valve to allow flow of gas between them}
+\caption{A bulk gas reservoir is connected to a volume filled with adsorbent material (green/blue: material atoms, red: gas particles). The adsorbent is also connected, but with a closed valve, to an equal volume containing the ideal substrate (shaded blue background represents the uniform potential energy field $\V$) with an equal density of gas as in the adsorbent. The top (bottom) shows a realization of this connected system where the pressure of the bulk gas is $\pfull$ ($pempty$), and thus the density of gas in the adsorbent is $\rhofull$ ($\rhoempty$) by definition. The deliverable capacity of the adsorbent is $\rhofull - \rhoempty$. We can determine if the deliverable capacity of gas in the ideal substrate is lower or higher than in the adsorbent by considering what happens when we open the valves connecting the two pairs of volumes containing adsorbent and the ideal substrate.}
 \label{fig:delta-gst-maximum}
 \end{figure}
 
 \section{An upper bound when $\gst(\rho)$ is monotonic}\label{sec:monotonic}
-Every MOF has a $\Delta g_\text{st}$ at $\pfull$ and $\pempty$ corresponding
-to a full and empty density. The deliverable capacity of the MOF is equal to
+Every adsorbent has a $\Delta g_\text{st}$ at $\pfull$ and $\pempty$ corresponding
+to a full and empty density, $\rhofull$ and $\rhoempty$ respectively. The deliverable capacity of the adsorbent is equal to
 the difference between the full and empty density. Examining
 Fig.~\ref{fig:methane-gst}, we see that a significant variety of known
 experimental $\Delta g_\text{st}$ curves are monotonic. Furthermore, our
@@ -247,54 +247,54 @@ volumes have equal density to the two adsorbent volumes ($\rhofull$ and $\rhoemp
 idealized substrate with uniform potential energy $\V$.
 
 We now consider what happens if we open a diffusive connection between a
-volume of MOF and a volume with an idealized substrate that initially contain
+volume of adsorbent and a volume with an idealized substrate that initially contain
 the same density of gas, for instance by connecting them with a tube. If the
 chemical potential in the idealized substrate is higher than in the porous material,
-then gas will flow out of the idealized substrate, lowering its density.  Conversely
+then gas will flow out of the idealized substrate, lowering its density.  Conversely,
 if the chemical potential is lower in the idealized substrate than in the
 volume of porous material, then gas will flow into the idealized substrate, increasing
 its density.
 The difference in chemical potential between those two volumes is
 \begin{align}
-   \gst(\rho) - \V &= \left(\mu_{\text{MOF}}(\rho) - \mu_{\text{gas}}(\rho)\right)
+   \gst(\rho) - \V &= \left(\mu_{\text{ads}}(\rho) - \mu_{\text{gas}}(\rho)\right)
    - \left(\mu_{\V}(\rho) - \mu_{\text{gas}}(\rho)\right)
    \\
-   &= \mu_{\text{MOF}}(\rho) - \mu_{\V}(\rho).
+   &= \mu_{\text{ads}}(\rho) - \mu_{\V}(\rho).
 \end{align}
-where $\mu_{\text{MOF}}(\rho)$ and $\mu_{\V}(\rho)$ are the chemical potentials
+where $\mu_{\text{ads}}(\rho)$ and $\mu_{\V}(\rho)$ are the chemical potentials
 of gas in the porous material and ideal substrate with potential $\V$, respectively.
 Thus if $\gst(\rhoempty) =
-\V$ then the low-density containers will remain at their initial density after
-they are connected. Thus, the deliverable capacity of the MOF will be greater
+\V$, the low-density containers will remain at their initial density after
+they are connected. Thus, the deliverable capacity of the adsorbent will be greater
 than the deliverable capacity of the ideal substrate with uniform potential $\V$ if and
 only if $\gst(\rhofull)<\V$, i.e. if $\gst(\rho)$ does \emph{not} monotonically
-increase, since the gas in the high-density system will flow from the ideal
-substrate to the MOF. By the same token, if we consider the case where
-$\gst(\rhofull) = \V$, then for the MOF to achieve a greater deliverable
-capacity than the idealized substrate, the MOF must have less residual gas,
-which means that gas must spontaneously flow from the low-density MOF to the
+increase, since then the gas in the high-density system will flow from the ideal
+substrate to the adsorbent. By the same token, if we consider the case where
+$\gst(\rhofull) = \V$, then for the adsorbent to achieve a greater deliverable
+capacity than the idealized substrate, the adsorbent must have less residual gas,
+which means that gas must spontaneously flow from the low-density adsorbent to the
 volume with potential $\V$, which means that $\gst(\rhoempty)>\V$. Once again,
 exceeding our upper bound requires a material with a $\gst(\rho)$ that does not
 increase monotonically.
 
 Taken together, this indicates that not only is our absolute upper bound an
-upper bound for rigid MOFs, but the green curve labeled $\rho_D(\gst)$ in
+upper bound for rigid adsorbents, but the green curve labeled $\rho_D(\gst)$ in
 Figs.~\ref{fig:methane-298-D}, \ref{fig:hydrogen-298-D}, and
 \ref{fig:hydrogen-77-D} is an upper bound for materials with a non-optimal
 $\gst$ at either $\pfull$ or $\pempty$.
 
 \section{Cryogenic hydrogen storage}\label{sec:cryo-hydrogen}
-\begin{figure}
-    \centering
-    \includegraphics[width=0.95\columnwidth]{hydrogen-77-n-vs-G}
-    \caption{Deliverable capacity of hydrogen at 77\ K as a function of the attractive Gibbs free energy $\gst$. Experimental deliverable capacities for several porous materials (data from Ref.~\cite{garcia2018benchmark}) are shown along with the experimental values for $\gst$ at the empty and full pressures shown as $+$'s connected by a line.}
-    \label{fig:hydrogen-77-D}
-\end{figure}
-
 One approach to increase the deliverable capacity is to reduce the storage
 temperature. This is illustrated in Fig.~\ref{fig:hydrogen-77-D}, which shows
 the upper bound to the deliverable capacity of hydrogen at 77\ K, the boiling
 point of nitrogen. The DOE ULTIMATE target in this case looks far more
 achievable, and with a much lower $|\gst|$. In fact, an empty tank at this
 temperature can satisfy the DOE 2020 target. The DOE ULTIMATE target is 14\%
-below the upper bound. Actual MOFs fall far short of the theoretical maximum.
+below the upper bound. Actual adsorbents fall far short of the theoretical maximum.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.95\columnwidth]{hydrogen-77-n-vs-G}
+    \caption{Deliverable capacity of hydrogen at 77\ K as a function of the attractive Gibbs free energy $\gst$. Experimental deliverable capacities for several porous materials (data from Ref.~\cite{garcia2018benchmark}) are shown along with the experimental values for $\gst$ at the empty and full pressures shown as $+$'s connected by a line.}
+    \label{fig:hydrogen-77-D}
+\end{figure}
