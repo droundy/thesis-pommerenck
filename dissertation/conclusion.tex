@@ -1,30 +1,76 @@
 In the first manuscript \emph{Stochastic approximation Monte Carlo with a
-dynamic update factor}, we developed and refined the novel Monte Carlo method
-SAD. We compared the convergence properties of SAD to a variety of other
-weight-based flat-histogram methods. We also examined the convergence behavior
-applied to the square-well fluid and a Lennard-Jones cluster.
+dynamic update factor}, we developed and refined a novel Monte Carlo variant of
+SAMC called SAD. We compared the convergence properties of SAD to a variety of
+other weight-based flat-histogram methods. We also examined the convergence
+behavior applied to the square-well fluid and a Lennard-Jones cluster. We found
+that the method SAD performs robustly on both systems independent of
+scaling. SAD effectively and efficiently samples the entire energy space defined
+by a chosen temperature range.
+
+In addition, we found that SAD converges far more rapidly than SAMC. The
+convergence of SAD rivals WL methods, which were provided the energy range of
+interest \emph{a priori}. Unlike WL, which can converge to the wrong density of
+states, SAD shares the proven convergence properties of SAMC. We found that,
+while SAMC converges for a reasonable choice of $t_0$, this nonphysical
+parameter can be especially difficult to tune. Even for the best choice of
+$t_0$, SAMC does not converge as rapidly as SAD or the WL methods, when a
+relatively small range of energies is required, because the algorithm simulates
+all possible energies.
+
+We also found that SAD is far more powerful in the common scenario where the
+range of energies is not known in advance. For the 31 atom Lennard-Jones
+cluster system, the WL and $1/t$-WL algorithms showed convergence properties
+that were highly dependent on the choice of energy range examined. This was
+particularly problematic when examining heat capacity at low temperatures,
+where it was difficult to determine the lowest energy that would have a
+significant impact at the temperatures of interest.
 
 In the second manuscript \emph{Flat-histogram method comparison on 2D Ising
 model}, we tested SAD on the 2D Ising model against a number of weight-based
-methods including a ``production'' run WL. We found that even for systems where
-it is convenient to choose an energy range, SAD performs incredibly well.
+methods including a ``production'' run WL. We also examined the convergence
+behavior applied to the 2D Ising model. We found that SAD, $1/t$-WL, and WL
+followed by a production run (with an adequately small $\gamma^{\min}$)
+demonstrate excellent and robust convergence.
+
+We found that for larger Ising systems, SAD reduced the update factor more
+slowly (and conservatively) than $1/t$-WL and WL followed by a production run.
+However, the WL methods solved a simpler problem because they were given the
+energy range \emph{a priori}, rather than a temperature range of interest such
+as SAD requires. The 2D Ising model is a system where the energy range is known
+\emph{a priori.}, which made a comparison between WL methods and SAD more
+biased in favor of WL methods. We also showed in this work that WL followed by
+a production run performed extremely well and is preferable to pure WL for
+ensuring both ergodicity and detailed balance.
 
 In the third manuscript \emph{An upper bound to gas delivery via pressure-swing
-adsorption in nanoporous materials}, we develop an upper bound on gas delivery
-and compare the theory with experimental data. We found that while hydrogen may
-not be viable at room temperature, methane storage can potentially meet the
-Department of Energy (DOE) targets. The theory also suggests an ideal energy of
-attraction which will help when determining what MOFs to simulate.
+adsorption in nanoporous materials}, we developed an upper bound on the
+deliverable capacity via pressure-swing adsorption in rigid porous solids and
+compared the theory with experimental properties of pure gases. Although the
+upper bound does not rule out the discovery of materials that reach current DOE
+targets for room temperature hydrogen and methane storage, it casts strong
+doubt on the possibility of achieving these goals when considering the
+additional constraints imposed due to steric hindrance between substrate atoms
+and the adsorbate.
 
-Each of these manuscripts laid the groundwork for the development of 2D SAD.
-SAD has been tested on a variety of physical systems and shows tremendous
-promise for simulating isotherms. In addition, an upper bound was developed
-that will aid in simulating MOFs using 2D Sad.
+Additionally, we found that the upper bound helps by directing research toward
+materials with an ideal energy of attraction as computed from the theory. Our
+upper bound can also readily be applied to the storage of other gases of
+interest (beyond hydrogen and methane), with the proviso that the gas is far
+from crystallization.
 
-There are two important steps that remain to complete the extension. The first
-is the development of SAD with a minimum particle number $N_{\min}$ instead of
-a $T_{\min}$. By varying the number of particles, the simulation can yield
-thermodynamic insights for all densities. The second step that remains is the
-merger of each SAD method such that a multidimensional 2D SAD is formed. Such a
-Monte Carlo method would be an invaluable tool for driving research in the gas
-storage field.
+A driving motivation for the development of the novel Monte Carlo method SAD
+and a theoretical upper bound on the deliverable capacity in rigid porous
+solids is to allow the simulation of key thermodynamic properties of porous
+materials. By computationally determining a materials deliverable capacity,
+researchers save countless development and experimental hours. In particular,
+this body of research heavily contributes to enabling light-vehicle gas storage
+applications. However, the are two important research extensions that remain in
+order to completely develop a method suitable for simulating the thermodynamic
+properties of interest for any porous material. (i) The first is the
+development of SAD with a minimum pressure $p_{\min}$ instead of a $T_{\min}$.
+By varying the number of particles, the simulation can yield thermodynamic
+insights for all densities (which is of necessary for computing the deliverable
+capacity). (ii) The second step that remains is the merger of each SAD method
+such that a multidimensional 2D SAD is formed. Such a Monte Carlo method would
+be an invaluable tool for helping to enable light-vehicle gas storage
+technology.
