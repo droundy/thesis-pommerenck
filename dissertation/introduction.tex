@@ -1,10 +1,10 @@
-Monte Carlo methods are a powerful simulation tool that allow scientists to
+Monte Carlo (MC) methods are a powerful simulation tool that allow scientists to
 explore properties of systems that may otherwise by inaccessible via
 experimental methods. Monte Carlo methods can be used to solve a variety of
 physical problems yielding insight into statistical averages due to random
 processes. During the last two decades considerable research has been done on
 developing and refining flat-histogram Monte Carlo methods. These Monte Carlo
-(MC) methods are capable of exploring all of the energy phase space for all
+methods are capable of exploring all of the energy phase space for all
 given temperatures in a \emph{single} simulation. In this work, we first
 outline the necessary statistical mechanics background. We provide a
 description of MC methods and flat-histogram methods, as well as, our newly
@@ -13,17 +13,36 @@ update factor). We discuss physics rich test systems that can be used to
 explore the convergence and statistical properties of our newly developed
 method SAD.
 
-A driving motivation for developing novel Monte Carlo methods that have physically based tunable parameters is to provide simulation methods for exploring metal-organic frameworks (MOFs). In this work, we examine MOFs and
-their application to gas storage and delivery. We formulate a theoretical upper
-bound on the maximum amount of gas that can be stored and released at different
-pressures. We propose SAD as a powerful method for examining thermodynamic properties for MOFs.  We lay a groundwork for 2D SAD which would be able to compute isotherms for any given MOF thereby providing a powerful way for researchers to determine a MOF's suitability for gas storage applications.
+A driving motivation for developing novel Monte Carlo methods that have
+physically based tunable parameters is to provide simulation methods for
+exploring porous materials. In this work, we examine the theoretical upper
+bound on the storage capacity of porous materials in the context of
+light-vehicle fuel storage. We formulate a theoretical upper bound on the
+maximum amount of gas that can be stored and released at different pressures.
+We propose SAD as a potentially powerful method for examining thermodynamic
+properties for porous materials. This body of research serves as a groundwork
+for multidimensional SAD which would be able to compute isotherms for any given
+porous material thereby providing a powerful way for researchers to determine
+the suitability for gas storage applications.
 
-In the following chapters, we follow the manuscript outline with each chapter corresponding to our published or submitted research on the SAD method applied to various physical systems and our work on establishing a theoretical upper bound on gas storage and delivery for MOFs.
+In the following chapters, we follow the manuscript outline with each chapter
+corresponding to our published or submitted research on the SAD method applied
+to various physical systems, and our work on establishing a theoretical upper
+bound on gas storage and delivery for MOFs.
 
 \section{Micro-Canonical Ensemble}\label{micro}
-A statistical ensemble is defined as a probability distribution $\mathcal{P}\left(\Omega\right)$ for the state of the system.
-The micro-canonical\index{ensemble!micro-canonical} is a representation for a system $\Gamma$ that is determined by a fixed number\index{extensive!number $N$} of particles $N$ (and fixed components $\sum N_i$ for a multi-component system), a fixed volume\index{extensive!volume $V$} $V$, and a fixed energy\index{extensive!energy $E$} $E$. All possible states for the system $\Gamma\left(N,V,E\right)$ have the same number of particles, energy, and volume due to the system being in isolation from any external environment.
-The micro-canonical ensemble\index{ensemble!micro-canonical} is for this reason also known as the $NVE$ ensemble as the micro-states depend on the \ind{extensive} macroscopic details.
+A statistical ensemble is defined as a probability distribution
+$\mathcal{P}\left(\Omega\right)$ for the state of the system. The
+micro-canonical\index{ensemble!micro-canonical} is a representation for a
+system $\Gamma$ that is determined by a fixed number\index{extensive!number
+$N$} of particles $N$ (and fixed components $\sum N_i$ for a multi-component
+system), a fixed volume\index{extensive!volume $V$} $V$, and a fixed
+energy\index{extensive!energy $E$} $E$. All possible states for the system
+$\Gamma\left(N,V,E\right)$ have the same number of particles, energy, and
+volume due to the system being in isolation from any external environment. The
+micro-canonical ensemble\index{ensemble!micro-canonical} is for this reason
+also known as the $NVE$ ensemble as the micro-states depend on the
+\ind{extensive} macroscopic details.
 
 The probability $\mathcal{P}$ of selecting a micro-state at random for a given range of energies centered about $E$ is given by
 \begin{align}
@@ -31,8 +50,8 @@ The probability $\mathcal{P}$ of selecting a micro-state at random for a given r
 \end{align}
 where $\Omega(E)$ is the number of micro-states in the system $\Gamma(E)$.
 
-\subsection{Definition of Entropy $S(E)$}\label{entropy}
-The entropy $S(E)$ can be defined for any given system $\Gamma$ with discrete energy states using one of the most important formulae in physics:
+\subsection{The Boltzmann Entropy $S(E)$}\label{entropy}
+The Boltzmann entropy $S(E)$ can be defined for any given system $\Gamma$ with discrete energy states by relating it to the microstates:
 \begin{align}\label{sdos}
     S(E,V,N) \equiv k_B \ln\Omega(E,V,N)
 \end{align}
@@ -40,7 +59,7 @@ where the entropy is defined as the logarithm of the density of states and $k_B$
 \begin{align}
     S(E_1,E_2) &= k_B \ln(\Omega(E_1)\Omega_2(E_2)) \\
     &= k_B \left( \ln(\Omega_1(E_1)) + \ln(\Omega_2(E_2))\right) \\
-    &= k_B \left( S_1(E_1) + S_2(E_2)\right)
+    &= \left( S_1(E_1) + S_2(E_2)\right)
 \end{align}
 From the \nth{1} law of thermodynamics, the system temperature can be written in terms of the density of states by referring to Eq.~\HR{sdos}.
 \begin{align}
@@ -48,7 +67,9 @@ From the \nth{1} law of thermodynamics, the system temperature can be written in
 \end{align}
 The relationship between entropy $S(E)$, $\Omega(E)$, and $T$ will be discussed in further depth in Section~\HR{laws}.
 
-\subsection{The Laws of Thermodynamics and $S(E)$}\label{laws}
+\subsection{Thermodynamics in the Micro-Canonical Ensemble}\label{laws}
+The statistical entropy defined in Eq.~\HR{sdos} is consistent with the \nth{1} and \nth{2} laws of
+thermodynamics for any system with uniformly distributed microstates.
 The \nth{1} law of thermodynamics states that for an isolated system $\Gamma$, the total internal energy is equal to the sum of the heat $Q$ and work $W$ done.
 \begin{align}
     \D{U} = \D{Q} + \D{W}
@@ -63,34 +84,43 @@ The \nth{2} law of thermodynamics states that for any isolated system $\Gamma$ t
 \begin{align}
     \delta Q = T\delta S
 \end{align}
-The relationship between heat and entropy for a system is invaluable for the \nth{1} law to relate the conjugate variables T, $S(E)$, and $U(E)$.
+The relationship between heat and entropy for a system is useful for the \nth{1} law to relate the conjugate variables T, $S(E)$, and $U(E)$.
 
 \section{Canonical Ensemble}
-The Canonical ensemble is a representation for a system $\Gamma$ that is determined by a fixed number of particles $N$ (and fixed components $\sum N_i$ for a multi-component system), a fixed volume $V$, and a fixed temperature $T$. All possible states for the system $\Gamma\left(N,V,T\right)$ have the same number of particles, energy, and temperature due to the system being in thermal equilibrium with a heat bath.
-The canonical ensemble is for this reason also known as the $NVT$ ensemble.
+The Canonical ensemble is a representation for a system $\Gamma$ that is
+determined by a fixed number of particles $N$ (and fixed components $\sum N_i$
+for a multi-component system), a fixed volume $V$, and a fixed temperature $T$.
+All possible states for the system $\Gamma\left(N,V,T\right)$ have the same
+number of particles, energy, and temperature due to the system being in thermal
+equilibrium with a heat bath. The canonical ensemble is for this reason also
+known as the $NVT$ ensemble.
 
-The probability $\mathcal{P}$ of selecting a given micro-state at random is
+The probability $\mathcal{P}$ of selecting a given micro-state $i$ at random is
 \begin{align}
-    \mathcal{P} = e^{\nicefrac{\left(F-E\right)}{k_BT}}
+    \mathcal{P_i} = \frac{e^{\nicefrac{\left(-E_i\right)}{k_BT}}}{Z}
 \end{align}
-where $F\left(N,V,T\right)$ is the free energy of the system $\Gamma$ and will be discussed in detail in Section~\HR{potentials}.
+where $Z$ is the canonical partition function and will be discussed in detail in Section~\HR{betaZ}.
 
-
-
-\subsection{Boltzmann Factor and Partition Function}
-In statistical thermodynamics $\beta$ is defined as the coldness or the reciprocal of the temperature.
+\subsection{The Canonical Partition Function}\label{betaZ}
+In statistical thermodynamics $\beta$ is defined as the coldness or the reciprocal of the canonical temperature.
 \begin{align}
-    \beta = \frac{1}{k_BT} = \frac{1}{k_B}
+    \beta = \frac{1}{k_BT}
 \end{align}
 where $k_B$ is the Boltzmann constant. The partition function for a canonical ensemble can then be written in terms of the Boltzmann factor where $E$ is the total energy of the system in the respective microstate at index $i$.
 \begin{align}
     Z = \sum_i e^{-\beta E_i}
 \end{align}
+The partition function depends both on the microstate energies as well as the
+temperature $T$. Because the microstate energies are influenced by microscopic
+properties, $Z$ has important statistical meaning.
 
-\subsection{Thermodynamic Potentials}\label{potentials}
-Thermodynamic potentials describe a given thermodynamic state of a given system and
-have units of energy $k_BT$. In this section, we will discuss five common thermodynamic potentials and how they are mathematically related through Maxwell relations.
-While the internal energy $U(E)$ has been briefly mentioned in Section~\HR{laws}, we outline in detail the relationship between the state variables.
+\section{Thermodynamic Potentials}\label{potentials}
+Thermodynamic potentials describe a given thermodynamic state of a given system
+and have units of energy $k_BT$. In this section, we will discuss the
+thermodynamic potentials ($U$, $F$, $H$, and $G$) and how they are mathematically related through
+Maxwell relations. While the internal energy $U(E)$ has been briefly mentioned
+in Section~\HR{laws}, we outline in detail the relationship between the state
+variables.
 \begin{align}
     \D{U(S,V,N)} = T\D{S}-p\D{V}+\mu\D{N}
 \end{align}
@@ -132,7 +162,7 @@ We can write the entropy $S$, volume $V$, and chemical potential $\mu$ in terms 
 \end{align}
 
 \subsection{Maxwell Relations}\label{maxwell}
-Maxwell's relations are second derivative equalities that relate important thermodynamic variables. Maxwell relations are an extension of the Schwarz theorem which states that the order of differentiation is irrelevant.
+Maxwell's relations are second derivative equalities that relate thermodynamic variables. Maxwell relations are formalism of the Schwarz theorem which states that the order of differentiation is irrelevant.
 \begin{align}
     \pdv{}{\theta}\left(\pdv{\Theta}{\phi}\right)=\pdv{}{\phi}\left(\pdv{\Theta}{\theta}\right)
 \end{align}
@@ -154,7 +184,7 @@ The relation involving the Gibbs free energy $G\left(T,p,N\right)$ relates the n
 \end{align}
 
 \subsection{Thermodynamic Properties}\label{thermoprop}
-The Maxwell relations from Section~\HR{maxwell} can be written in terms of thermodynamic properties of the material.  The isochoric heat capacity $C_V$ of a given material is defined as the amount of heat necessary to raise the temperature by a given amount.
+The Maxwell relations from Section~\HR{maxwell} can be written in terms of thermodynamic properties of the material.  The isochoric heat capacity $C_V$ of a given material is defined as the amount of heat necessary to raise the temperature of the material.
 \begin{align}
     C_V = T\left(\pdv{S}{T}\right )_{V,N}
 \end{align}
@@ -170,19 +200,19 @@ The isobaric coefficient of thermal expansion determines to what extent a given 
 \begin{align}
     \alpha_p = \frac{1}{V}\left( \pdv{V}{T} \right )_{p,N}
 \end{align}
-Similarly, the isochoric coefficient of thermal expansion can be written as the following:
+Similarly, the isochoric coefficient of thermal expansion can be written as
 \begin{align}
-    \alpha_V = \frac{1}{p}\left( \pdv{p}{T} \right )_{V,N}
+    \alpha_V = \frac{1}{p}\left( \pdv{p}{T} \right )_{V,N}.
 \end{align}
-The compressibility determines to what extent a given material will change volume based on the pressure applied to the system.  The isothermal compressibility can be written in terms of the following:
+The compressibility determines to what extent a given material will change volume based on the pressure applied to the system.  The isothermal compressibility can be written:
 \begin{align}
-    \kappa_T = -\frac{1}{V}\left( \pdv{V}{p} \right )_{T,N}
+    \kappa_T = -\frac{1}{V}\left( \pdv{V}{p} \right )_{T,N}.
 \end{align}
-Similarly, the isentropic compressibility can be written as the following:
+Similarly, the isentropic compressibility can be written as
 \begin{align}
-    \kappa_S = -\frac{1}{V}\left( \pdv{V}{p} \right )_{S,N}
+    \kappa_S = -\frac{1}{V}\left( \pdv{V}{p} \right )_{S,N}.
 \end{align}
-A major driving force behind introducing the concepts of thermal expansion and compressibility is to right complex derivatives in terms of these parameters. The internal energy derivative and entropy derivative can be written in terms of both the isothermal compressibility and the thermal coefficient of expansion.
+A major driving force behind introducing the concepts of thermal expansion and compressibility is the ability to write complex derivatives in terms of these parameters. The internal energy derivative and entropy derivative can be written in terms of both the isothermal compressibility and the thermal coefficient of expansion.
 \begin{align}
     \left( \pdv{U}{p} \right )_{V,N} = \frac{\kappa_T C_p}{\alpha} - \alpha TV \quad\quad
     \left( \pdv{S}{p} \right )_{V,N} = \frac{\kappa_T C_p}{\alpha T} + \alpha V
@@ -199,7 +229,7 @@ Finally, the Gibbs free energy derivatives can be written in terms of the isothe
 \end{align}
 
 \section{Grand Canonical Ensemble}
-The grand canonical ensemble is a representation for a system $\Gamma$ that is determined by a fixed chemical potential $\mu$, a fixed volume $V$, and a fixed temperature $T$. All possible states for the system $\Gamma\left(\mu,V,T\right)$ have the same chemical potential, volume, and temperature due to the system being in thermal and chemical equilibrium with a given resevoir.
+The grand canonical ensemble is a representation for a system $\Gamma$ that is determined by a fixed chemical potential $\mu$, a fixed volume $V$, and a fixed temperature $T$. All possible states for the system $\Gamma\left(\mu,V,T\right)$ have the same chemical potential, volume, and temperature due to the system being in thermal and chemical equilibrium with a given reservoir.
 The grand canonical ensemble is for this reason also known as the $\mu VT$ ensemble.
 
 The probability $\mathcal{P}$ of selecting a given micro-state at random is
@@ -212,7 +242,7 @@ where $\Phi\left(\mu,V,T\right)$ is the grand potential of the system $\Gamma$. 
 \end{align}
 
 \subsection{Chemical Potential $\mu$}
-The chemical potential $\mu$ of a given system $\Gamma$ is representative of the energy that can be gained or lost due (often because of a phase transition) to a change in the conjugate variable particle number $N$. Analogous to potential energy, higher chemical potential drives particles to lower potential (thereby usually changing the particle number). The chemical potential $\mu_i$ of species $i$ can be represented using a variety of free energies (all of which are equivalent but not necessarily useful for any given experiment).
+The chemical potential $\mu$ of a given system $\Gamma$ is representative of the energy that can be gained or lost due (often because of a phase transition) to a change in the conjugate variable particle number $N$. Analogous to potential energy, higher chemical potential drives particles to lower potential (thereby usually changing the particle number). The chemical potential $\mu_i$ of species $i$ can be represented using a variety of free energies (all of which are equivalent).
 \begin{align}
     \mu_i = \left( \pdv{G}{N_i}\right )_{T,P,N_{j \neq i}}  \quad
     \mu_i = \left( \pdv{H}{N_i}\right )_{S,P,N_{j \neq i}}  \quad
@@ -233,55 +263,91 @@ The number $N$, pressure $p$, and Gibbs entropy $S$ can be written in terms of t
 
 
 \section{Monte Carlo Simulation}\label{monte}
-Experiment and simulation blend together to help form a more complete understanding of our knowledge of how the universe works. Computational `experiments' such as Monte Carlo methods aid in this understanding by allowing scientists to explore system configurations that are not easily accessible to traditional experiment.
+Experiment and simulation are both necessary to help form a more complete
+understanding of our knowledge of how the universe works. Computational
+`experiments' such as Monte Carlo methods aid in this understanding by allowing
+scientists to explore system configurations that are not easily accessible to
+traditional experiment.
 
-In the field of statistical physics, Monte Carlo methods are used to determine equilibrium 
-properties (thermal averages) of multi-particle systems.  A number of Monte Carlo simulations 
-have been developed over the last century. Some of these methods are completely unique while 
-others are more sophisticated variants of an original method. All of the methods share a number 
-of similarities including picking random moves (we will discuss this process in Section~\HR{rng}) and determining the acceptance or rejection of a 
-move based on a probability distribution. They differ primarily in how they explore phase space 
-and thus compute thermodynamic properties such as the density of states $\Omega(E)$. The accuracy of any MC simulation depends on the details of how the system is `explored'. To reduce the error 
-in simulation one can in principle simply continue to allow the simulation more time to explore 
-phase space.
+In the field of statistical physics, Monte Carlo methods are used to determine
+equilibrium properties (thermal averages) of multi-particle systems. A number
+of Monte Carlo simulations have been developed over the last century. Some of
+these methods are completely unique while others are more sophisticated
+variants of an original method. All of the methods share a number of
+similarities including picking random moves (we will discuss this process in
+Section~\HR{rng}) and determining the acceptance or rejection of a move based
+on a probability distribution. They differ primarily in how they explore phase
+space and thus compute thermodynamic properties such as the density of states
+$\Omega(E)$. The accuracy of any MC simulation depends on the details of how
+the system is `explored'. To reduce the error in simulation one can in
+principle simply continue to allow the simulation more time to explore phase
+space.
 
-The motivation for new research into developing MC methods stems from the desire to solve ever-increasingly complex physical problems in a faster simulation time. Many of the originally developed MC methods are unable to effectively explore the complex phase space of real (and even many test) systems. Flat-histogram methods (introduced in Section~\HR{fhm}) are able to explore all energies and temperatures in a `single' simulation. In addition, they are able to explore complex energy landscapes without getting `stuck' (either never converging or converging at such a slow rate as to not practically converge). Many of these flat-histogram methods also have proven convergence on the statistical error thus guaranteeing convergence.
-In the following sections, we will discuss a number of MC methods including importance sampling canonical methods, and flat-histogram methods leading up to our method SAD introduced in this work discussed in Section~\HR{fhm}.
+The motivation for new research into developing MC methods stems from the
+desire to solve ever-increasingly complex physical problems in a faster
+simulation time. Many of the originally developed MC methods are unable to
+effectively explore the complex phase space of real (and even many test)
+systems. Flat-histogram methods (introduced in Section~\HR{fhm}) are able to
+explore all energies and temperatures in a `single' simulation. In addition,
+they are able to explore complex energy landscapes without getting `stuck'
+(either never converging or converging at such a slow rate as to not
+practically converge). Many of these flat-histogram methods also have proven
+convergence on the statistical error thus guaranteeing convergence. In the
+following sections, we will discuss a number of MC methods including importance
+sampling and flat-histogram methods introduced in Section~\HR{cmc} and
+~\HR{fhm}.
 
 \subsection{Random Number Generation}\label{rng}
 
-Since Monte Carlo moves are inherently stochastic in nature, it is imperative that any useful random number generator be fast and ideally non-deterministic. In practice, pseudo-random number generators (PRNGs) are used in order to generate the fast random streams although they are deterministic. In order for a PRNG to be acceptable for use in Monte Carlo simulation it must meet certain criteria~\cite{sawilowsky2003you}. First, the PRNG must have a long `period' before repeating values. Poor PRNGs (that is ones with short periods) can lead to systematic error in Monte Carlo simulations~\cite{ferrenberg1992monte, plascak2002cluster, ossola2004systematic}.
-Second, the PRNG must actually be able to pass certain statistical tests such as implemented in the TestU01 library~\cite{l2007testu01}.
+Since Monte Carlo moves are inherently stochastic in nature, it is imperative
+that any useful random number generator be fast and ideally non-deterministic.
+In practice, pseudo-random number generators (PRNGs) are used in order to
+generate the fast random streams although they are deterministic. In order for
+a PRNG to be acceptable for use in Monte Carlo simulation it must meet certain
+criteria~\cite{sawilowsky2003you}. First, the PRNG must have a long `period'
+before repeating values. Poor PRNGs (that is ones with short periods) can lead
+to systematic error in Monte Carlo simulations~\cite{ferrenberg1992monte,
+plascak2002cluster, ossola2004systematic}. Second, the PRNG must actually be
+able to pass certain statistical tests such as implemented in the TestU01
+library~\cite{l2007testu01}.
 
-There are a variety of PRNGs each with benefits and few without some form of drawback. We detail some of the well known PRNGs here. Linear congruential generators (LCGs) have a very fast time performance and are straightforward to program (in terms of size and complexity). Unfortunately, LCGs have multiple issues regarding the generated random number statistical quality~\cite{coddington1994analysis, barry1996recommendations}. While the period of the PRNG can be made acceptable by using 64-bit integers, the statistical correlations remain. Other PRNGs are the belong to the shift-register family (Xorshift RNGs). Like the LCG family, the shift-register RNGs fail many statistical tests~\cite{panneton2005xorshift} and are therefore often considered unacceptable for use in Monte Carlo simulations.
+There are a variety of PRNGs each with benefits and few without some form of
+drawback. We detail some of the well known PRNGs here. Linear congruential
+generators (LCGs) have a very fast time performance and are straightforward to
+program (in terms of size and complexity). Unfortunately, LCGs have multiple
+issues regarding the generated random number statistical
+quality~\cite{coddington1994analysis, barry1996recommendations}. While the
+period of the PRNG can be made acceptable by using 64-bit integers, the
+statistical correlations remain. Other PRNGs belong to the
+shift-register family (Xorshift RNGs). Like the LCG family, the shift-register
+RNGs fail many statistical tests~\cite{panneton2005xorshift} and are therefore
+often considered unacceptable for use in Monte Carlo simulations.
 
-In our work, we use the \textbf{Xoroshiro128+} RNG which is named after its logical operations (XOR $\xrightarrow{}$ rotate $\xrightarrow{}$ shift $\xrightarrow{}$ rotate). The RNG has ultra-fast speed 0.72 $\nicefrac{\text{ns}}{\text{64-bits}}$ and incredible statistical quality~\cite{blackman2018scrambled}.
+In our work, we use the \textbf{Xoroshiro128+} RNG which is named after its logical operations (XOR $\xrightarrow{}$ rotate $\xrightarrow{}$ shift $\xrightarrow{}$ rotate). The RNG has ultra-fast speed 0.72 $\nicefrac{\text{ns}}{\text{64-bits}}$ and excellent statistical quality~\cite{blackman2018scrambled}.
 
 \subsection{Canonical Monte Carlo}\label{cmc}
-In this section, we introduce canonical Monte Carlo and how it relates to flat-histogram methods introduced in Section~\HR{fhm}. The first importance sampling method developed was the famous Metropolis method~\cite{metropolis1953equation}.  The method works by choosing an initial state for the system $\Gamma$. Next, a random site $\Gamma_i$ is chosen and a move is proposed that will result in an energy change $\Delta E$ if accepted. The acceptance of the move is determined by whether a random number chosen on a range from zero to one is less than a Boltzmann factor. The process of moves and random number generation is repeated until some termination condition is met. This canonical method performs calculations at a fixed temperature $T$ only. Re-weighting can extrapolate in the vicinity of the simulated temperature, but this approach is limited. Another limitation of canonical Monte Carlo is that for complex energy landscapes and/or large systems the simulation can undergo a phenomena known as `critical slowing down' as the simulation will never or almost never visit the ground state energy $E_{\min}$~\cite{berg2000introduction}. These limitations are what drive the need for methods that can avoid getting `stuck' and that can simulate all temperatures in a single simulation.
+In this section, we introduce canonical Monte Carlo and how it relates to flat-histogram methods introduced in Section~\HR{fhm}. The first importance sampling method developed was the Metropolis method~\cite{metropolis1953equation}.  The method works by choosing an initial state for the system $\Gamma$. Next, a random site $\Gamma_i$ is chosen and a move is proposed that will result in an energy change $\Delta E$ if accepted. The acceptance of the move is determined by whether a random number chosen on a range from zero to one is less than a Boltzmann factor. The process of moves and random number generation is repeated until some termination condition is met. This canonical method performs calculations at a fixed temperature $T$ only. Re-weighting can extrapolate in the vicinity of the simulated temperature, but this approach is limited. Another limitation of canonical Monte Carlo is that for complex energy landscapes and/or large systems the simulation can undergo a phenomena known as `critical slowing down' as the simulation will never or almost never visit the ground state energy $E_{\min}$~\cite{berg2000introduction}. These limitations are what drive the need for methods that can avoid getting `stuck' and that can simulate all temperatures in a single simulation.
 
 \subsection{Flat-Histogram Methods}\label{fhm}
-The goal of flat-histogram methods (also called \emph{broad-histogram}
-or \emph{multicanonical} methods) is to simulate each energy with
-similar accuracy.  In this way, they can accurately determine the density of states
-over a broad range of energies and thus determine the thermodynamic
-quantities such as heat capacity or internal energy
-over a broad range of temperatures.
-Properties that require more information, such as a spatial
-correlation function or a response function, can still be computed
-for any temperature, provided statistics are collected for each
-individual energy, which can then be reweighted for any
+The goal of flat-histogram methods (also called \emph{broad-histogram} or
+\emph{multicanonical} methods) is to sample each microstate with equal
+accuracy. In this way, the method can accurately determine the density of
+states over a broad range of energies and thus determine the thermodynamic
+quantities such as heat capacity or internal energy over a broad range of
+temperatures, where canonical MC cannot. Properties that require more
+information, such as a spatial correlation function or a response function, can
+still be computed for any temperature, provided statistics are collected for
+each individual energy, which can then be reweighted for any
 temperature~\cite{panagiotopoulos1998phase, panagiotopoulos2000monte,
-errington2003direct}.
-All the flat-histogram Monte Carlo methods begin with randomly chosen
-`moves' which change the state of the system and must satisfy
-detailed balance.  All of the tested algorithms differ in how they determine the
-probability of accepting a move and in what additional statistics must
-be collected in order to decide on that probability.
-Flat-histogram methods calculate the density of states $D(E)$ for a discrete set
-of energies~\cite{wang2001determining, dayal2004performance, troyer2003flat,
+errington2003direct}. All the flat-histogram Monte Carlo methods begin with
+randomly chosen `moves' which change the state of the system and must satisfy
+detailed balance. All of the tested algorithms differ in how they determine the
+probability of accepting a move and in what additional statistics must be
+collected in order to decide on that probability. Flat-histogram methods
+calculate the density of states $D(E)$ for a discrete set of
+energies~\cite{wang2001determining, dayal2004performance, troyer2003flat,
 trebst2004optimizing}. Therefore, energy binning becomes an important
-consideration for systems with a continuum of possible energies.  Energy bins
+consideration for systems with a continuum of possible energies. Energy bins
 are typically of uniform size for the entire energy
 continuum~\cite{fasnacht2004adaptive}.
 
@@ -313,35 +379,38 @@ that varies over the simulation, and $E$ is the current energy.  This update
 causes the random walk to avoid energies that have been frequently sampled,
 enabling a rapid exploration of energy space. This approach violates detailed
 balance, due to the acceptance probabilities changing with each move, but the
-severity of this violation decreases as we decrease $\gamma_t$.  The four
+severity of this violation decreases as we decrease $\gamma_t$.  Flat-histogram
 methods differ primarily in how they schedule the decrease of $\gamma_t$.
 
-In this work, we develop a new method called Stochastic Approximation with Dynamic update factor (SAD) method
-which is a variant of the SAMC Algorithm that attempts to dynamically choose
-the modification factor rather than relying on system dependent
-parameters such as $t_0$ or $\gamma_0$.  There is an immediate
-advantage of such an algorithm where parameters are chosen independent
-of system size or type. Our
-proposed method SAD requires the user to input $T_\text{min}$, the
-lowest temperature of interest, which is an immediate disadvantage of
-the method. However, identifying a minimum temperature of interest
-$T_\text{min}$ may be easier for a user than determining in advance
-an energy range of interest or the unphysical parameter $t_0$ such as other
-flat-histogram methods must do.
+In this work, we develop a new method called Stochastic Approximation with
+Dynamic update factor (SAD) method which is a variant of the SAMC Algorithm
+that attempts to dynamically choose the modification factor rather than relying
+on system dependent parameters. There is an immediate advantage of such an
+algorithm where parameters are chosen independent of system size or type. Our
+proposed method SAD requires the user to input $T_\text{min}$, the lowest
+temperature of interest, which is an immediate disadvantage of the method.
+However, identifying a minimum temperature of interest $T_\text{min}$ may be
+easier for a user than determining in advance an energy range of interest or
+the unphysical parameter $t_0$ such as other flat-histogram methods must do.
 
 
 \section{Test System Details}
-We introduce a number of systems that are suitable for benchmarking the convergence properties of various
-flat-histogram MC methods. Testing on a variety of systems is necessary for ensuring the robustness of a
-given MC method. The square-well fluid is chosen as a test-bed due to the fact that convergence properties
-of flat-histogram weight-based MC methods have never been studied on this system. Secondly, the MC method
-will have to simulate the potentially complex liquid-vapor phase coexistence of the system. The 2D Ising
-model is a simple system with a second order phase transition. In addition, the majority of MC methods have
-been tested on the Ising model so the speed and accuracy with which a given MC method can converge can often
-be directly compared with the literature. A Lennard-Jones cluster is a heavily studied system that can be
-simple or incredibly complex for a MC method to accurately solve. In order to solve for solid-solid transitions
-for certain cluster configurations, it is necessary to explore incredibly low reduced temperatures. This can
-make finding the global minima configuration extremely difficult for MC methods in general.
+We introduce a number of systems that are suitable for benchmarking the
+convergence properties of various flat-histogram MC methods. Testing on a
+variety of systems is necessary for ensuring the robustness of a given MC
+method. (i) The square-well fluid is chosen as a test-bed due to the fact that
+convergence properties of flat-histogram weight-based MC methods have never
+been studied on this system. Secondly, the MC method will have to simulate the
+potentially complex liquid-vapor phase coexistence of the system. (ii) The 2D Ising
+model is a simple system with a second order phase transition. In addition, the
+majority of MC methods have been tested on the Ising model so the speed and
+accuracy with which a given MC method can converge can often be directly
+compared with the literature. (iii) Lennard-Jones clusters are a heavily studied
+system that can be simple or incredibly complex for a MC method to accurately
+solve. In order to solve for solid-solid transitions for certain cluster
+configurations, it is necessary to explore incredibly low reduced temperatures.
+This can make finding the global minima configuration extremely difficult for
+MC methods in general.
 
 \subsection{Square-Well Fluid}
 The square-well fluid is a system of particles whose interactions are governed by a square-well
@@ -365,7 +434,7 @@ lattices~\cite{beale1996exact} make the system sufficiently interesting for such
 The Hamiltonian for the periodic 2D square lattice ferromagnetic Ising model with nearest
 neighbor interactions~\cite{landau2004new} cab be written as the following:
 \begin{align}
-\mathcal{H} = -\sum_{\braket{i,j}} \sigma_i \sigma_j - h \sum_i s_i
+\mathcal{H} = -\sum_{\braket{i,j}} \sigma_i \sigma_j - h \sum_i \sigma_i
 \end{align}
 The $N\times N$ spin system can take on values of $\sigma_i = \pm 1$
 for up or down spins respectively. In the absence of a magnetic field ($h =
@@ -383,17 +452,17 @@ energy for interacting atomic particles can be written as follows:
 \begin{align}
 U = 4\epsilon \left[\left( \sigma/r \right)^{12} - \left( \sigma/r \right)^{6}\right]
 \end{align}
-A number of challenges exit when trying to accurately simulate the density of states of a cluster system.
+A number of challenges exist when trying to accurately simulate the density of states of a cluster system.
 Narrow potential energy funnels~\cite{mandelshtam2006multiple, wales1997global} and low temperature solid-solid
 transitions~\cite{neirotti2000phase, calvo2000phase, calvo2000entropic} make predicting thermodynamic properties
 such as heat capacity an extremely difficult process. In addition, since flat-histogram methods explore all
 energies and all temperatures it is possible that for high temperatures a large cluster volume is possible
 (which could lead to boil-off of the particles). A `constraining' sphere with radius $R_c$ is used to prevent
-this but it is usually empirically determined further complicating the simulation process.
+this but it is usually empirically determined, further complicating the simulation process.
 
 \section{Gas Storage and Delivery in Metal-Organic Frameworks}
 
-% This is part of the abstract of our paper.
+
 Due to their low volumetric energy density at ambient conditions, both hydrogen
 and natural gas are challenging to economically store onboard environmentally
 sustainable vehicles~\cite{mason2014evaluating, sircar2002pressure}. One
@@ -410,7 +479,7 @@ models of the gas-substrate and gas-gas interaction~\cite{gomez2014exploring,
 gomez2017impact, kaija2018high, lee2019predicting}; none have
 established a rigorous upper bound on the deliverable capacity.
 
-Here, we present a theoretical upper bound on the deliverable capacity of a
+We present a theoretical upper bound on the deliverable capacity of a
 rigid material via an isothermal pressure-swing. To provide an extremum, we
 consider a substrate that provides a spatially uniform potential energy field
 for the gas. Our bound is unique in that it directly relies on experimentally
@@ -431,10 +500,10 @@ applications, computational methods are necessary that can predict the
 associated thermodynamic properties of interest. While SAD is an invaluable tool
 for calculating a single isotherm (at a given density), an even more powerful
 method is necessary for determining the best MOF for gas storage applications.
-A multidimensional 2D SAD would allow researchers to compute all properties of
-interest for all densities and temperatures. Our preliminary research has
+A multidimensional SAD would allow researchers to compute all properties of
+interest for all densities and temperatures. Our research has
 yielded a robust method that has been tested on multiple systems and can be
-extended into a 2D formulation. 
+extended into a higher dimension formulation. 
 
 \section{Summary}
 We have provided the background necessary for understanding the various
@@ -445,11 +514,12 @@ flat-histogram methods on the square-well fluid, a Lennard-Jones cluster, and
 the 2D Ising model. Each of these systems provides unique challenges to our
 newly developed method SAD and convergence robustness is determined best by the
 application to multiple systems.
-% Now tie this in with gas adsorption.
+
 We are currently working on two extensions which will enable a multidimensional
-SAD. The first is adaptive interpolation histogram binning. This technique will
-decrease the simulation time by orders of magnitude. The second is a version of
-SAD that simulates ``number'' space rather than energy space. With the success
-of these two extensions, we can begin the development of 2D SAD and thus provide
-a powerful way for researchers to work toward enabling environmentally
-sustainable light vehicle storage.
+SAD. The first is (i) adaptive interpolation histogram binning. This technique
+will decrease the simulation time by orders of magnitude. The second is (ii) a
+version of SAD that simulates ``number'' space rather than energy space. These
+two extensions will enable all densities to be extracted and should decrease
+simulation time. The development of 2D SAD will provide a powerful way for
+researchers to work toward enabling environmentally sustainable light vehicle
+storage.
