@@ -91,7 +91,7 @@ The Canonical ensemble is a representation for a system $\Gamma$ that is
 determined by a fixed number of particles $N$ (and fixed components $\sum N_i$
 for a multi-component system), a fixed volume $V$, and a fixed temperature $T$.
 All possible states for the system $\Gamma\left(N,V,T\right)$ have the same
-number of particles, energy, and temperature due to the system being in thermal
+number of particles, volume, and temperature due to the system being in thermal
 equilibrium with a heat bath. The canonical ensemble is for this reason also
 known as the $NVT$ ensemble.
 
@@ -412,9 +412,17 @@ configurations, it is necessary to explore incredibly low reduced temperatures.
 This can make finding the global minima configuration extremely difficult for
 MC methods in general.
 
+\begin{figure}
+    \centering
+    \includegraphics[width=\columnwidth]{figs/well-potential.pdf}
+    \caption{The square-well and the Lennard-Jones potentials are graphically shown vs. the radial distance from the particle.
+    }
+    \label{fig:well-potential}
+  \end{figure}
+
 \subsection{Square-Well Fluid}
 The square-well fluid is a system of particles whose interactions are governed by a square-well
-potential~\cite{singh2003surface, barker2004perturbationSW}.  The square-well potential is an ideal test-bed
+potential~\cite{singh2003surface, barker2004perturbationSW} as shown in Fig.~\ref{fig:well-potential}.  The square-well potential is an ideal test-bed
 for Monte Carlo methods as it is a simple model for a liquid, which includes both attractive and repulsive
 interactions~\cite{barker1967-SW-perturbation, vega1992phase}. The potential $U(\textbf{r})$ for such a system
 is given by
@@ -438,7 +446,7 @@ neighbor interactions~\cite{landau2004new} cab be written as the following:
 \end{align}
 The $N\times N$ spin system can take on values of $\sigma_i = \pm 1$
 for up or down spins respectively. In the absence of a magnetic field ($h =
-0$), We can write the Hamiltonian as follows~\cite{onsager1944crystal,
+0$), we can write the Hamiltonian as follows~\cite{onsager1944crystal,
 kaufman1949crystal}:
 \begin{align}
 \mathcal{H} = -\sum_{\braket{i,j}} \sigma_i \sigma_j
@@ -448,7 +456,7 @@ where the sum is over nearest neighbor spin sites.
 \subsection{Lennard-Jones Clusters}
 Lennard-Jones cluster systems are widely used as a challenging test-bed when comparing Monte-Carlo
 methods~\cite{doye1998thermodynamics, poulain2006performances, martiniani2014superposition}. The potential
-energy for interacting atomic particles can be written as follows:
+energy for interacting atomic particles can be written as follows and can visually be seen in Fig.~\cite{fig:well-potential}:
 \begin{align}
 U = 4\epsilon \left[\left( \sigma/r \right)^{12} - \left( \sigma/r \right)^{6}\right]
 \end{align}

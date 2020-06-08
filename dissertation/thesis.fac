@@ -1,3 +1,5 @@
+| inkscape --export-filename figs/well-potential.pdf figs/well-potential.svg || inkscape --export-pdf figs/well-potential.pdf figs/well-potential.svg
+
 | pdflatex dissertation.tex && bibtex dissertation && pdflatex dissertation.tex && pdflatex dissertation.tex
 < ../square-well/N50-lndos-comparison.pdf
 < ../square-well/gamma-n256.pdf
@@ -11,6 +13,7 @@
 < ../ising/N32-entropy-error-default.pdf
 < ../ising/N128-entropy-error-default.pdf
 < ../ising/N32-Cv.pdf
+< figs/well-potential.pdf
 
 < ../gas-adsorption/figs/hydrogen-298-n-vs-G.pdf
 < ../gas-adsorption/figs/methane-298-n-vs-G.pdf
