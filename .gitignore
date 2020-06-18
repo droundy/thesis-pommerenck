@@ -41,7 +41,6 @@ __pycache__
 *.run.xml
 *.tmp.*
 arxiv*
-referee*
 *.mp
 *.1
 *.2
