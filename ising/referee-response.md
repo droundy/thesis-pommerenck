@@ -28,22 +28,38 @@ determination.'
 We have added a paragraph? subsection in the SAD/results portion of the paper that
 address this.
 
+## Ideas
+
+- Measure time until we last find a new important energy
+- Find the fraction of moves (in the end) that are outside the range of interesting energies.
+- Discuss in results or discussion
+
 (ii) Address the general problem of all "flat histogram" methods that the
 performance of these methods is due to hidden barriers almost always lower than
 what one would expect from a random walk in energy (in most cases still
 exponentially growing). This has been discussed by Nadler et al (PRE 75 (2007)
-026109) who also discus a protocol for optimizing the ensemble which minimizes
+1)      who also discus a protocol for optimizing the ensemble which minimizes
 the residual exponential slowing down. The authors should point out if and how
 SAD can be adapted to such "non-flat-histogram" methods.
 
 We have added a paragraph that 'Address the general problem of all "flat
 histogram" methods' in the introduction.
 
+## Ideas
+
+- Read this paper (probably both of us) and write it up.  We need to describe the paper and discuss how this relates.
+- My guess is that SAD is like any of the other methods for non-flat-histogram approaches.
+- (Optimized ensemble *follows* a flat histogram method.)
+
 (iii) Add a few short remarks on comparison with replica exchange methods would
 be helpful.
 
 We have added a 'few short remarks' on comparison with replica exchange in the
 introduction.
+
+## This is a bit more work
+
+- Our method *should* be amenable to replica exchange parallelization, just as WL is.
 
 Response to second referee
 # -----------------------------------------------------------------------------#
@@ -62,12 +78,17 @@ methods and certainly not with the completeness shown here. Also, the very fact 
 it is compared with pure WL is proof for the first referee's statement that
 "this is how WL should be done" since it performs superior to pure WL.
 
+## Notes
+
+- We think it is important to bridge the disconnect between *users* of WL and developers of improved-flat histogram methods.
+- Maybe two paragraphs? THIS IS REALLY IMPORTANT (IN THE LETTER)
+
 (ii) It is not clear[ly] understood why the current calculations were not
 included in the original article. Although the results presented by the
 [authors] are original, they are only a simple extension of the first work, and
 do not meet the standards of PRE readers.
 
-The second referee an important question here to which there are two answers.
+The second referee asks an important question here to which there are two answers.
 First, we only recently became aware of ``production run'' WL and wanted to
 rapidly compare this with other histogram methods due to the lack of literature
 detailing its performance vs other flat-histogram methods. Second, SAD was
@@ -75,6 +96,16 @@ initially tested on methods where it could benefit from knowing the temperature
 range of interest in advance. It is critical to test it's convergence
 properties on a different type of system where the range of energies is easily
 known (thus biasing in favor of WL methods).
+
+## Notes
+
+- Two paragraphs for two answers?
+- We only became aware of "production run" WL as a result of the response to our
+  first paper.  As mentioned (hinted at) in the acknowledgement, XXX emailed us after
+  reading our paper and suggested that we test ...
+- 2nd: Ising is different.  Range of energies is known.  We omitted it in ther first
+  paper due to size and time.,  These computations are lengthy
+  and slow.
 
 In response to the second referee's comments, we have better highlighted these
 important points in the abstract.
