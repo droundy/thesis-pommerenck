@@ -26,19 +26,21 @@
   Corvallis, OR 97331}
 
 \begin{abstract}
-We compare the convergence of several flat-histogram methods applied
-to the 2D Ising model, including the recently introduced stochastic
-approximation with a dynamic update factor (SAD) method.  We compare
-this method with the Wang-Landau (WL) method, the $1/t$ variant of
-the WL method, and standard stochastic approximation Monte Carlo
-(SAMC).  In addition, we consider a procedure WL followed by a
-``production run'' with fixed weights that refines the estimation of
-the entropy.  To our knowledge, this work is the first to test this
-approach against other methods. We find that WL followed by a production run \emph{does} converge to
-the true density of states, in contrast to pure WL.  Three of the
-methods converge robustly: SAD, $1/t$-WL, and WL followed by a
-production run.  Of these, SAD does not require \emph{a priori}
-knowledge of the energy range.
+
+We compare the convergence of several flat-histogram methods applied to the 2D
+Ising model, including the recently introduced stochastic approximation with a
+dynamic update factor (SAD) method. We compare this method with the Wang-Landau
+(WL) method, the $1/t$ variant of the WL method, and standard stochastic
+approximation Monte Carlo (SAMC). In addition, we consider a procedure WL
+followed by a ``production run'' with fixed weights that refines the estimation
+of the entropy. To our knowledge, this work is the first to test this approach
+against other methods. We find that WL followed by a production run \emph{does}
+converge to the true density of states, in contrast to pure WL. Three of the
+methods converge robustly: SAD, $1/t$-WL, and WL followed by a production run.
+Of these, SAD does not require \emph{a priori} knowledge of the energy range.
+This work also shows that WL followed by a production run performs superior to
+other forms of WL while ensuring both ergodicity and detailed balance.
+
 \end{abstract}
 
 \maketitle

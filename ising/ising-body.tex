@@ -48,19 +48,35 @@ guaranteed convergence, the method still has a system specific user-defined
 variable. Such variables often create difficulty when applying Monte Carlo
 methods across arbitrary systems.
 
+Nadler \emph{et al.} and Trebst \emph{et al.} systematically examined optimized
+ensembles due to performance issues flat-histogram methods faced when
+confronted with hidden energy barriers~\cite{nadler2007generalized,
+nadler2007dynamics, trebst2004optimizing}. Trebst \emph{et al.} used their
+optimized ensemble to systematically set the temperature range(s) and
+implemented an optimized replica-exchange~\cite{trebst2006optimized}.
+Replica-exchange Wang-Landau has been developed with great
+success~\cite{perera2016magnetic} and adapting flat-histogram methods to use
+such an optimized ensemble is doable
+
+Last time for 32 X 32 is TL 2047388. Do I look at histogram to figure this out???
+
+But optimized ensemble requires the energy range???
+
+
+
+
 Kim \emph{et al.} introduced Statistical Temperature Monte Carlo (STMC) and the
-related Statistical Temperature Molecular Dynamics (STMD), an adaption
-of the WL method that approximates the entropy as a piecewise linear function,
-which improves convergence for systems with a continuously varying
+related Statistical Temperature Molecular Dynamics (STMD), an adaption of the
+WL method that approximates the entropy as a piecewise linear function, which
+improves convergence for systems with a continuously varying
 energy~\cite{kim2006statistical, kim2007statistical}. STMC applied to WL
-requires a temperature range be specified rather than an energy range.  Kim
+requires a temperature range be specified rather than an energy range. Kim
 \emph{et al.} extended this work as Replica Exchange Statistical Temperature
 Monte Carlo (RESTMC), which uses replica exchange of multiple overlapping STMC
-simulations to improve convergence~\cite{kim2009replica}. Recently,
-Junghans \emph{et al.} demonstrated a close connection between
-metadynamics, which was introduced by Laio and
-Parinello~\cite{laio2002escaping}, and WL-based Monte Carlo methods, with STMD
-forging the connection~\cite{junghans2014molecular}.
+simulations to improve convergence~\cite{kim2009replica}. Recently, Junghans
+\emph{et al.} demonstrated a close connection between metadynamics, which was
+introduced by Laio and Parinello~\cite{laio2002escaping}, and WL-based Monte
+Carlo methods, with STMD forging the connection~\cite{junghans2014molecular}.
 
 The SAD (stochastic approximation with a
 dynamic $\gamma$) method as outlined by Pommerenck
@@ -398,7 +414,11 @@ considerably more convenient, and quite possibly more efficient than a
 process involving multiple simulations to determine the energy range
 of interest. This work also dramatically demonstrates that WL followed
 by a production run performs extremely well and is preferable to pure
-WL for ensuring both ergodicity and detailed balance.
+WL for ensuring both ergodicity and detailed balance. While this has long
+been thought to be the case and that a multi-canonical run where WL is used to
+determine the parameters is the only way WL should be used, this research
+represents the first conclusive comparison among all of these
+flat-histogram methods.
 
 \section{Acknowledgments}
 We wish to thank Johannes Zierenberg for helpful discussions regarding WL followed by a production run and for insights into properties of a production run at different stages of convergence.
