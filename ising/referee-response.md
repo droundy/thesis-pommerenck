@@ -20,46 +20,45 @@ conclusions.'
 
 The referee also asks that three additions be made to the paper.
 
-(i) It would be 'worthwhile to work out the [slower convergence for SAD due to
+(i) "It would be worthwhile to work out the [slower convergence for SAD due to
 the energy range being an a priori parameter in WL/MUCA] in the paper, and, if
 possible, quantify the loss in efficiency coming from energy range
-determination.'
+determination."
 
-We have added a paragraph? subsection in the SAD/results portion of the paper that
-address this.
+We have added a paragraph in the discussion section that explains the loss in
+efficiency SAD suffers by not specifying an energy range a priori. We are able
+to quantify this by identifying the last time SAD finds a new important energy
+and then finding the fraction of moves (in the end) that are outside the range
+of interesting energies.
 
-## Ideas
-
-- Measure time until we last find a new important energy
-- Find the fraction of moves (in the end) that are outside the range of interesting energies.
-- Discuss in results or discussion
-
-(ii) Address the general problem of all "flat histogram" methods that the
+(ii) "Address the general problem of all "flat histogram" methods that the
 performance of these methods is due to hidden barriers almost always lower than
 what one would expect from a random walk in energy (in most cases still
 exponentially growing). This has been discussed by Nadler et al (PRE 75 (2007)
-1)      who also discus a protocol for optimizing the ensemble which minimizes
-the residual exponential slowing down. The authors should point out if and how
-SAD can be adapted to such "non-flat-histogram" methods.
+1) who also discus a protocol for optimizing the ensemble which minimizes the
+residual exponential slowing down. The authors should point out if and how SAD
+can be adapted to such "non-flat-histogram" methods."
 
 We have added a paragraph that 'Address the general problem of all "flat
-histogram" methods' in the introduction.
-
-## Ideas
-
-- Read this paper (probably both of us) and write it up.  We need to describe the paper and discuss how this relates.
-- My guess is that SAD is like any of the other methods for non-flat-histogram approaches.
-- (Optimized ensemble *follows* a flat histogram method.)
+histogram" methods' in the introduction. We discuss how the performance is
+impacted due to hidden barriers. We also add that WL has already been adapted
+to replica-exchange and point out that this should be possible for SAD as well.
 
 (iii) Add a few short remarks on comparison with replica exchange methods would
 be helpful.
 
 We have added a 'few short remarks' on comparison with replica exchange in the
-introduction.
+introduction. WL has been formulated as replica-exchange WLMC whereby it adopts
+the concept of conformational swapping directly from parallel tempering. Each replica
+is allowed to traverse the entire energy range via overlapping energy windows.
 
-## This is a bit more work
-
-- Our method *should* be amenable to replica exchange parallelization, just as WL is.
+While we have performed limited comparison with replica exchange methods (in
+our previous work we found the heat capacity to be consistent with computations
+performed with replica exchange), SAD could be extended in much the same way
+that WL was. In fact, this would make an interesting comparison with replica
+exchange statistical temperature Monte Carlo (as they both specify a
+temperature range) and should be studied on a temperature range system in a
+future work.
 
 Response to second referee
 # -----------------------------------------------------------------------------#
@@ -67,45 +66,45 @@ Response to second referee
 We thank the second referee for bringing to our attention two points so that we
 can better address them in our paper and make them completely clear. 
 
-(i) The work is almost a repetition of what the authors did when they
-introduced the algorithm.
+(i) "The work is almost a repetition of what the authors did when they
+introduced the algorithm."
 
 Our paper is the first of its kind (to the best of our knowledge) to compare
-``production run'' WL with other flat-histogram methods. The first (not the second) referee
-notes rather strongly that this is the only way that WL should be done;
-however, no research work has ever compared this with other flat-histogram
-methods and certainly not with the completeness shown here. Also, the very fact that
-it is compared with pure WL is proof for the first referee's statement that
-"this is how WL should be done" since it performs superior to pure WL.
+``production run'' WL with other flat-histogram methods. The first (not the
+second) referee notes rather strongly that this is the only way that WL should
+be done; however, no research work has ever compared this with other
+flat-histogram methods and certainly not with the completeness shown here.
+Also, the very fact that it is compared with pure WL is proof for the first
+referee's statement that "this is how WL should be done" since it performs
+superior to pure WL.
 
-## Notes
+We believe that this paper helps by bridging the disconnect between *users* of
+WL and developers of improved flat-histogram methods. The majority of
+developers use pure WL when comparing multiple flat-histogram methods since
+there is no direct comparison of WL followed by a production run with methods
+such as 1/t-WL or SAMC.
 
-- We think it is important to bridge the disconnect between *users* of WL and developers of improved-flat histogram methods.
-- Maybe two paragraphs? THIS IS REALLY IMPORTANT (IN THE LETTER)
-
-(ii) It is not clear[ly] understood why the current calculations were not
+(ii) "It is not clear[ly] understood why the current calculations were not
 included in the original article. Although the results presented by the
 [authors] are original, they are only a simple extension of the first work, and
-do not meet the standards of PRE readers.
+do not meet the standards of PRE readers."
 
-The second referee asks an important question here to which there are two answers.
-First, we only recently became aware of ``production run'' WL and wanted to
-rapidly compare this with other histogram methods due to the lack of literature
-detailing its performance vs other flat-histogram methods. Second, SAD was
-initially tested on methods where it could benefit from knowing the temperature
-range of interest in advance. It is critical to test it's convergence
-properties on a different type of system where the range of energies is easily
-known (thus biasing in favor of WL methods).
+The second referee asks an important question here to which there are two
+answers. We only became aware of "production run" WL as a result of the
+response to our first paper. As mentioned (hinted at) in the acknowledgement,
+Johannes Zierenberg emailed us after reading our paper and suggested that we
+test WL followed by a production run with a number of flat-histogram methods.
+Due to the lack of literature detailing its performance vs other flat-histogram
+methods, the 2D Ising model seems the logical starting point for such a
+comparison.
 
-## Notes
-
-- Two paragraphs for two answers?
-- We only became aware of "production run" WL as a result of the response to our
-  first paper.  As mentioned (hinted at) in the acknowledgement, XXX emailed us after
-  reading our paper and suggested that we test ...
-- 2nd: Ising is different.  Range of energies is known.  We omitted it in ther first
-  paper due to size and time.,  These computations are lengthy
-  and slow.
+Second, SAD was initially tested on methods where it could benefit from knowing
+the temperature range of interest in advance. It is critical to test it's
+convergence properties on a different type of system where the range of
+energies is easily known (thus biasing in favor of WL methods). Also in the
+case of the 128 X 128 2D Ising system, the computation time is quite lengthy
+(more than 6 months for some calculations) representing a superior and robust
+comparison result.
 
 In response to the second referee's comments, we have better highlighted these
-important points in the abstract.
+important points in the abstract and conclusion.
