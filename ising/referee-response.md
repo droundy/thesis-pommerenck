@@ -6,7 +6,7 @@ first referee's comments by added two paragraphs to the introduction and a
 section in the paper to 'Address the general problem of all "flat-histogram"
 methods'. We also strengthen the abstract to address the concerns raised by the
 second referee. We point out that: (i) Our paper is the first of its kind (to
-the best of our knowledge) to compare ``production run'' WL with other
+the best of our knowledge) to compare ``production run'' WL with other recent
 flat-histogram methods. (ii) It is important to test SAD's convergence
 properties on the 2D Ising where the range of energies is easily known (thus
 biasing in favor of WL methods). ...
