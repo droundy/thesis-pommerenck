@@ -48,26 +48,23 @@ guaranteed convergence, the method still has a system specific user-defined
 variable. Such variables often create difficulty when applying Monte Carlo
 methods across arbitrary systems.
 
-\davidsays{let's keep replica exchange and optimized ensemble in separate paragraphs}
-
+% optimized ensemble paragraph
 Nadler \emph{et al.} and Trebst \emph{et al.} systematically examined optimized
 ensembles due to performance issues flat-histogram methods faced when
 confronted with hidden energy barriers~\cite{nadler2007generalized,
 nadler2007dynamics, trebst2004optimizing}. Trebst \emph{et al.} used their
-optimized ensemble to systematically set the temperature range(s) and
-implemented an optimized replica-exchange~\cite{trebst2006optimized}
-\davidsays{looks like this is not a flat-histogram approach, scrap this reference}.
+optimized ensemble to systematically set the temperature range(s).
 
-Last time for 32 X 32 is TL 2047388. Do I look at histogram to figure this out???
-
-But optimized ensemble requires the energy range???
-
-Replica exchange Wang-Landau (REWL) was introduced \davidsays{Need to discuss this, and each of these algorithms
-are sufficiently similar that this approach should apply to them.}\cite{vogel2013rewl}.
+% replica exchange paragraph
+Replica exchange Wang-Landau (REWL) was introduced~\cite{vogel2013rewl}.
 Replica-exchange Wang-Landau has been developed with great
 success~\cite{perera2016magnetic} and adapting flat-histogram methods to use
 such an optimized ensemble is doable
 
+% This goes in discussion section
+Last time for 32 X 32 is TL 2047388. Do I look at histogram to figure this out??
+But optimized ensemble requires the energy range???
+Also, SAD doesn't appear to be impacted by the larger energy range? histogram counts outside the interesting energy range are negligible compared with count in the range of interest.
 
 Kim \emph{et al.} introduced Statistical Temperature Monte Carlo (STMC) and the
 related Statistical Temperature Molecular Dynamics (STMD), an adaption of the
