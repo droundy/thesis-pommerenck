@@ -61,11 +61,6 @@ Replica-exchange Wang-Landau has been developed with great
 success~\cite{perera2016magnetic} and adapting flat-histogram methods to use
 such an optimized ensemble is doable
 
-% This goes in discussion section
-Last time for 32 X 32 is TL 2047388. Do I look at histogram to figure this out??
-But optimized ensemble requires the energy range???
-Also, SAD doesn't appear to be impacted by the larger energy range? histogram counts outside the interesting energy range are negligible compared with count in the range of interest.
-
 Kim \emph{et al.} introduced Statistical Temperature Monte Carlo (STMC) and the
 related Statistical Temperature Molecular Dynamics (STMD), an adaption of the
 WL method that approximates the entropy as a piecewise linear function, which
@@ -390,6 +385,26 @@ nicely.  This highlights a risk taken when setting $\gamma^{\min}$.
 If the weights are insufficiently converged, the production run will
 fail to explore all energies, in this case, three of the simulations became ``stuck'' at low energies. With the smaller value of
 $\gamma^{\min}=10^{-6}$, the method consistently and efficiently converged.
+
+
+Figure~\ref{fig:N128-cv-error} shows that the SAD algorithm converges
+signiticantly more slowly that the converging WL methods.
+%We interpret this as due to the
+%fact that the SAD simulation must take the time to discover the energy range
+%of interest dynamically.
+The SAD algorithm on average takes around
+\davidsays{$10^9$} moves to identify as important all \davidsays{8192}
+negative energy states, which is around \davidsays{twice as long} as
+the number of moves that
+the WL methods require in order to explore all the states in this
+energy range.  The main difference between the convergence of these
+methods is that the WL-based methods decrease $\gamma_t$ far more rapidly,
+which leads to more rapid convergence.  The Wang-Landau approaches can
+get away with this because the range of energies of interest is given
+as an input rather than an output, allowing a more aggressive schedule
+of reduction of $\gamma_t$.  This aggressive behavior is precisely what
+requires that Wang-Landau methods be followed by some correction stage
+(either $1/t$ or a production run) in order to correct residual errors.
 
 %% The two WL simulations followed by a production run highlight that
 %% choosing too large a $\gamma^{\text{WL}}_t$ will result in poor convergence
