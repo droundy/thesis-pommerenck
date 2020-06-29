@@ -49,17 +49,28 @@ variable. Such variables often create difficulty when applying Monte Carlo
 methods across arbitrary systems.
 
 % optimized ensemble paragraph
-Nadler \emph{et al.} and Trebst \emph{et al.} systematically examined optimized
-ensembles due to performance issues flat-histogram methods faced when
-confronted with hidden energy barriers~\cite{nadler2007generalized,
-nadler2007dynamics, trebst2004optimizing}. Trebst \emph{et al.} used their
-optimized ensemble to systematically set the temperature range(s).
+A problem that flat-histogram methods face is that the convergence rate is
+impacted by energy barriers and bottleneck which make traversing the phase
+space difficult. Nadler \emph{et al.} and Trebst \emph{et al.} systematically
+examined optimized ensembles due to performance issues flat-histogram methods
+faced when confronted with hidden energy barriers~\cite{nadler2007generalized,
+nadler2007dynamics, trebst2004optimizing}. The goal of these methods is to make
+the statistical errors uniform such that low energy errors do not dominate over
+high energy errors.
 
 % replica exchange paragraph
-Replica exchange Wang-Landau (REWL) was introduced~\cite{vogel2013rewl}.
-Replica-exchange Wang-Landau has been developed with great
-success~\cite{perera2016magnetic} and adapting flat-histogram methods to use
-such an optimized ensemble is doable
+
+Parallel tempering (replica exchange) is a powerful method for overcoming
+energy barriers~\cite{geyer1995annealing, hukushima1996exchange,
+hansmann1997parallel}. The method works by breaking the simulation up into many
+`replicas' and simulating in parallel. At certain times, neighboring replicas
+are allowed to exchange which enables the phase space to be more evenly
+explored.
+
+Flat-histogram methods, such as Replica exchange Wang-Landau
+(REWL)~\cite{vogel2013rewl,perera2016magnetic}, have been proposed that combine
+histogram and replica exchange methods. This demonstrates that flat-histogram
+methods can be extended to non-flat-histogram methods.
 
 Kim \emph{et al.} introduced Statistical Temperature Monte Carlo (STMC) and the
 related Statistical Temperature Molecular Dynamics (STMD), an adaption of the
@@ -388,13 +399,10 @@ $\gamma^{\min}=10^{-6}$, the method consistently and efficiently converged.
 
 
 Figure~\ref{fig:N128-cv-error} shows that the SAD algorithm converges
-signiticantly more slowly that the converging WL methods.
-%We interpret this as due to the
-%fact that the SAD simulation must take the time to discover the energy range
-%of interest dynamically.
+significantly more slowly than the converging WL methods.
 The SAD algorithm on average takes around
-\davidsays{$10^9$} moves to identify as important all \davidsays{8192}
-negative energy states, which is around \davidsays{twice as long} as
+$10^9$ moves to identify as important all 8192
+negative energy states, which is around twice as long as
 the number of moves that
 the WL methods require in order to explore all the states in this
 energy range.  The main difference between the convergence of these
@@ -406,10 +414,6 @@ of reduction of $\gamma_t$.  This aggressive behavior is precisely what
 requires that Wang-Landau methods be followed by some correction stage
 (either $1/t$ or a production run) in order to correct residual errors.
 
-%% The two WL simulations followed by a production run highlight that
-%% choosing too large a $\gamma^{\text{WL}}_t$ will result in poor convergence
-%% properties.
-
 \section{Conclusion}
 We find that SAD, $1/t$-WL, and WL followed by a production run (with an
 adequately small $\gamma^{\min}$) demonstrate excellent and robust
@@ -418,22 +422,20 @@ WL do not suffer from error saturation. We find that for larger Ising
 systems SAD reduces the update factor more slowly (and conservatively)
 than $1/t$-WL and WL followed by a production run. This means that SAD
 will take proportionately more moves to converge to the same value as
-$1/t$-WL as system size is increased.  However, the WL methods are
-solving a simpler problem because they are given the energy range
+$1/t$-WL as system size is increased.  While the WL methods are
+are given the energy range
 \emph{a priori}, rather than a temperature range of interest such as
-SAD requires.  The 2D Ising model is a system where the energy range
-is known \emph{a priori.}, which makes a comparison between WL methods
-and SAD more biased in favor of WL methods. For the general case in
+SAD requires, we find that the SAD histogram counts for energies outside the range of interest are negligible. For the general case in
 which the energy range of the system is not known and where a range of
-desired temperatures is known, this will make the SAD method
+desired temperatures is known, the SAD method is
 considerably more convenient, and quite possibly more efficient than a
-process involving multiple simulations to determine the energy range
+process involving multiple simulations to determine an energy range
 of interest. This work also dramatically demonstrates that WL followed
 by a production run performs extremely well and is preferable to pure
 WL for ensuring both ergodicity and detailed balance. While this has long
 been thought to be the case and that a multi-canonical run where WL is used to
 determine the parameters is the only way WL should be used, this research
-represents the first conclusive comparison among all of these
+represents the first detailed comparison among all of these
 flat-histogram methods.
 
 \section{Acknowledgments}
