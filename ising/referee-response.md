@@ -8,8 +8,7 @@ methods'. We also strengthen the abstract to address the concerns raised by the
 second referee. We point out that: (i) Our paper is the first of its kind (to
 the best of our knowledge) to compare ``production run'' WL with other recent
 flat-histogram methods. (ii) It is important to test SAD's convergence
-properties on the 2D Ising where the range of energies is easily known (thus
-biasing in favor of WL methods). ...
+properties on the 2D Ising where the range of energies is easily known.
 
 Response to first referee
 # -----------------------------------------------------------------------------#
@@ -29,7 +28,8 @@ We have added a paragraph in the discussion section that explains the loss in
 efficiency SAD suffers by not specifying an energy range a priori. We are able
 to quantify this by identifying the last time SAD finds a new important energy
 and then finding the fraction of moves (in the end) that are outside the range
-of interesting energies.
+of interesting energies. We find that SAD histogram counts outside the interesting
+energy range are negligible. We mention this in the discussion paragraph.
 
 (ii) "Address the general problem of all "flat histogram" methods that the
 performance of these methods is due to hidden barriers almost always lower than
@@ -101,10 +101,10 @@ comparison.
 Second, SAD was initially tested on methods where it could benefit from knowing
 the temperature range of interest in advance. It is critical to test it's
 convergence properties on a different type of system where the range of
-energies is easily known (thus biasing in favor of WL methods). Also in the
-case of the 128 X 128 2D Ising system, the computation time is quite lengthy
-(more than 6 months for some calculations) representing a superior and robust
-comparison result.
+energies is easily known (we find that this does not measurably bias in favor
+of WL methods). Also in the case of the 128 X 128 2D Ising system, the
+computation time is quite lengthy (more than 6 months for some calculations)
+representing a superior and robust comparison result.
 
 In response to the second referee's comments, we have better highlighted these
-important points in the abstract and conclusion.
+important points in the abstract, discussion paragraph, and conclusion.
