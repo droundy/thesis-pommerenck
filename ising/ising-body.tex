@@ -49,28 +49,32 @@ variable. Such variables often create difficulty when applying Monte Carlo
 methods across arbitrary systems.
 
 % optimized ensemble paragraph
-A problem that flat-histogram methods face is that the convergence rate is
-impacted by energy barriers and bottleneck which make traversing the phase
+Another challenge that flat-histogram methods face is that the convergence rate is
+impacted by energy barriers and bottleneck which can make traversing the phase
 space difficult. Nadler \emph{et al.} and Trebst \emph{et al.} systematically
-examined optimized ensembles due to performance issues flat-histogram methods
-faced when confronted with hidden energy barriers~\cite{nadler2007generalized,
-nadler2007dynamics, trebst2004optimizing}. The goal of these methods is to make
-the statistical errors uniform such that low energy errors do not dominate over
-high energy errors.
+examined optimized ensembles to address performance issues flat-histogram methods
+face when confronted with hidden energy barriers~\cite{nadler2007generalized,
+nadler2007dynamics, trebst2004optimizing}.
+The approach involves using an ensemble that does \emph{not} result in a
+flat histogram, but instead optimizes the rate of diffusion between low
+energy and high energy states.
+The goal of these methods is to make the statistical errors uniform.
+%
+Optimized ensemble methods typically begin by using a flat-histogram method
+to get a first approximation for the weights, which means that any of the
+methods
+tested in this work could be used as a starting point for an optimized
+ensemble simulation.
 
 % replica exchange paragraph
 
-Parallel tempering (replica exchange) is a powerful method for overcoming
-energy barriers~\cite{geyer1995annealing, hukushima1996exchange,
-hansmann1997parallel}. The method works by breaking the simulation up into many
-`replicas' and simulating in parallel. At certain times, neighboring replicas
-are allowed to exchange which enables the phase space to be more evenly
-explored.
-
-Flat-histogram methods, such as Replica exchange Wang-Landau
-(REWL)~\cite{vogel2013rewl,perera2016magnetic}, have been proposed that combine
-histogram and replica exchange methods. This demonstrates that flat-histogram
-methods can be extended to non-flat-histogram methods.
+An approach to parallelizing flat-histogram Monte Carlo methods is
+the replica-exchange approach, which was pioneered by parallel tempering
+algorithms~\cite{geyer1995annealing, hukushima1996exchange,
+hansmann1997parallel}.  Vogel \emph{et al.} adapted this approach to develop
+the Replica Exchange Wang-Landau (REWL)~\cite{vogel2013rewl} approach.  This
+approach for parallelization is sufficiently simple and general that it could
+equally be applied to any of the methods explored in this paper.
 
 Kim \emph{et al.} introduced Statistical Temperature Monte Carlo (STMC) and the
 related Statistical Temperature Molecular Dynamics (STMD), an adaption of the
