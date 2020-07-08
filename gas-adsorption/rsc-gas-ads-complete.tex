@@ -9,7 +9,7 @@
 \usepackage[version=3]{mhchem}
 \usepackage[left=1.5cm, right=1.5cm, top=1.785cm, bottom=2.0cm]{geometry}
 \usepackage{balance}
-\usepackage{times,mathptmx}
+\usepackage{mathptmx}
 \usepackage{sectsty}
 \usepackage{graphicx} 
 \usepackage{lastpage}
@@ -30,6 +30,9 @@
 \usepackage[compact]{titlesec}
 \usepackage{hyperref}
 %%%Please don't disable any packages in the preamble, as this may cause the template to display incorrectly.%%%
+
+%\usepackage{epstopdf}%This line makes .eps figures into .pdf - please comment out if not required.
+\definecolor{cream}{RGB}{222,217,201}
 
 \graphicspath{{figs/}}
 
@@ -82,9 +85,9 @@
 \fancypagestyle{plain}{
 
 %%%HEADER%%%
-\fancyhead[C]{\includegraphics[width=18.5cm]{head_foot/header_bar}}
-\fancyhead[L]{\hspace{0cm}\vspace{1.5cm}\includegraphics[height=30pt]{head_foot/journal_name}}
-\fancyhead[R]{\hspace{0cm}\vspace{1.7cm}\includegraphics[height=55pt]{head_foot/RSC_LOGO_CMYK}}
+% \fancyhead[C]{\includegraphics[width=18.5cm]{head_foot/header_bar}}
+% \fancyhead[L]{\hspace{0cm}\vspace{1.5cm}\includegraphics[height=30pt]{head_foot/journal_name}}
+% \fancyhead[R]{\hspace{0cm}\vspace{1.7cm}\includegraphics[height=55pt]{head_foot/RSC_LOGO_CMYK}}
 \renewcommand{\headrulewidth}{0pt}
 }
 %%%END OF HEADER%%%
@@ -155,7 +158,9 @@
 %%%TITLE, AUTHORS AND ABSTRACT%%%
 \twocolumn[
   \begin{@twocolumnfalse}
-\vspace{3cm}
+{\includegraphics[height=30pt]{head_foot/journal_name}\hfill\raisebox{0pt}[0pt][0pt]{\includegraphics[height=55pt]{head_foot/RSC_LOGO_CMYK}}\\[1ex]
+\includegraphics[width=18.5cm]{head_foot/header_bar}}\par
+\vspace{1em}
 \sffamily
 \begin{tabular}{m{4.5cm} p{13.5cm} }
 
