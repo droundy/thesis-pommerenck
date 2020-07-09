@@ -59,7 +59,7 @@ c __pycache__
 
 # BUILD THE RSC PAPER
 
-| pdflatex rsc-gas-ads-complete.tex && bibtex rsc-gas-ads-complete && pdflatex rsc-gas-ads-complete.tex && pdflatex rsc-gas-ads-complete.tex
+| pdflatex rsc-gas-ads-complete.tex && pdflatex rsc-gas-ads-complete.tex && bibtex rsc-gas-ads-complete && pdflatex rsc-gas-ads-complete.tex && pdflatex rsc-gas-ads-complete.tex
 < figs/hydrogen-298-n-vs-G.pdf
 < figs/methane-298-n-vs-G.pdf
 < figs/methane-298-rho-mu.pdf
