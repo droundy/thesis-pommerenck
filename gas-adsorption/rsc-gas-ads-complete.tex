@@ -294,6 +294,19 @@ temperature and pressure, allowing for room temperature and lower-pressure
 storage and alleviating many drawbacks of high-pressure, low-temperature
 storage.
 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\columnwidth]{Combine_Figure.pdf}
+    \begin{minipage}{0.25\textwidth}
+    \phantomsubcaption{\label{fig:example_MOF}}
+    \end{minipage}
+    \begin{minipage}{0.25\textwidth}
+    \phantomsubcaption{\label{fig:delcap}}
+    \end{minipage}
+    
+    \caption{\label{fig:fig1} Gas storage and delivery using metal-organic frameworks (MOFs). (\subref{fig:example_MOF}) the crystal structure of an archetype MOF, CuBTC \cite{chui1999chemically}. (\subref{fig:delcap}) the methane adsorption isotherm in CuBTC \cite{chui1999chemically} at 298 K (blue) (data from Ref.~\cite{mason2014evaluating}). The deliverable capacity $\rho_D$ is illustrated as the density of gas in the MOF at the storage pressure $\pfull$ minus the density at the discharge pressure $\pempty$.}
+\end{figure}
+
 For a vehicle employing a porous material to store natural gas or hydrogen, the
 (volumetric) \emph{deliverable capacity} of the gas is the primary
 thermodynamic property that determines the driving
@@ -329,19 +342,6 @@ met these deliverable capacity targets.
 %     }
 %     \label{fig:fig1}
 % \end{figure}
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.8\columnwidth]{Combine_Figure.pdf}
-    \begin{minipage}{0.25\textwidth}
-    \phantomsubcaption{\label{fig:example_MOF}}
-    \end{minipage}
-    \begin{minipage}{0.25\textwidth}
-    \phantomsubcaption{\label{fig:delcap}}
-    \end{minipage}
-    
-    \caption{\label{fig:fig1} Gas storage and delivery using metal-organic frameworks (MOFs). (\subref{fig:example_MOF}) the crystal structure of an archetype MOF, CuBTC \cite{chui1999chemically}. (\subref{fig:delcap}) the methane adsorption isotherm in CuBTC \cite{chui1999chemically} at 298 K (blue) (data from Ref.~\cite{mason2014evaluating}). The deliverable capacity $\rho_D$ is illustrated as the density of gas in the MOF at the storage pressure $\pfull$ minus the density at the discharge pressure $\pempty$.}
-\end{figure}
 
 To set realistic performance targets and optimally allocate research resources,
 in this work, we present a theoretical framework that places an intrinsic upper
@@ -433,15 +433,8 @@ variations that this spatially uniform substrate yields a maximal deliverable
 capacity. We use our framework to place an upper bound on the deliverable
 capacity of methane and hydrogen gas.
 
-\section{An upper bound on the deliverable capacity of a pure gas in a rigid porous material}\label{sec:upper-bound}
-\begin{figure}
-  \centering
-  \includegraphics[width=\columnwidth]{methane-298-rho-mu}
-  \caption{The density of bulk methane, the ideal gas, and adsorbed gas in several porous materials at 298\ K as a function of chemical potential (bottom axis) and pressure (top axis). The bulk methane density is from the National Institute of Standards and Technology (NIST)~\cite{nist}. The methane adsorption isotherms in the porous materials are experimental data from Ref.~\cite{mason2014evaluating, furukawa2009storage}.
-  }
-  \label{fig:density-vs-mu-ch4}
-\end{figure}
-
+\section{Methods}
+\subsection{An upper bound on the deliverable capacity}\label{sec:upper-bound}
 We now develop a thermodynamic framework that places an upper bound on the deliverable capacity of any pure gas in a rigid porous material.
 
 The thermodynamic properties of a bulk, pure gas are characterized by an
@@ -450,6 +443,102 @@ density of the gas $\rho_g(\mu,T)$ as a function of chemical potential $\mu$
 and temperature $T$, is shown for methane gas in
 Fig.~\ref{fig:density-vs-mu-ch4} at $T=298$\ K. For comparison, we also show
 the density of methane adsorbed into several porous materials.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\columnwidth]{methane-298-rho-mu}
+    \caption{The density of bulk methane, the ideal gas, and adsorbed gas in several porous materials at 298\ K as a function of chemical potential (bottom axis) and pressure (top axis). The bulk methane density is from the National Institute of Standards and Technology (NIST)~\cite{nist}. The methane adsorption isotherms in the porous materials are experimental data from Ref.~\cite{mason2014evaluating, furukawa2009storage}.
+    }
+    \label{fig:density-vs-mu-ch4}
+  \end{figure}
+  
+  To place an upper bound on the deliverable capacity, consider a substrate whose
+sole interaction with the gas is to introduce a spatially uniform potential
+energy $\V$ for gas molecules in the control volume (where $\V<0$ for an
+attractive potential). Because this interaction is uniform within the
+substrate, the gas-gas interactions and thus fluid structure in such a
+substrate are identical to those of the pure gas at the same density and
+temperature. This allows us to obtain the adsorption properties of this model
+substrate using the experimentally measured properties of the pure
+gas~\cite{nist}. Intuitively, the deliverable capacity of a gas in such a
+homogeneous substrate with the optimal potential energy is an upper bound
+because, in a real material, (i) spatial inhomogeneity of the potential
+energy results in some points in the control volume offering a suboptimal
+attraction for the gas and (ii) the atoms required to create the potential
+field exclude gas from occupying a fraction of the control volume.
+
+The spatially uniform potential $\V$ representing gas-substrate interactions
+behaves as an external potential and effectively shifts the chemical potential
+(or, equivalently, molar Gibbs free energy) of the gas in the material, just as
+gravitational potential energy causes the density of air to vary with altitude.
+Consequently, the density of gas in our homogeneous substrate is:
+\begin{align}
+    \rho(\mu,T) &= \rho_g(\mu - \V,T). \label{eq:mof-density}
+\end{align}
+See Sec.~\ref{sec:V_shifts_chem_pot} for a derivation.
+
+The deliverable capacity of gas in our homogeneous substrate is thus:
+\begin{align}
+    \rho_D(\V,T) &= \rho(\mufull,T) - \rho(\muempty,T),
+    \label{eq:DofPhi}
+    \\
+    &= \rho_g(\mufull-\V,T) - \rho_g(\muempty-\V,T),
+\end{align}
+where $\mufull$ and $\muempty$ are the chemical potentials corresponding to the
+pressures $\pfull$ and $\pempty$, respectively. Thus, $\rho_D$ for our
+homogeneous substrate as a function of $\V$ is the difference between two
+shifted versions of $\rho_g(\mu; T)$. Figure~\ref{fig:methane-298-D} shows the
+two shifted bulk methane density curves and their difference. The horizontal
+axis is the difference in molar Gibbs free energy of the gas, at fixed density (the density in the adsorbent) and temperature, between the gas within the substrate and the pure gas (\gst),
+which is equal to $\V$ in our model, and is pressure-dependent in a real
+crystal~(see Sec.~\ref{sec:phi-is-delta-g}). We see a potential $\V$ that
+maximizes the deliverable capacity of our ideal substrate, balancing the need
+to maximize the density at $\pfull$ against the need to minimize residual gas
+retained at $\pempty$.
+
+The optimal deliverable capacity of methane (298\ K, $\pfull=$ 65\ bar,
+$\pempty=$ 5.8\ bar) in our ideal, spatially uniform substrate is 374\ L STP/L,
+achieved for $\V_{opt} =$ 5.9\ kJ/mol.
+
+An essential question is whether our idealized substrate, with spatially
+uniform potential $\V_{opt}$ for the gas, places an upper bound on the
+deliverable capacity in all rigid porous materials. In
+Section~\ref{sec:proof-extremum}, we show that our idealized substrate with
+spatially uniform potential $\V_{opt}$ yields an \emph{extremum} of the
+deliverable capacity over all possible \emph{static potential energy fields},
+provided the gas does not crystallize at the temperature and in the density
+range of interest. The potential energy field is \emph{static} if it is
+unaffected by the presence of the gas; consequently, our model does not apply
+to flexible materials that undergo gas-induced conformation
+changes~\cite{schneemann2014flexible}. We next argue that this extremum is a
+maximum by addressing two alternative possibilities: the extremum could turn
+out to be (i) a saddle point or (ii) a local, rather than global, maximum.
+
+Fig.~\ref{fig:methane-298-D} clearly shows that $\V_{opt}$ provides a maximum
+$\rho_D$ over all \emph{spatially uniform}, static potential energy fields. To
+qualitatively argue that the spatially uniform potential $\V_{opt}$ provides a
+maximum deliverable capacity over \emph{all} (including non-spatially uniform)
+static potential energy fields (a broader claim), consider a
+non-spatially-uniform variation on $\V_{opt}$. The effect of
+this variation is to reduce the deliverable capacity: At low adsorbed gas
+densities, the lowest-energy positions will be preferentially occupied, while
+at higher densities, the additional gas molecules will be forced into higher
+energy locations. Thus, the mean attraction will be lowest at \pfull\ and
+highest at \pempty. As a result, $\gst$ increases monotonically with
+pressure. As shown in Sec.~\ref{sec:monotonic}, this results in
+the deliverable capacity of a non-uniform potential with a given $\gst$ at $\pfull$ or $\pempty$ being lower than the
+deliverable capacity of a uniform potential with $\V=\gst$. Thus, a spatially uniform potential gives the maximal
+deliverable capacity amongst all static potential energy fields that give the
+same $\gst$, and the \emph{optimal} uniform potential $\V_{opt}$ will yield a
+greater deliverable capacity over any static, non-uniform potential.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.95\columnwidth]{methane-298-n-vs-G}
+    \caption{The deliverable capacity of methane as a function of the attractive Gibbs free energy $|\gst|$.
+    Experimental deliverable capacities for several porous materials (data from Ref.~\cite{mason2014evaluating, furukawa2009storage}) are shown along with the experimental values for $\gst$ at the empty and full pressures shown as dots connected by a line.}
+    \label{fig:methane-298-D}
+\end{figure}
 
 % MERGE APPENDIX IN HERE !!! %
 \subsection{An external, spatially uniform potential $\V$ shifts the chemical potential $\mu$ of the gas} \label{sec:V_shifts_chem_pot}
@@ -657,13 +746,6 @@ interactions with the substrate itself; this counters the energetic attraction.
     \label{fig:methane-gst}
 \end{figure}
 
-\begin{figure}
-\centering
-\includegraphics[width=0.95\columnwidth]{four-cases-pro}
-\caption{A bulk gas reservoir is connected to a volume filled with adsorbent material (green/blue: material atoms, red: gas particles). The adsorbent is also connected, but with a closed valve, to an equal volume containing the ideal substrate (shaded blue background represents the uniform potential energy field $\V$) with an equal density of gas as in the adsorbent. The top (bottom) shows a realization of this connected system where the pressure of the bulk gas is $\pfull$ ($\pempty$), and thus the density of gas in the adsorbent is $\rhofull$ ($\rhoempty$) by definition. The deliverable capacity of the adsorbent is $\rhofull - \rhoempty$. We can determine if the deliverable capacity of gas in the ideal substrate is lower or higher than in the adsorbent by considering what happens when we open the valves connecting the two pairs of volumes containing adsorbent and the ideal substrate.}
-\label{fig:delta-gst-maximum}
-\end{figure}
-
 \subsection{An upper bound when $\gst(\rho)$ is monotonic}\label{sec:monotonic}
 Every adsorbent has a $\Delta g_\text{st}$ at $\pfull$ and $\pempty$ corresponding
 to a full and empty density, $\rhofull$ and $\rhoempty$, respectively. The deliverable capacity of the adsorbent is equal to
@@ -678,6 +760,14 @@ sites. If this is always the case, the deliverable capacity of a real material
 $\pempty$ is bounded below by the deliverable capacity in our idealized
 substrate with $\V=\gst$, even for a value of $\V$ that is not optimal.
 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.95\columnwidth]{four-cases-pro}
+    \caption{A bulk gas reservoir is connected to a volume filled with adsorbent material (green/blue: material atoms, red: gas particles). The adsorbent is also connected, but with a closed valve, to an equal volume containing the ideal substrate (shaded blue background represents the uniform potential energy field $\V$) with an equal density of gas as in the adsorbent. The top (bottom) shows a realization of this connected system where the pressure of the bulk gas is $\pfull$ ($\pempty$), and thus the density of gas in the adsorbent is $\rhofull$ ($\rhoempty$) by definition. The deliverable capacity of the adsorbent is $\rhofull - \rhoempty$. We can determine if the deliverable capacity of gas in the ideal substrate is lower or higher than in the adsorbent by considering what happens when we open the valves connecting the two pairs of volumes containing adsorbent and the ideal substrate.}
+    \label{fig:delta-gst-maximum}
+\end{figure}
+    
+    
 To show this, we perform a thought experiment illustrated in
 Fig.~\ref{fig:delta-gst-maximum}. We begin with two pairs of volumes.  Two of
 these volumes contain a real adsorbent material.  These adsorbent volumes are
@@ -724,94 +814,6 @@ Figs.~\ref{fig:methane-298-D}, \ref{fig:hydrogen-298-D}, and
 $\gst$ at either $\pfull$ or $\pempty$.
 
 % End here %
-
-To place an upper bound on the deliverable capacity, consider a substrate whose
-sole interaction with the gas is to introduce a spatially uniform potential
-energy $\V$ for gas molecules in the control volume (where $\V<0$ for an
-attractive potential). Because this interaction is uniform within the
-substrate, the gas-gas interactions and thus fluid structure in such a
-substrate are identical to those of the pure gas at the same density and
-temperature. This allows us to obtain the adsorption properties of this model
-substrate using the experimentally measured properties of the pure
-gas~\cite{nist}. Intuitively, the deliverable capacity of a gas in such a
-homogeneous substrate with the optimal potential energy is an upper bound
-because, in a real material, (i) spatial inhomogeneity of the potential
-energy results in some points in the control volume offering a suboptimal
-attraction for the gas and (ii) the atoms required to create the potential
-field exclude gas from occupying a fraction of the control volume.
-
-The spatially uniform potential $\V$ representing gas-substrate interactions
-behaves as an external potential and effectively shifts the chemical potential
-(or, equivalently, molar Gibbs free energy) of the gas in the material, just as
-gravitational potential energy causes the density of air to vary with altitude.
-Consequently, the density of gas in our homogeneous substrate is:
-\begin{align}
-    \rho(\mu,T) &= \rho_g(\mu - \V,T). \label{eq:mof-density}
-\end{align}
-See Sec.~\ref{sec:V_shifts_chem_pot} for a derivation.
-
-The deliverable capacity of gas in our homogeneous substrate is thus:
-\begin{align}
-    \rho_D(\V,T) &= \rho(\mufull,T) - \rho(\muempty,T),
-    \label{eq:DofPhi}
-    \\
-    &= \rho_g(\mufull-\V,T) - \rho_g(\muempty-\V,T),
-\end{align}
-where $\mufull$ and $\muempty$ are the chemical potentials corresponding to the
-pressures $\pfull$ and $\pempty$, respectively. Thus, $\rho_D$ for our
-homogeneous substrate as a function of $\V$ is the difference between two
-shifted versions of $\rho_g(\mu; T)$. Figure~\ref{fig:methane-298-D} shows the
-two shifted bulk methane density curves and their difference. The horizontal
-axis is the difference in molar Gibbs free energy of the gas, at fixed density (the density in the adsorbent) and temperature, between the gas within the substrate and the pure gas (\gst),
-which is equal to $\V$ in our model, and is pressure-dependent in a real
-crystal~(see Sec.~\ref{sec:phi-is-delta-g}). We see a potential $\V$ that
-maximizes the deliverable capacity of our ideal substrate, balancing the need
-to maximize the density at $\pfull$ against the need to minimize residual gas
-retained at $\pempty$.
-
-The optimal deliverable capacity of methane (298\ K, $\pfull=$ 65\ bar,
-$\pempty=$ 5.8\ bar) in our ideal, spatially uniform substrate is 374\ L STP/L,
-achieved for $\V_{opt} =$ 5.9\ kJ/mol.
-
-An essential question is whether our idealized substrate, with spatially
-uniform potential $\V_{opt}$ for the gas, places an upper bound on the
-deliverable capacity in all rigid porous materials. In
-Section~\ref{sec:proof-extremum}, we show that our idealized substrate with
-spatially uniform potential $\V_{opt}$ yields an \emph{extremum} of the
-deliverable capacity over all possible \emph{static potential energy fields},
-provided the gas does not crystallize at the temperature and in the density
-range of interest. The potential energy field is \emph{static} if it is
-unaffected by the presence of the gas; consequently, our model does not apply
-to flexible materials that undergo gas-induced conformation
-changes~\cite{schneemann2014flexible}. We next argue that this extremum is a
-maximum by addressing two alternative possibilities: the extremum could turn
-out to be (i) a saddle point or (ii) a local, rather than global, maximum.
-
-Fig.~\ref{fig:methane-298-D} clearly shows that $\V_{opt}$ provides a maximum
-$\rho_D$ over all \emph{spatially uniform}, static potential energy fields. To
-qualitatively argue that the spatially uniform potential $\V_{opt}$ provides a
-maximum deliverable capacity over \emph{all} (including non-spatially uniform)
-static potential energy fields (a broader claim), consider a
-non-spatially-uniform variation on $\V_{opt}$. The effect of
-this variation is to reduce the deliverable capacity: At low adsorbed gas
-densities, the lowest-energy positions will be preferentially occupied, while
-at higher densities, the additional gas molecules will be forced into higher
-energy locations. Thus, the mean attraction will be lowest at \pfull\ and
-highest at \pempty. As a result, $\gst$ increases monotonically with
-pressure. As shown in Sec.~\ref{sec:monotonic}, this results in
-the deliverable capacity of a non-uniform potential with a given $\gst$ at $\pfull$ or $\pempty$ being lower than the
-deliverable capacity of a uniform potential with $\V=\gst$. Thus, a spatially uniform potential gives the maximal
-deliverable capacity amongst all static potential energy fields that give the
-same $\gst$, and the \emph{optimal} uniform potential $\V_{opt}$ will yield a
-greater deliverable capacity over any static, non-uniform potential.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.95\columnwidth]{methane-298-n-vs-G}
-    \caption{The deliverable capacity of methane as a function of the attractive Gibbs free energy $|\gst|$.
-    Experimental deliverable capacities for several porous materials (data from Ref.~\cite{mason2014evaluating, furukawa2009storage}) are shown along with the experimental values for $\gst$ at the empty and full pressures shown as dots connected by a line.}
-    \label{fig:methane-298-D}
-\end{figure}
 
 \section{Results}
 Although our theoretical framework allows us to place an upper bound on the
