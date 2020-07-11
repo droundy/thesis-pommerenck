@@ -233,7 +233,7 @@ still satisfy the DOE targets.}
 %%%FOOTNOTES%%%
 \footnotetext{\textit{$^{*}$~E-mail: pommerjo@oregonstate.edu}}
 \footnotetext{\textit{$^{a}$~Department of Physics, Oregon State University, Corvallis, OR 97331, USA.}}
-\footnotetext{\textit{$^{b}$~Department of Chemical, Biological, and Environmental Engineering, Oregon State University, Corvallis, OR 97331, USA. }}
+\footnotetext{\textit{$^{b}$~School of Chemical, Biological, and Environmental Engineering, Oregon State University, Corvallis, OR 97331, USA. }}
 
 %Please use \dag to cite the ESI in the main text of the article.
 %If you article does not have ESI please remove the the \dag symbol from the title and the footnotetext below.
@@ -274,11 +274,12 @@ contamination~\cite{osborn2011methane} from hydraulic fracturing.
 
 Hydrogen (H$_2$) is the ultimate transportation fuel because it emits only
 water when it electrochemically reacts with oxygen in a fuel cell to power a
-vehicle. Currently, hydrogen (H$_2$) is primarily produced by steam reforming
+vehicle. 
+Notably, the environmental allure of hydrogen is predicated on its production 
+via a renewable means, e.g.\ splitting water using wind-generated electricity;
+currently, hydrogen (H$_2$) is primarily produced by steam reforming
 of natural gas followed by the water-gas shift reaction, which emits carbon
-dioxide \cite{crabtree2004hydrogen}. Notably, the environmental allure of
-hydrogen is predicated on its production via a renewable means, e.g.\ splitting
-water using wind-generated electricity.
+dioxide \cite{crabtree2004hydrogen}. 
 
 % methane (0.036 MJ/L); hydrogen gas (0.01 MJ/L); liquid gasoline (34.2 MJ/L).
 % (at 1 atm, liquid CH$_4$ at 111~K to achieve 22.2 MJ/L~\cite{makal2012methane}, liquid H$_2$ at 20 K to achieve 8~MJ/L \cite{suh2011hydrogen})
@@ -305,7 +306,7 @@ materials~\cite{schoedel2016role}. The internal surfaces of porous materials
 attract gas molecules through van der Waals, electrostatic, etc.\ interactions
 to achieve a higher adsorbed gas density than the bulk gas at the same
 temperature and pressure, allowing for room temperature and lower-pressure
-storage and alleviating many drawbacks of high-pressure, low-temperature
+storage and alleviating many drawbacks of high-pressure or low-temperature
 storage.
 
 \begin{figure}
@@ -340,8 +341,8 @@ progressive targets at five year intervals, with the ultimate target of 0.05 kg
 H$_2$/L~\cite{h2targetsDOE} using a 100\ bar to 5\ bar pressure swing at a
 minimum of -40 $^\circ$C~\cite{allendorf2018assessment}. Thus far, despite the
 emergence of highly tunable materials with large surface areas, such as
-metal-organic frameworks~\cite{furukawa2013chemistry}, no porous material has
-met these deliverable capacity targets.
+metal-organic frameworks~\cite{furukawa2013chemistry} and covalent organic 
+frameworks~\cite{}, no porous material has met these deliverable capacity targets.
 
 % \begin{figure}
 %     \centering
@@ -436,9 +437,14 @@ fictitious potential energy fields via a generative adversarial network trained
 on zeolite structures~\cite{lee2019predicting} all generated model substrates
 that failed to meet the ARPA-E methane deliverable capacity target.
 
+Finally, empirical models that statistically relate e.g., surface area to 
+hydrogen adsorption \cite{firlej2013understanding,goldsmith2013theoretical}
+have been used to determine what properties a material must possess to reach
+a given storage target.
+
 % Brown and Freeman \cite{bhown2011analysis}
 
-In this work, we place a rigorous upper bound on the deliverable capacity of a
+In this work, we place a rigorous upper bound on the isothermal deliverable capacity of a
 pure gas in a rigid substrate by endowing a control volume with a spatially
 uniform background energy field. Instead of using a molecular model for the
 gas~\cite{gomez2017impact}, we use the experimental equation of state to
@@ -533,15 +539,16 @@ $\rho_D$ over all \emph{spatially uniform}, static potential energy fields. To
 qualitatively argue that the spatially uniform potential $\V_{opt}$ provides a
 maximum deliverable capacity over \emph{all} (including non-spatially uniform)
 static potential energy fields (a broader claim), consider a
-non-spatially-uniform variation on $\V_{opt}$. The effect of
-this variation is to reduce the deliverable capacity: At low adsorbed gas
-densities, the lowest-energy positions will be preferentially occupied, while
+non-spatially-uniform variation on $\V_{opt}$. 
+At low adsorbed gas densities, the lowest-energy positions will be preferentially occupied, while
 at higher densities, the additional gas molecules will be forced into higher
 energy locations. Thus, the mean attraction will be lowest at \pfull\ and
-highest at \pempty. As a result, $\gst$ increases monotonically with
+highest at \pempty. 
+Therefore, the effect of a non-spatially uniform variation on $\V_{opt}$ is to reduce the deliverable capacity.
+By the same argument, $\gst$ increases monotonically with
 pressure. As shown in Sec.~\ref{sec:monotonic}, this results in
-the deliverable capacity of a non-uniform potential with a given $\gst$ at $\pfull$ or $\pempty$ being lower than the
-deliverable capacity of a uniform potential with $\V=\gst$. Thus, a spatially uniform potential gives the maximal
+the deliverable capacity provided by a non-uniform potential with a given $\gst$ at $\pfull$ or $\pempty$ being lower than the
+deliverable capacity provided by a uniform potential with $\V=\gst$. Thus, a spatially uniform potential gives the maximal
 deliverable capacity amongst all static potential energy fields that give the
 same $\gst$, and the \emph{optimal} uniform potential $\V_{opt}$ will yield a
 greater deliverable capacity over any static, non-uniform potential.
@@ -580,7 +587,6 @@ will include both \emph{intra-molecular} interactions and
 \emph{inter-molecular} interactions.
 
 The grand canonical partition function of the control volume is:
-
 \begin{multline}
     \Xi(\mu, V, T)= \\ \displaystyle \sum_{N=0}^\infty \frac{1}{\Lambda^{3N}N!} \int_{\Omega} \cdots \int_{\Omega} e^{-\beta E_{gg}(\rvec_1, ..., \rvec_N)} e^{\beta (\mu - \V) N} d\rvec_1 \cdots d\rvec_N.
     \label{eq:gcpf}
@@ -588,7 +594,6 @@ The grand canonical partition function of the control volume is:
 We recognize this as the grand canonical partition function of the bulk gas in
 the control volume without the external potential, but shifted in chemical
 potential:
-
 \begin{equation}
     \Xi(\mu, V, T)=\Xi_0(\mu - \V, V, T)
     \label{eq:xi_vs_xi0}
@@ -605,18 +610,18 @@ our ideal substrate are equivalent to the gas at a higher chemical potential.
 
 \subsection{Proof of extremum}\label{sec:proof-extremum}
 To show that a uniform potential gives the highest deliverable capacity, we
-consider an interaction potential between gas and substrate $\V(\rvec)$ that
+consider an interaction potential between gas and substrate offering a potential energy field $\V(\rvec)$ that
 varies in space.  In this proof, we make use of the Fourier transform of
 this potential:
 \begin{align}
     \Vk \equiv \iiint \V(\rvec) e^{-i\kvec\cdot \rvec} d\rvec
 \end{align}
-The Fourier transform of a uniform potential is a Dirac delta function $\tilde{\V}(\kvec)\propto\delta(\kvec)$. In order for a uniform potential
+The Fourier transform of a uniform potential is a Dirac delta function $\tilde{\V}(\kvec)\propto\delta(\kvec)$. For a uniform potential
 to extremize the deliverable capacity, we must show that the functional
 derivative of the deliverable capacity with respect to $\Vk$ is zero for
 \emph{nonzero} values of $\kvec$, i.e.
 \begin{align}
-    \frac{\delta D}{\delta \Vk} &= \mathbf{0}, \text{ if } \kvec\ne \mathbf{0}.
+    \frac{\delta \rho_D}{\delta \Vk} &= \mathbf{0}, \text{ if } \kvec\ne \mathbf{0}.
 \end{align}
 We note that this functional derivative may be non-zero for $\kvec=\mathbf{0}$
 because we separately maximize with respect to the particular uniform potential
@@ -624,7 +629,7 @@ $\V$. This means that
 \begin{align}
     \frac{\delta N_\text{full}}{\delta \Vk} &= \frac{\delta N_\text{empty}}{\delta \Vk}
 \end{align}
-where $N_\text{full}$ and $N_\text{empty}$ are the number of particles at the full and empty pressure, $\pfull$ and $\pempty$, respectively.
+where $N_\text{full}$ and $N_\text{empty}$ are the number of particles in the substrate at the full and empty pressure, $\pfull$ and $\pempty$, respectively.
 
 Because the chemical potential $\mu$ varies monotonically with $N$ at fixed
 temperature, we can consider how the chemical potential varies as we change
@@ -640,7 +645,7 @@ Since changing the chemical potential changes the number of molecules in the gen
     \left(\frac{\delta \mu}{\delta \Vk}\right)_N
     &= \left(\frac{\delta \left(\frac{\partial F}{\partial N}\right)_{\volume}}{\delta \Vk}\right)_N
     \\
-    &= \left(\frac{\partial \left(\frac{\delta F}{\delta \Vk}\right)_{\volume}}{\partial N}\right)_{\volume}
+    &= \left(\frac{\partial \left(\frac{\delta F}{\delta \Vk}\right)_{N}}{\partial N}\right)_{\volume}
     \label{eq:dmudpot}
 \end{align}
 where we have made use of the derivative relationship between $\mu$ and the Helmholtz free energy $F$, and have then reordered the functional and partial derivatives.
@@ -654,7 +659,7 @@ We can insert this expression into Eq.~\ref{eq:dmudpot} to find that
     \left(\frac{\delta \mu}{\delta \Vk}\right)_N &\propto \delta(\kvec) \\
     \left(\frac{\delta N}{\delta \Vk}\right)_\mu &\propto \delta(\kvec)
 \end{align}
-Thus, the functional derivative of both $\mu$ and $N$ with regard to $\V(\rvec)$ are themselves spatially uniform.  Since we already maximize $D$ with respect to the spatially uniform component of the potential (i.e. $\kvec=0$), the derivative of $D$ with respect to any change of potential is zero.
+Thus, the functional derivative of both $\mu$ and $N$ with regard to $\V(\rvec)$ are themselves spatially uniform.  Since we already maximize $\rho_D$ with respect to the spatially uniform component of the potential (i.e. $\kvec=0$), the derivative of $\rho_D$ with respect to any change of potential is zero.
 
 This demonstrates that a spatially uniform potential leads to an extremum value
 of the deliverable capacity. This proof is insufficient, however, to show that
@@ -869,7 +874,7 @@ DOE ULTIMATE deliverable capacity target is theoretically possible, however by
 such a small margin that we can safely rule out the possibility of reaching
 this target through storage and delivery of hydrogen in \emph{any} rigid
 substrate at room temperature. Such a material would require a void fraction of
-at least 94\%. On top of this, the DOE ULTIMATE target requires an optimal
+at least 94\%. On top of this, meeting the DOE ULTIMATE target requires an optimal
 $|\gst|$ of 10~kJ/mol which is far greater than what is found in observed
 porous materials. This reflects the known fact that hydrogen interacts with
 substrates far more weakly than methane does. 
@@ -889,11 +894,11 @@ below the upper bound. Actual adsorbents fall far short of the theoretical maxim
 \end{figure}
 
 Why do we not experimentally observe materials approaching the upper bound on
-the deliverable capacity? Foremost, any adsorbent substrate will be composed of
+the deliverable capacity? First and foremost, any adsorbent substrate will be composed of
 atoms, which will exclude the gas from some volume. Due to strong short-range
 interactions, substrate atoms must be approximately uniformly distributed to achieve strong
 attraction for gas atoms, imposing a limit on the pore
-volume. In contrast, real materials have a spatially non-uniform attraction for
+volume. Second, in contrast to the homogeneous substrate, real materials have a spatially non-uniform attraction for
 gas atoms. As a result, there are regions of space with
 non-optimal attraction. For hydrogen, there is the further issue that there are
 no known \emph{physical} interactions that are sufficiently strong to give an
