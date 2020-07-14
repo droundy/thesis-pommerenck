@@ -609,27 +609,33 @@ more attractive adsorbent, the thermodynamic properties of the adsorbed gas in
 our ideal substrate are equivalent to the gas at a higher chemical potential.
 
 \subsection{Proof of extremum}\label{sec:proof-extremum}
+
 To show that a uniform potential gives the highest deliverable capacity, we
-consider an interaction potential between gas and substrate offering a potential energy field $\V(\rvec)$ that
-varies in space.  In this proof, we make use of the Fourier transform of
-this potential:
+consider an interaction potential between gas and substrate offering a
+potential energy field $\V(\rvec)$ that varies in space. We will show that the
+uniform potential has the highest deliverable capacify of the set of potentials
+having the same mean value, and to find the maximum deliverable capacity one
+maximizes over this mean value. In this proof, we make use of the Fourier
+transform of this potential:
 \begin{align}
     \Vk \equiv \iiint \V(\rvec) e^{-i\kvec\cdot \rvec} d\rvec
 \end{align}
-The Fourier transform of a uniform potential is a Dirac delta function $\tilde{\V}(\kvec)\propto\delta(\kvec)$. For a uniform potential
-to extremize the deliverable capacity, we must show that the functional
-derivative of the deliverable capacity with respect to $\Vk$ is zero for
-\emph{nonzero} values of $\kvec$, i.e.
+The Fourier transform of a uniform potential is a Dirac delta function
+$\tilde{\V}(\kvec)\propto\delta(\kvec)$. For a uniform potential to extremize
+the deliverable capacity, we must show that the functional derivative of the
+deliverable capacity with respect to $\Vk$ is zero for \emph{nonzero} values of
+$\kvec$, i.e.
 \begin{align}
     \frac{\delta \rho_D}{\delta \Vk} &= \mathbf{0}, \text{ if } \kvec\ne \mathbf{0}.
 \end{align}
 We note that this functional derivative may be non-zero for $\kvec=\mathbf{0}$
-because we separately maximize with respect to the particular uniform potential
-$\V$. This means that
+because we separately maximize with respect to the mean value of the uniform
+potential $\V$. This means that
 \begin{align}
     \frac{\delta N_\text{full}}{\delta \Vk} &= \frac{\delta N_\text{empty}}{\delta \Vk}
 \end{align}
-where $N_\text{full}$ and $N_\text{empty}$ are the number of particles in the substrate at the full and empty pressure, $\pfull$ and $\pempty$, respectively.
+where $N_\text{full}$ and $N_\text{empty}$ are the number of particles in the
+substrate at the full and empty pressure, $\pfull$ and $\pempty$, respectively.
 
 Because the chemical potential $\mu$ varies monotonically with $N$ at fixed
 temperature, we can consider how the chemical potential varies as we change
@@ -640,7 +646,10 @@ cyclic chain rule, which shows us that
     -\left(\frac{\delta \mu}{\delta \Vk}\right)_{N}
     \left(\frac{\partial N}{\partial \mu}\right)_{\Vk}.
 \end{align}
-Since changing the chemical potential changes the number of molecules in the general case, if we can show that $\left(\frac{\delta \mu}{\delta \Vk}\right)_{N}=0$ then we will have shown that $\left(\frac{\delta N}{\delta \Vk}\right)_{\mu}=0$.  Thus we consider
+Since changing the chemical potential changes the number of molecules in the
+general case, if we can show that $\left(\frac{\delta \mu}{\delta
+\Vk}\right)_{N}=0$ then we will have shown that $\left(\frac{\delta N}{\delta
+\Vk}\right)_{\mu}=0$. Thus we consider
 \begin{align}
     \left(\frac{\delta \mu}{\delta \Vk}\right)_N
     &= \left(\frac{\delta \left(\frac{\partial F}{\partial N}\right)_{\volume}}{\delta \Vk}\right)_N
@@ -648,18 +657,29 @@ Since changing the chemical potential changes the number of molecules in the gen
     &= \left(\frac{\partial \left(\frac{\delta F}{\delta \Vk}\right)_{N}}{\partial N}\right)_{\volume}
     \label{eq:dmudpot}
 \end{align}
-where we have made use of the derivative relationship between $\mu$ and the Helmholtz free energy $F$, and have then reordered the functional and partial derivatives.
-Let us consider the interior derivative first.  The derivative of the Helmholtz free energy with respect to the external potential $\Vk$ yields the number density:
+where we have made use of the derivative relationship between $\mu$ and the
+Helmholtz free energy $F$, and have then reordered the functional and partial
+derivatives. Let us consider the interior derivative first. The derivative of
+the Helmholtz free energy with respect to the external potential $\Vk$ yields
+the number density:
 \begin{align}
     \frac{\delta F}{\delta \Vk} &= \rho(\kvec)
 \end{align}
-The number density is itself spatially uniform for any stable system in a fluid state at this density (i.e. does not spontaneously crystallize), and thus has a Fourier transform that is proportional to a Dirac $\delta$-function.  Thus, the functional derivative $\frac{\delta F}{\delta \V(\rvec)}$ is actually a uniform function.
-We can insert this expression into Eq.~\ref{eq:dmudpot} to find that
+The number density given a uniform potential is itself spatially uniform for
+any stable system in a fluid state at this density (i.e. does not spontaneously
+crystallize), and thus has a Fourier transform that is proportional to a Dirac
+$\delta$-function. Thus, the functional derivative $\frac{\delta F}{\delta
+\V(\rvec)}$ is actually a uniform function. We can insert this expression into
+Eq.~\ref{eq:dmudpot} to find that
 \begin{align}
     \left(\frac{\delta \mu}{\delta \Vk}\right)_N &\propto \delta(\kvec) \\
     \left(\frac{\delta N}{\delta \Vk}\right)_\mu &\propto \delta(\kvec)
 \end{align}
-Thus, the functional derivative of both $\mu$ and $N$ with regard to $\V(\rvec)$ are themselves spatially uniform.  Since we already maximize $\rho_D$ with respect to the spatially uniform component of the potential (i.e. $\kvec=0$), the derivative of $\rho_D$ with respect to any change of potential is zero.
+Thus, the functional derivative of both $\mu$ and $N$ with regard to
+$\V(\rvec)$ are themselves spatially uniform. Since we already maximize
+$\rho_D$ with respect to the spatially uniform component of the potential (i.e.
+$\kvec=0$), the derivative of $\rho_D$ with respect to any change of potential
+is zero.
 
 This demonstrates that a spatially uniform potential leads to an extremum value
 of the deliverable capacity. This proof is insufficient, however, to show that
