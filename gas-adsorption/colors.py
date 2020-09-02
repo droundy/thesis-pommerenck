@@ -28,6 +28,8 @@ the_order = [
     'CYCU3Al',
     'Zn2bdc2dabco',
     'COF102',
+    'HKUST1-mono',
+    'MOF519',
 ]
 
 # cm = plt.get_cmap('viridis')

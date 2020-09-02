@@ -104,6 +104,14 @@ CH4_298_Data = {
         'rho_full': linear_interpolate(65.5, 59.79, 254, 69.76, 267)*density_units,
         'rho_empty': linear_interpolate(5.8 , 5.10 , 77 ,  7.10, 98)*density_units
     },
+    # # include the MOF-519 data from https://pubs.acs.org/doi/10.1021/ja501606h
+    # # I used WebPlotDigitizer on supplemental information file Figure S13.
+    'MOF519': {
+        'q_empty': 14*kJ/mol, # Extracted from Figure S8
+        'q_full': 13*kJ/mol, # Extracted from Figure S8
+        'rho_full': linear_interpolate(65.5, 64.65, 261.33, 69.57, 268.28)*density_units,
+        'rho_empty': linear_interpolate(5.8 , 3.86 , 39.73 ,  6.91, 65.24)*density_units
+    },
 }
 
 
