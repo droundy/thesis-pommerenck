@@ -95,7 +95,15 @@ CH4_298_Data = {
         'q_full': 12*kJ/mol,
         'rho_full': linear_interpolate(65.5, 59.49, 231.87, 66.03, 237.75)*COF_density_units,
         'rho_empty': linear_interpolate(5.8 , 4.07, 27.65, 6.73, 43.52)*COF_density_units
-    }
+    },
+    # # include the mono-HKUST-1 data from https://doi.org/10.1038/nmat5050
+    # # I extracted the data from the supplemental information file TABLE 4.
+    'HKUST1-mono': {
+        'q_empty': 17*kJ/mol, # same as HKUST-1 ?
+        'q_full': 17*kJ/mol, # same as HKUST-1 ?
+        'rho_full': linear_interpolate(65.5, 59.79, 254, 69.76, 267)*density_units,
+        'rho_empty': linear_interpolate(5.8 , 5.10 , 77 ,  7.10, 98)*density_units
+    },
 }
 
 
