@@ -112,6 +112,14 @@ CH4_298_Data = {
         'rho_full': linear_interpolate(65.5, 64.65, 261.33, 69.57, 268.28)*density_units,
         'rho_empty': linear_interpolate(5.8 , 3.86 , 39.73 ,  6.91, 65.24)*density_units
     },
+    # # include the NJU-Bai 43 data from https://onlinelibrary.wiley.com/doi/abs/10.1002/anie.201704974
+    # # I used WebPlotDigitizer on supplemental information file Figure S26.
+    'NJUBai43': {
+        'q_empty': 14.45*kJ/mol, # Extracted from Table S2
+        'q_full': 14.45*kJ/mol, # Extracted from Table S2
+        'rho_full': linear_interpolate(65.5, 65.03, 295.03, 70.11, 297.57)*density_units,
+        'rho_empty': linear_interpolate(5.8 , 5.01 , 94.32 ,  10.10, 151.60)*density_units
+    },
 }
 
 
