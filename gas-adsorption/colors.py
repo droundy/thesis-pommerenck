@@ -69,6 +69,8 @@ latex_mof_names = {
     'CYCU3Al': 'CYCU-3-Al',
     'UiO68Ant': 'UiO-68-Ant',
     'rhtMOF7': 'rht-MOF-7',
+    'HKUST1-mono': 'HKUST-1-mono',
+    'NJUBai43': 'NJU-Bai-43',
 }
 def latex_mof(mof):
     if mof in latex_mof_names:
