@@ -10,3 +10,15 @@
 < figs/g_st_simple.pdf
 < figs/qst-vs-delta-G.pdf
 > gas-ads-upload.tar.gz
+
+| tar czvf rsc-upload.tar.gz rsc-gas-ads-complete.tex rsc-gas-ads-complete.bbl rsc-gas-ads-complete.pdf figs/hydrogen-298-n-vs-G.pdf figs/methane-298-n-vs-G.pdf figs/methane-298-rho-mu.pdf figs/hydrogen-77-n-vs-G.pdf figs/four-cases-pro.pdf figs/Combine_Figure.pdf figs/g_st_simple.pdf figs/qst-vs-delta-G.pdf
+< rsc-gas-ads-complete.pdf
+< figs/hydrogen-298-n-vs-G.pdf
+< figs/methane-298-n-vs-G.pdf
+< figs/methane-298-rho-mu.pdf
+< figs/hydrogen-77-n-vs-G.pdf
+< figs/four-cases-pro.pdf
+< figs/Combine_Figure.pdf
+< figs/g_st_simple.pdf
+< figs/qst-vs-delta-G.pdf
+> rsc-upload.tar.gz
