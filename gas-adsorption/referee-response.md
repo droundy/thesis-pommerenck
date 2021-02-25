@@ -1,5 +1,10 @@
 ## Response to referees
 
+Dear editor,
+
+The responses of referees 1 and 3 could hardly be more divergent.  We FIXME
+SHOULD ADD A SUCCINCT ARGUMENT HERE WHY REFEREE 3 IS BETTER.
+
 # Referee 1
 
 Referee 1 states that "Phenomenological predictions without any relation to real
