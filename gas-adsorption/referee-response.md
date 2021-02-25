@@ -19,8 +19,19 @@ out there, while our approach can do so.
 TODO: We should find a place to edit the paper to make this more clear, and
 state here that we did so.
 
-TODO: Maybe include some more discussion of pore volume, just to illustrate that
-our method does give information related to things like pore volume?
+The referee gives a litany of structural properties that we do not address in
+our model: "pore volume, pore size, specific surface area, crystal density,
+skeletal density, packing density, different adsorption sites etc."
+
+    We note that some of these (e.g. crystal density, skeletal density)
+    manifestly have no impact on the property we are studying, which is
+    volumetric storage capacity.  Others of course do impact the volumetric
+    storage capacity of a material, but do not relate to an upper bound
+    specifically.  TODO: We do add a discussion of the pore volume fraction
+    and how it can constrained by our upper bound, to make more clear the
+    range of applications of our bound.  TODO: We can put a lower bound on
+    pore volume fraction contingent on the maximum density having a given value.
+    It will take some explanation, but I think is worthwhile.
 
 The other suggestion of Referee 1 is that we clearly state the capacity that we report, as discussed by Parilla et al.
 
