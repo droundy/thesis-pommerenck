@@ -68,9 +68,9 @@ gram = numericalunits.g
 kg = numericalunits.kg
 L = numericalunits.L
 Joule = numericalunits.J
-mol = numericalunits.mol
+mol = 6.02214e23
 cm = numericalunits.cm
-mmol = numericalunits.mmol
+mmol = 1e-3*mol
 
 mg = numericalunits.mg    # milligram
 mL = numericalunits.mL    # milliliter
@@ -349,6 +349,31 @@ plt.ylabel('$\Delta g_{st}$ (kJ/mol)')
 plt.legend(loc='lower right')
 plt.tight_layout()
 plt.savefig('figs/' + basename + '-' + temperature + '-gst.pdf', transparent=True)
+
+plt.figure('capacity vs Delta F', figsize=(5,3.75))
+delta_F_flexible = np.linspace(0, 1e23*kJ/mol/cm**3, 100)
+capacities = np.zeros_like(delta_F_flexible)
+
+def n_from_mu_with_nans(particular_mu):
+    return np.interp(particular_mu, mu, n, left=np.nan, right=np.nan)
+
+mu_lo = mu_from_p(p_empty)
+n_lo = n_from_mu_with_nans(mu_lo + Gads)
+n_hi = n_from_mu_with_nans(mu_from_p(p_full) + Gads)
+print('n_lo', n_lo/density_units)
+for i in range(len(capacities)):
+    to_minimize = abs(n_lo*Gads - delta_F_flexible[i])
+    to_minimize[np.isnan(to_minimize)] = 1e200
+    which = np.argmin(to_minimize)
+    capacities[i] = n_hi[which]
+
+plt.plot(delta_F_flexible/(kJ/mol/cm**3), capacities/density_units, '.-', label='good stuff')
+plt.xlabel(r'$\Delta F$ (kJ/mol/cm$^3$)')
+plt.ylabel(r'$\rho_D$ (%s) two-phase assumption' % density_unit_name)
+
+plt.legend()
+plt.tight_layout()
+plt.savefig('figs/' + basename + '-' + temperature + '-flexible.pdf', transparent=True)
 
 if 'noshow' not in sys.argv:
     plt.show()
