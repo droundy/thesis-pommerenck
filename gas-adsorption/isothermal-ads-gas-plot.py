@@ -70,11 +70,13 @@ L = numericalunits.L
 Joule = numericalunits.J
 mol = 6.02214e23
 cm = numericalunits.cm
+angstrom = 1e-8*cm
 mmol = 1e-3*mol
 
 mg = numericalunits.mg    # milligram
 mL = numericalunits.mL    # milliliter
 kJ = numericalunits.kJ     # kiloJoule
+J = numericalunits.J
 
 # --- Command line arguments --- #
 
@@ -351,7 +353,16 @@ plt.tight_layout()
 plt.savefig('figs/' + basename + '-' + temperature + '-gst.pdf', transparent=True)
 
 plt.figure('capacity vs Delta F', figsize=(5,3.75))
-delta_F_flexible = np.linspace(0, 1e23*kJ/mol/cm**3, 100)
+
+# delta_F_units = kJ/cm**3
+# delta_F_unit_name = 'kJ/cm$^3$'
+delta_F_units = J/cm**3
+delta_F_unit_name = 'J/cm$^3$'
+# delta_F_units = kJ/angstrom**3
+# delta_F_unit_name = f'kJ/$\AA^3$'
+
+
+delta_F_flexible = np.linspace(0, 0.04*kJ/cm**3, 300)
 capacities = np.zeros_like(delta_F_flexible)
 
 def n_from_mu_with_nans(particular_mu):
@@ -362,14 +373,49 @@ n_lo = n_from_mu_with_nans(mu_lo + Gads)
 n_hi = n_from_mu_with_nans(mu_from_p(p_full) + Gads)
 print('n_lo', n_lo/density_units)
 for i in range(len(capacities)):
-    to_minimize = abs(n_lo*Gads - delta_F_flexible[i])
-    to_minimize[np.isnan(to_minimize)] = 1e200
-    which = np.argmin(to_minimize)
-    capacities[i] = n_hi[which]
+    # to_minimize = abs(n_lo*Gads - delta_F_flexible[i])
+    # to_minimize[np.isnan(to_minimize)] = 1e200
+    # which = np.argmin(to_minimize)
+    # capacities[i] = n_hi[which]
+    capacities[i] = np.interp(delta_F_flexible[i], n_lo*Gads, n_hi)
 
-plt.plot(delta_F_flexible/(kJ/mol/cm**3), capacities/density_units, '.-', label='good stuff')
-plt.xlabel(r'$\Delta F$ (kJ/mol/cm$^3$)')
+for n_goal, label, color, style in gas.n_goals:
+    plt.text(delta_F_flexible[len(delta_F_flexible)//4]/delta_F_units,
+             n_goal/density_units, label, color=color,
+             verticalalignment = 'center_baseline',
+             horizontalalignment = 'left',
+             bbox=dict(facecolor='white', edgecolor='white', alpha=1, pad=0))
+    plt.axhline(n_goal/density_units, color=color, linestyle=style, linewidth=0.5)
+
+plt.axhline(ymax, color='g', linestyle='--', linewidth=0.5)
+
+volume_cobdp = 773.58*angstrom**3
+delta_F_cobdp = 3.3*kJ/mol/volume_cobdp
+
+methane_codbp_capacity = 196 # Mason et al. Nature "Methane storage in flexible ..."
+
+plt.plot([delta_F_cobdp/delta_F_units, delta_F_cobdp/delta_F_units],
+         [0, capacities.max()/density_units], color='xkcd:green', label='Co(BDP)')
+if basename == 'methane':
+    plt.plot([delta_F_cobdp/delta_F_units],
+             [methane_codbp_capacity], colors.symbol(basename), color='xkcd:green', markersize=12)
+
+# delta_F_MIL_53 = 2.5*kJ/mol/(1012*angstrom**3)
+# plt.plot([delta_F_MIL_53/delta_F_units, delta_F_MIL_53/delta_F_units],
+#          [0, capacities.max()/density_units], label='MIL-53(Cr)')
+
+plt.plot(delta_F_flexible/delta_F_units, capacities/density_units, '-', label='good stuff')
+
+# this paper gives the \Delta F of Co(BDP) at 77 K as 3.3 kJ/mol, of
+# Cu(4,4′-bipy)(dhbc)2 at 298 K as ~ 4 kJ/mol (see table 1) and for MIL-53 at 304
+# K as 2.5 kJ/mol. these are extracted from experimental adsorption isotherms,
+# and they treat the MOF as a two-state system, which is kind of true. so yeah
+# these are directly appropriate for comparing to our model.
+
+plt.xlabel(rf'$\Delta F/V_{{open}}$ ({delta_F_unit_name})')
 plt.ylabel(r'$\rho_D$ (%s) two-phase assumption' % density_unit_name)
+plt.xlim(delta_F_flexible.min()/delta_F_units, delta_F_flexible.max()/delta_F_units)
+plt.ylim(0, capacities.max()/density_units)
 
 plt.legend()
 plt.tight_layout()

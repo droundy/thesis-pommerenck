@@ -927,8 +927,8 @@ optimal deliverable capacity at room temperature.
 \section{Flexible two-state model}
 
 \begin{align}
-    |n(p_{hi})\V| &> |\Delta F| \\
-    |n(p_{lo})\V| &< |\Delta F|
+    V_{\text{open}}|n(p_{hi})\V| &> |\Delta F| \\
+    V_{\text{open}}|n(p_{lo})\V| &< |\Delta F|
 \end{align}
 This means that for a given $\Delta F$ we can put an upper bound on the
 deliverable capacity.
@@ -939,6 +939,24 @@ on the boundary of not collapsing.  This means that:}
     n(\mu_{lo} + \V)\V = \Delta F
 \end{align}
 This is a nonlinear equation that we want to solve.
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.95\columnwidth]{methane-298-flexible}
+    \caption{Deliverable capacity of methane in a flexible substrate at 298\ K as a function of the free energy difference 
+      between open and closed phases. The experimental deliverable capacity for Co(bdp) is shown for
+       comparison~\cite{fixme}, along with the free energy difference between open and closed conformations~\cite{fixthis}.}
+    \label{fig:methane-flexible}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.95\columnwidth]{hydrogen-298-flexible}
+    \caption{Deliverable capacity of hydrogen in a flexible substrate at 298\ K as a function of the free energy difference 
+      between open and closed phases.}
+    \label{fig:hydrogen-flexible}
+\end{figure}
 
 \section{Conclusions}
 We have established an upper bound on the deliverable capacity via
