@@ -41,6 +41,7 @@ c __pycache__
 # BUILD THE MAIN PAPER
 # | pdflatex isosteric-heat.tex && bibtex isosteric-heat && pdflatex #isosteric-heat.tex && pdflatex isosteric-heat.tex
 
+| inkscape --export-filename figs/two-phase.pdf figs/two-phase.svg || inkscape --export-pdf figs/two-phase.pdf figs/two-phase.svg
 | inkscape --export-filename figs/four-cases.pdf figs/four-cases.svg || inkscape --export-pdf figs/four-cases.pdf figs/four-cases.svg
 | inkscape --export-filename figs/four-cases-pro.pdf figs/four-cases-pro.svg || inkscape --export-pdf figs/four-cases-pro.pdf figs/four-cases-pro.svg
 | inkscape --export-filename figs/Combine_Figure.pdf figs/Combine_Figure.svg || inkscape --export-pdf figs/Combine_Figure.pdf figs/Combine_Figure.svg
