@@ -45,11 +45,14 @@ for improving the paper:
 1. The referee suggests that we attempt to quantify the possible effect of a
    flexible MOF on our upper bound.
 
-TODO: Add a bit of discussion of how and why our model does not apply to
-flexible MOFs, and why we cannot place *any* upper bound on a flexible MOF using
-our approach.
+We have added a section "Flexible two-phase model" discussing flexible MOFs. We
+cannot place a formal upper bound on a flexible MOF in general, but we can put
+an upper bound on the capacity of a two-phase MOF such as Co(bdp), if we
+constrain the free energy difference between the two phases. This suggests that
+this type of a system will require a more stable closed phase in order to reach
+the DOE targets.
 
-2. The referee asks that we provide some guidelines in terms of working
+1. The referee asks that we provide some guidelines in terms of working
    conditions to reach the DOE target.  They further suggest looking at a
    temperature difference to see how that could impact the deliverable capacity.
 

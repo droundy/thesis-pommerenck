@@ -394,17 +394,21 @@ delta_F_cobdp = 3.3*kJ/mol/volume_cobdp
 
 methane_codbp_capacity = 196 # Mason et al. Nature "Methane storage in flexible ..."
 
-plt.plot([delta_F_cobdp/delta_F_units, delta_F_cobdp/delta_F_units],
-         [0, capacities.max()/density_units], color='xkcd:green', label='Co(BDP)')
+experiment_symbol = ''
 if basename == 'methane':
+    experiment_symbol = colors.symbol(basename)
     plt.plot([delta_F_cobdp/delta_F_units],
-             [methane_codbp_capacity], colors.symbol(basename), color='xkcd:green', markersize=12)
+             [methane_codbp_capacity], experiment_symbol, color='xkcd:green', markersize=12)
+plt.plot([delta_F_cobdp/delta_F_units, delta_F_cobdp/delta_F_units],
+         [-capacities.max()/density_units, 1.1*capacities.max()/density_units],
+         experiment_symbol+'-', color='xkcd:green', label='Co(bdp)',
+         markersize=12, linewidth=0.5)
 
 # delta_F_MIL_53 = 2.5*kJ/mol/(1012*angstrom**3)
 # plt.plot([delta_F_MIL_53/delta_F_units, delta_F_MIL_53/delta_F_units],
 #          [0, capacities.max()/density_units], label='MIL-53(Cr)')
 
-plt.plot(delta_F_flexible/delta_F_units, capacities/density_units, '-', label='good stuff')
+plt.plot(delta_F_flexible/delta_F_units, capacities/density_units, '-', label='Two-phase upper bound')
 
 # this paper gives the \Delta F of Co(BDP) at 77 K as 3.3 kJ/mol, of
 # Cu(4,4′-bipy)(dhbc)2 at 298 K as ~ 4 kJ/mol (see table 1) and for MIL-53 at 304
@@ -412,7 +416,7 @@ plt.plot(delta_F_flexible/delta_F_units, capacities/density_units, '-', label='g
 # and they treat the MOF as a two-state system, which is kind of true. so yeah
 # these are directly appropriate for comparing to our model.
 
-plt.xlabel(rf'$\Delta F/V_{{open}}$ ({delta_F_unit_name})')
+plt.xlabel(rf'$\Delta G/V_{{open}}$ ({delta_F_unit_name})')
 plt.ylabel(r'$\rho_D$ (%s) two-phase assumption' % density_unit_name)
 plt.xlim(delta_F_flexible.min()/delta_F_units, delta_F_flexible.max()/delta_F_units)
 plt.ylim(0, capacities.max()/density_units)
