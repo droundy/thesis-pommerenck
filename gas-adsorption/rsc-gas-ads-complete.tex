@@ -391,7 +391,7 @@ The tank is considered depleted/empty when the pressure has dropped to
 $\pempty$, the pressure at which the flow rate of gas from the tank to the
 engine is insufficient. However, given $\pempty \neq 0$ (pulling vacuum),
 residual gas will remain trapped in the adsorbent. Therefore, the driving range
-of the vehicle is primarily determined by the \emph{deliverable capacity} of
+of the vehicle is primarily determined by the \emph{deliverable capacity} $\rho_D$ of
 the gas in the material (see Fig.~\ref{fig:delcap}): the density of gas at
 $\pfull$ minus that at $\pempty$. The isothermal, volumetric deliverable
 capacity is an intrinsic property of the nanoporous material and its
@@ -403,10 +403,9 @@ isothermal deliverable capacity in pressure-swing adsorption.
 
 Early work showed that, in the simplified Langmuir model, there exists an
 optimal free energy of adsorption (which determines the Langmuir constant) that
-maximizes the deliverable capacity
-$\rho_D$~\cite{matranga1992storage,bhatia2006optimum,simon2014optimizing}. If
+maximizes the deliverable capacity~\cite{matranga1992storage,bhatia2006optimum,simon2014optimizing}. If
 the gas-substrate interaction is too weak (strong), too little (much) gas
-adsorbs (is retained) at $\pfull$ ($\pempty$), diminishing $\rho_D$. An upper
+adsorbs (is retained) at $\pfull$ ($\pempty$), diminishing the deliverable capacity. An upper
 bound on the deliverable capacity of a Langmuir material follows if each
 adsorption site is endowed with the optimal free energy of adsorption. However,
 remaining is the question of how many adsorption sites per volume a porous
@@ -418,7 +417,7 @@ capacity~\cite{simon2014optimizing}.
 
 G\'omez-Gualdr\'on \emph{et al.}~\cite{gomez2017impact} introduced a model that
 accounted for gas-gas interactions via an intermolecular potential and
-idealized the substrate in two different ways: (1) discrete adsorption sites
+idealized the substrate in two different ways---as a: (1) set of discrete adsorption sites
 packed into an FCC lattice and (2) a volume endowed with a spatially uniform,
 background potential energy field. According to molecular simulation of methane
 adsorption, the ARPA-E deliverable capacity target of 315 L STP/L could be
@@ -436,7 +435,7 @@ methane deliverable capacity was 196 cm$^3$~STP/cm$^3$. Confidence in this
 conclusion rests upon (i) the accuracy of the intermolecular potentials
 describing the molecular interactions and (ii) the sufficient sampling of
 material space, i.e.\ that the structures considered are representative of the
-set of possible materials. To further explore material space and address
+set of possible materials \cite{Moosavi2020}. To further explore material space and address
 sensitivity to the intermolecular potentials: scaling the Lennard-Jones
 potential well depths of material atoms to model enhanced
 interactions~\cite{gomez2014exploring}, placing Lennard-Jones spheres in a unit
@@ -468,19 +467,19 @@ We now develop a thermodynamic framework that places an upper bound on the deliv
 The thermodynamic properties of a bulk, pure gas are characterized by an
 equation of state. Of particular interest for gas storage and delivery is the
 density of the gas $\rho_g(\mu,T)$ as a function of chemical potential $\mu$
-and temperature $T$, is shown for methane gas in
+and temperature $T$. We show $\rho_g(\mu, T)$ for methane gas in
 Fig.~\ref{fig:density-vs-mu-ch4} at $T=298$\ K. For comparison, we also show
 the density of methane adsorbed into several porous materials.
 
 \begin{figure}
     \centering
     \includegraphics[width=\columnwidth]{methane-298-rho-mu}
-    \caption{The density of bulk methane, the ideal gas, and adsorbed gas in several porous materials at 298\ K as a function of chemical potential (bottom axis) and pressure (top axis). The bulk methane density is from the National Institute of Standards and Technology (NIST)~\cite{nist}. The methane adsorption isotherms in the porous materials are experimental data from Ref.~\cite{mason2014evaluating, furukawa2009storage, tian2018sol, gandara2014high, zhang2017fine}.
+    \caption{The density of bulk methane, the ideal gas, and adsorbed gas in several porous materials at 298\,K as a function of chemical potential (bottom axis) and pressure (top axis). The bulk methane density is from the National Institute of Standards and Technology (NIST)~\cite{nist}. The methane adsorption isotherms in the porous materials are experimental data from Ref.~\cite{mason2014evaluating, furukawa2009storage, tian2018sol, gandara2014high, zhang2017fine}.
     }
     \label{fig:density-vs-mu-ch4}
   \end{figure}
   
-  To place an upper bound on the deliverable capacity, consider a substrate whose
+To place an upper bound on the deliverable capacity, consider a substrate whose
 sole interaction with the gas is to introduce a spatially uniform potential
 energy $\V$ for gas molecules in the control volume (where $\V<0$ for an
 attractive potential). Because this interaction is uniform within the
@@ -493,7 +492,7 @@ homogeneous substrate with the optimal potential energy is an upper bound
 because, in a real material, (i) spatial inhomogeneity of the potential
 energy results in some points in the control volume offering a suboptimal
 attraction for the gas and (ii) the atoms required to create the potential
-field exclude gas from occupying a fraction of the control volume.
+field exclude gas from occupying a fraction of the control volume and thus reduce utilized space.
 
 The spatially uniform potential $\V$ representing gas-substrate interactions
 behaves as an external potential and effectively shifts the chemical potential
@@ -518,7 +517,7 @@ homogeneous substrate as a function of $\V$ is the difference between two
 shifted versions of $\rho_g(\mu; T)$. Figure~\ref{fig:methane-298-D} shows the
 two shifted bulk methane density curves and their difference. The horizontal
 axis is the difference in molar Gibbs free energy of the gas, at fixed density (the density in the adsorbent) and temperature, between the gas within the substrate and the pure gas (\gst),
-which is equal to $\V$ in our model, and is pressure-dependent in a real
+which is equal to $\V$ in our model, but is pressure-dependent in a real
 crystal~(see Sec.~\ref{sec:phi-is-delta-g}). We see a potential $\V$ that
 maximizes the deliverable capacity of our ideal substrate, balancing the need
 to maximize the density at $\pfull$ against the need to minimize residual gas
@@ -603,10 +602,10 @@ We recognize this as the grand canonical partition function of the bulk gas in
 the control volume without the external potential, but shifted in chemical
 potential:
 \begin{equation}
-    \Xi(\mu, V, T)=\Xi_0(\mu - \V, V, T)
+    \Xi(\mu, V, T)=\Xi_g(\mu - \V, V, T)
     \label{eq:xi_vs_xi0}
 \end{equation}
-where $\Xi_0(\mu, V, T)$ is the grand partition function of the bulk
+where $\Xi_g(\mu, V, T)$ is the grand partition function of the bulk
 gas in the control volume in the absence of an external potential. Importantly,
 this equivalency depends on the potential $\V$ being spatially uniform.
 Therefore, the thermodynamic properties of the gas atoms in the spatially
