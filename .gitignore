@@ -63,3 +63,5 @@ isosteric-heat.pdf
 *__pycache__*
 *.pyc
 *.nfs*
+*.cb
+*.cb2
