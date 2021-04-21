@@ -726,16 +726,21 @@ shift of molar Gibbs free energy provided by the substrate, specifically an
 \end{equation}
 The isosteric Gibbs free energy difference $\gst$ is the difference in molar
 Gibbs free energy (equivalent to chemical potential) between the adsorbed gas system and
-the bulk gas \emph{with the same density of gas molecules}. The quantity $\gst$
+the bulk gas \emph{with the same density of gas molecules} and at the same temperature. The quantity $\gst$
 does \emph{not} correspond to a change in the molar Gibbs free energy as a
 molecule is adsorbed, which is zero under conditions of coexistence. The
 quantity $\gst$ in a real substrate is a direct analog to $\V$ in our ideal
 substrate because it is the chemical potential shift needed to impose on the
 bulk gas in coexistence with the real substrate to achieve the same density as
 in the substrate (compare with eqn.~\ref{eq:xi_vs_xi0}).
-Figure~\ref{fig:delta-G-cartoon} illustrates a hypothetical experiment to
-measure $\gst$ via a piston with a removable partition that separates a volume
-of free space from the same volume of substrate. Note that $\gst$ is a property
+Figure~\ref{fig:delta-G-cartoon} illustrates $\gst$.
+% David:  no longer illustrates the expt.
+A hypothetical experiment to measure $\gst$ is via a piston with a removable partition that separates a volume of free space from the same volume of substrate.
+Initialize the experiment with all gas in the free space and an empty substrate.
+Then, slowly (i) remove the partition and (ii) use the piston to push the gas into the substrate and eliminate the free space volume, in an isothermal process.
+$\gst$ is the ... \davidsays{wut? energy it takes to do this or?}
+% David: what is GST
+Note that $\gst$ is a property
 of both the substrate and the identity of the gas. Because real substrates
 offer a \emph{non}-spatially uniform potential, $\gst(\rho, T)$ is a function
 of $\rho$ and $T$, unlike our ideal, homogenous substrate where $\gst(\rho,
@@ -757,6 +762,7 @@ $\mu_{\text{ads}}(\rho, T)=\mu_{\text{gas}}(p, T)$. We can then also look up
 the known chemical potential of the bulk gas at the same density and
 temperature as in the substrate, $\mu_{\text{gas}}(\rho, T)$. Via
 eqn.~\ref{eq:g_st}, $\gst$ follows from subtracting the two quantities.
+% David: is it fishy to say \mu_gas(p) then \mu_gas(\rho)? seems sloppy notation or is it ok?
 
 An interesting question is how $\gst$ relates to the commonly measured and
 reported isosteric heat of adsorption $q_{st}$, which is roughly the energy
@@ -923,7 +929,7 @@ below the upper bound. Actual adsorbents fall far short of the theoretical maxim
 Why do we not experimentally observe materials approaching the upper bound on
 the deliverable capacity? First and foremost, any adsorbent substrate will be composed of
 atoms, which will exclude the gas from some volume. Due to strong short-range
-interactions, substrate atoms must be approximately uniformly distributed to achieve strong
+interactions, from a longer length-scale perspective, substrate atoms must be approximately uniformly distributed to achieve strong
 attraction for gas atoms, imposing a limit on the pore
 volume. Second, in contrast to the homogeneous substrate, real materials have a spatially non-uniform attraction for
 gas atoms. As a result, there are regions of space with
