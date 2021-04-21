@@ -941,51 +941,71 @@ optimal deliverable capacity at room temperature.
 \begin{figure}
     \centering
     \includegraphics[width=0.95\columnwidth]{figs/two-phase}
-    \caption{Cartoon of our model.}
+    \caption{Cartoon of a two-phase, collapsing material. The material can exist in two phases: an open phase in which gas molecules can adsorb and a closed phase that is collapsed and cannot fit any gas molecules. Take the closed phase as more stable, so that the material can collapse and expels residual gas.
+    The pressure of gas at which the structural transition occurs depends on the gas-host interactions and relative stability of the phases. We wish for the structural transition to occur between $\pfull$ and $\pempty$.
+    }
     \label{fig:flexible-cartoon}
 \end{figure}
+
 \section{Flexible two-phase model}
 \begin{figure}
     \centering
     \includegraphics[width=0.95\columnwidth]{methane-298-flexible}
-    \caption{Deliverable capacity of methane in a flexible substrate at 298\ K as a function of the free energy difference 
+    \caption{Maximal possible deliverable capacity of methane in a two-phase, collapsing substrate at 298\ K as a function of the free energy difference 
       between open and closed phases. The experimental deliverable capacity for Co(bdp) is shown for
        comparison~\cite{fixme}, along with the free energy difference between open and closed conformations~\cite{fixthis}.}
     \label{fig:methane-flexible}
 \end{figure}
-Although our limit does not directly apply to materials that change conformation in
-response to gas adsorption, we can make an estimate of the benefits to be gained
-materials such as \davidsays{FIXME AND CITE} which undergo a phase change in the
-presence of gas.  We can model such a material as a two-phase system with one ``open''
-phase and a ``closed'' phase in which all gas is expelled.  We assume there is a
-free energy difference $\Delta G$ between the two phases in the absence of gas, with
-the closed phase more stable.  In addition, we assume a $\V$ as above \davidsays{REFERENCE EQUATION?}
-for the adsorption of gas into the open phase.  In order for the system to benefit
-from the two phases, the open phase must be preferred at $\pfull$, with the closed phase
-preferred at $\pempty$.  This requires that
+Although our deliverable capacity limit does not directly apply to materials that change conformation in
+response to gas adsorption, we can estimate enhancements in the deliverable capacity provided by
+such materials. 
+For example, consider a material such as Co(bdp) \cite{mason2015methane} that 
+can, actuated by the presence of gas, switch between two structural phases: 
+an ``open'' phase where gas molecules can fit in the pore space and a 
+collapsed, ``closed'' phase in which no gas can fit inside.
+Let $\Delta G=G_{\text{open}}-G_{\text{closed}}$ be the free energy difference between the two phases in the absence of gas.
+% David: introduce units of delta G here.
+Suppose the closed phase is more stable ($\implies \Delta G >0$), so that upon a reduction in the pressure of the gas, the material will collapse and expel all residual gas to enhance the deliverable capacity compared to rigid materials that will retain some gas at $\pempty$. 
+In addition, we assume the open phase hosts a uniform, attractive potential energy field $\V<0$ for gas molecules to adsorb, so that eqn.~\ref{eq:xi_vs_xi0} holds for the open phase of the material.
+For an enhancement of the deliverable capacity by this two-phase, flexible material, 
+the open phase must be preferred at $\pfull$, with the closed phase preferred at $\pempty$. 
+This requires that, neglecting gas-gas interactions:
+% David: doesn't this also neglect entropy? wut about the *free energy* of the gas?
+% David: I suggest \Delta G_{host} to be clear?
 \begin{align}
-    V_{\text{open}}|\rho_{\text{open}}(\pfull)\V| &> |\Delta G| \\
-    V_{\text{open}}|\rho_{\text{open}}(\pempty)\V| &< |\Delta G|
+    V_{\text{open}}|\rho_{\text{open}}(\pfull)\V| &> \Delta G \\
+    V_{\text{open}}|\rho_{\text{open}}(\pempty)\V| &< \Delta G
 \end{align}
-where $\rho_{\text{open}}(p)$ is the density of gas in the open phase of the material at
-the given pressure.  This model has no upper bound on the deliverable capacity, since
-$\V$ and $\Delta G$ can together be increased without bound.  We can, however, place a
-bound for a fixed $\Delta G$, since if the gas is too strongly attracted to the open phase
-the material will remain open at $\pempty$.  This upper bound is found by identifying the
-attractive interaction $\V$ that solves the equation
+% David: I put \V<0, think we should say the sign of \Delta G to be clear too.
+% David: specify units on \delta G so clear where V comes from; might be better to absorb V into delta G?
+where $\rho_{\text{open}}(p)$ is the density of gas in the open phase of the material at pressure $p$. 
+I.e., (1, to be open at $\pfull$) the gas-host attractions at $\pfull$ must overcome the free energy penalty to open the structure and 
+(2, to be closed at $\pempty$) the free energy penalty to open the structure must be larger than the (weak) gas-host attractions at $\pempty$.
+This approximate model of the two-phase material has no upper bound on the deliverable capacity, since
+$\V$ and $\Delta G$ can together be increased without bound.
+We can, however, place a bound for a fixed $\Delta G$, since if the gas is too strongly attracted to the open phase,
+the material will remain open at $\pempty$ and our rigid upper bound applies.
+% David: does our rigid upper bound apply then?
+The upper bound for the two-phase material is found by identifying the
+attractive interaction $\V$ that balances the gas-host attractions in the idealized-open-substrate at $\pempty$ with the free energy penalty to open:
 \begin{align}
-    \rho(\muempty{} + \V)\V = \Delta G/V_{\text{open}}
+    V_{\text{open}} \rho_g(\muempty{} - \V_{opt}, T)\V_{opt} = \Delta G.
 \end{align}
-for $\V$, which gives the largest attraction consistent with the material closing
-at the empty pressure.
+% David: left is negative. what is the right? negative as well? how did u define it?
+This gives the largest possible attraction $|\V|$ consistent with the material closing
+at $\pempty$ to expel all residual gas. 
+The deliverable capacity is then the density of gas in the open phase at $\pfull$, $\rho_g(\mufull{} - \V_{opt}, T)$.
+% David: changed it to \V_opt, or not necessary?
+
 Figure~\ref{fig:methane-flexible} illustrates
-how this upper bound depends on $\Delta G$ for methane.  For comparison, we include the free energy
-difference for Co(bdp)~\davidsays{CITE} and its measured deliverable capacity.  While this
-upper bound is not rigorous, it suggests that a two-phase flexible material for methane storage
+how the upper bound on the deliverable capacity in a two-phase, collapsing material depends on $\Delta G$ for methane. 
+For comparison, we include the free energy
+difference for Co(bdp)~\davidsays{CITE} and its measured deliverable capacity.  
+While this upper bound is not rigorous, it suggests that a two-phase flexible material for methane storage
 would benefit from significantly greater stability of the closed phase---provided the open phase
 had correspondingly greater attraction for the gas molecules.  Figure~\ref{fig:hydrogen-flexible}
-shows the corresponding result for hydrogen storage, indicating that for a flexible material to
-reach the DOE ULTIMATE deliverable capacity would require far greater stability for the closed
+shows the corresponding result for hydrogen storage, indicating that, for a flexible material to
+reach the DOE ULTIMATE deliverable capacity, it would require far greater stability for the closed
 phase, as well as an unprecedented level of attractive interaction for hydrogen.
 
 \begin{figure}
