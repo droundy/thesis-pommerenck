@@ -50,7 +50,10 @@
 
 \usepackage[color]{changebar}
 \cbcolor{red}
-\newcommand\startreferees[1]{\cbstart \marginpar{\color{red} #1}}
+\newcommand\startreferees[1]{\cbstart \noindent\textit{\color{red}%
+[\textbf{To referees:} #1]}
+
+}
 \newcommand\donereferees{\cbend}
 
 \newcommand{\addcite}{{\bf \color{red} []}}
@@ -332,6 +335,7 @@ storage.
     \caption{\label{fig:fig1} Gas storage and delivery using metal-organic frameworks (MOFs). (\subref{fig:example_MOF}) the crystal structure of an archetype MOF, CuBTC \cite{chui1999chemically}. (\subref{fig:delcap}) the methane adsorption isotherm in CuBTC \cite{chui1999chemically} at 298 K (blue) (data from Ref.~\cite{mason2014evaluating}). The deliverable capacity $\rho_D$ is illustrated as the density of gas in the MOF at the storage pressure $\pfull$ minus the density at the discharge pressure $\pempty$.}
 \end{figure}
 
+\startreferees{Deliverable capacity defined below}
 For a vehicle employing a porous material to store natural gas or hydrogen, the
 (volumetric) \emph{deliverable capacity} of the gas is the primary
 thermodynamic property that determines the driving
@@ -354,6 +358,8 @@ minimum of -40 $^\circ$C~\cite{allendorf2018assessment}. Thus far, despite the
 emergence of highly tunable materials with large surface areas, such as
 metal-organic frameworks~\cite{furukawa2013chemistry} and covalent organic 
 frameworks~\cite{diercks2017atom}, no porous material has met these deliverable capacity targets.
+
+\donereferees
 
 % \begin{figure}
 %     \centering
@@ -947,7 +953,7 @@ non-optimal attraction. For hydrogen, there is the further issue that there are
 no known \emph{physical} interactions that are sufficiently strong to give an
 optimal deliverable capacity at room temperature.
 
-\startreferees{Flexible MOFs}
+\startreferees{Flexible MOFs section added below}
 \begin{figure}
     \centering
     \includegraphics[width=0.95\columnwidth]{figs/two-phase}

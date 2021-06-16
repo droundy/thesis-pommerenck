@@ -2,8 +2,7 @@
 
 Dear editor,
 
-The responses of referees 1 and 3 could hardly be more divergent.  We FIXME
-SHOULD ADD A SUCCINCT ARGUMENT HERE WHY REFEREE 3 IS BETTER.
+The responses of referees 1 and 3 could hardly be more divergent.  Our work is impactful precisely because it can tell researchers when to stop looking... or perhaps more relevantly it can tell funding agencies when to stop funding research in this direction.  This is threatening, and Referee 1 doesn't seem interested in knowing whether we should stop looking at porous materials for natural gas and hydrogen storage.
 
 # Referee 1
 
@@ -35,7 +34,13 @@ skeletal density, packing density, different adsorption sites etc."
 
 The other suggestion of Referee 1 is that we clearly state the capacity that we report, as discussed by Parilla et al.
 
-TODO: We must do so.
+   The deliverable capacity is defined in the paper as "the density of the gas
+   in the material at the storage pressure p_full minus the residual gas that
+   remains adsorbed at the lowest pressure p_empty such that sufficient flow is
+   maintained to feed the engine."  We believe this is clear. The various
+   capacities of Parilla et al. are geared towards experimental measurements and
+   account for experimental uncertainty in the volume of material, an issue
+   which is not present in a theoretical paper.  We note that the paper Referee 1 brought up as an example does not any more clearly define "usable capacity" as they refer to what we call "deliverable capacity".  They do cite Parilla et al., but only in the context of describing their experimental equipment.
 
 # Referee 3
 
