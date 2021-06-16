@@ -50,7 +50,7 @@
 
 \usepackage[color]{changebar}
 \cbcolor{red}
-\newcommand\startreferees{\cbstart}
+\newcommand\startreferees[1]{\cbstart \marginpar{\color{red} #1}}
 \newcommand\donereferees{\cbend}
 
 \newcommand{\addcite}{{\bf \color{red} []}}
@@ -947,7 +947,7 @@ non-optimal attraction. For hydrogen, there is the further issue that there are
 no known \emph{physical} interactions that are sufficiently strong to give an
 optimal deliverable capacity at room temperature.
 
-\startreferees
+\startreferees{Flexible MOFs}
 \begin{figure}
     \centering
     \includegraphics[width=0.95\columnwidth]{figs/two-phase}
