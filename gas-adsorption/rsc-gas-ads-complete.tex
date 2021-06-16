@@ -50,6 +50,8 @@
 
 \usepackage[color]{changebar}
 \cbcolor{red}
+\newcommand\startreferees{\cbstart}
+\newcommand\donereferees{\cbend}
 
 \newcommand{\addcite}{{\bf \color{red} []}}
 \newcommand{\rvec}{\mathbf{r}}
@@ -945,7 +947,7 @@ non-optimal attraction. For hydrogen, there is the further issue that there are
 no known \emph{physical} interactions that are sufficiently strong to give an
 optimal deliverable capacity at room temperature.
 
-\cbstart
+\startreferees
 \begin{figure}
     \centering
     \includegraphics[width=0.95\columnwidth]{figs/two-phase}
@@ -1024,7 +1026,7 @@ phase, as well as an unprecedented level of attractive interaction for hydrogen.
     \label{fig:hydrogen-flexible}
 \end{figure}
 
-\cbend
+\donereferees
 
 \section{Conclusions}
 We have established an upper bound on the deliverable capacity via
