@@ -26,11 +26,9 @@ skeletal density, packing density, different adsorption sites etc."
     manifestly have no impact on the property we are studying, which is
     volumetric storage capacity.  Others of course do impact the volumetric
     storage capacity of a material, but do not relate to an upper bound
-    specifically.  TODO: We do add a discussion of the pore volume fraction
-    and how it can constrained by our upper bound, to make more clear the
-    range of applications of our bound.  TODO: We can put a lower bound on
-    pore volume fraction contingent on the maximum density having a given value.
-    It will take some explanation, but I think is worthwhile.
+    specifically.
+    
+    As discussed in the second and third paragraphs of the results section, our results do put a lower bound of 85% on the void fraction for any porous material that will meet the ARPA-E target for methane volumetric deliverable capacity, and a lower bound of 94% for a material reaching the DOE ULTIMATE target for hydrogen at 298K.  These results *can* guide exploration, if we assume that reaching those targets is the goal.
 
 The other suggestion of Referee 1 is that we clearly state the capacity that we report, as discussed by Parilla et al.
 
