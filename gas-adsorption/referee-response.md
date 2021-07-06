@@ -59,8 +59,7 @@ the DOE targets.
    conditions to reach the DOE target.  They further suggest looking at a
    temperature difference to see how that could impact the deliverable capacity.
 
-TODO: Add *some* sort of extra discussion on the topic.  Our model cannot
-predict a temperature+pressure swing cycle because that would require
-information about the entropy of adsorption at the two temperatures, which is
-rather trickier, I think.
+We added a sentence mentioning that we cannot apply our upper bound in the case
+where the temperature is changed, because a uniform potential may no longer lead
+to the optimal deliverable capacity.
 
