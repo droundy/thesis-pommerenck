@@ -38,6 +38,10 @@ c __pycache__
 c .pyc
 c __pycache__
 
+| python3 isothermal-ads-gas-cartoon.py noshow
+c .pyc
+c __pycache__
+
 # BUILD THE MAIN PAPER
 # | pdflatex isosteric-heat.tex && bibtex isosteric-heat && pdflatex #isosteric-heat.tex && pdflatex isosteric-heat.tex
 
