@@ -66,7 +66,6 @@ the DOE targets.
    conditions to reach the DOE target.  They further suggest looking at a
    temperature difference to see how that could impact the deliverable capacity.
 
-We added a sentence mentioning that we cannot apply our upper bound in the case
+We added a short explanation of why we cannot apply our upper bound in the case
 where the temperature is changed, because a uniform potential may no longer lead
-to the optimal deliverable capacity.
-
+to the optimal deliverable capacity.  Specifically, a non-uniform potential will decrease the entropy of the adsorbed gas, and that decrease will make it easier to desorb the gas by raising the temperature.
