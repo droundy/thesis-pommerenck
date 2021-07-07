@@ -11,12 +11,15 @@ materials are not very helpful, if not useless."  The referee fails to grasp
 that our theory *does* take into account the gas, and places a fundamental limit
 on the capacity of an entire class of materials (inflexible porous materials).
 This is far from useless.  The referee suggests as superior an approach
-involving screening hundreds of thousands of actual MOFs.  We will point out
-that such an approach cannot possibly determine that there isn't a better MOF
-out there, while our approach can do so.
+involving screening hundreds of thousands of actual or theoretical MOFs.
 
-TODO: We should find a place to edit the paper to make this more clear, and
-state here that we did so.
+    Such a study is indeed valuable for guiding the development of improved MOFs,
+    but is entirely unable to place a rigorous upper bound on the attainable
+    capacity, since it is always possible that there is a better structure out
+    there. We have edited the paragraph on page 3 of the paper that discusses
+    this sort of study to make this more clear (and added a reference the paper
+    by Ahmed et al.).
+
 
 The referee gives a litany of structural properties that we do not address in
 our model: "pore volume, pore size, specific surface area, crystal density,
