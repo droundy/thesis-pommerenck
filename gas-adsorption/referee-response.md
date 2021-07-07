@@ -2,7 +2,18 @@
 
 Dear editor,
 
-The responses of referees 1 and 3 could hardly be more divergent.  Our work is impactful precisely because it can tell researchers when to stop looking... or perhaps more relevantly it can tell funding agencies when to stop funding research in this direction.  This is threatening, and Referee 1 doesn't seem interested in knowing whether we should stop looking at porous materials for natural gas and hydrogen storage.
+Thank you so much for being so flexible with extensions to the deadline for our
+paper revision.  We have made a few major changes in response in particular to
+suggestions by referee 3 (see below).  The revised PDF has substantially
+modified sections noted with a red bar in the margin, and a short red note
+explaining what the change was.
+
+The responses of referees 1 and 3 could hardly be more divergent.  Our work is
+impactful precisely because it can tell researchers when to stop looking... or
+perhaps more relevantly it can tell funding agencies when to stop funding
+research in this direction.  This is threatening, and Referee 1 doesn't seem
+interested in knowing whether we should stop looking at porous materials for
+natural gas and hydrogen storage.
 
 # Referee 1
 
