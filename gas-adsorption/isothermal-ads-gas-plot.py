@@ -352,35 +352,29 @@ plt.legend(loc='lower right')
 plt.tight_layout()
 plt.savefig('figs/' + basename + '-' + temperature + '-gst.pdf', transparent=True)
 
-plt.figure('capacity vs Delta F', figsize=(5,3.75))
+fig, ax = plt.subplots(2, 1, sharex=True, figsize=(5,3.75),
+                       gridspec_kw={'height_ratios': [0.8,2]})
 
-# delta_F_units = kJ/cm**3
-# delta_F_unit_name = 'kJ/cm$^3$'
 delta_F_units = J/cm**3
 delta_F_unit_name = 'J/cm$^3$'
-# delta_F_units = kJ/angstrom**3
-# delta_F_unit_name = f'kJ/$\AA^3$'
 
+max_delta_F = 0.03*kJ/cm**3
 
-delta_F_flexible = np.linspace(0, 0.04*kJ/cm**3, 300)
-capacities = np.zeros_like(delta_F_flexible)
+capacities = np.zeros_like(Gads)
 
 def n_from_mu_with_nans(particular_mu):
     return np.interp(particular_mu, mu, n, left=np.nan, right=np.nan)
 
-mu_lo = mu_from_p(p_empty)
-n_lo = n_from_mu_with_nans(mu_lo + Gads)
-n_hi = n_from_mu_with_nans(mu_from_p(p_full) + Gads)
-print('n_lo', n_lo/density_units)
-for i in range(len(capacities)):
-    # to_minimize = abs(n_lo*Gads - delta_F_flexible[i])
-    # to_minimize[np.isnan(to_minimize)] = 1e200
-    # which = np.argmin(to_minimize)
-    # capacities[i] = n_hi[which]
-    capacities[i] = np.interp(delta_F_flexible[i], n_lo*Gads, n_hi)
+mu_values = np.linspace(mu[0], mu_empty, 100000)
+dmu = mu_values[1] - mu_values[0]
+grand_free_energy_full = np.zeros_like(Gads)
+for i in range(len(Gads)):
+    grand_integrand = n_from_mu_with_nans(mu_values + Gads[i])
+    grand_free_energy_full[i] = grand_integrand.sum()*dmu
+    capacities[i] = n_from_mu_with_nans(mu_full + Gads[i])
 
 for n_goal, label, color, style in gas.n_goals:
-    plt.text(delta_F_flexible[len(delta_F_flexible)//4]/delta_F_units,
+    plt.text(max_delta_F/delta_F_units/4,
              n_goal/density_units, label, color=color,
              verticalalignment = 'center_baseline',
              horizontalalignment = 'left',
@@ -389,26 +383,29 @@ for n_goal, label, color, style in gas.n_goals:
 
 plt.axhline(ymax, color='g', linestyle='--', linewidth=0.5)
 
-volume_cobdp = 773.58*angstrom**3
-delta_F_cobdp = 3.3*kJ/mol/volume_cobdp
-
-methane_codbp_capacity = 196 # Mason et al. Nature "Methane storage in flexible ..."
-
-experiment_symbol = ''
 if basename == 'methane':
+    volume_cobdp = 773.58*angstrom**3
+    delta_F_cobdp = 4.1*kJ/mol/volume_cobdp # Mason et al. Nature "Methane storage in flexible ..."
+
+    methane_codbp_capacity = 196 # Mason et al. Nature "Methane storage in flexible ..."
+
+    experiment_symbol = ''
+    
     experiment_symbol = colors.symbol(basename)
     plt.plot([delta_F_cobdp/delta_F_units],
-             [methane_codbp_capacity], experiment_symbol, color='xkcd:green', markersize=12)
-plt.plot([delta_F_cobdp/delta_F_units, delta_F_cobdp/delta_F_units],
-         [-capacities.max()/density_units, 1.1*capacities.max()/density_units],
-         experiment_symbol+'-', color='xkcd:green', label='Co(bdp)',
-         markersize=12, linewidth=0.5)
+            [methane_codbp_capacity], experiment_symbol, color='xkcd:green', markersize=12, label='Co(bdp)')
+    
+    # plt.plot([delta_F_cobdp/delta_F_units, delta_F_cobdp/delta_F_units],
+    #         [-capacities.max()/density_units, 1.1*capacities.max()/density_units],
+    #         experiment_symbol+'-', color='xkcd:green', label='Co(bdp)',
+    #         markersize=12, linewidth=0.5)
 
 # delta_F_MIL_53 = 2.5*kJ/mol/(1012*angstrom**3)
 # plt.plot([delta_F_MIL_53/delta_F_units, delta_F_MIL_53/delta_F_units],
 #          [0, capacities.max()/density_units], label='MIL-53(Cr)')
 
-plt.plot(delta_F_flexible/delta_F_units, capacities/density_units, '-', label='Two-phase upper bound')
+# plt.plot(delta_F_flexible/delta_F_units, capacities/density_units, '-', label='Two-phase upper bound')
+plt.plot(grand_free_energy_full/delta_F_units, capacities/density_units, '-', label='Two-phase upper bound')
 
 # this paper gives the \Delta F of Co(BDP) at 77 K as 3.3 kJ/mol, of
 # Cu(4,4′-bipy)(dhbc)2 at 298 K as ~ 4 kJ/mol (see table 1) and for MIL-53 at 304
@@ -416,13 +413,32 @@ plt.plot(delta_F_flexible/delta_F_units, capacities/density_units, '-', label='T
 # and they treat the MOF as a two-state system, which is kind of true. so yeah
 # these are directly appropriate for comparing to our model.
 
-plt.xlabel(rf'$\Delta G/V_{{open}}$ ({delta_F_unit_name})')
-plt.ylabel(r'$\rho_D$ (%s) two-phase assumption' % density_unit_name)
-plt.xlim(delta_F_flexible.min()/delta_F_units, delta_F_flexible.max()/delta_F_units)
-plt.ylim(0, capacities.max()/density_units)
+plt.xlabel(rf'$\left(F_{{\textrm{{open}}}}-F_{{\textrm{{closed}}}}\right)/V_{{\textrm{{open}}}}$ ({delta_F_unit_name})')
+plt.ylabel(r'$\rho_D$ (%s)' % density_unit_name)
+plt.xlim(0, max_delta_F/delta_F_units)
+max_density = capacities[grand_free_energy_full < max_delta_F].max()
+for n_goal, _, _, _ in gas.n_goals:
+    if 1.1*n_goal > max_density:
+        max_density = 1.1*n_goal
+if 1.1*ymax*density_units > max_density:
+    max_density = 1.1*ymax*density_units
+plt.ylim(0, max_density/density_units)
 
-plt.legend()
+plt.legend(loc='lower right', title='%s\n$p_{\mathrm{full}} = $ %g bar\n$p_{\mathrm{empty}} = $ %g bar\n$T=%g$ K'
+         % (gas.Name,
+            p_full/bar,
+            p_empty/bar,
+            T[0]/Kelvin,
+         ))
+
+# ax2 = plt.gca().twinx()
+ax[0].plot(grand_free_energy_full/delta_F_units, Gads/(kJ/mol), 'r:', label='$\Phi_{\mathrm{opt}}$')
+ax[0].set_ylabel('$\Phi_{\mathrm{opt}}$ (kJ/mol)')
+ax[0].set_ylim(0, 10)
+
 plt.tight_layout()
+plt.subplots_adjust(wspace=0,
+                    hspace=0)
 plt.savefig('figs/' + basename + '-' + temperature + '-flexible.pdf', transparent=True)
 
 if 'noshow' not in sys.argv:

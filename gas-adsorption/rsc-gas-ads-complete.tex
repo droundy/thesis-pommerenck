@@ -990,21 +990,58 @@ optimal deliverable capacity at room temperature.
        comparison, along with the free energy difference between open and closed conformations~\cite{mason2015methane}.}
     \label{fig:methane-flexible}
 \end{figure}
-While our deliverable capacity limit does not apply to materials that change conformation in
-response to gas adsorption, here we adapt our theoretical framework to pertain to bistable adsorbents modeled after Co(bdp) \cite{mason2015methane}.
-Actuated by the presence of gas, Co(bdp) can switch between two distinct structural phases:
-an ``open'' phase where gas molecules can fit in the pore space and a 
-collapsed, ``closed'' phase in which no gas can fit inside.
+While our deliverable capacity limit does not apply to materials that change
+conformation in response to gas adsorption, here we adapt our theoretical
+framework to pertain to bistable adsorbents modeled after Co(bdp)
+\cite{mason2015methane}. Actuated by the presence of gas, Co(bdp) can switch
+between two distinct structural phases: an ``open'' phase where gas molecules
+can fit in the pore space and a collapsed, ``closed'' phase in which no gas can
+fit inside.
 
-We follow Coudert et al. \cite{coudert2008thermodynamics} in developing a thermodynamic model for a two-phase adsorbent. 
-Let $\Delta F=F_{\text{open}}-F_{\text{closed}}$ be the Helmholtz free energy difference per mole of adsorbent between the two phases in the absence of gas.
-Suppose the closed phase is more stable ($\implies \Delta F >0$), so that upon a reduction in the pressure of the gas, the material will collapse and expel all residual gas to enhance the deliverable capacity compared to rigid materials that will retain some gas at $\pempty$. 
-In addition, assume the open phase hosts a uniform, attractive potential energy field $\V<0$ for gas molecules to adsorb, so that eqn.~\ref{eq:xi_vs_xi0} holds for the open phase of the material.
-In terms of $\rho_g(\mu, T)$, then, the grand potential $\Omega$ in our idealized substrate is:
+We follow Coudert et al. \cite{coudert2008thermodynamics} in developing a
+thermodynamic model for a two-phase adsorbent. Let $\Delta
+F=F_{\text{open}}-F_{\text{closed}}$ be the Helmholtz free energy difference per
+mole of adsorbent between the two phases in the absence of gas. Suppose the
+closed phase is more stable ($\implies \Delta F >0$), so that upon a reduction
+in the pressure of the gas, the material will collapse and expel all residual
+gas to enhance the deliverable capacity compared to rigid materials that will
+retain some gas at $\pempty$. In addition, assume the open phase hosts a
+uniform, attractive potential energy field $\V<0$ for gas molecules to adsorb,
+so that eqn.~\ref{eq:xi_vs_xi0} holds for the open phase of the material.  This
+approximate model of the two-phase material has no upper bound on the
+deliverable capacity, since $\V$ and $\Delta F$ can together be increased
+without bound.  We can, however, place a bound for a fixed $\Delta F$, since if
+the gas is too strongly attracted to the open phase, the material will remain
+open at $\pempty$ and our rigid upper bound applies.
+
+The upper bound for the two-phase material is found by identifying the
+attractive interaction $\V$ that balances the gas-host attractions in the
+idealized-open-substrate at $\pempty$ with the free energy penalty to open.
+
+
+In
+terms of $\rho_g(\mu, T)$, then, the grand potential $\Omega$ in our idealized
+substrate is:
 \begin{equation}
     \Omega(T, \mu) = - \int_{-\infty}^\mu \rho_g(\mu-\V)d\mu.
 \end{equation}
-However, the \emph{osmotic potential} 
+However, the \emph{osmotic potential} governs which phase the material adopts.
+The material changes phases when osmotic potentials of the two phases are equal.
+% At the pressure at which they switch when the osmotic potentials in the two phases
+% are equal.
+The upper bound for the two-phase material is found by identifying the largest
+possible attraction $|\V|$ consistent with the material transitioning between
+$\pempty$ and $\pfull$ to expel all residual gas.
+%
+This means the material should change phases at pressure $\pempty$, which gives
+\begin{align}
+    % F_{closed} + 0 &= F_{open} + \Omega(T, \mu) \\
+    \frac{\Delta F}{V_{\text{open}}} &= \int_{-\infty}^{\muempty} \rho_g(\mu-\V_{opt})d\mu.
+\end{align}
+where we follow Coudert \emph{et al.}\cite{coudert2008thermodynamics} and
+neglect the $pV$ terms, and $V_{\text{open}}$ is the molar volume of the open
+phase.
+
 % David: introduce units of delta G here.
 
 For an enhancement of the deliverable capacity by this two-phase, flexible material, 
@@ -1024,15 +1061,19 @@ terms in the Gibbs free energy.
 %under the assumption that the mechanical
 %work associated with the transition is neglible when compared with the
 %adsorption energies involved.
-I.e., (1, to be open at $\pfull$) the gas-host attractions at $\pfull$ must overcome the free energy penalty to open the structure and 
-(2, to be closed at $\pempty$) the free energy penalty to open the structure must be larger than the (weak) gas-host attractions at $\pempty$.
-This approximate model of the two-phase material has no upper bound on the deliverable capacity, since
-$\V$ and $\Delta F$ can together be increased without bound.
-We can, however, place a bound for a fixed $\Delta F$, since if the gas is too strongly attracted to the open phase,
-the material will remain open at $\pempty$ and our rigid upper bound applies.
+I.e., (1, to be open at $\pfull$) the gas-host attractions at $\pfull$ must
+overcome the free energy penalty to open the structure and (2, to be closed at
+$\pempty$) the free energy penalty to open the structure must be larger than the
+(weak) gas-host attractions at $\pempty$. This approximate model of the
+two-phase material has no upper bound on the deliverable capacity, since $\V$
+and $\Delta F$ can together be increased without bound. We can, however, place a
+bound for a fixed $\Delta F$, since if the gas is too strongly attracted to the
+open phase, the material will remain open at $\pempty$ and our rigid upper bound
+applies.
 % David: does our rigid upper bound apply then?
 The upper bound for the two-phase material is found by identifying the
-attractive interaction $\V$ that balances the gas-host attractions in the idealized-open-substrate at $\pempty$ with the free energy penalty to open:
+attractive interaction $\V$ that balances the gas-host attractions in the
+idealized-open-substrate at $\pempty$ with the free energy penalty to open:
 \begin{align}
     V_{\text{open}} \rho_g(\muempty{} - \V_{opt}, T)\V_{opt} = \Delta F.
 \end{align}
