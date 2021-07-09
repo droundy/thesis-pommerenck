@@ -38,9 +38,14 @@ c __pycache__
 c .pyc
 c __pycache__
 
+| python3 isothermal-ads-gas-cartoon.py noshow
+c .pyc
+c __pycache__
+
 # BUILD THE MAIN PAPER
 # | pdflatex isosteric-heat.tex && bibtex isosteric-heat && pdflatex #isosteric-heat.tex && pdflatex isosteric-heat.tex
 
+| inkscape --export-filename figs/g_st_simple.pdf figs/g_st_simple.svg || inkscape --export-pdf figs/g_st_simple.pdf figs/g_st_simple.svg
 | inkscape --export-filename figs/two-phase.pdf figs/two-phase.svg || inkscape --export-pdf figs/two-phase.pdf figs/two-phase.svg
 | inkscape --export-filename figs/four-cases.pdf figs/four-cases.svg || inkscape --export-pdf figs/four-cases.pdf figs/four-cases.svg
 | inkscape --export-filename figs/four-cases-pro.pdf figs/four-cases-pro.svg || inkscape --export-pdf figs/four-cases-pro.pdf figs/four-cases-pro.svg

@@ -50,6 +50,11 @@
 
 \usepackage[color]{changebar}
 \cbcolor{red}
+\newcommand\startreferees[1]{\cbstart \noindent\textit{\color{red}%
+[\textbf{To referees:} #1]}
+
+}
+\newcommand\donereferees{\cbend}
 
 \newcommand{\addcite}{{\bf \color{red} []}}
 \newcommand{\rvec}{\mathbf{r}}
@@ -76,6 +81,7 @@
 
 \newcommand{\davidsays}[1]{{\color{red} [\blue{D:} \emph{#1}]}}
 \newcommand{\jpsays}[1]{{\color{red} [\blue{Jordan:} \emph{#1}]}}
+\newcommand{\corysays}[1]{{\color{red} [\blue{Cory:} \emph{#1}]}}
 
 \newtheorem{limitation}{Limitation}
 
@@ -329,6 +335,7 @@ storage.
     \caption{\label{fig:fig1} Gas storage and delivery using metal-organic frameworks (MOFs). (\subref{fig:example_MOF}) the crystal structure of an archetype MOF, CuBTC \cite{chui1999chemically}. (\subref{fig:delcap}) the methane adsorption isotherm in CuBTC \cite{chui1999chemically} at 298 K (blue) (data from Ref.~\cite{mason2014evaluating}). The deliverable capacity $\rho_D$ is illustrated as the density of gas in the MOF at the storage pressure $\pfull$ minus the density at the discharge pressure $\pempty$.}
 \end{figure}
 
+\startreferees{Deliverable capacity defined below}
 For a vehicle employing a porous material to store natural gas or hydrogen, the
 (volumetric) \emph{deliverable capacity} of the gas is the primary
 thermodynamic property that determines the driving
@@ -351,6 +358,8 @@ minimum of -40 $^\circ$C~\cite{allendorf2018assessment}. Thus far, despite the
 emergence of highly tunable materials with large surface areas, such as
 metal-organic frameworks~\cite{furukawa2013chemistry} and covalent organic 
 frameworks~\cite{diercks2017atom}, no porous material has met these deliverable capacity targets.
+
+\donereferees
 
 % \begin{figure}
 %     \centering
@@ -444,10 +453,16 @@ fictitious potential energy fields via a generative adversarial network trained
 on zeolite structures~\cite{lee2019predicting} all generated model substrates
 that failed to meet the ARPA-E methane deliverable capacity target.
 
-Finally, empirical models that statistically relate e.g., surface area to 
-hydrogen adsorption \cite{firlej2013understanding,goldsmith2013theoretical}
-have been used to determine what properties a material must possess to reach
-a given storage target.
+\startreferees{Added discussion of screening studies}
+Finally, a number of empirical studies have been performed that computationally
+simulate an adsorption in a vast array of possible porous
+structures~\cite{firlej2013understanding, goldsmith2013theoretical,
+ahmed2019exceptional}.  Such studies can guide the development of new materials
+by allowing researchers to identify commonalities among materials that have
+desirable properties.  However, such an approach can only place a \emph{lower
+bound} on the highest attainable deliverable capacity.
+
+\donereferees
 
 % Brown and Freeman \cite{bhown2011analysis}
 
@@ -736,12 +751,27 @@ quantity $\gst$ in a real substrate is a direct analog to $\V$ in our ideal
 substrate because it is the chemical potential shift needed to impose on the
 bulk gas in coexistence with the real substrate to achieve the same density as
 in the substrate (compare with eqn.~\ref{eq:xi_vs_xi0}).
-Figure~\ref{fig:delta-G-cartoon} illustrates $\gst$.
+% Figure~\ref{fig:delta-G-cartoon} illustrates  $\gst$.
 % David:  no longer illustrates the expt.
-A hypothetical experiment to measure $\gst$ is via a piston with a removable partition that separates a volume of free space from the same volume of substrate.
-Initialize the experiment with all gas in the free space and an empty substrate.
-Then, slowly (i) remove the partition and (ii) use the piston to push the gas into the substrate and eliminate the free space volume, in an isothermal process.
-$\gst$ is the ... \davidsays{wut? energy it takes to do this or?}
+% A hypothetical experiment to measure $\gst$ is via a piston with a removable partition that separates a volume of free space from the same volume of substrate.
+% Initialize the experiment with all gas in the free space and an empty substrate.
+% Then, slowly (i) remove the partition and (ii) use the piston to push the gas into the substrate and eliminate the free space volume, in an isothermal process.
+% $\gst$ is the ... \corysays{wut? energy it takes to do this or?}
+%
+% \davidsays{Okay, here is an improved experiment to measure $\gst$.  Two containers of
+% equal volume are connected by a hose (with neglible volume).  One container holds
+% the substrate, and the other is empty (apart from gas).    The altitude of one container
+% is adjusted until the number of gas molecules is equal in each container.  The value
+% of $\gst$ is the gravitational potential energy difference of gas molecules in the two
+% boxes.}
+%
+Figure~\ref{fig:delta-G-cartoon} illustrates a hypothetical experiment to
+measure $\gst$.  Two containers of equal volume are connected by a hose.  One
+container holds the substrate, and the other is empty (apart from gas).    The
+altitude of one container is adjusted until the number of gas molecules is equal
+in each container.  The value of $\gst$ is the gravitational potential energy
+difference of gas molecules in the two boxes.
+
 % David: what is GST
 Note that $\gst$ is a property
 of both the substrate and the identity of the gas. Because real substrates
@@ -940,11 +970,11 @@ non-optimal attraction. For hydrogen, there is the further issue that there are
 no known \emph{physical} interactions that are sufficiently strong to give an
 optimal deliverable capacity at room temperature.
 
-\cbstart
+\startreferees{Flexible MOFs section added below}
 \begin{figure}
     \centering
     \includegraphics[width=0.95\columnwidth]{figs/two-phase}
-    \caption{Cartoon of a two-phase, collapsing material. The material can exist in two phases: an open phase in which gas molecules can adsorb and a closed phase that is collapsed and cannot fit any gas molecules. Take the closed phase as more stable, so that the material can collapse and expels residual gas.
+    \caption{Cartoon of a two-phase, collapsing material. The material can exist in two phases: an open phase in which gas molecules can adsorb, and a closed phase that is collapsed and cannot fit any gas molecules. Take the closed phase as more stable, so that the material can collapse and expel residual gas.
     The pressure of gas at which the structural transition occurs depends on the gas-host interactions and relative stability of the phases. We wish for the structural transition to occur between $\pfull$ and $\pempty$.
     }
     \label{fig:flexible-cartoon}
@@ -956,7 +986,7 @@ optimal deliverable capacity at room temperature.
     \includegraphics[width=0.95\columnwidth]{methane-298-flexible}
     \caption{Maximal possible deliverable capacity of methane in a two-phase, collapsing substrate at 298\ K as a function of the free energy difference 
       between open and closed phases. The experimental deliverable capacity for Co(bdp) is shown for
-       comparison~\cite{fixme}, along with the free energy difference between open and closed conformations~\cite{fixthis}.}
+       comparison~\cite{mason2015methane}, along with the free energy difference between open and closed conformations~\cite{mason2015methane, choi2008broadly}.}
     \label{fig:methane-flexible}
 \end{figure}
 Although our deliverable capacity limit does not directly apply to materials that change conformation in
@@ -966,9 +996,10 @@ For example, consider a material such as Co(bdp) \cite{mason2015methane} that
 can, actuated by the presence of gas, switch between two structural phases: 
 an ``open'' phase where gas molecules can fit in the pore space and a 
 collapsed, ``closed'' phase in which no gas can fit inside.
-Let $\Delta G=G_{\text{open}}-G_{\text{closed}}$ be the free energy difference between the two phases in the absence of gas.
+Let $\Delta F=F_{\text{open}}-F_{\text{closed}}$ be the Helmholtz free
+energy difference between the two phases in the absence of gas.
 % David: introduce units of delta G here.
-Suppose the closed phase is more stable ($\implies \Delta G >0$), so that upon a reduction in the pressure of the gas, the material will collapse and expel all residual gas to enhance the deliverable capacity compared to rigid materials that will retain some gas at $\pempty$. 
+Suppose the closed phase is more stable ($\implies \Delta F >0$), so that upon a reduction in the pressure of the gas, the material will collapse and expel all residual gas to enhance the deliverable capacity compared to rigid materials that will retain some gas at $\pempty$. 
 In addition, we assume the open phase hosts a uniform, attractive potential energy field $\V<0$ for gas molecules to adsorb, so that eqn.~\ref{eq:xi_vs_xi0} holds for the open phase of the material.
 For an enhancement of the deliverable capacity by this two-phase, flexible material, 
 the open phase must be preferred at $\pfull$, with the closed phase preferred at $\pempty$. 
@@ -976,23 +1007,27 @@ This requires that, neglecting gas-gas interactions:
 % David: doesn't this also neglect entropy? wut about the *free energy* of the gas?
 % David: I suggest \Delta G_{host} to be clear?
 \begin{align}
-    V_{\text{open}}|\rho_{\text{open}}(\pfull)\V| &> \Delta G \\
-    V_{\text{open}}|\rho_{\text{open}}(\pempty)\V| &< \Delta G
+    V_{\text{open}}|\rho_{\text{open}}(\pfull)\V| &> \Delta F -pV_{\text{open}} \\
+    V_{\text{open}}|\rho_{\text{open}}(\pempty)\V| &< \Delta F -pV_{\text{closed}}
 \end{align}
 % David: I put \V<0, think we should say the sign of \Delta G to be clear too.
 % David: specify units on \delta G so clear where V comes from; might be better to absorb V into delta G?
-where $\rho_{\text{open}}(p)$ is the density of gas in the open phase of the material at pressure $p$. 
+where $\rho_{\text{open}}(p)$ is the density of gas
+in the open phase of the material at pressure $p$. We will neglect the $pV$
+terms in the Gibbs free energy, under the assumption that the mechanical
+work associated with the transition is neglible when compared with the
+adsorption energies involved.
 I.e., (1, to be open at $\pfull$) the gas-host attractions at $\pfull$ must overcome the free energy penalty to open the structure and 
 (2, to be closed at $\pempty$) the free energy penalty to open the structure must be larger than the (weak) gas-host attractions at $\pempty$.
 This approximate model of the two-phase material has no upper bound on the deliverable capacity, since
-$\V$ and $\Delta G$ can together be increased without bound.
-We can, however, place a bound for a fixed $\Delta G$, since if the gas is too strongly attracted to the open phase,
+$\V$ and $\Delta F$ can together be increased without bound.
+We can, however, place a bound for a fixed $\Delta F$, since if the gas is too strongly attracted to the open phase,
 the material will remain open at $\pempty$ and our rigid upper bound applies.
 % David: does our rigid upper bound apply then?
 The upper bound for the two-phase material is found by identifying the
 attractive interaction $\V$ that balances the gas-host attractions in the idealized-open-substrate at $\pempty$ with the free energy penalty to open:
 \begin{align}
-    V_{\text{open}} \rho_g(\muempty{} - \V_{opt}, T)\V_{opt} = \Delta G.
+    V_{\text{open}} \rho_g(\muempty{} - \V_{opt}, T)\V_{opt} = \Delta F.
 \end{align}
 % David: left is negative. what is the right? negative as well? how did u define it?
 This gives the largest possible attraction $|\V|$ consistent with the material closing
@@ -1001,9 +1036,10 @@ The deliverable capacity is then the density of gas in the open phase at $\pfull
 % David: changed it to \V_opt, or not necessary?
 
 Figure~\ref{fig:methane-flexible} illustrates
-how the upper bound on the deliverable capacity in a two-phase, collapsing material depends on $\Delta G$ for methane. 
+how the upper bound on the deliverable capacity of methane in a two-phase,
+collapsing material depends on $\Delta F$. 
 For comparison, we include the free energy
-difference for Co(bdp)~\davidsays{CITE} and its measured deliverable capacity.  
+difference for Co(bdp)~\cite{choi2008broadly} and its measured deliverable capacity.  
 While this upper bound is not rigorous, it suggests that a two-phase flexible material for methane storage
 would benefit from significantly greater stability of the closed phase---provided the open phase
 had correspondingly greater attraction for the gas molecules.  Figure~\ref{fig:hydrogen-flexible}
@@ -1019,7 +1055,7 @@ phase, as well as an unprecedented level of attractive interaction for hydrogen.
     \label{fig:hydrogen-flexible}
 \end{figure}
 
-\cbend
+\donereferees
 
 \section{Conclusions}
 We have established an upper bound on the deliverable capacity via
@@ -1032,12 +1068,22 @@ adsorbate. Our upper bound does indicate that those goals cannot be exceeded by
 more than 16\% for methane and 6\% for hydrogen. Fortunately, there are some
 limitations to these upper bounds which suggest avenues for future developments.
 
+\startreferees{Added an explanation of why we cannot place a bound on the
+  deliverable capacity when the temperature is changed.}
+
 The first limitation of our proof is that we restricted ourselves to
 \emph{isothermal} pressure swing storage (which is consistent with the targets set by DOE). By raising the temperature of the
 adsorbent during gas discharge to drive off residual
 gas~\cite{gomez2014exploring}, the deliverable capacity could be enhanced,
 albeit at the cost of a more complicated engineering design of the fuel tank
 and vehicle.
+%
+We cannot place an upper bound on such a process using our approach because with
+changing temperature a uniform potential may not give the maximum deliverable
+capacity.  A nonuniform potential will lower the entropy of the adsorbed gas,
+which will make the gas easier to release by raising the temperature.
+
+\donereferees
 
 The second limitation of our proof arises in the assumption of a rigid
 substrate. The rigid substrate acts as a static potential energy field for gas
@@ -1056,7 +1102,7 @@ higher deliverable capacities, as our upper bound does not pertain to them.
 
 We note that our upper bound can readily be applied to the storage of other
 gasses of interest, with the proviso that the gas is far from crystallization.
-Our code is available at \href{https://github.com/Jordan-Pommerenck/isothermal-gas-adsorption}{https://github.com/Jordan-Pommerenck/isothermal-gas-adsorption}.
+Our code is available at \href{https://https://github.com/droundy/thesis-pommerenck/tree/master/gas-adsorption}{https://https://github.com/droundy/thesis-pommerenck/tree/master/gas-adsorption}.
 
 \section*{Conflicts of interest}
 There are no conflicts to declare.
