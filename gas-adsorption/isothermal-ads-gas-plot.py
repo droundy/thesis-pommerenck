@@ -374,7 +374,7 @@ for i in range(len(Gads)):
     capacities[i] = n_from_mu_with_nans(mu_full + Gads[i])
 
 for n_goal, label, color, style in gas.n_goals:
-    plt.text(max_delta_F/delta_F_units/4,
+    plt.text(max_delta_F/delta_F_units/40,
              n_goal/density_units, label, color=color,
              verticalalignment = 'center_baseline',
              horizontalalignment = 'left',
@@ -382,6 +382,14 @@ for n_goal, label, color, style in gas.n_goals:
     plt.axhline(n_goal/density_units, color=color, linestyle=style, linewidth=0.5)
 
 plt.axhline(ymax, color='g', linestyle='--', linewidth=0.5)
+upper_bound_x_position = 11.5
+if basename == 'methane':
+    upper_bound_x_position = 6
+plt.text(upper_bound_x_position,
+            ymax, 'UPPER BOUND NO PHASE CHANGE', color='g',
+            verticalalignment = 'center_baseline',
+            horizontalalignment = 'left',
+            bbox=dict(facecolor='white', edgecolor='white', alpha=1, pad=0))
 
 if basename == 'methane':
     volume_cobdp = 773.58*angstrom**3
