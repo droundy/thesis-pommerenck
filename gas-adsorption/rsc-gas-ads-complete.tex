@@ -993,30 +993,38 @@ Although our deliverable capacity limit does not directly apply to materials tha
 response to gas adsorption, we can estimate enhancements in the deliverable capacity provided by
 such materials. 
 For example, consider a material such as Co(bdp) \cite{mason2015methane} that 
-can, actuated by the presence of gas, switch between two structural phases: 
+can, actuated by the presence of gas, switch between two distinct structural phases: 
 an ``open'' phase where gas molecules can fit in the pore space and a 
 collapsed, ``closed'' phase in which no gas can fit inside.
-Let $\Delta F=F_{\text{open}}-F_{\text{closed}}$ be the Helmholtz free
-energy difference between the two phases in the absence of gas.
-% David: introduce units of delta G here.
+
+Let $\Delta F=F_{\text{open}}-F_{\text{closed}}$ be the Helmholtz free energy difference per mole of adsorbent between the two phases in the absence of gas.
 Suppose the closed phase is more stable ($\implies \Delta F >0$), so that upon a reduction in the pressure of the gas, the material will collapse and expel all residual gas to enhance the deliverable capacity compared to rigid materials that will retain some gas at $\pempty$. 
 In addition, we assume the open phase hosts a uniform, attractive potential energy field $\V<0$ for gas molecules to adsorb, so that eqn.~\ref{eq:xi_vs_xi0} holds for the open phase of the material.
+In terms of $\rho_g(\mu, T)$, then, the grand potential $\Omega$ in our idealized substrate is:
+\begin{equation}
+    \Omega(T, \mu) = - \int_{-\infty}^\mu \rho_g(\mu-\V)d\mu.
+\end{equation}
+See Coudert et al. \cite{coudert2008thermodynamics}.
+However, the \emph{osmotic potential}.
+% David: introduce units of delta G here.
+
 For an enhancement of the deliverable capacity by this two-phase, flexible material, 
 the open phase must be preferred at $\pfull$, with the closed phase preferred at $\pempty$. 
 This requires that, neglecting gas-gas interactions:
 % David: doesn't this also neglect entropy? wut about the *free energy* of the gas?
 % David: I suggest \Delta G_{host} to be clear?
 \begin{align}
-    V_{\text{open}}|\rho_{\text{open}}(\pfull)\V| &> \Delta F -pV_{\text{open}} \\
-    V_{\text{open}}|\rho_{\text{open}}(\pempty)\V| &< \Delta F -pV_{\text{closed}}
+    V_{\text{open}}|\rho_{\text{open}}(\pfull)\V| &> \Delta F \\
+    V_{\text{open}}|\rho_{\text{open}}(\pempty)\V| &< \Delta F
 \end{align}
 % David: I put \V<0, think we should say the sign of \Delta G to be clear too.
 % David: specify units on \delta G so clear where V comes from; might be better to absorb V into delta G?
 where $\rho_{\text{open}}(p)$ is the density of gas
-in the open phase of the material at pressure $p$. We will neglect the $pV$
-terms in the Gibbs free energy, under the assumption that the mechanical
-work associated with the transition is neglible when compared with the
-adsorption energies involved.
+in the open phase of the material at pressure $p$ and $V_{\text{open}}$ is the molar volume of the open phase of the adsorbent, and we neglect the $pV$
+terms in the Gibbs free energy.
+%under the assumption that the mechanical
+%work associated with the transition is neglible when compared with the
+%adsorption energies involved.
 I.e., (1, to be open at $\pfull$) the gas-host attractions at $\pfull$ must overcome the free energy penalty to open the structure and 
 (2, to be closed at $\pempty$) the free energy penalty to open the structure must be larger than the (weak) gas-host attractions at $\pempty$.
 This approximate model of the two-phase material has no upper bound on the deliverable capacity, since
