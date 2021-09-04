@@ -335,7 +335,6 @@ storage.
     \caption{\label{fig:fig1} Gas storage and delivery using metal-organic frameworks (MOFs). (\subref{fig:example_MOF}) the crystal structure of an archetype MOF, CuBTC \cite{chui1999chemically}. (\subref{fig:delcap}) the methane adsorption isotherm in CuBTC \cite{chui1999chemically} at 298 K (blue) (data from Ref.~\cite{mason2014evaluating}). The deliverable capacity $\rho_D$ is illustrated as the density of gas in the MOF at the storage pressure $\pfull$ minus the density at the discharge pressure $\pempty$.}
 \end{figure}
 
-\startreferees{Deliverable capacity defined below}
 For a vehicle employing a porous material to store natural gas or hydrogen, the
 (volumetric) \emph{deliverable capacity} of the gas is the primary
 thermodynamic property that determines the driving
@@ -359,7 +358,6 @@ emergence of highly tunable materials with large surface areas, such as
 metal-organic frameworks~\cite{furukawa2013chemistry} and covalent organic 
 frameworks~\cite{diercks2017atom}, no porous material has met these deliverable capacity targets.
 
-\donereferees
 
 % \begin{figure}
 %     \centering
@@ -453,7 +451,6 @@ fictitious potential energy fields via a generative adversarial network trained
 on zeolite structures~\cite{lee2019predicting} all generated model substrates
 that failed to meet the ARPA-E methane deliverable capacity target.
 
-\startreferees{Added discussion of screening studies}
 Finally, in a number of studies, molecular simulations of gas adsorption in
 a large pool of both existing and predicted nanoporous
 structures empirically shed light on performance limitations \cite{firlej2013understanding, goldsmith2013theoretical,
@@ -463,7 +460,6 @@ by allowing researchers to identify commonalities among materials that have
 desirable properties.  
 However, the largest observed simulated deliverable capacity among the pool of candidate materials in such studies
 is only a \emph{lower bound} on the highest attainable deliverable capacity that is is predicted upon the accuracy of the molecular models.
-\donereferees
 
 % Brown and Freeman \cite{bhown2011analysis}
 
@@ -971,7 +967,6 @@ non-optimal attraction. For hydrogen, there is the further issue that there are
 no known \emph{physical} interactions that are sufficiently strong to give an
 optimal deliverable capacity at room temperature.
 
-\startreferees{Flexible MOFs section added below}
 \begin{figure}
     \centering
     \includegraphics[width=0.95\columnwidth]{figs/two-phase}
@@ -1069,7 +1064,6 @@ phase, as well as an unprecedented level of attractive interaction for hydrogen.
     \label{fig:hydrogen-flexible}
 \end{figure}
 
-\donereferees
 
 \section{Conclusions}
 We have established an upper bound on the deliverable capacity via
@@ -1081,9 +1075,6 @@ constraints imposed due to steric hindrance between substrate atoms and the
 adsorbate. Our upper bound does indicate that those goals cannot be exceeded by
 more than 16\% for methane and 6\% for hydrogen. Fortunately, there are some
 limitations to these upper bounds which suggest avenues for future developments.
-
-\startreferees{Added an explanation of why we cannot place a bound on the
-  deliverable capacity when the temperature is changed.}
 
 The first limitation of our proof is that we restricted ourselves to
 \emph{isothermal} pressure swing storage (which is consistent with the targets set by DOE). By raising the temperature of the
@@ -1097,7 +1088,6 @@ changing temperature, a uniform potential may not give the maximum deliverable
 capacity.  A nonuniform potential will lower the entropy of the adsorbed gas,
 which will make the gas easier to release by raising the temperature.
 
-\donereferees
 
 The second limitation of our proof arises in the assumption of a rigid
 substrate. The rigid substrate acts as a static potential energy field for gas
@@ -1114,6 +1104,19 @@ pressures~\cite{mason2015methane}. This allows Co(bdp) to fully expel its
 residual gas at low pressures. Flexible materials could have significantly 
 higher deliverable capacities, as we have shown for two-phase structures 
 that collapse and expel all residual gas at low pressures.
+
+\startreferees{Explain how the point of our paper is not to find structure-property relationships.}
+Several studies elucidated relationships between structural features of nanoporous materials---such as void fraction, pore size, and surface area---and their deliverable capacity of various gases \cite{gomez2014exploring,ahmed2019exceptional,simon2015materials,moghadam2018computer,Tong2018}. 
+Such structure-property relationships serve as useful heuristics for designing new materials with high deliverable capacity. However, the intention of our paper is not to discover structure-property relationships. 
+Rather, we place our upper bound on the deliverable capacity of [rigid] materials that holds irrespective of how the structural features of the material are tuned.
+
+\donereferees
+
+\startreferees{Discuss gravimetric vs volumetric deliverable capacity}
+
+For vehicular gas storage, gravimetric deliverable capacity (amount of gas per mass of material) may be considered as a material performance metric to avoid a heavy adsorbed-gas fuel tank. However, the volumetric deliverable capacity (amount of gas per volume of material) dominantly determines the driving range on a full fuel tank of a given volume \cite{mason2014evaluating}. That said, several articles have explored the tradeoff between gravimetric and volumetric deliverable capacity, particularly for hydrogen storage \cite{gomez2017understanding,chen2020balancing,goldsmith2013theoretical,ahmed2021predicting}. 
+
+\donereferees
 
 We note that our upper bound can readily be applied to the storage of other
 gasses of interest, with the proviso that the gas is far from crystallization.
