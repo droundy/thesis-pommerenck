@@ -76,3 +76,15 @@ c __pycache__
 < figs/Combine_Figure.pdf
 < figs/g_st_simple.pdf
 < figs/qst-vs-delta-G.pdf
+
+| pdflatex gas-ads-revtex.tex && pdflatex gas-ads-revtex.tex && bibtex gas-ads-revtex && pdflatex gas-ads-revtex.tex && pdflatex gas-ads-revtex.tex
+< figs/hydrogen-298-n-vs-G.pdf
+< figs/methane-298-n-vs-G.pdf
+< figs/methane-298-rho-mu.pdf
+< figs/hydrogen-77-n-vs-G.pdf
+< figs/four-cases.pdf
+< figs/hkust-1_fancy.png
+< figs/four-cases-pro.pdf
+< figs/Combine_Figure.pdf
+< figs/g_st_simple.pdf
+< figs/qst-vs-delta-G.pdf
