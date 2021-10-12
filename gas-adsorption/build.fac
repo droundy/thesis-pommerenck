@@ -88,3 +88,37 @@ c __pycache__
 < figs/Combine_Figure.pdf
 < figs/g_st_simple.pdf
 < figs/qst-vs-delta-G.pdf
+
+| pdflatex gas-ads-prresearch.tex && pdflatex gas-ads-prresearch.tex && bibtex gas-ads-prresearch && pdflatex gas-ads-prresearch.tex && pdflatex gas-ads-prresearch.tex
+< figs/hydrogen-298-n-vs-G.pdf
+< figs/methane-298-n-vs-G.pdf
+< figs/methane-298-rho-mu.pdf
+< figs/methane-298-flexible.pdf
+< figs/hydrogen-298-flexible.pdf
+< figs/hydrogen-77-n-vs-G.pdf
+< figs/four-cases.pdf
+< figs/hkust-1_fancy.png
+< figs/four-cases-pro.pdf
+< figs/Combine_Figure.pdf
+< figs/g_st_simple.pdf
+< figs/qst-vs-delta-G.pdf
+< figs/methane-298-gst.pdf
+< figs/two-phase.pdf
+
+| tar czvf gas-ads-prresearch.tar.gz gas-ads-prresearch.tex gas-ads-prresearch.bbl figs/hydrogen-298-n-vs-G.pdf figs/methane-298-n-vs-G.pdf figs/methane-298-rho-mu.pdf figs/hydrogen-77-n-vs-G.pdf figs/four-cases.pdf figs/hkust-1_fancy.png figs/four-cases-pro.pdf figs/Combine_Figure.pdf figs/g_st_simple.pdf figs/qst-vs-delta-G.pdf figs/methane-298-gst.pdf figs/two-phase.pdf figs/methane-298-flexible.pdf figs/hydrogen-298-flexible.pdf
+< figs/hydrogen-298-n-vs-G.pdf
+< figs/methane-298-n-vs-G.pdf
+< figs/methane-298-rho-mu.pdf
+< figs/methane-298-flexible.pdf
+< figs/hydrogen-298-flexible.pdf
+< figs/hydrogen-77-n-vs-G.pdf
+< figs/four-cases.pdf
+< figs/hkust-1_fancy.png
+< figs/four-cases-pro.pdf
+< figs/Combine_Figure.pdf
+< figs/g_st_simple.pdf
+< figs/qst-vs-delta-G.pdf
+< figs/methane-298-gst.pdf
+< figs/two-phase.pdf
+< gas-ads-prresearch.tex
+> gas-ads-prresearch.tar.gz
