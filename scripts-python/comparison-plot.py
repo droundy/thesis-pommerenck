@@ -143,7 +143,7 @@ for method in methods:
                 plt.xlabel('# moves')
                 plt.ylabel('error')
                 colors.legend()
-                plt.savefig('figs/%s-error-energy-%g.pdf' % (tex_filebase, energy))
+                plt.savefig('figs/%s-error-energy-%g.pdf' % (tex_filebase, energy), transparent=True)
 
                 plt.figure('round-trips-at-energy' )
                 colors.plot(moves, Nrt_at_energy, method = method[1:])
@@ -151,7 +151,7 @@ for method in methods:
                 plt.xlabel('# moves')
                 plt.ylabel('Round Trips')
                 colors.legend()
-                plt.savefig('figs/%s-round-trips-%g.pdf' % (tex_filebase, energy))
+                plt.savefig('figs/%s-round-trips-%g.pdf' % (tex_filebase, energy), transparent=True)
 
                 plt.figure('error-at-energy-round-trips')
                 colors.plot(Nrt_at_energy[Nrt_at_energy > 0], erroratenergy[Nrt_at_energy > 0],
@@ -160,7 +160,7 @@ for method in methods:
                 plt.xlabel('Round Trips')
                 plt.ylabel('Error')
                 colors.legend()
-                plt.savefig('figs/%s-error-energy-Nrt-%g.pdf' % (tex_filebase, energy))
+                plt.savefig('figs/%s-error-energy-Nrt-%g.pdf' % (tex_filebase, energy), transparent=True)
 
         plt.figure('maxerror')
         colors.loglog(moves, maxerror, method = method[1:])
@@ -228,7 +228,7 @@ for method in methods:
                       colors.legend(loc='lower left')
                     else:
                       colors.legend()
-                    plt.savefig('%s-Cv-error-%s.pdf' % (tex_filebase,transcale))
+                    plt.savefig('%s-Cv-error-%s.pdf' % (tex_filebase,transcale), transparent=True)
 
     except:
         raise
