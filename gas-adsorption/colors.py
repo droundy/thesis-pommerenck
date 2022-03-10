@@ -16,6 +16,7 @@ print(kelly_colors)
 colors = kelly_colors # list(prop_cycle.by_key()['color'])
 
 the_order = [
+    'Ni2m-dobdc',
     'MOF519',
     'NJUBai43',
     'NU1000',
@@ -61,6 +62,7 @@ def symbol(gas):
         return '+' 
 
 latex_mof_names = {
+    'Ni2m-dobdc': 'Ni$_2$($m$-dodbc)',
     'Ni2dobdc': 'Ni$_2$(dodbc)',
     'Co2dobdc': 'Co$_2$(dodbc)',
     'Mg2dobdc':'Mg$_2$(dodbc)',

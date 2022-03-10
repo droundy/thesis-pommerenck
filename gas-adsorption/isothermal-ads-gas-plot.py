@@ -240,6 +240,9 @@ crystal_density = {
     'NU1102':           0.403*gram/cm**3,
     'NU1103':           0.298*gram/cm**3,
     'COF102':           0.41*gram/cm**3,
+    # WARNING, the following is false, and is intended to compensate for rho
+    # being given in mmol/L not mmol/g
+    'Ni2m-dobdc':       1,
 }
 
 mof_isotherms = gas.isotherm_experiments(T[0], float(sys.argv[3]), float(sys.argv[4]))

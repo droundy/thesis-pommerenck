@@ -80,6 +80,10 @@ H2_298_Data = {
         'rho_full': 5.29*mmol/gram,
         'rho_empty': 0.31*mmol/gram,
     },
+    'Ni2m-dobdc': {
+        'rho_full': 11.9*gram/molecular_weight/L,
+        'rho_empty': 0.9*gram/molecular_weight/L,
+    },
 }
 
 H2_77_Data = { # from Table S4. In the supplemental.

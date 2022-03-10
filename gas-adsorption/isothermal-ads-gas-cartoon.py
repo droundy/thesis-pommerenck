@@ -193,6 +193,9 @@ crystal_density = {
     'NU1102':           0.403*gram/cm**3,
     'NU1103':           0.298*gram/cm**3,
     'COF102':           0.41*gram/cm**3,
+    # WARNING, the following is false, and is intended to compensate for rho
+    # being given in mmol/L not mmol/g
+    'Ni2m-dobdc':       1,
 }
 
 mof_isotherms = gas.isotherm_experiments(T[0], 5.8, 65)
@@ -209,9 +212,10 @@ for mof in colors.order(mof_isotherms): # For each MOF
         rho_hi_p = mof_isotherms[mof]['rho_full']*crystal_density[mof]
     delta_G_hi_p = np.interp(rho_hi_p, n, mu) - mu_full
 
-    plt.plot([delta_G_lo_p/(kJ/mol), delta_G_hi_p/(kJ/mol)],
-            [(rho_hi_p-rho_lo_p)/density_units, (rho_hi_p-rho_lo_p)/density_units],
-            colors.symbol(basename)+'-', label=colors.latex_mof(mof), color=colors.color(mof))
+    if mof in mof_isotherms:
+        plt.plot([delta_G_lo_p/(kJ/mol), delta_G_hi_p/(kJ/mol)],
+                [(rho_hi_p-rho_lo_p)/density_units, (rho_hi_p-rho_lo_p)/density_units],
+                colors.symbol(basename)+'-', label=colors.latex_mof(mof), color=colors.color(mof))
 
 stepby = None
 if 20 < ymax < 200:
